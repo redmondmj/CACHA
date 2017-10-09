@@ -35,10 +35,11 @@
                             <a class="nav-link" href="pharma.php">Rx</a>
                             <a class="nav-link" href="records.php">Records</a>
                         </nav>
-                    </div>
-                </div>
+                    </div> <!-- /inner -->
+                </div> <!-- /master clearfix -->
 
                 <div class="inner cover">
+<<<<<<< HEAD
                     <div class="form-horizontal border">
                         <form>
 
@@ -49,6 +50,17 @@
                                     <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
                                     <div class="col-12">
                                         <select id="drpPatient" name="drpPatient" class="form-control" onchange="fetch_select(this.value);">
+=======
+                <div class="form-horizontal border">
+                    
+                    <!-- Patient/Visit -->
+                    <div class="form-row justify-content-center">
+                        <!-- Select Patient -->
+                        <div class="form-group">
+                            <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
+                            <div class="col-12">
+                                <select id="drpPatient" name="drpPatient" class="form-control" onchange="fetch_select(this.value);">
+>>>>>>> origin/master
                                     
                                 </select>
                                     </div>
@@ -77,6 +89,7 @@
                                 <label id="lblCase" class="col-3 control-label">Case #:</label>
                             </div>
 
+<<<<<<< HEAD
                             <div class="row">
                                 <h4 class="col-12 control-label">Triage</h4>
                             </div>
@@ -128,6 +141,30 @@
 
                             <div class="row">
                                 <div class="col-12" style="height: 1em;"></div>
+=======
+                    <!--
+                    <div class="row">
+                        <h4 class="col-12 control-label">Triage</h4>
+                    </div> -->
+
+                    <br/>
+
+                    <div class="row">
+                        <h4 class="col-12 control-label">Basic Information</h4>
+                    </div>
+
+                    <!-- <div class="well"> -->
+                    <!-- Basic Info section !-->
+                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="dispensery">Dispensery:</label>
+                                <select class="form-control" id="dispensery"></select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="weight">Weight:</label>
+                                <input type="number" class="form-control" id="weight">
+>>>>>>> origin/master
                             </div>
 
                             <div class="row">
@@ -182,9 +219,28 @@
                                     <h3>Family Info</h3>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="row">
                                 <div class="col-12"><br></div>
                                 <!-- empty line for spacing !-->
+=======
+                            <div class="col-1"></div>
+                        </div>
+                    </div> <!-- /border -->
+
+                    <br/>
+
+                    <!-- Family Info section !-->
+                    <div class="row">
+                        <h4 class="col-12 control-label">Family Information</h4>
+                    </div>
+                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
+                        
+                        <div class="row">
+                            <div class="form-group col-3">
+                                <label for="livingChildren">Living Children:</label>
+                                <input type="number" class="form-control" id="livingChildren">
+>>>>>>> origin/master
                             </div>
                             <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
 
@@ -245,6 +301,7 @@
                                     <h3>Stations</h3>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="row">
                                 <div class="col-12"><br></div>
                                 <!-- empty line for spacing !-->
@@ -284,11 +341,90 @@
                                     <div class="col-2">
                                         <label class="checkbox-inline" for="v">
                                 <input type="checkbox" name="checkboxes" id="v" value="6">
+=======
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <!-- Chief Complaint section !-->
+                    <div class="row">
+                        <h4 class="col-12 control-label">Chief Complaint</h4>
+                    </div>
+                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
+                        <div class="row">
+                            <div class="form-group col-12" style="margin-bottom:0rem">
+                                <input type="textArea" class="form-control" id="chiefComplaint" style="height:10em;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <!-- Stations section !-->
+                    <div class="row">
+                        <h4 class="col-12 control-label">Stations</h4>
+                    </div>
+                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
+                        <div class="row">
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-0">
+                                <input id="chkTest" type="checkbox" name="checkboxes" id="checkboxes-0" value="1" disabled>
+                                Test
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-1">
+                                <input id="chkMED1" type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
+                                MED1
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-2">
+                                <input id="chkMED2" type="checkbox" name="checkboxes" id="checkboxes-2" value="2" disabled>
+                                    MED2
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                            </div>
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-3">
+                                <input id="chkGYN" type="checkbox" name="checkboxes" id="checkboxes-3" value="3" disabled>
+                                    GYN
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-4">
+                                <input id="chkOPHT" type="checkbox" name="checkboxes" id="checkboxes-4" value="4" disabled>
+                                    OPHT
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-5">
+                                <input id="chkDENT" type="checkbox" name="checkboxes" id="checkboxes-5" value="5" disabled>
+                                    DENT
+                                </label>
+                            </div>
+
+                            <div class="col-2" style="text-align: left;">
+                                <label class="checkbox-inline" for="checkboxes-6">
+                                <input id="chkTriageV" type="checkbox" name="checkboxes" id="checkboxes-6" value="6" disabled>
+>>>>>>> origin/master
                                     V
                                 </label>
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <!--Submit Form-->
                             <?php include "bottom.php"; ?>
                         </form>
@@ -299,8 +435,16 @@
             </div>
 
         </div>
+=======
+                        </div> <!-- /row -->
+                    </div>
+                </div> <!-- /horizontal border -->
+                </div> <!-- /inner cover clearfix -->
+>>>>>>> origin/master
 
-    </div>
+            </div> <!-- /clear container -->
+        </div> <!-- /site-wrapper-inner -->
+    </div> <!-- /site-wrapper -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
