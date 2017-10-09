@@ -54,7 +54,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#visitTable').DataTable();
+            $('#visitTable').DataTable( {
+                "pageLength": 25
+            });
+            
         } );
     </script>
 </head>
