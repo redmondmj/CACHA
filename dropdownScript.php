@@ -12,8 +12,12 @@
     // which menu do we want?
     if ($request["menu"] == "village") {
         $sql = "SELECT Village FROM tbl_village";
-    } else if ($request["menu"] == "patient") {
+    } else if ($request["menu"] == "patients") {
         $sql = "SELECT * FROM tbl_patient";
+    } else if ($request["menu"] == "visits") {
+        $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "'";
+    } else if ($request["menu"] == "dispensaries") {
+        $sql = "SELECT * FROM tbl_dispensary";
     } else {
         $response->reason = "Invalid menu request";
         echo json_encode($response);
@@ -26,33 +30,41 @@
         $result = $connect->query($sql);
         
         // check for responses
-        if ($result->num_rows > 0) {
+        if (@$result->num_rows > 0) {
             // build response object
             // which menu?
-            if ($request["menu"] = "village") {
+            if ($request["menu"] == "village") {
                 // add the entries to the response object
-                while($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     array_push($response->entries, $row["Village"]);
                 }
-            }
-            if ($request["menu"] = "patient") {
+            } else if ($request["menu"] == "patients") {
                 // construct new object to add to the array
                 class Patient {
                     public $id = 0;
-                    public $first = "";
-                    public $last = "";
+                    public $name = "";
                 }
                 
                 // add the entries to the response object
-                while($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     
                     // new patient
                     $pat = new Patient();
                     $pat->id = $row["PatientID"];
-                    $pat->first = $row["FirstName"];
-                    $pat->last = $row["LastName"];
+                    $pat->name = $row["FirstName"] . " " . $row["LastName"];
                     
                     array_push($response->entries, $pat);
+                }
+
+            } else if ($request["menu"] == "visits") {
+                // add the entries to the response object
+                while ($row = $result->fetch_assoc()) {
+                    array_push($response->entries, $row["VisitID"]);
+                }
+            } else if ($request["menu"] == "dispensaries") {
+                // add the entries to the response object
+                while ($row = $result->fetch_assoc()) {
+                    array_push($response->entries, $row["Dispensary"]);
                 }
             }
         } else {
