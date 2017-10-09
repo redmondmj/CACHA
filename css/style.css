@@ -1,0 +1,97 @@
+/* MAIN */
+
+body {
+  background-color: #333;
+  font-size: 20px;
+  margin: 20px;
+}
+
+div {
+  color: #FFF;
+  border-color: #FFF;
+}
+
+hr {
+  border-color: #FFF;
+}
+
+input {
+  color: #FFF;
+  background-color: #333;
+  border: none;
+}
+
+textarea {
+  color: #FFF;
+  background-color: #333;
+  border: none;
+  resize: none;
+}
+
+/* SPECIFIC TEXT AREAS */
+
+#txtComplaint {
+  width: 95%;
+  height: 75%;
+}
+
+#txtAssessment {
+  width: 95%;
+  height: 75%;
+}
+
+#txtPrevmeds {
+  width: 95%;
+  height: 45%;
+}
+
+#txtFollowup {
+  width: 95%;
+  height: 50%;
+}
+
+#txtTopical {
+  width: 95%;
+  height: 40%;
+}
+
+#txtEducation {
+  width: 60%;
+  height: 40%;
+}
+
+#txtPractitioners {
+  width: 75%;
+  height: 20%;
+}
+
+/* MEDIA STUFF */
+
+@media print {
+
+  div {
+    color: Black;
+    border-color: Black;
+  }
+
+  input {
+    color: Black;
+  }
+
+  textarea {
+    color: Black;
+  }
+
+  hr {
+    border-color: Black;
+  }
+
+  #secondPage {
+    page-break-before: always;
+  }
+
+  #lastPage {
+    page-break-before: always;
+  }
+
+}
