@@ -15,7 +15,7 @@
     $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID";
 
     try{
-      $result - mysqli_query($connect, $sql);
+      $result = mysqli_query($connect, $sql);
       $row = mysqli_fetch_assoc($result);
       
       $patientID = $row['PatientID'];
