@@ -45,6 +45,7 @@
 
     $practicioner = $decoded[0]->practicioner;
     
+    // build the giant sql string
     $sql = "UPDATE patient (";
     if (!empty($visitTime)) {
         $sql .= "VisitTime = '$visitTime',";
@@ -137,10 +138,10 @@
         $sql .= "Practicioners = '$practicioner',";
     }
 
-    if(substr_compare($sql, ",", -1, 1)){
-        substr_replace($sql ,")",-1);
-    }
-
+    // remove last comma and add bracket
+    $sql = substr_replace($sql ,")",-1);
+    
+    // add conditon
     $sql .= "WHERE VisitID = $visitID";
 
     try{
