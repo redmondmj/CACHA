@@ -15,7 +15,7 @@
     $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID";
 
     try{
-      $result - mysqli_query($connection, $sql);
+      $result - mysqli_query($connect, $sql);
       $row = mysqli_fetch_assoc($result);
       
       $patientID = $row['PatientID'];
@@ -144,8 +144,8 @@
     } catch(Error $e){
         echo false;
     } finally {
-        mysqli_stmt_close();
-        mysqli_close();
+        mysqli_stmt_close($connect);
+        mysqli_close($connect);
     }
 
     function checkboxIf($test, $id, $name, $value, $text){
@@ -216,13 +216,13 @@
         </div>
 
         <div class ="col-6" style="border-style: solid;">
-          <? if ($sex == "male") : ?>
+          <?php if ($sex == "male") : ?>
             <span style="padding-right: 5px;"><input type="checkbox" id="chkMale" name="Male" value="MALE" disabled checked>M</span>
             <span style="padding-right: 5px;"><input type="checkbox" id="chkFemale" name="Female" value="FEMALE" disabled>F</span>
-          <? else : ?>
+          <?php else : ?>
             <span style="padding-right: 5px;"><input type="checkbox" id="chkMale" name="Male" value="MALE" disabled>M</span>
             <span style="padding-right: 5px;"><input type="checkbox" id="chkFemale" name="Female" value="FEMALE" disabled checked>F</span>
-          <? endif ?>
+          <?php endif ?>
           <span style="padding-right: 20px;">AGE: <input disabled type="text" id="txtAge" name="Age" value="<?php echo $birthday; ?>" style="width: 30px"></span>
           <span style="padding-right: 5px;">WEIGHT: <input disabled type="text" id="txtWeight" name="Weight" value="<?php echo $weight; ?>" style="width: 50px"></span>KG<br>
           <span style="padding-right: 50px;">TEMP: <input disabled type="text" id="txtTemp" name="Temp" value="<?php echo $temperature; ?>" style="width: 50px">&#8457;</span>
@@ -479,7 +479,7 @@
           <?php else : ?>
             <input type="checkbox" id="Yanemia" name="YClinicalAnemia" value="YCANEMIA" disabled>YES
             <input type="checkbox" id="chkNanemia" name="NClinicalAnemia" value="NCANEMIA" disabled checked>NO<br>
-          <? endif ?>
+          <?php endif ?>
           SULFAAR SP500/25:<br>
           TABS 
           <?php if ($sulfadar == "3") : ?>
