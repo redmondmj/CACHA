@@ -61,10 +61,106 @@
                     <!-- Main Content Area -->
                     <div class="form-horizontal border">
                         <form class="form-horizontal" method="POST">
-                            <!-- load the visit -->
-                            <?php include "top.php"; ?>
+                            <!-- Basic Info -->
+                            <!-- Patient/Visit -->
+                            <div class="form-row justify-content-center">
+                                <!-- Select Patient -->
+                                <div class="form-group">
+                                    <label class="col-12 control-label" for="patientName">Choose Patient:</label>
+                                    <div class="col-12">
+                                        <select id="patientName" name="patientName" class="form-control" onchange="fetch_select(this.value);">
+                                            <?php include 'loadPatient.php' ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Select Visit -->
+                                <div class="form-group">
+                                    <label class="col-12 control-label" for="visit">Choose Visit:</label>
+                                    <div class="col-12">
+                                        <select id="visit" name="visit" class="form-control">
+                                            <?php include 'loadVisit.php' ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Patient/Visit -->
+                            <div class="row">
+                                <label class="col-3 control-label" style="text-align: left;">Full Name:</label>
+                                <label class="col-2 control-label">Age:</label>
+                                <label class="col-2 control-label">Weight:</label>
+                                <label class="col-2 control-label">Village:</label>
+                                <label class="col-2 control-label">Case #:</label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" style="height: 1em;"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-9">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="button" class="btn btn-default" value="Full Chart" onclick="location.href = 'print.php?id=5';">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-1">
+                                    <label class="checkbox-inline" for="checkboxes-0">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" disabled>
+                                    Test
+                                    </label>
+                                </div>
+
+                                <div class="col-2">
+                                    <label class="checkbox-inline" for="checkboxes-1">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
+                                        MED1
+                                    </label>
+                                </div>
+
+                                <div class="col-2">
+                                    <label class="checkbox-inline" for="checkboxes-1">
+                                        <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
+                                            MED2
+                                        </label>
+                                </div>
+
+                                <div class="col-2">
+                                    <label class="checkbox-inline" for="checkboxes-2">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3" disabled>
+                                        GYN
+                                    </label>
+                                </div>
+
+                                <div class="col-2">
+                                    <label class="checkbox-inline" for="checkboxes-3">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4" disabled>
+                                        OPHT
+                                    </label>
+                                </div>
+
+                                <div class="col-2">
+                                    <label class="checkbox-inline" for="checkboxes-4">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5" disabled>
+                                        DENT
+                                    </label>
+                                </div>
+
+                                <div class="col-1">
+                                    <label class="checkbox-inline" for="checkboxes-5">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6" disabled>
+                                        V
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" style="height: 2em;"></div>
+                            </div>
                             <!-- FORM LAYOUT BEGINS -->
-                            <div class="form-horizontal border">
+                            <div class="form-horizontal">
                                 <button data-toggle="collapse" data-target="#msk" class="btn btn-default">MSK (click for drugs)</button>
                                 <div class="row collapse" id="msk">
                                     <h4>Populate options from tbl_drugs</h4>
@@ -111,7 +207,54 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div><br>
+                            <div class="form-horizontal">
+                                <button data-toggle="collapse" data-target="#asthma" class="btn btn-default">Asthma (click for drugs)</button>
+                                <div class="row collapse" id="asthma">
+                                    <h4>Populate options from tbl_drugs</h4>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label class="control-label" for="1">Sample 1</label>
+                                            <input type="checkbox" value="1">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="2">Sample 2</label>
+                                            <input type="checkbox" value="2">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="3">Sample 3</label>
+                                            <input type="checkbox" value="3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label class="control-label" for="4">Sample 4</label>
+                                            <input type="checkbox" value="5">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="5">Sample 5</label>
+                                            <input type="checkbox" value="5">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="6">Sample 6</label>
+                                            <input type="checkbox" value="6">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label class="control-label" for="7">Sample 7</label>
+                                            <input type="checkbox" value="7">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="8">Sample 8</label>
+                                            <input type="checkbox" value="8">
+                                        </div>
+                                        <div class="col-4">
+                                            <label class="control-label" for="9">Sample 9</label>
+                                            <input type="checkbox" value="9">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Most Common Drugs -->
                             <div class="row">
