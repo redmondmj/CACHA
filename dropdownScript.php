@@ -12,8 +12,10 @@
     // which menu do we want?
     if ($request["menu"] == "village") {
         $sql = "SELECT Village FROM tbl_village";
-    } else if ($request["menu"] == "patients") {
+    } else if ($request["menu"] == "newpatients") {
         $sql = "SELECT * FROM tbl_patient";
+    } else if ($request["menu"] == "patients") {
+        $sql = "SELECT DISTINCT A.* FROM tbl_patient A INNER JOIN tbl_visit B on A.PatientID = B.PatientID";
     } else if ($request["menu"] == "visits") {
         $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "'";
     } else if ($request["menu"] == "dispensaries") {
@@ -38,7 +40,7 @@
                 while ($row = $result->fetch_assoc()) {
                     array_push($response->entries, $row["Village"]);
                 }
-            } else if ($request["menu"] == "patients") {
+            } else if (($request["menu"] == "newpatients") || ($request["menu"] == "patients")) {
                 // construct new object to add to the array
                 class Patient {
                     public $id = 0;

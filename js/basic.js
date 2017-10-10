@@ -241,7 +241,7 @@
     function getPatients() {
         // construct the JSON object to send to the handler
         var sendJSON = {
-            "menu": "patients"
+            "menu": "newpatients"
         };
 
         // send the json off
