@@ -1,7 +1,11 @@
 <!-- Notes for backend 
     Added stations section. if selected should reassign station as unvisited, otherwise no change
     Added fields under diagnosis - EYE - VITAMINS
-    Added Pregnancy - weeks, anc, IPTp, Sulfaar
+    Added Pregnancy Section - weeks, anc, IPTp, Sulfaar
+    Added Follow Up textarea
+    Added Admin section - three checkboxes
+    Added Education textarea
+    Added Referral Section - three checkboxes
 -->
 
 <!DOCTYPE html>
@@ -59,7 +63,7 @@
                             <div class="row">
                                 <div class="col-12 borderDiv">
                                     <h4 class="col-12 control-label">Assessment Notes</h4>
-                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 10em;"></textarea>
+                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 6em;"></textarea>
                                     <div class="col-12" style="height: 2em;"></div>
                                 </div>
                             </div>
@@ -109,7 +113,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
+                                <div class="col-12" style="height: 4em;"></div>
                             </div>
 
 
@@ -347,7 +351,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h4 class="col-12 control-label">Other Dx</h4>
-                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 8em;"></textarea>
+                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 4em;"></textarea>
                                     <div class="col-12" style="height: 2em;"></div>
                                 </div>
                             </div>
@@ -359,9 +363,9 @@
                                     <label class="control-label" for="Pregnant">Weeks</label>
                                     <input type="number" id="Pregnant" name="Pregnant" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="anc">Regular ANC</label>
-                                    <div class="col-md-4">
+                                <div class="col-5">
+                                    <label class="col-12 control-label" for="anc">Regular ANC</label>
+                                    <div class="col-12">
                                         <div class="radio">
                                             <label for="anc-0">
                                             <input type="radio" name="anc" id="anc-0" value="yes" >
@@ -376,9 +380,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="anemia">Clinical Anemia</label>
-                                    <div class="col-md-4">
+                                <div class="col-5">
+                                    <label class="col-12 control-label" for="anemia">Clinical Anemia</label>
+                                    <div class="col-12">
                                         <div class="radio">
                                             <label for="anemia-0">
                                                 <input type="radio" name="anemia" id="anemia-0" value="yes" >
@@ -393,7 +397,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                            </div>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-4">
                                     <label class="control-label" for="IPTp">Last IPTp</label>
                                     <select id="IPTP" name="IPTP" class="form-control">
                                         <option value="never">Never</option>
@@ -401,7 +408,7 @@
                                         <option value="greater">< One Month Ago</option>
                                     </select>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-4">
                                     <label class="control-label" for="Sulfaar">Sulfaar SP2500/25</label>
                                     <select id="Sulfaar" name="Sulfaar" class="form-control">
                                             <option value="3">3 Tabs</option>
@@ -410,12 +417,84 @@
                                         </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-12" style="height: 4em;"></div>
+                            </div>
                             <!-- Followup Section -->
                             <div class="row">
                                 <div class="col-12">
                                     <h4 class="col-12 control-label">Follow Up</h4>
-                                    <textarea class="form-control" id="FollowUpNotes" name="followUpNotes" style="height: 8em;"></textarea>
+                                    <textarea class="form-control" id="FollowUpNotes" name="followUpNotes" style="height: 3em;"></textarea>
                                     <div class="col-12" style="height: 2em;"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="height: 4em;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Section (drugs administered during exam) -->
+                            <div class="row">
+                                <h4 class="col-12 control-label">Admin</h4>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-0">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Paracetamol">
+                                    Paracetamol
+                                </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-1">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="BezPen">
+                                    Benz-Pen-G 2.4 MIU
+                                    </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-2">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Ceftriaxone">
+                                     Ceftriaxone 250MG
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="height: 4em;"></div>
+                                </div>
+                            </div>
+                            <!--Education Section text input for education (see print.php) to be provided to the client before they leave the clinic, e.g. hand washing techniques, food safety, salt reduction, condom use etc,-->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="col-12 control-label">Education</h4>
+                                    <textarea class="form-control" id="education" name="education" style="height: 3em;"></textarea>
+                                    <div class="col-12" style="height: 2em;"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="height: 4em;"></div>
+                                </div>
+                            </div>
+                            <!-- Referral Section -->
+                            <div class="row">
+                                <h4 class="col-12 control-label">Referral</h4>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-0">
+                                        <input id="referral" type="checkbox" name="checkboxes" value="TB">
+                                        TB
+                                    </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-1">
+                                        <input id="referral" type="checkbox" name="checkboxes" value="Surgery">
+                                        Surgery
+                                        </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-2">
+                                        <input id="referral" type="checkbox" name="checkboxes" value="Hospital">
+                                         Hospital
+                                        </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="height: 4em;"></div>
                                 </div>
                             </div>
                             <!-- Stations section - Exact copy of register.html!-->
