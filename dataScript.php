@@ -1,5 +1,5 @@
 <?php
-    require_once "db.php";
+    require "db.php";
     
     // Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));

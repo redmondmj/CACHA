@@ -4,6 +4,7 @@
     // retrieve data
     var dropdownScript = "dropdownScript.php";
     var dataScript = "dataScript.php";
+    var uploadScript = "uploadScript.php";
 
     // XMLHttpRequest object
     var xmlhttp = null;
@@ -106,12 +107,13 @@
         chkDENT = document.getElementById("chkDENT");
         chkTriageV = document.getElementById("chkTriageV");
     
-        var btnSubmit = null;
-
         btnSubmit = document.getElementById("btnSubmit");
 
+        // clear all
+        clearAll();
+
         // event listener for changing patients
-        drpPatient.addEventListener("change", getVisits);
+        drpPatient.addEventListener("change", getPatientStats);
 
         // event listener for visit information
         drpVisit.addEventListener("change", getThisVisit);
@@ -187,7 +189,39 @@
         // send it
         xmlhttp.send(sendString);
     }
+    
+    function clearAll() {
+        lblCase.innerHTML = "Case #";
+        
+        drpDispensary.selectedIndex = 0;
+        txtWeight.value = "";
+        txtTemp.value = "";
+        txtBPTop.value = "";
+        txtBPBottom.value = "";
+        txtHR.value = "";
+        txtGlucose.value = "";
 
+        chkPreg.checked = false;
+        chkBreast.checked = false;
+
+        txtLive.value = "";
+        txtGrav.value = "";
+        txtPara.value = "";
+        txtAbort.value = "";
+        txtLNMP.value = "";
+
+        txtComplaint.innerHTML = "";
+
+        // stations
+        chkTest.checked = false;
+        chkMED1.checked = false;
+        chkMED2.checked = false;
+        chkGYN.checked = false;
+        chkOPHT.checked = false;
+        chkDENT.checked = false;
+        chkTriageV.checked = false;
+    }
+    
     // ------------------------------------------------------------ event handlers
 
     // ---------------------------------------------------------------- data requests
@@ -216,6 +250,9 @@
         // loading
         loading();
         
+        // clear the board
+        clearAll();
+
         // construct the JSON object to send to the handler
         var sendJSON = {
             "request": "stats",
@@ -234,9 +271,6 @@
             "id": drpPatient[drpPatient.selectedIndex].value
         };
 
-        // turn object into a string
-        var sendString = JSON.stringify(sendJSON);
-
         // send the json off
         sendJson(sendJSON, dropdownScript, "visits");
     }
@@ -245,35 +279,7 @@
         // check for new entry
         if (drpVisit.selectedIndex === 0) {
             // clear the board
-            lblCase.innerHTML = "Case #";
-
-            drpDispensary.selectedIndex = 0;
-            txtWeight.value = "";
-            txtTemp.value = "";
-            txtBPTop.value = "";
-            txtBPBottom.value = "";
-            txtHR.value = "";
-            txtGlucose.value = "";
-
-            chkPreg.checked = false;
-            chkBreast.checked = false;
-
-            txtLive.value = "";
-            txtGrav.value = "";
-            txtPara.value = "";
-            txtAbort.value = "";
-            txtLNMP.value = "";
-
-            txtComplaint.innerHTML = "";
-
-            // stations
-            chkTest.checked = false;
-            chkMED1.checked = false;
-            chkMED2.checked = false;
-            chkGYN.checked = false;
-            chkOPHT.checked = false;
-            chkDENT.checked = false;
-            chkTriageV.checked = false;
+            clearAll();
 
         } else {
 
@@ -282,8 +288,6 @@
                 "request": "basic",
                 "id": drpVisit[drpVisit.selectedIndex].value
             };
-
-            console.log(sendJSON);
 
             // send the json off
             sendJson(sendJSON, dataScript, "basic");
@@ -558,7 +562,15 @@
 
                 lblCase.innerHTML = "Case #" + drpPatient[drpPatient.selectedIndex].value;
 
-                // dispensary
+                // run through the dispensary list until we find a match
+                for (var n=0;n < drpDispensary.length;n++) {
+                    if (drpDispensary[n].value === response.entries[0].dispensary) {
+                        drpDispensary.selectedIndex = n;
+                        break;
+                    }
+                    
+                }
+
                 txtWeight.value = response.entries[0].weight;
                 txtTemp.value = response.entries[0].temp;
                 txtBPTop.value = response.entries[0].BPTop;
