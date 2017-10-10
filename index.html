@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <!--<label class="col-md-4 control-label" for="fname">First Name</label>-->
                                 <div class="col-6 col-centered">
-                                    <input id="txtFName" name="fname" type="text" placeholder="First Name" class="form-control input-md" required="">
+                                    <input id="txtFName" name="fname" type="text" placeholder="First Name" class="form-control input-md" required>
                                 </div>
                             </div>
 
@@ -62,15 +62,15 @@
                             <div class="form-group">
                                 <!-- <label class="col-md-4 control-label" for="lname">Last Name</label> -->
                                 <div class="col-6 col-centered">
-                                    <input id="txtLName" name="lname" type="text" placeholder="Last Name" class="form-control input-md" required="">
+                                    <input id="txtLName" name="lname" type="text" placeholder="Last Name" class="form-control input-md" required>
                                 </div>
                             </div>
 
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <!--<label class="col-md-4 control-label" for="village">Village</label>-->
-                                <div class="col-md-6 col-centered">
-                                    <select id="drpVillage" name="village" class="form-control">
+                                <div class="col-6 col-centered">
+                                    <select id="drpVillage" name="village" class="form-control" required>
                                             
                                         </select>
                                 </div>
@@ -78,17 +78,14 @@
                             <div class="form-group">
                                 <!--<label class="col-md-4 control-label" for="fname">D.O.B.</label>-->
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-2 col-centered">
-                                        <input id="txtYear" placeholder="BYear" class="form-control input-sm">
+                                    <div class="col-3"></div>
+                                    <div class="col-3 col-centered">
+                                        <input type="number" id="txtYear" placeholder="Age or Year" class="form-control input-sm" required>
                                     </div>
-                                    <div class="col-md-2 col-centered">
-                                        <input id="txtMonth" placeholder="BMonth" class="form-control input-sm">
+                                    <div class="col-3 col-centered">
+                                        <input type="number" id="txtMonth" placeholder="Months (Optional)" class="form-control input-sm">
                                     </div>
-                                    <div class="col-md-2 col-centered">
-                                        <input id="txtDay" placeholder="BDay" class="form-control input-sm">
-                                    </div>
-                                    <div class="col-md-3"></div>
+                                    <div class="col-3"></div>
                                 </div>
                             </div>
                             <!-- Multiple Radios (inline) -->
@@ -110,7 +107,7 @@
                             <div class="form-group">
                                 <!--<label class="col-md-4 control-label" for="submit">Submit</label>-->
                                 <div class="col-6 col-centered">
-                                    <button id="btnSubmit" class="btn btn-success">Submit</button>
+                                    <button id="btnSubmit" class="btn btn-default">Submit</button>
                                 </div>
                             </div>
 
