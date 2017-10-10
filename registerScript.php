@@ -70,7 +70,7 @@
             $response->reason = $sql;
         }
         
-    } catch(Error $e){
+    } catch (Error $e){
         $response->reason = "Possible Query Error";
         echo json_encode($response);
     } finally {
