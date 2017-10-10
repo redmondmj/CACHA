@@ -161,6 +161,33 @@
         // can not use the shortcut because it doesn't work - no idea why
     }
 
+    function sendJson(json, script, response) {
+        // turn object into a string
+        var sendString = JSON.stringify(json);
+        
+        // send string to the server handler
+        xmlhttp = new XMLHttpRequest();
+
+        // which response do we want?
+        if (response === "dispensaries") {
+            xmlhttp.addEventListener("readystatechange", dispensariesResponse);
+        } else if (response === "patients") {
+            xmlhttp.addEventListener("readystatechange", patientsResponse);
+        } else if (response === "visits") {
+            xmlhttp.addEventListener("readystatechange", visitsResponse);
+        } else if (response === "stats") {
+            xmlhttp.addEventListener("readystatechange", statsResponse);
+        } else if (response === "basic") {
+            xmlhttp.addEventListener("readystatechange", basicResponse);
+        }
+
+        xmlhttp.open("POST", script, true);
+        // tell the server what you're doing
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        // send it
+        xmlhttp.send(sendString);
+    }
+
     // ------------------------------------------------------------ event handlers
 
     // ---------------------------------------------------------------- data requests
@@ -171,17 +198,8 @@
             "menu": "dispensaries"
         };
 
-        // turn object into a string
-        var sendString = JSON.stringify(sendJSON);
-
-        // send string to the server handler
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", dispensariesResponse);
-        xmlhttp.open("POST", dropdownScript, true);
-        // tell the server what you're doing
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        // send it
-        xmlhttp.send(sendString);
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "dispensaries");
     }
 
     function getPatients() {
@@ -190,23 +208,25 @@
             "menu": "patients"
         };
 
-        // turn object into a string
-        var sendString = JSON.stringify(sendJSON);
-
-        // send string to the server handler
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", patientResponse);
-        xmlhttp.open("POST", dropdownScript, true);
-        // tell the server what you're doing
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        // send it
-        xmlhttp.send(sendString);
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "patients");
     }
     
-    function getVisits() {
-
+    function getPatientStats() {
         // loading
         loading();
+        
+        // construct the JSON object to send to the handler
+        var sendJSON = {
+            "request": "stats",
+            "id": drpPatient[drpPatient.selectedIndex].value
+        };
+
+        // send the json off
+        sendJson(sendJSON, dataScript, "stats");
+    }
+
+    function getVisits() {
 
         // construct the JSON object to send to the handler
         var sendJSON = {
@@ -217,45 +237,55 @@
         // turn object into a string
         var sendString = JSON.stringify(sendJSON);
 
-        // send string to the server handler
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", visitsResponse);
-        xmlhttp.open("POST", dropdownScript, true);
-        // tell the server what you're doing
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        // send it
-        xmlhttp.send(sendString);
-    }
-
-    function getStats() {
-        // loading
-        loading();
-        
-        // construct the JSON object to send to the handler
-        var sendJSON = {
-            "request": "stats",
-            "id": drpPatient[drpPatient.selectedIndex].value
-        };
-
-        // turn object into a string
-        var sendString = JSON.stringify(sendJSON);
-
-        // send string to the server handler
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", statsResponse);
-        xmlhttp.open("POST", dataScript, true);
-        // tell the server what you're doing
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        // send it
-        xmlhttp.send(sendString);
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "visits");
     }
 
     function getThisVisit() {
         // check for new entry
         if (drpVisit.selectedIndex === 0) {
             // clear the board
+            lblCase.innerHTML = "Case #";
+
+            drpDispensary.selectedIndex = 0;
+            txtWeight.value = "";
+            txtTemp.value = "";
+            txtBPTop.value = "";
+            txtBPBottom.value = "";
+            txtHR.value = "";
+            txtGlucose.value = "";
+
+            chkPreg.checked = false;
+            chkBreast.checked = false;
+
+            txtLive.value = "";
+            txtGrav.value = "";
+            txtPara.value = "";
+            txtAbort.value = "";
+            txtLNMP.value = "";
+
+            txtComplaint.innerHTML = "";
+
+            // stations
+            chkTest.checked = false;
+            chkMED1.checked = false;
+            chkMED2.checked = false;
+            chkGYN.checked = false;
+            chkOPHT.checked = false;
+            chkDENT.checked = false;
+            chkTriageV.checked = false;
 
         } else {
+
+            // construct the JSON object to send to the handler
+            var sendJSON = {
+                "request": "basic",
+                "id": drpPatient[drpPatient.selectedIndex].value,
+                "visit": drpVisit[drpVisit.selectedIndex].value
+            };
+
+            // send the json off
+            sendJson(sendJSON, dataScript, "basic");
 
         }
     }
@@ -355,10 +385,10 @@
         }
     }
 
-    function patientResponse(e) {
+    function patientsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
             // remove event listener
-            xmlhttp.removeEventListener("readystatechange", patientResponse);
+            xmlhttp.removeEventListener("readystatechange", patientsResponse);
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
@@ -388,8 +418,8 @@
                 // set sponsor data for first entry
                 drpPatient.selectedIndex = 0;
 
-                // load visits
-                getVisits();
+                // load stats (then visits)
+                getPatientStats();
 
             } else {
                 // no data to display
@@ -493,26 +523,79 @@
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
             
-            
             if (response.success) {
                 // populate the data
-                response.entries[0];
+                // dispensary
+                lblName.innerHTML = "Full Name: " + response.entries[0].name;
+                lblAge.innerHTML = "Age: " + response.entries[0].age;
+                lblVillage.innerHTML = "Village: " + response.entries[0].village;
 
             } else {
 
+                // bad feedback
+                //feedback(response.reason);
+            }
+            
+            // move onto visits
+            getVisits();
+            
+        }
+    }
 
+    function basicResponse() {
+        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+            // remove event listener
+            xmlhttp.removeEventListener("readystatechange", statsResponse);
 
+            // get the json data received
+            var response = JSON.parse(xmlhttp.responseText);
+            
+            if (response.success) {
+                // populate the data
 
+                lblCase.innerHTML = "Case #" + drpPatient[drpPatient.selectedIndex].value;
+
+                // dispensary
+                txtWeight.value = response.entries[0].weight;
+                txtTemp.value = response.entries[0].temp;
+                txtBPTop.value = response.entries[0].BPTop;
+                txtBPBottom.value = response.entries[0].BPBottom;
+                txtHR.value = response.entries[0].heart;
+                txtGlucose.value = response.entries[0].glucose;
+
+                // checkboxes
+                if (response.entries[0].pregnant === "yes") {chkPreg.checked = true} else {chkPreg.checked = false}
+                if (response.entries[0].breast === "yes") {chkBreast.checked = true} else {chkBreast.checked = false}
+
+                txtLive.value = response.entries[0].living;
+                txtGrav.value = response.entries[0].grav;
+                txtPara.value = response.entries[0].para;
+                txtAbort.value = response.entries[0].abortus;
+                txtLNMP.value = response.entries[0].period;
+
+                txtComplaint.innerHTML = response.entries[0].complaint;
+
+                // stations
+                if (response.entries[0].test === "yes") {chkTest.checked = true} else {chkTest.checked = false}
+                if (response.entries[0].med1 === "yes") {chkMED1.checked = true} else {chkMED1.checked = false}
+                if (response.entries[0].med2 === "yes") {chkMED2.checked = true} else {chkMED2.checked = false}
+                if (response.entries[0].gyn === "yes") {chkGYN.checked = true} else {chkGYN.checked = false}
+                if (response.entries[0].opht === "yes") {chkOPHT.checked = true} else {chkOPHT.checked = false}
+                if (response.entries[0].dent === "yes") {chkDENT.checked = true} else {chkDENT.checked = false}
+                if (response.entries[0].stationv === "yes") {chkTriageV.checked = true} else {chkTriageV.checked = false}
+
+            } else {
 
 
                 // bad feedback
                 //feedback(response.reason);
             }
             
-
             // not loading
             notLoading();
+            
         }
     }
+
 
 })();
