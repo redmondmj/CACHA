@@ -105,7 +105,7 @@
         }
         if (!empty($heart)) {
             $sql .= "HeartRate,";
-            $values .= "'$heart,";
+            $values .= "'$heart',";
         }
 
         // child info
