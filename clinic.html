@@ -31,9 +31,7 @@
 <body>
 
     <div class="site-wrapper">
-
         <div class="site-wrapper-inner">
-
             <div class="cover-container">
 
                 <div class="masthead clearfix">
@@ -52,47 +50,41 @@
                     </div>
                 </div>
 
-                <div class="inner cover" style="margin-top: 9em;">
-                    <!-- Main Content Area -->
-                    <!-- FORM LAYOUT BEGINS -->
+                <div id="divDisplay" class="inner cover">
                     <div class="form-horizontal border">
 
-                        <form>
-                            <!-- Basic Info -->
-                            <!-- Patient/Visit -->
-                            <div class="form-row justify-content-center">
-                                <!-- Select Patient -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="patientName">Choose Patient:</label>
-                                    <div class="col-12">
-                                        <select id="patientName" name="patientName" class="form-control" onchange="fetch_select(this.value);">
-                                                            <?php include 'loadPatient.php' ?>
-                                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Select Visit -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="visit">Choose Visit:</label>
-                                    <div class="col-12">
-                                        <select id="visit" name="visit" class="form-control">
-                                                            <?php include 'loadVisit.php' ?>
-                                                        </select>
-                                    </div>
+                        <!-- Patient/Visit -->
+                        <div class="form-row justify-content-center">
+                            <!-- Select Patient -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
+                                <div class="col-12">
+                                    <select id="drpPatient" name="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
-                            <!-- Patient/Visit -->
-                            <div class="row">
-                                <label class="col-3 control-label" style="text-align: left;">Full Name:</label>
-                                <label class="col-2 control-label">Age:</label>
-                                <label class="col-2 control-label">Weight:</label>
-                                <label class="col-2 control-label">Village:</label>
-                                <label class="col-2 control-label">Case #:</label>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12" style="height: 1em;"></div>
+                            <!-- Select Visit -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
+                                <div class="col-12">
+                                    <select id="drpVisit" name="drpVisit" class="form-control"></select>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <h3 class="col-12 control-label">Patient Info</h3>
+                        </div>
+
+                        <!-- Patient/Visit -->
+                        <div class="row">
+                            <label id="lblName" class="col-5 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-2 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
+                            <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
+                        </div>
+
+                            <br/>
 
                             <div class="row">
                                 <div class="col-9">
@@ -105,65 +97,60 @@
 
                             <div class="row">
                                 <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-0">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" disabled>
-                                                    Test
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisTest">
+                                        <input id="chkDisTest" type="checkbox" name="displayboxes" value="0" disabled>
+                                        Test
+                                    </label>
                                 </div>
 
                                 <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                                        MED1
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisMED1">
+                                        <input id="chkDisMED1" type="checkbox" name="displayboxes" value="1" disabled>
+                                        MED1
+                                    </label>
                                 </div>
 
                                 <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                                        <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                                            MED2
-                                                        </label>
+                                    <label class="checkbox-inline" for="chkDisMED2">
+                                        <input id="chkDisMED2" type="checkbox" name="displayboxes" value="2" disabled>
+                                        MED2
+                                    </label>
                                 </div>
 
                                 <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-2">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3" disabled>
-                                                        GYN
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisGYN">
+                                        <input id="chkDisGYN" type="checkbox" name="displayboxes" value="3" disabled>
+                                        GYN
+                                    </label>
                                 </div>
 
                                 <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-3">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4" disabled>
-                                                        OPHT
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisOPHT">
+                                        <input id="chkDisOPHT" type="checkbox" name="displayboxes" value="4" disabled>
+                                        OPHT
+                                    </label>
                                 </div>
 
                                 <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-4">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5" disabled>
-                                                        DENT
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisDENT">
+                                        <input id="chkDisDENT" type="checkbox" name="displayboxes" value="5" disabled>
+                                        DENT
+                                    </label>
                                 </div>
 
                                 <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-5">
-                                                    <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6" disabled>
-                                                        V
-                                                    </label>
+                                    <label class="checkbox-inline" for="chkDisTriageV">
+                                        <input id="chkDisTriageV" type="checkbox" name="displayboxes" value="6" disabled>
+                                        V
+                                    </label>
                                 </div>
                             </div>
                             <!-- ROW1 -->
+                            
                             <div class="row">
-                                <div class="col-12 borderDiv">
-                                    <h4 class="col-12 control-label">Assessment Notes</h4>
-                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 6em;"></textarea>
-                                    <div class="col-12" style="height: 2em;"></div>
-                                </div>
+                                <div class="col-12 borderDiv"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
+                            <br/>
 
                             <!-- ROW2 -->
                             <div class="row">
@@ -206,12 +193,44 @@
                                 </div>
                             </div>
 
+                            <br/>
                             <div class="row">
-                                <div class="col-12" style="height: 4em;"></div>
+                                <div class="col-12 borderDiv"></div>
+                            </div>
+                            <br/>
+
+                            <!-- Admin Section (drugs administered during exam) -->
+                            <div class="row">
+                                <h4 class="col-12 control-label">Admin</h4>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-0">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Paracetamol">
+                                    Paracetamol
+                                </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-1">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="BezPen">
+                                    Benz-Pen-G 2.4 MIU
+                                    </label>
+                                </div>
+
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="checkboxes-2">
+                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Ceftriaxone">
+                                     Ceftriaxone 250MG
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="height: 4em;"></div>
+                                </div>
                             </div>
 
-
-                            <!--ROW5 -->
+                            <div class="row">
+                                <div class="col-12 borderDiv"></div>
+                            </div>
+                            <br/>
 
                             <div class="row">
                                 <h4 class="col-12 control-label">Diagnosis</h4>
@@ -223,12 +242,9 @@
                                     <label class="control-label" for="NTR">No Treatment Required</label>
                                     <input type="checkbox" value="ntr">
                                 </div>
-
                             </div>
 
-                            <div class="row">
-                                <div class="col-12" style="height: 1em;"></div>
-                            </div>
+                            <br/>
 
                             <!--ROW5-->
                             <div class="row">
@@ -372,6 +388,17 @@
                                     </select>
                                 </div>
                                 <div class="col-4">
+                                    <label class="control-label" for="DIARRHEA">DIARRHEA</label>
+                                    <select id="DIARRHEA" name="DIARRHEA" class="form-control">
+                                        <option value="">N/A</option>
+                                        <option value="blood">Bloody</option>
+                                        <option value="water">Watery</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--ROW10-->
+                            <div class="row">
+                                <div class="col-4">
                                     <label class="control-label" for="PID">PID</label>
                                     <select id="PID" name="PID" class="form-control">
                                         <option value="0">N/A</option>
@@ -380,9 +407,6 @@
                                         <option value="3">+++</option>
                                     </select>
                                 </div>
-                            </div>
-                            <!--ROW10-->
-                            <div class="row">
                                 <div class="col-4">
                                     <label class="control-label" for="STI">STI</label>
                                     <select id="STI" name="STI" class="form-control">
@@ -401,20 +425,11 @@
                                         <option value="3">+++</option>
                                     </select>
                                 </div>
-                                <div class="col-4">
-                                    <label class="control-label" for="DIARRHEA">DIARRHEA</label>
-                                    <select id="DIARRHEA" name="DIARRHEA" class="form-control">
-                                        <option value="">N/A</option>
-                                        <option value="blood">Bloody</option>
-                                        <option value="water">Watery</option>
-                                    </select>
-                                </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-4">
                                     <label class="control-label" for="EYE">EYE</label>
-                                    <select id="EYE" name="EYE" class="form-control">
+                                    <select id="drpEye" name="EYE" class="form-control">
                                         <option value="0">N/A</option>
                                         <option value="1">+</option>
                                         <option value="2">++</option>
@@ -423,32 +438,40 @@
                                 </div>
                                 <div class="col-4">
                                     <label class="control-label" for="VITAMINS">VITAMINS</label>
-                                    <select id="VITAMINS" name="VITAMINS" class="form-control">
+                                    <select id="drpVit" name="VITAMINS" class="form-control">
                                         <option value="0">N/A</option>
                                         <option value="1">+</option>
                                         <option value="2">++</option>
                                         <option value="3">+++</option>
                                     </select>
                                 </div>
+                            </div>
 
-                                <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
                                     <label class="control-label" for="TOPICAL">TOPICAL</label>
                                     <input type="text" placeholder="Describe..." id="TOPICAL" name="TOPICAL" class="form-control">
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
-
                             <!--ROW11-->
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 class="col-12 control-label">Other Dx</h4>
-                                    <textarea class="form-control" id="txtOtherDX" name="txtOtherDX" style="height: 4em;"></textarea>
-                                    <div class="col-12" style="height: 2em;"></div>
+                                    <label class="control-label" for="OTHER">OTHER DX</label>
+                                    <input type="text" placeholder="Describe..." id="txtOther" name="OTHER" class="form-control">
                                 </div>
                             </div>
+
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-12 borderDiv">
+                                    <h4 class="col-12 control-label">Assessment Notes</h4>
+                                    <textarea class="form-control" id="assesmentNotes" name="assesmentNotess" style="height: 6em;"></textarea>
+                                    <br/>
+                                </div>
+                            </div>
+
+                            <br/>
 
                             <!-- Pregnancy Info -->
                             <h4 class="col-12 control-label">Pregnancy</h4>
@@ -461,16 +484,15 @@
                                     <label class="col-12 control-label" for="anc">Regular ANC</label>
                                     <div class="col-12">
                                         <div class="radio">
-                                            <label for="anc-0">
-                                            <input type="radio" name="anc" id="anc-0" value="yes" >
-                                            Yes
-                                          </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label for="anc-1">
-                                            <input type="radio" name="anc" id="anc-1" value="no">
-                                            No
-                                          </label>
+                                            <label for="rdoANCYes">
+                                                <input id="rdoANCYes" type="radio" name="anc" value="yes" >
+                                                Yes
+                                            </label>
+                                            |
+                                            <label for="rdoANCNo">
+                                                <input id="rdoANCNo" type="radio" name="anc" value="no">
+                                                No
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -478,20 +500,20 @@
                                     <label class="col-12 control-label" for="anemia">Clinical Anemia</label>
                                     <div class="col-12">
                                         <div class="radio">
-                                            <label for="anemia-0">
-                                                <input type="radio" name="anemia" id="anemia-0" value="yes" >
+                                            <label for="rdoAnemiaYes">
+                                                <input id="rdoAnemiaYes" type="radio" name="anemia" value="yes" >
                                                 Yes
-                                              </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label for="anemia-1">
-                                                <input type="radio" name="anemia" id="anemia-1" value="no">
+                                            </label>
+                                            |
+                                            <label for="rdoAnemiaNo">
+                                                <input id="rdoAnemiaNo" type="radio" name="anemia" value="no">
                                                 No
-                                              </label>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col-2"></div>
                                 <div class="col-4">
@@ -505,15 +527,20 @@
                                 <div class="col-4">
                                     <label class="control-label" for="Sulfaar">Sulfaar SP2500/25</label>
                                     <select id="Sulfaar" name="Sulfaar" class="form-control">
-                                            <option value="3">3 Tabs</option>
-                                            <option value="6">6 Tabs</option>
-                                            <option value="9">9 Tabs</option>
-                                        </select>
+                                        <option value="0">None</option>
+                                        <option value="3">3 Tabs</option>
+                                        <option value="6">6 Tabs</option>
+                                        <option value="9">9 Tabs</option>
+                                    </select>
                                 </div>
                             </div>
+
+                            <br/>
                             <div class="row">
-                                <div class="col-12" style="height: 4em;"></div>
+                                <div class="col-12 borderDiv"></div>
                             </div>
+                            <br/>
+
                             <!-- Followup Section -->
                             <div class="row">
                                 <div class="col-12">
@@ -526,33 +553,11 @@
                                 </div>
                             </div>
 
-                            <!-- Admin Section (drugs administered during exam) -->
                             <div class="row">
-                                <h4 class="col-12 control-label">Admin</h4>
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-0">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Paracetamol">
-                                    Paracetamol
-                                </label>
-                                </div>
-
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="BezPen">
-                                    Benz-Pen-G 2.4 MIU
-                                    </label>
-                                </div>
-
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-2">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Ceftriaxone">
-                                     Ceftriaxone 250MG
-                                    </label>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12" style="height: 4em;"></div>
-                                </div>
+                                <div class="col-12 borderDiv"></div>
                             </div>
+                            <br/>
+
                             <!--Education Section text input for education (see print.php) to be provided to the client before they leave the clinic, e.g. hand washing techniques, food safety, salt reduction, condom use etc,-->
                             <div class="row">
                                 <div class="col-12">
@@ -564,6 +569,12 @@
                                     <div class="col-12" style="height: 4em;"></div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-12 borderDiv"></div>
+                            </div>
+                            <br/>
+
                             <!-- Referral Section -->
                             <div class="row">
                                 <h4 class="col-12 control-label">Referral</h4>
@@ -591,6 +602,12 @@
                                     <div class="col-12" style="height: 4em;"></div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-12 borderDiv"></div>
+                            </div>
+                            <br/>
+
                             <!-- Stations section - Exact copy of register.html!-->
                             <div class="row">
                                 <h4 class="col-12 control-label">Reassign Stations</h4>
@@ -653,12 +670,6 @@
                                     </div>
                                 </div>
 
-
-
-                                <!--Submit Form-->
-                                <?php include "bottom.php"; ?>
-                        </form>
-
                         </div>
                         <!-- FORM ENDS -->
 
@@ -666,11 +677,11 @@
                     </div>
 
 
-                </div>
+                </div> <!-- /divDisplay -->
 
-            </div>
-
-        </div>
+            </div> <!-- /cover-container -->
+        </div> <!-- /site-wrapper-inner -->
+    </div> <!-- /site-wrapper -->
 
         <!-- Bootstrap core JavaScript
     ================================================== -->
