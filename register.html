@@ -94,7 +94,7 @@
                         <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
                             <div class="row">
                                 <div class="form-group col-4">
-                                    <label for="drpDispensary">Dispensary:</label>
+                                    <label for="drpDispensary">Clinic:</label>
                                     <select id="drpDispensary" class="form-control"></select>
                                 </div>
                                 <div class="col-1"></div>
@@ -266,78 +266,45 @@
                                 </div>
                             </div>
                             <!-- /row -->
+
+
+                            <br/>
+
                             <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
+                                <div class="col-6 col-centered">
+                                    <button id="btnSubmit" class="btn btn-default">Submit</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-3">Clinic: </div>
-                            <div class="col-4">
-                                <select id="drpClinic" name="clinic" class="form-control">
-                                        <!-- meh hardcoded is fine for now -->
-                                        <option value="Bugola">Bugola</option>
-                                        <option value="Bugorola">Bugorola</option>
-                                        <option value="Bukondo">Bukondo</option>
-                                        <option value="Buzegwe">Buzegwe</option>
-                                        <option value="Gallu">Gallu</option>
-                                        <option value="Hamukoko">Hamukoko</option>
-                                        <option value="Hamuyebe">Hamuyebe</option>
-                                        <option value="Igalla">Igalla</option>
-                                        <option value="Kabuhinzi">Kabuhinzi</option>
-                                        <option value="Kagunguli">Kagunguli</option>
-                                        <option value="Kaseni">Kaseni</option>
-                                        <option value="Kazilankanda">Kazilankanda</option>
-                                        <option value="Kigara">Kigara</option>
-                                        <option value="Muhula">Muhula</option>
-                                        <option value="Mukunu">Mukunu</option>
-                                        <option value="Muluseni">Muluseni</option>
-                                        <option value="Muriti">Muriti</option>
-                                        <option value="Murutilima">Murutilima</option>
-                                        <option value="Ukara">Ukara</option>
-                                    </select>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                    </div>
 
-                    <br/>
-
-                    <div class="row">
-                        <div class="col-6 col-centered">
-                            <button id="btnSubmit" class="btn btn-default">Submit</button>
                         </div>
+                        <!-- /horizontal border -->
                     </div>
+                    <!-- /divDisplay inner cover  -->
+
+                    <div id="loadingOverlay"></div>
 
                 </div>
-                <!-- /horizontal border -->
+                <!-- /clear container -->
             </div>
-            <!-- /divDisplay inner cover  -->
-
-            <div id="loadingOverlay"></div>
-
+            <!-- /site-wrapper-inner -->
         </div>
-        <!-- /clear container -->
-    </div>
-    <!-- /site-wrapper-inner -->
-    </div>
-    <!-- /site-wrapper -->
+        <!-- /site-wrapper -->
 
-    <!-- Bootstrap core JavaScript
+        <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster
+        <!-- Placed at the end of the document so the pages load faster
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
         window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
     </script> -->
-    <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
-    <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
+        <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/spin.min.js"></script>
-    <script src="js/basic.js"></script>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/spin.min.js"></script>
+        <script src="js/basic.js"></script>
 
 </body>
 
