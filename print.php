@@ -1,13 +1,16 @@
 <?php
     require 'db.php';
     
-    //Receive the RAW post data.
-    $content = trim(file_get_contents("php://input"));
+    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     
-    //Attempt to decode the incoming RAW post data from JSON.
-    $decoded = json_decode($content, true);
+    $parts = parse_url($url);
+    parse_str($parts['query'], $query);
+    $visitID = $query['id'];
 
-    $visitID = decoded[0]->visitID;
+
+    // echo $url;
+    // echo "<br>";
+    //echo $visitID;
     
     $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID";
 
@@ -183,11 +186,11 @@
           </span><br>           
           
           Triage: &nbsp;
-          <? checkboxIf($triageMedical, "chkMed", "Med", "MED", "MED"); ?>&nbsp;
-          <? checkboxIf($triageGYN, "chkGyn", "Gyn", "GYN", "GYN"); ?>&nbsp;
-          <? checkboxIf($triageMedical, "chkOpht", "Opht", "OPHT", "OPHT"); ?>&nbsp;
-          <? checkboxIf($triageMedical, "chkDent", "Dent", "DENT", "DENT"); ?>&nbsp;
-          <? checkboxIf($triageMedical, "chkV", "V", "V", "V"); ?>
+          <?php checkboxIf($triageMedical, "chkMed", "Med", "MED", "MED"); ?>&nbsp;
+          <?php checkboxIf($triageGYN, "chkGyn", "Gyn", "GYN", "GYN"); ?>&nbsp;
+          <?php checkboxIf($triageMedical, "chkOpht", "Opht", "OPHT", "OPHT"); ?>&nbsp;
+          <?php checkboxIf($triageMedical, "chkDent", "Dent", "DENT", "DENT"); ?>&nbsp;
+          <?php checkboxIf($triageMedical, "chkV", "V", "V", "V"); ?>
         </div>
 
         <div class="col-5" style="border-style: solid;">
@@ -610,17 +613,17 @@
           <hr style="border-width: 2px; margin: 0;">
 
           REFERRAL:
-          <?php if (preg_match('tb', $referral)) : ?>
+          <?php if (preg_match('/tb/', $referral)) : ?>
             <span style="padding-right: 20px; padding-left: 10px"><input type="checkbox" id="chkTB" name="TB" value="TB" disabled checked>TB</span>
           <?php else : ?>
             <span style="padding-right: 20px; padding-left: 10px"><input type="checkbox" id="chkTB" name="TB" value="TB" disabled>TB</span>
           <?php endif ?>
-          <?php if (preg_match('surgery', $referral)) : ?>
+          <?php if (preg_match('/surgery/', $referral)) : ?>
             <span style="padding-right: 20px;"><input type="checkbox" id="chkSurgery" name="SURGERY" value="SURGERY" disabled checked>SURGERY</span>
           <?php else : ?>
             <span style="padding-right: 20px;"><input type="checkbox" id="chkSurgery" name="SURGERY" value="SURGERY" disabled>SURGERY</span>
           <?php endif ?>
-          <?php if (preg_match('hospital', $referral)) : ?>
+          <?php if (preg_match('/hospital/', $referral)) : ?>
             <span style="padding-right: 200px;"><input type="checkbox" id="chkHospital" name="HOSPITAL" value="HOSPITAL" disabled checked>HOSPITAL</span>
           <?php else : ?>
           <span style="padding-right: 200px;"><input type="checkbox" id="chkHospital" name="HOSPITAL" value="HOSPITAL" disabled>HOSPITAL</span>
@@ -635,8 +638,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="../../../../assets/js/vendor/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="../../../../assets/js/vendor/jquery.min.js"></script> -->
     <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
