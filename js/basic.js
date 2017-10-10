@@ -305,47 +305,48 @@
         loading();
         
         // checkboxes
-        var preg = false;
-        var breast = false;
+        var preg = "no";
+        var breast = "no";
         if (chkPreg.checked) {
-            preg = true;
+            preg = "yes";
         }
-        if (chkBreast) {
-            breast = true;
+        if (chkBreast.checked) {
+            breast = "yes";
         }
 
         // stations
-        var test = false;
-        var med1 = false;
-        var med2 = false;
-        var gyn = false;
-        var opht = false;
-        var dent = false;
-        var triagev = false;
+        var test = "no";
+        var med1 = "no";
+        var med2 = "no";
+        var gyn = "no";
+        var opht = "no";
+        var dent = "no";
+        var triagev = "no";
         if (chkTest.checked) {
-            test = true;
+            test = "yes";
         }
-        if (chkMED1) {
-            med1 = true;
+        if (chkMED1.checked) {
+            med1 = "yes";
         }
         if (chkMED2.checked) {
-            med2 = true;
+            med2 = "yes";
         }
-        if (chkGYN) {
-            gyn = true;
+        if (chkGYN.checked) {
+            gyn = "yes";
         }
         if (chkOPHT.checked) {
-            opht = true;
+            opht = "yes";
         }
-        if (chkDENT) {
-            dent = true;
+        if (chkDENT.checked) {
+            dent = "yes";
         }
         if (chkTriageV.checked) {
-            triagev = true;
+            triagev = "yes";
         }
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "basic",
+            "patientid": drpPatient[drpPatient.selectedIndex].value,
             "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
             "weight": txtWeight.value.replace(/[^0-9\.-]+/g,""),
             "temp": txtTemp.value.replace(/[^0-9\.-]+/g,""),
@@ -354,7 +355,7 @@
             "heart": txtHR.value,
             "glucose": txtGlucose.value,
             "pregnant": preg,
-            "breast": breat,
+            "breast": breast,
             "living": txtLive.value,
             "grav": txtGrav.value,
             "para": txtPara.value,
@@ -534,7 +535,7 @@
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i + 1;
-                    option.text = "Visit #" + response.entries[i];
+                    option.text = "Visit #" + option.id;
                     option.value = response.entries[i];
 
                     // add element to dropdown
@@ -604,7 +605,7 @@
 
                 console.log(response);
 
-                lblCase.innerHTML = "Case #" + drpPatient[drpPatient.selectedIndex].value;
+                lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
 
                 // run through the dispensary list until we find a match
                 for (var n=0;n < drpDispensary.length;n++) {
@@ -665,8 +666,11 @@
             var response = JSON.parse(xmlhttp.responseText);
             
             if (response.success) {
-                // good feedback
-                //feedback("Upload successful");
+                // update the dropdown
+                getVisits();
+
+                // place the visit on the current visit
+                drpVisit.selectedIndex[drpVisit.length];
 
             } else {
 

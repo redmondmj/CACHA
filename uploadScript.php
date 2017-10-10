@@ -10,112 +10,138 @@
     // which request is it?
     if ($data["upload"] == "basic") {
         
+        $id = $data["patientid"];
+        $dispensary = $data["dispensary"];
+        $test = $data["test"];
+        $med1 = $data["med1"];
+        $med2 = $data["med2"];
+        $gyn = $data["gyn"];
+        $opht = $data["opht"];
+        $dent = $data["dent"];
+        $triagev = $data["triagev"];
 
+        $weight = $data["weight"];
+        $temp = $data["temp"];
+        $bptop = $data["BPTop"];
+        $bpbottom = $data["BPBottom"];
+        $glucose = $data["glucose"];
+        $heart = $data["heart"];
+
+        $period = $data["period"];
+        $preg = $data["pregnant"];
+        $breast = $data["breast"];
+        $grav = $data["grav"];
+        $para = $data["para"];
+        $abortus = $data["abortus"];
+        $living = $data["living"];
+        
+        $complaint = $data["complaint"];
+        
         // build the enourmous sql statement
-        $sql = "INSERT INTO tbl_visit (";
-        $values = ") VALUES (";
+        $sql = "INSERT INTO tbl_visit (PatientID,";
+        $values = ") VALUES ($id,";
 
-        if (!empty($data["dispensary"])) {
+        if (!empty($dispensary)) {
             $sql .= "VisitedDispensary,";
-            $values .= $data["dispensary"] . ",";
+            $values .=  "'$dispensary',";
         }
 
         // stations
-        if (!empty($data["test"])) {
+        if (!empty($test)) {
             $sql .= "TriageTesting,";
-            $values .= $data["test"] . ",";
+            $values .= "'$test',";
         }
 
-        if (!empty($data["med1"])) {
+        if (!empty($med1)) {
             $sql .= "TriageMedical,";
-            $values .= $data["med1"] . ",";
+            $values .= "'$med1',";
         }
 
-        if (!empty($data["med2"])) {
+        if (!empty($med2)) {
             $sql .= "TriageMedical2,";
-            $values .= $data["med2"] . ",";
+            $values .= "'$med2',";
         }
 
-        if (!empty($data["gyn"])) {
+        if (!empty($gyn)) {
             $sql .= "TriageGYN,";
-            $values .= $data["gyn"] . ",";
+            $values .= "'$gyn',";
         }
 
-        if (!empty($data["opht"])) {
+        if (!empty($opht)) {
             $sql .= "TriageOPHT,";
-            $values .= $data["opht"] . ",";
+            $values .= "'$opht',";
         }
 
-        if (!empty($data["dent"])) {
+        if (!empty($dent)) {
             $sql .= "TriageDENT,";
-            $values .= $data["dent"] . ",";
+            $values .= "'$dent',";
         }
 
-        if (!empty($data["triagev"])) {
+        if (!empty($triagev)) {
             $sql .= "TriageVenDis,";
-            $values .= $data["triagev"] . ",";
+            $values .= "'$triagev',";
         }
 
         // standard
-        if (!empty($data["weight"])) {
+        if (!empty($weight)) {
             $sql .= "Weight,";
-            $values .= $data["weight"] . ",";
+            $values .= "'$weight',";
         }
-        if (!empty($data["temp"])) {
+        if (!empty($temp)) {
             $sql .= "Temperature,";
-            $values .= $data["temp"] . ",";
+            $values .= "'$temp',";
         }
-        if (!empty($data["BPTop"])) {
+        if (!empty($BPTop)) {
             $sql .= "Systolic,";
-            $values .= $data["BPTop"] . ",";
+            $values .= "'$BPTop',";
         }
-        if (!empty($data["BPBottom"])) {
+        if (!empty($BPBottom)) {
             $sql .= "Diastolic,";
-            $values .= $data["BPBottom"] . ",";
+            $values .= "'$BPBottom',";
         }
-        if (!empty($data["glucose"])) {
+        if (!empty($glucose)) {
             $sql .= "Glucose,";
-            $values .= $data["glucose"] . ",";
+            $values .= "'$glucose',";
         }
-        if (!empty($data["heart"])) {
+        if (!empty($heart)) {
             $sql .= "HeartRate,";
-            $values .= $data["heart"] . ",";
+            $values .= "'$heart,";
         }
 
         // child info
-        if (!empty($data["period"])) {
+        if (!empty($period)) {
             $sql .= "LastPeriod,";
-            $values .= $data["period"] . ",";
+            $values .= "'$period',";
         }
-        if (!empty($data["pregnant"])) {
+        if (!empty($preg)) {
             $sql .= "Pregnant,";
-            $values .= $data["pregnant"] . ",";
+            $values .= "'$preg',";
         }
-        if (!empty($data["breast"])) {
+        if (!empty($breast)) {
             $sql .= "Breastfeed,";
-            $values .= $data["breast"] . ",";
+            $values .= "'$breast',";
         }
-        if (!empty($data["grav"])) {
+        if (!empty($grav)) {
             $sql .= "Gravida,";
-            $values .= $data["grav"] . ",";
+            $values .= "'$grav',";
         }
-        if (!empty($data["para"])) {
+        if (!empty($para)) {
             $sql .= "Para,";
-            $values .= $data["para"] . ",";
+            $values .= "'$para',";
         }
-        if (!empty($data["abortus"])) {
+        if (!empty($abortus)) {
             $sql .= "Abortus,";
-            $values .= $data["abortus"] . ",";
+            $values .= "'$abortus',";
         }
-        if (!empty($data["living"])) {
+        if (!empty($living)) {
             $sql .= "NumLivingChildren,";
-            $values .= $data["living"] . ",";
+            $values .= "'$living',";
         }
 
         // complaint
-        if (!empty($data["complaint"])) {
+        if (!empty($complaint)) {
             $sql .= "ChiefComplaint,";
-            $values .= $data["complaint"] . ",";
+            $values .= "'$complaint',";
         }
 
         // clean up the sql
@@ -124,6 +150,9 @@
 
         // stick it all together
         $sql .= $values;
+
+        //INSERT INTO tbl_visit (PatientID,VisitedDispensary,TriageTesting,TriageMedical,TriageMedical2,TriageGYN,TriageOPHT,TriageDENT,TriageVenDis,Weight,Temperature,Pregnant,Breastfeed,ChiefComplaint) 
+        //              VALUES (10,         'Bugola',       'yes',          'yes',      'no',           'yes,       'yes',   'yes',     'no',       '50.5', 'no','no','yes','Must construct additional pylons')
 
     } else if ($data["upload"] == "basic") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
