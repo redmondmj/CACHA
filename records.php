@@ -38,7 +38,7 @@
     <!-- Bootstrap core CSS -->
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
        <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster 
@@ -54,7 +54,9 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#visitTable').DataTable();
+            $('#visitTable').DataTable({
+                "pageLength": 25
+            });
         } );
     </script>
 </head>
