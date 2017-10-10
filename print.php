@@ -15,7 +15,7 @@
     $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID";
 
     try{
-      $result - mysqli_query($connect, $sql);
+      $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
       $row = mysqli_fetch_assoc($result);
       
       $patientID = $row['PatientID'];
@@ -144,7 +144,7 @@
     } catch(Error $e){
         echo false;
     } finally {
-        mysqli_stmt_close($connect);
+       
         mysqli_close($connect);
     }
 
@@ -168,7 +168,7 @@
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title>Printable Report Test</title>
   </head>
   <body>
