@@ -28,256 +28,300 @@
                         <nav class="nav nav-masthead">
                             <a class="nav-link" href="index.html">Home</a>
                             <a class="nav-link active" href="register.html">Register</a>
-                            <a class="nav-link" href="test.php">Test</a>
-                            <a class="nav-link" href="clinic.php">Clinic</a>
-                            <a class="nav-link" href="eye.php">Eye</a>
-                            <a class="nav-link" href="dental.php">Dental</a>
-                            <a class="nav-link" href="pharma.php">Rx</a>
-                            <a class="nav-link" href="tableView.php">Records</a>
+                            <a class="nav-link" href="clinic.html">Clinic</a>
+                            <a class="nav-link" href="test.html">Test</a>
+                            <a class="nav-link" href="eye.html">Eye</a>
+                            <a class="nav-link" href="dental.html">Dental</a>
+                            <a class="nav-link" href="pharma.html">Rx</a>
+                            <a class="nav-link" href="records.php">Records</a>
                         </nav>
-                    </div> <!-- /inner -->
-                </div> <!-- /master clearfix -->
+                    </div>
+                    <!-- /inner -->
+                </div>
+                <!-- /master clearfix -->
 
                 <div id="divDisplay" class="inner cover">
-                <div class="form-horizontal border">
-                    
-                    <!-- Patient/Visit -->
-                    <div class="form-row justify-content-center">
-                        <!-- Select Patient -->
-                        <div class="form-group">
-                            <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
-                            <div class="col-12">
-                                <select id="drpPatient" name="drpPatient" class="form-control" onchange="fetch_select(this.value);">
+                    <div class="form-horizontal border">
+
+                        <!-- Patient/Visit -->
+                        <div class="form-row justify-content-center">
+                            <!-- Select Patient -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
+                                <div class="col-12">
+                                    <select id="drpPatient" name="drpPatient" class="form-control" onchange="fetch_select(this.value);">
                                     
                                 </select>
+                                </div>
+                            </div>
+
+                            <!-- Select Visit -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
+                                <div class="col-12">
+                                    <select id="drpVisit" name="drpVisit" class="form-control">
+                                    
+                                </select>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Select Visit -->
-                        <div class="form-group">
-                            <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
-                            <div class="col-12">
-                                <select id="drpVisit" name="drpVisit" class="form-control">
-                                    
-                                </select>
-                            </div>
+                        <div class="row">
+                            <h3 class="col-12 control-label">Patient Info</h3>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <h3 class="col-12 control-label">Patient Info</h3>
-                    </div>
+                        <!-- Patient/Visit -->
+                        <div class="row">
+                            <label id="lblName" class="col-5 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-2 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
+                            <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
+                        </div>
 
-                    <!-- Patient/Visit -->
-                    <div class="row">
-                        <label id="lblName" class="col-5 control-label" style="text-align: left;">Full Name:</label>
-                        <label id="lblAge" class="col-2 control-label" style="text-align: left;">Age:</label>
-                        <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
-                        <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
-                    </div>
-
-                    <!--
+                        <!--
                     <div class="row">
                         <h4 class="col-12 control-label">Triage</h4>
                     </div> -->
 
-                    <br/>
+                        <br/>
 
-                    <div class="row">
-                        <h4 class="col-12 control-label">Basic Information</h4>
-                    </div>
-
-                    <!-- <div class="well"> -->
-                    <!-- Basic Info section !-->
-                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
                         <div class="row">
-                            <div class="form-group col-4">
-                                <label for="drpDispensary">Dispensary:</label>
-                                <select id="drpDispensary" class="form-control"></select>
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="form-group col-3">
-                                <label for="txtWeight">Weight: (Kg)</label>
-                                <input id="txtWeight" type="text" class="form-control">
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="form-group col-3">
-                                <label for="txtTemp">Temp: (&#8451;)</label>
-                                <input id="txtTemp" type="text" class="form-control">
-                            </div>
+                            <h4 class="col-12 control-label">Basic Information</h4>
                         </div>
-                        <!--             Next Form Row            !-->
-                        <!--             Next Form Row            !-->
+
+                        <!-- <div class="well"> -->
+                        <!-- Basic Info section !-->
+                        <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label for="drpDispensary">Dispensary:</label>
+                                    <select id="drpDispensary" class="form-control"></select>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="form-group col-3">
+                                    <label for="txtWeight">Weight: (Kg)</label>
+                                    <input id="txtWeight" type="text" class="form-control">
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="form-group col-3">
+                                    <label for="txtTemp">Temp: (&#8451;)</label>
+                                    <input id="txtTemp" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <!--             Next Form Row            !-->
+                            <!--             Next Form Row            !-->
+                            <div class="row">
+                                <div class="form-group col-2">
+                                    <label for="txtBP">BP:</label>
+                                    <input id="txtBPTop" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-1">
+                                    <label for="slash">&nbsp;</label><br/>
+                                    <!-- the label helps push it down -->
+                                    <span id="slash">/</span>
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="txtBP">&nbsp;</label>
+                                    <!-- the label helps push it down -->
+                                    <input id="txtBPBottom" type="number" class="form-control">
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="form-group col-3">
+                                    <label for="txtHR">Heart Rate:</label>
+                                    <input id="txtHR" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="txtGlucose">Glucose:</label>
+                                    <input id="txtGlucose" type="number" class="form-control">
+                                </div>
+                            </div>
+
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-3" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkPreg">
+                                <input id="chkPreg" type="checkbox" name="checkboxes" value="1">
+                                Pregnant?
+                                </label>
+                                </div>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkBreast">
+                                <input id="chkBreast" type="checkbox" name="checkboxes" value="1">
+                                Breastfeeding?
+                                </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /border -->
+
+                        <br/>
+
+                        <!-- Family Info section !-->
                         <div class="row">
-                            <div class="form-group col-2">
-                                <label for="txtBP">BP:</label>
-                                <input id="txtBPTop" type="number" class="form-control">
-                            </div>
-                            <div class="form-group col-1">
-                                <label for="slash">&nbsp;</label><br/> <!-- the label helps push it down -->
-                                <span id="slash">/</span>
-                            </div>
-                            <div class="form-group col-2">
-                                <label for="txtBP">&nbsp;</label> <!-- the label helps push it down -->
-                                <input id="txtBPBottom" type="number" class="form-control">
-                            </div>
-                            <div class="col-1"></div>
-                            <div class="form-group col-3">
-                                <label for="txtHR">Heart Rate:</label>
-                                <input id="txtHR" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-3">
-                                <label for="txtGlucose">Glucose:</label>
-                                <input id="txtGlucose" type="number" class="form-control">
+                            <h4 class="col-12 control-label">Family Information</h4>
+                        </div>
+                        <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
+
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <label for="txtLive">Living Children:</label>
+                                    <input id="txtLive" value="0" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="txtGrav">G:</label>
+                                    <input id="txtGrav" value="0" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="txtPara">P:</label>
+                                    <input id="txtPara" value="0" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="txtAbort">A:</label>
+                                    <input id="txtAbort" value="0" type="number" class="form-control">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="lnmp">Last Period:</label>
+                                    <input id="txtLNMP" type="text" class="form-control">
+                                </div>
                             </div>
                         </div>
 
                         <br/>
 
+                        <!-- Chief Complaint section !-->
                         <div class="row">
-                            <div class="col-3" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkPreg">
-                                <input id="chkPreg" type="checkbox" name="checkboxes" value="1">
-                                Pregnant?
-                                </label>
-                            </div>
-                            <div class="col-4" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkBreast">
-                                <input id="chkBreast" type="checkbox" name="checkboxes" value="1">
-                                Breastfeeding?
-                                </label>
+                            <h4 class="col-12 control-label">Chief Complaint</h4>
+                        </div>
+                        <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
+                            <div class="row">
+                                <div class="form-group col-12" style="margin-bottom:0rem">
+                                    <textarea id="txtComplaint" class="form-control" style="height:10em;"></textarea>
+                                </div>
                             </div>
                         </div>
 
-                    </div> <!-- /border -->
+                        <br/>
 
-                    <br/>
-
-                    <!-- Family Info section !-->
-                    <div class="row">
-                        <h4 class="col-12 control-label">Family Information</h4>
-                    </div>
-                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
-                        
+                        <!-- Stations section !-->
                         <div class="row">
-                            <div class="form-group col-3">
-                                <label for="txtLive">Living Children:</label>
-                                <input id="txtLive" value="0" type="number" class="form-control">
-                            </div>
-                            <div class="form-group col-2">
-                                <label for="txtGrav">G:</label>
-                                <input id="txtGrav" value="0" type="number" class="form-control">
-                            </div>
-                            <div class="form-group col-2">
-                                <label for="txtPara">P:</label>
-                                <input id="txtPara" value="0" type="number" class="form-control">
-                            </div>
-                            <div class="form-group col-2">
-                                <label for="txtAbort">A:</label>
-                                <input id="txtAbort" value="0" type="number" class="form-control">
-                            </div>
-                            <div class="form-group col-3">
-                                <label for="lnmp">Last Period:</label>
-                                <input id="txtLNMP" type="text" class="form-control">
-                            </div>
+                            <h4 class="col-12 control-label">Stations</h4>
                         </div>
-                    </div>
-
-                    <br/>
-
-                    <!-- Chief Complaint section !-->
-                    <div class="row">
-                        <h4 class="col-12 control-label">Chief Complaint</h4>
-                    </div>
-                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px;">
-                        <div class="row">
-                            <div class="form-group col-12" style="margin-bottom:0rem">
-                                <textarea id="txtComplaint" class="form-control" style="height:10em;"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br/>
-
-                    <!-- Stations section !-->
-                    <div class="row">
-                        <h4 class="col-12 control-label">Stations</h4>
-                    </div>
-                    <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
-                        <div class="row">
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkTest">
+                        <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
+                            <div class="row">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkTest">
                                 <input id="chkTest" type="checkbox" name="checkboxes" value="1">
                                 Test
                                 </label>
-                            </div>
+                                </div>
 
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkMED1">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkMED1">
                                 <input id="chkMED1" type="checkbox" name="checkboxes" value="2">
                                 MED1
                                 </label>
-                            </div>
+                                </div>
 
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkMED2">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkMED2">
                                 <input id="chkMED2" type="checkbox" name="checkboxes" value="2">
                                     MED2
                                 </label>
+                                </div>
+
+                                <div class="col-2" style="text-align: left;">
+                                </div>
+
                             </div>
 
-                            <div class="col-2" style="text-align: left;">
-                            </div>
-
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkGYN">
+                            <div class="row">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkGYN">
                                 <input id="chkGYN" type="checkbox" name="checkboxes" value="3">
                                     GYN
                                 </label>
-                            </div>
+                                </div>
 
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkOPHT">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkOPHT">
                                 <input id="chkOPHT" type="checkbox" name="checkboxes" value="4">
                                     OPHT
                                 </label>
-                            </div>
+                                </div>
 
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkDENT">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkDENT">
                                 <input id="chkDENT" type="checkbox" name="checkboxes" value="5">
                                     DENT
                                 </label>
-                            </div>
+                                </div>
 
-                            <div class="col-2" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkTriageV">
+                                <div class="col-2" style="text-align: left;">
+                                    <label class="checkbox-inline" for="chkTriageV">
                                 <input id="chkTriageV" type="checkbox" name="checkboxes" value="6">
                                     V
                                 </label>
+                                </div>
                             </div>
-                        </div> <!-- /row -->
+                            <!-- /row -->
+                            <div class="row">
+                                <div class="col-12" style="height: 2em;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-3">Clinic: </div>
+                            <div class="col-4">
+                                <select id="drpClinic" name="clinic" class="form-control">
+                                        <!-- meh hardcoded is fine for now -->
+                                        <option value="Bugola">Bugola</option>
+                                        <option value="Bugorola">Bugorola</option>
+                                        <option value="Bukondo">Bukondo</option>
+                                        <option value="Buzegwe">Buzegwe</option>
+                                        <option value="Gallu">Gallu</option>
+                                        <option value="Hamukoko">Hamukoko</option>
+                                        <option value="Hamuyebe">Hamuyebe</option>
+                                        <option value="Igalla">Igalla</option>
+                                        <option value="Kabuhinzi">Kabuhinzi</option>
+                                        <option value="Kagunguli">Kagunguli</option>
+                                        <option value="Kaseni">Kaseni</option>
+                                        <option value="Kazilankanda">Kazilankanda</option>
+                                        <option value="Kigara">Kigara</option>
+                                        <option value="Muhula">Muhula</option>
+                                        <option value="Mukunu">Mukunu</option>
+                                        <option value="Muluseni">Muluseni</option>
+                                        <option value="Muriti">Muriti</option>
+                                        <option value="Murutilima">Murutilima</option>
+                                        <option value="Ukara">Ukara</option>
+                                    </select>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
                     </div>
 
                     <br/>
 
                     <div class="row">
                         <div class="col-6 col-centered">
-                            <button id="btnSubmit" class="btn btn-success">Submit</button>
+                            <button id="btnSubmit" class="btn btn-default">Submit</button>
                         </div>
                     </div>
 
-                </div> <!-- /horizontal border -->
-                </div> <!-- /divDisplay inner cover  -->
+                </div>
+                <!-- /horizontal border -->
+            </div>
+            <!-- /divDisplay inner cover  -->
 
-                <div id="loadingOverlay"></div>
+            <div id="loadingOverlay"></div>
 
-            </div> <!-- /clear container -->
-        </div> <!-- /site-wrapper-inner -->
-    </div> <!-- /site-wrapper -->
+        </div>
+        <!-- /clear container -->
+    </div>
+    <!-- /site-wrapper-inner -->
+    </div>
+    <!-- /site-wrapper -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -290,7 +334,7 @@
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
-    
+
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/spin.min.js"></script>
     <script src="js/basic.js"></script>
