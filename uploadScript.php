@@ -39,7 +39,7 @@
         
         // build the enourmous sql statement
         $sql = "INSERT INTO tbl_visit (PatientID,";
-        $values = ") VALUES ($id,";
+        $values = ") VALUES ('$id',";
 
         if (!empty($dispensary)) {
             $sql .= "VisitedDispensary,";
@@ -151,8 +151,8 @@
         // stick it all together
         $sql .= $values;
 
-        //INSERT INTO tbl_visit (PatientID,VisitedDispensary,TriageTesting,TriageMedical,TriageMedical2,TriageGYN,TriageOPHT,TriageDENT,TriageVenDis,Weight,Temperature,Pregnant,Breastfeed,ChiefComplaint) 
-        //              VALUES (10,         'Bugola',       'yes',          'yes',      'no',           'yes,       'yes',   'yes',     'no',       '50.5', 'no','no','yes','Must construct additional pylons')
+        //INSERT INTO tbl_visit (PatientID,VisitedDispensary,TriageTesting,TriageMedical,TriageMedical2,TriageGYN,TriageOPHT,TriageDENT,TriageVenDis,Weight,Temperature,HeartRate,Pregnant,Breastfeed,ChiefComplaint) 
+        //VALUES                 (10,       'Bugola',       'yes',          'yes',          'yes',      'no',       'no',       'no',       'no',   '50.5', '37',       '60,        'no',   'no',       'nothing')
 
     } else if ($data["upload"] == "basic") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
