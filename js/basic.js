@@ -181,6 +181,8 @@
             xmlhttp.addEventListener("readystatechange", statsResponse);
         } else if (response === "basic") {
             xmlhttp.addEventListener("readystatechange", basicResponse);
+        } else if (response === "submit") {
+            xmlhttp.addEventListener("readystatechange", submitResponse);
         }
 
         xmlhttp.open("POST", script, true);
@@ -302,34 +304,76 @@
         // loading
         loading();
         
-        // which radio button is selected?
-        var sex = "male";
-        if (rdoF.checked) {
-            sex = "female";
+        // checkboxes
+        var preg = false;
+        var breast = false;
+        if (chkPreg.checked) {
+            preg = true;
         }
-        
+        if (chkBreast) {
+            breast = true;
+        }
+
+        // stations
+        var test = false;
+        var med1 = false;
+        var med2 = false;
+        var gyn = false;
+        var opht = false;
+        var dent = false;
+        var triagev = false;
+        if (chkTest.checked) {
+            test = true;
+        }
+        if (chkMED1) {
+            med1 = true;
+        }
+        if (chkMED2.checked) {
+            med2 = true;
+        }
+        if (chkGYN) {
+            gyn = true;
+        }
+        if (chkOPHT.checked) {
+            opht = true;
+        }
+        if (chkDENT) {
+            dent = true;
+        }
+        if (chkTriageV.checked) {
+            triagev = true;
+        }
         // construct json object to send to the handler script
         var sendJSON = {
-            "first": txtFName.value,
-            "last": txtLName.value,
-            "village": drpVillage[drpVillage.selectedIndex].value,
-            "age": inpDOB.value,
-            "sex": sex
+            "upload": "basic",
+            "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
+            "weight": txtWeight.value.replace(/[^0-9\.-]+/g,""),
+            "temp": txtTemp.value.replace(/[^0-9\.-]+/g,""),
+            "BPTop": txtBPTop.value,
+            "BPBottom": txtBPBottom.value,
+            "heart": txtHR.value,
+            "glucose": txtGlucose.value,
+            "pregnant": preg,
+            "breast": breat,
+            "living": txtLive.value,
+            "grav": txtGrav.value,
+            "para": txtPara.value,
+            "abortus": txtAbort.value,
+            "period": txtLNMP.value,
+            "complaint": txtComplaint.value,
+            "test": test,
+            "med1": med1,
+            "med2": med2,
+            "gyn": gyn,
+            "opht": opht,
+            "dent": dent,
+            "triagev": triagev
         };
         
         console.log(sendJSON);
         
-        // turn object into a string
-        var sendString = JSON.stringify(sendJSON);
-
-        // send string to the server handler
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", basicResponse);
-        xmlhttp.open("POST", registerScript, true);
-        // tell the server what you're doing
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        // send it
-        xmlhttp.send(sendString);
+        // send the json off
+        sendJson(sendJSON, uploadScript, "submit");
     }
     
     // ---------------------------------------------------------------- data response
@@ -612,5 +656,28 @@
         }
     }
 
+    function submitResponse() {
+        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+            // remove event listener
+            xmlhttp.removeEventListener("readystatechange", statsResponse);
+
+            // get the json data received
+            var response = JSON.parse(xmlhttp.responseText);
+            
+            if (response.success) {
+                // good feedback
+                //feedback("Upload successful");
+
+            } else {
+
+                // bad feedback
+                //feedback(response.reason);
+            }
+            
+            // not loading
+            notLoading();
+            
+        }
+    }
 
 })();
