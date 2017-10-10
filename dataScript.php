@@ -12,7 +12,7 @@
         // grab the data we want
         $sql = "SELECT FirstName,LastName,BirthYear,BirthMonth,BirthDay,Village FROM tbl_patient WHERE PatientID = '" . $data["id"] . "'";
     } else if ($data["request"] == "basic") {
-        $sql = "SELECT VisitedDispensary,TriageTesting,TriageMedical,TriageMedical2,TriageGyn,TriageOPHT,TriageDENT,TriageVenDis,Weight,Temperature,Systolic,Diastolic,Glucose,LastPeriod,Pregnant,Breastfeed,Gravida,Para,Abortus,NumLivingChildren,ChiefComplaint FROM tbl_visit WHERE VisitID = '" . $data["id"] . "'";
+        $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     }
 
     try {
@@ -55,14 +55,13 @@
                             $day = 31;
                         }
 
-                        /*
                         // check age - https://stackoverflow.com/questions/3776682/php-calculate-age
-                        $age = (date("md", date("U", mktime(0, 0, 0, $year, $month, $day))) > date("md")
-                        ? ((date("Y") - $day) - 1)
-                        : (date("Y") - $day));
+                        $age = (date("md", date("U", mktime(0, 0, 0, $month, $day, $year))) > date("md")
+                        ? ((date("Y") - $year) - 1)
+                        : (date("Y") - $year));
 
                         $stats->age = $age;
-                        */
+                        
                     } else {
                         $stats->age = 0;
                     }
@@ -72,7 +71,7 @@
                 }
             } else if ($data["request"] == "basic") {
                 // construct new object to add to the array
-                class Basic {
+                class BasicInfo {
                     public $dispensary = "";
                     public $weight = 0;
                     public $temp = 0;
@@ -104,35 +103,36 @@
                 while ($row = $result->fetch_assoc()) {
                     
                     // put the object together
-                    $basic = new Basic();
+                    $basic = new BasicInfo();
                     $basic->dispensary = $row["VisitedDispensary"];
 
-                    $basic->$test = $row["TriageTesting"];
-                    $basic->$med1 = $row["TriageMedical"];
-                    $basic->$med2 = $row["TriageMedical2"];
-                    $basic->$gyn = $row["TriageGYN"];
-                    $basic->$opht = $row["TriageOPHT"];
-                    $basic->$dent = $row["TriageDENT"];
-                    $basic->$stationv = $row["TriageVenDis"];
+                    $basic->test = $row["TriageTesting"];
+                    $basic->med1 = $row["TriageMedical"];
+                    $basic->med2 = $row["TriageMedical2"];
+                    $basic->gyn = $row["TriageGYN"];
+                    $basic->opht = $row["TriageOPHT"];
+                    $basic->dent = $row["TriageDENT"];
+                    $basic->stationv = $row["TriageVenDis"];
 
-                    $basic->$weight = $row["Weight"];
-                    $basic->$temp = $row["Temp"];
-                    $basic->$BPtop = $row["Systolic"];
-                    $basic->$BPBottom = $row["Diastolic"];
-                    $basic->$glucose = $row["Glucose"];
-                    $basic->$heart = $row["HeartRate"];
+                    $basic->weight = $row["Weight"];
+                    $basic->temp = $row["Temperature"];
+                    $basic->BPtop = $row["Systolic"];
+                    $basic->BPBottom = $row["Diastolic"];
+                    $basic->glucose = $row["Glucose"];
+                    $basic->heart = $row["HeartRate"];
 
-                    $basic->$period = $row["LastPeriod"];
-                    $basic->$pregnant = $row["Pregnant"];
-                    $basic->$breast = $row["Breastfeed"];
+                    $basic->period = $row["LastPeriod"];
+                    $basic->pregnant = $row["Pregnant"];
+                    $basic->breast = $row["Breastfeed"];
                     
-                    $basic->$grav = $row["Gravida"];
-                    $basic->$para = $row["Para"];
-                    $basic->$abortus = $row["Abortus"];
+                    $basic->grav = $row["Gravida"];
+                    $basic->para = $row["Para"];
+                    $basic->abortus = $row["Abortus"];
                     
-                    $basic->$living = $row["NumLivingChilden"];
-                    $basic->$complaint = $row["ChiefComplaint"];
+                    $basic->living = $row["NumLivingChildren"];
+                    $basic->complaint = $row["ChiefComplaint"];
                     
+                    // add the data to the json
                     array_push($response->entries, $basic);
                 }
 

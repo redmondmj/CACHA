@@ -280,9 +280,10 @@
             // construct the JSON object to send to the handler
             var sendJSON = {
                 "request": "basic",
-                "id": drpPatient[drpPatient.selectedIndex].value,
-                "visit": drpVisit[drpVisit.selectedIndex].value
+                "id": drpVisit[drpVisit.selectedIndex].value
             };
+
+            console.log(sendJSON);
 
             // send the json off
             sendJson(sendJSON, dataScript, "basic");
@@ -552,6 +553,8 @@
             
             if (response.success) {
                 // populate the data
+
+                console.log(response);
 
                 lblCase.innerHTML = "Case #" + drpPatient[drpPatient.selectedIndex].value;
 
