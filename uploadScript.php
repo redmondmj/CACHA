@@ -9,7 +9,12 @@
     
     // which request is it?
     if ($data["upload"] == "basic") {
+
+        // date and time
+        $visitDate = date("Y-m-d");
+        $visitTime = date("h:i:s");
         
+        // json information
         $id = $data["patientid"];
         $dispensary = $data["dispensary"];
         $test = $data["test"];
@@ -38,8 +43,8 @@
         $complaint = $data["complaint"];
         
         // build the enourmous sql statement
-        $sql = "INSERT INTO tbl_visit (PatientID,";
-        $values = ") VALUES ('$id',";
+        $sql = "INSERT INTO tbl_visit (PatientID,VisitDate,VisitTime,";
+        $values = ") VALUES ('$id','$visitDate','$visitTime',";
 
         if (!empty($dispensary)) {
             $sql .= "VisitedDispensary,";
@@ -151,10 +156,7 @@
         // stick it all together
         $sql .= $values;
 
-        //INSERT INTO tbl_visit (PatientID,VisitedDispensary,TriageTesting,TriageMedical,TriageMedical2,TriageGYN,TriageOPHT,TriageDENT,TriageVenDis,Weight,Temperature,HeartRate,Pregnant,Breastfeed,ChiefComplaint) 
-        //VALUES                 (10,       'Bugola',       'yes',          'yes',          'yes',      'no',       'no',       'no',       'no',   '50.5', '37',       '60,        'no',   'no',       'nothing')
-
-    } else if ($data["upload"] == "basic") {
+    } else if ($data["upload"] == "something else") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     }
     
