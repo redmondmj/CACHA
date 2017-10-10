@@ -10,7 +10,9 @@
     $firstName = $data["first"];
     $lastName = $data["last"];
     $village = $data["village"];
-    $birth = $data["age"];
+    $year = $data["year"];
+    $month = $data["month"];
+    $day = $data["day"];
     $sex = $data["sex"];
 
     $sql = "INSERT INTO tbl_patient (";
@@ -20,18 +22,32 @@
         $sql .= "FirstName,";
         $values .= "'$firstName',";
     }
+
     if (!empty($lastName)) {
         $sql .= "LastName,";
         $values .= "'$lastName',";
     }
+
     if (!empty($village)) {
         $sql .= "Village,";
         $values .= "'$village',";
     }
-    if (!empty($birth)){
-        $sql .= "Birthday,";
-        $values .= "'$birth',";
+
+    if (!empty($year)){
+        $sql .= "BirthYear,";
+        $values .= "'$year',";
     }
+
+    if (!empty($month)){
+        $sql .= "BirthMonth,";
+        $values .= "'$month',";
+    }
+
+    if (!empty($day)){
+        $sql .= "BirthDay,";
+        $values .= "'$day',";
+    }
+
     if (!empty($sex)){
         $sql .= "Sex,";
         $values .= "'$sex',";

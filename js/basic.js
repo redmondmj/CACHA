@@ -213,7 +213,7 @@
             "menu": "visits",
             "id": drpPatient[drpPatient.selectedIndex].value
         };
-        
+
         // turn object into a string
         var sendString = JSON.stringify(sendJSON);
 
@@ -227,13 +227,13 @@
         xmlhttp.send(sendString);
     }
 
-    function getBasicInfo() {
+    function getStats() {
         // loading
         loading();
         
         // construct the JSON object to send to the handler
         var sendJSON = {
-            "request": "basic",
+            "request": "stats",
             "id": drpPatient[drpPatient.selectedIndex].value
         };
 
@@ -242,7 +242,7 @@
 
         // send string to the server handler
         xmlhttp = new XMLHttpRequest();
-        xmlhttp.addEventListener("readystatechange", basicResponse);
+        xmlhttp.addEventListener("readystatechange", statsResponse);
         xmlhttp.open("POST", dataScript, true);
         // tell the server what you're doing
         xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -431,9 +431,6 @@
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
 
-            console.log(response);
-            console.log(response);
-
             // clear the dropdown
             drpVisit.innerHTML = "";
 
@@ -488,27 +485,30 @@
         }
     }
 
-
-
-
-
-    function registerResponse(e) {
+    function statsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
             // remove event listener
-            xmlhttp.removeEventListener("readystatechange", registerResponse);
+            xmlhttp.removeEventListener("readystatechange", statsResponse);
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
             
-            /*
+            
             if (response.success) {
-                // good feedback
-                feedback("Patient was successfully registered");
+                // populate the data
+                response.entries[0];
+
             } else {
+
+
+
+
+
+
                 // bad feedback
-                feedback(response.reason);
+                //feedback(response.reason);
             }
-            */
+            
 
             // not loading
             notLoading();

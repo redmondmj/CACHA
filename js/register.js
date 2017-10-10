@@ -20,7 +20,9 @@
     var rdoM = null;
     var rdoF = null;
     
-    var inpDOB = null;
+    var txtYear = null;
+    var txtMonth = null;
+    var txtDay = null;
     
     var btnSubmit = null;
 
@@ -47,7 +49,10 @@
         txtLName = document.getElementById("txtLName");
 
         drpVillage = document.getElementById("drpVillage");
-        inpDOB = document.getElementById("inpDOB");
+
+        txtYear = document.getElementById("txtYear");
+        txtMonth = document.getElementById("txtMonth");
+        txtDay = document.getElementById("txtDay");
         
         rdoM = document.getElementById("rdoM");
         rdoF = document.getElementById("rdoF");
@@ -128,6 +133,34 @@
         // loading
         loading();
         
+        var year = 0;
+        var month = 0;
+        var day = 0;
+
+        // do we have a year?
+        if (txtYear.value !== "") {
+            // is it a proper year or an age?
+            if (txtYear.value <= 1000) {
+                // probably a proper age
+                var date = new Date();
+                year = date.getFullYear() - parseInt(txtYear.value);
+            } else {
+                // probably a proper year
+                year = txtYear.value;
+            }
+            // grab month
+            if ((txtMonth.value !== "") && (parseInt(txtMonth.value) < 13)) {
+                month = parseInt(txtMonth.value);
+                // grab day
+                if ((txtDay.value !== "") && (parseInt(txtDay.value) < 32)) {
+                    day = parseInt(txtDay.value);
+                }
+
+            }
+        } else {
+            // without a year, we don't care about the others
+        }
+
         // which radio button is selected?
         var sex = "male";
         if (rdoF.checked) {
@@ -139,7 +172,9 @@
             "first": txtFName.value,
             "last": txtLName.value,
             "village": drpVillage[drpVillage.selectedIndex].value,
-            "age": inpDOB.value,
+            "year": year,
+            "month": month,
+            "day": day,
             "sex": sex
         };
         
