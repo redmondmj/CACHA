@@ -38,7 +38,7 @@
     <!-- Bootstrap core CSS -->
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
        <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster 
@@ -54,7 +54,9 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#visitTable').DataTable();
+            $('#visitTable').DataTable({
+                "pageLength": 25
+            });
         } );
     </script>
 </head>
@@ -72,12 +74,12 @@
                         <h3 class="masthead-brand">CACHA</h3>
                         <nav class="nav nav-masthead">
                             <a class="nav-link" href="index.html">Home</a>
-                            <a class="nav-link" href="register.php">Register</a>
-                            <a class="nav-link" href="test.php">Test</a>
-                            <a class="nav-link" href="clinic.php">Clinic</a>
-                            <a class="nav-link" href="eye.php">Eye</a>
-                            <a class="nav-link" href="dental.php">Dental</a>
-                            <a class="nav-link" href="pharma.php">Rx</a>
+                            <a class="nav-link" href="register.html">Register</a>
+                            <a class="nav-link" href="clinic.html">Clinic</a>
+                            <a class="nav-link" href="test.html">Test</a>
+                            <a class="nav-link" href="eye.html">Eye</a>
+                            <a class="nav-link" href="dental.html">Dental</a>
+                            <a class="nav-link" href="pharma.html">Rx</a>
                             <a class="nav-link active" href="records.php">Records</a>
                         </nav>
                     </div>
