@@ -31,8 +31,10 @@
     var txtHR = null;
     var txtGlucose = null;
     
-    var chkPreg = null;
-    var chkBreast = null;
+    var rdoPregYes = null;
+    var rdoPregNo = null;
+    var rdoBreastYes = null;
+    var rdoBreastNo = null;
 
     var txtLive = null;
     var txtGrav = null;
@@ -42,13 +44,12 @@
 
     var txtComplaint = null;
 
-    var chkTest = null;
-    var chkMED1 = null;
-    var chkMED2 = null;
-    var chkGYN = null;
-    var chkOPHT = null;
-    var chkDENT = null;
-    var chkTriageV = null;
+    var drpTriageTest = null;
+    var drpTriageMED = null;
+    var drpTriageGYN = null;
+    var drpTriageOPHT = null;
+    var drpTriageDENT = null;
+    var drpTriageV = null;
 
     var btnSubmit = null;
 
@@ -88,8 +89,10 @@
         txtHR = document.getElementById("txtHR");
         txtGlucose = document.getElementById("txtGlucose");
         
-        chkPreg = document.getElementById("chkPreg");
-        chkBreast = document.getElementById("chkBreast");
+        rdoPregYes = document.getElementById("rdoPregYes");
+        rdoPregNo = document.getElementById("rdoPregNo");
+        rdoBreastYes = document.getElementById("rdoBreastYes");
+        rdoBreastNo = document.getElementById("rdoBreastNo");
     
         txtLive = document.getElementById("txtLive");
         txtGrav = document.getElementById("txtGrav");
@@ -99,13 +102,12 @@
     
         txtComplaint = document.getElementById("txtComplaint");
     
-        chkTest = document.getElementById("chkTest");
-        chkMED1 = document.getElementById("chkMED1");
-        chkMED2 = document.getElementById("chkMED2");
-        chkGYN = document.getElementById("chkGYN");
-        chkOPHT = document.getElementById("chkOPHT");
-        chkDENT = document.getElementById("chkDENT");
-        chkTriageV = document.getElementById("chkTriageV");
+        drpTriageTest = document.getElementById("drpTriageTest");
+        drpTriageMED = document.getElementById("drpTriageMED");
+        drpTriageGYN = document.getElementById("drpTriageGYN");
+        drpTriageOPHT = document.getElementById("drpTriageOPHT");
+        drpTriageDENT = document.getElementById("drpTriageDENT");
+        drpTriageV = document.getElementById("drpTriageV");
     
         btnSubmit = document.getElementById("btnSubmit");
 
@@ -203,8 +205,10 @@
         txtHR.value = "";
         txtGlucose.value = "";
 
-        chkPreg.checked = false;
-        chkBreast.checked = false;
+        rdoPregYes.checked = false;
+        rdoPregNo.checked = false;
+        rdoBreastYes.checked = false;
+        rdoBreastNo.checked = false;
 
         txtLive.value = "";
         txtGrav.value = "";
@@ -215,13 +219,12 @@
         txtComplaint.innerHTML = "";
 
         // stations
-        chkTest.checked = false;
-        chkMED1.checked = false;
-        chkMED2.checked = false;
-        chkGYN.checked = false;
-        chkOPHT.checked = false;
-        chkDENT.checked = false;
-        chkTriageV.checked = false;
+        drpTriageTest.selectedIndex = 0;
+        drpTriageMED.selectedIndex = 0;
+        drpTriageGYN.selectedIndex = 0;
+        drpTriageOPHT.selectedIndex = 0;
+        drpTriageDENT.selectedIndex = 0;
+        drpTriageV.selectedIndex = 0;
     }
     
     // ------------------------------------------------------------ event handlers
@@ -278,13 +281,13 @@
     }
 
     function getThisVisit() {
+
+        // clear the board
+        clearAll();
+
         // check for new entry
-        if (drpVisit.selectedIndex === 0) {
-            // clear the board
-            clearAll();
-
-        } else {
-
+        if (drpVisit.selectedIndex !== 0) {
+            
             // construct the JSON object to send to the handler
             var sendJSON = {
                 "request": "basic",
@@ -307,42 +310,13 @@
         // checkboxes
         var preg = "no";
         var breast = "no";
-        if (chkPreg.checked) {
+        if (rdoPregYes.checked) {
             preg = "yes";
         }
-        if (chkBreast.checked) {
+        if (rdoBreastYes.checked) {
             breast = "yes";
         }
 
-        // stations
-        var test = "no";
-        var med1 = "no";
-        var med2 = "no";
-        var gyn = "no";
-        var opht = "no";
-        var dent = "no";
-        var triagev = "no";
-        if (chkTest.checked) {
-            test = "yes";
-        }
-        if (chkMED1.checked) {
-            med1 = "yes";
-        }
-        if (chkMED2.checked) {
-            med2 = "yes";
-        }
-        if (chkGYN.checked) {
-            gyn = "yes";
-        }
-        if (chkOPHT.checked) {
-            opht = "yes";
-        }
-        if (chkDENT.checked) {
-            dent = "yes";
-        }
-        if (chkTriageV.checked) {
-            triagev = "yes";
-        }
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "basic",
@@ -362,13 +336,12 @@
             "abortus": txtAbort.value,
             "period": txtLNMP.value,
             "complaint": txtComplaint.value,
-            "test": test,
-            "med1": med1,
-            "med2": med2,
-            "gyn": gyn,
-            "opht": opht,
-            "dent": dent,
-            "triagev": triagev
+            "test": drpTriageTest[drpTriageTest.selectedIndex].value,
+            "med": drpTriageMED[drpTriageMED.selectedIndex].value,
+            "gyn": drpTriageGYN[drpTriageGYN.selectedIndex].value,
+            "opht": drpTriageOPHT[drpTriageOPHT.selectedIndex].value,
+            "dent": drpTriageDENT[drpTriageDENT.selectedIndex].value,
+            "triagev": drpTriageV[drpTriageV.selectedIndex].value
         };
         
         console.log(sendJSON);
@@ -602,9 +575,7 @@
             
             if (response.success) {
                 // populate the data
-
-                console.log(response);
-
+                
                 lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
 
                 // run through the dispensary list until we find a match
@@ -623,8 +594,20 @@
                 txtGlucose.value = response.entries[0].glucose;
 
                 // checkboxes
-                if (response.entries[0].pregnant === "yes") {chkPreg.checked = true} else {chkPreg.checked = false}
-                if (response.entries[0].breast === "yes") {chkBreast.checked = true} else {chkBreast.checked = false}
+                if (response.entries[0].pregnant === "yes") {
+                    rdoPregYes.checked = true;
+                    rdoPregNo.checked = false;
+                } else {
+                    rdoPregYes.checked = false;
+                    rdoPregNo.checked = false;
+                }
+                if (response.entries[0].breast === "yes") {
+                    rdoBreastYes.checked = true;
+                    rdoBreastNo.checked = false;
+                } else {
+                    rdoBreastYes.checked = false;
+                    rdoBreastNo.checked = false;
+                }
 
                 txtLive.value = response.entries[0].living;
                 txtGrav.value = response.entries[0].grav;
@@ -635,13 +618,42 @@
                 txtComplaint.innerHTML = response.entries[0].complaint;
 
                 // stations
-                if (response.entries[0].test === "yes") {chkTest.checked = true} else {chkTest.checked = false}
-                if (response.entries[0].med1 === "yes") {chkMED1.checked = true} else {chkMED1.checked = false}
-                if (response.entries[0].med2 === "yes") {chkMED2.checked = true} else {chkMED2.checked = false}
-                if (response.entries[0].gyn === "yes") {chkGYN.checked = true} else {chkGYN.checked = false}
-                if (response.entries[0].opht === "yes") {chkOPHT.checked = true} else {chkOPHT.checked = false}
-                if (response.entries[0].dent === "yes") {chkDENT.checked = true} else {chkDENT.checked = false}
-                if (response.entries[0].stationv === "yes") {chkTriageV.checked = true} else {chkTriageV.checked = false}
+                for (n=0;n < drpTriageTest.length;n++) {
+                    if (drpTriageTest[n].value === response.entries[0].test) {
+                        drpTriageTest.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpTriageMED.length;n++) {
+                    if (drpTriageMED[n].value === response.entries[0].med) {
+                        drpTriageMED.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpTriageGYN.length;n++) {
+                    if (drpTriageGYN[n].value === response.entries[0].gyn) {
+                        drpTriageGYN.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpTriageOPHT.length;n++) {
+                    if (drpTriageOPHT[n].value === response.entries[0].opht) {
+                        drpTriageOPHT.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpTriageDENT.length;n++) {
+                    if (drpTriageDENT[n].value === response.entries[0].dent) {
+                        drpTriageDENT.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpTriageV.length;n++) {
+                    if (drpTriageV[n].value === response.entries[0].stationv) {
+                        drpTriageV.selectedIndex = n;
+                        break;
+                    }
+                }
 
             } else {
 

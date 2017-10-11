@@ -18,8 +18,7 @@
         $id = $data["patientid"];
         $dispensary = $data["dispensary"];
         $test = $data["test"];
-        $med1 = $data["med1"];
-        $med2 = $data["med2"];
+        $med = $data["med"];
         $gyn = $data["gyn"];
         $opht = $data["opht"];
         $dent = $data["dent"];
@@ -56,13 +55,9 @@
             $sql .= "TriageTesting,";
             $values .= "'$test',";
         }
-        if (!empty($med1)) {
+        if (!empty($med)) {
             $sql .= "TriageMedical,";
-            $values .= "'$med1',";
-        }
-        if (!empty($med2)) {
-            $sql .= "TriageMedical2,";
-            $values .= "'$med2',";
+            $values .= "'$med',";
         }
         if (!empty($gyn)) {
             $sql .= "TriageGYN,";
