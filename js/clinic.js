@@ -22,25 +22,66 @@
     var lblVillage = null;
     var lblCase = null;
     
-    var drpDispensary = null;
+    var btnChart = null;
 
-    var txtWeight = null;
-    var txtTemp = null;
-    var txtBPTop = null;
-    var txtBPBottom = null;
-    var txtHR = null;
-    var txtGlucose = null;
+    var chkDisTest = null;
+    var chkDisMED1 = null;
+    var chkDisMED2 = null;
+    var chkDisGYN = null;
+    var chkDisOPHT = null;
+    var chkDisDENT = null;
+    var chkDisTriageV = null;
     
-    var chkPreg = null;
-    var chkBreast = null;
+    var drpLastV = null;
+    var drpLastPZQ = null;
+    var drpLastWorm = null;
+    var drpLastVitA = null;
 
-    var txtLive = null;
-    var txtGrav = null;
-    var txtPara = null;
-    var txtAbort = null;
-    var txtLNMP = null;
+    var chkParac = null;
+    var chkBenz = null;
+    var chkCeft = null;
 
-    var txtComplaint = null;
+    var chkHealthy = null;
+    var chkNTR = null;
+
+    var drpMSK = null;
+    var drpWorms = null;
+    var drpAsthma = null;
+    var drpBron = null;
+    var drpPneu = null;
+    var drpCough = null;
+    var drpMal = null;
+    var drpSchisto = null;
+    var drpTyphoid = null;
+    var drpGERD = null;
+    var drpPUD = null;
+    var drpHyper = null;
+    var drpDiabetes = null;
+    var drpCon = null;
+    var drpDiarrhea = null;
+    var drpPID = null;
+    var drpSTI = null;
+    var drpSyph = null;
+    var drpEye = null;
+    var drpVit = null;
+    var txtTopical = null;
+    var txtOther = null;
+    var txtAssess = null;
+
+    var txtWeeks = null;
+    var rdoANCYes = null;
+    var rdoANCNo = null;
+    var rdoAnemiaYes = null;
+    var rdoAnemiaNo = null;
+    var drpIPTP = null;
+    var drpSulfadar = null;
+
+    var txtFollow = null;
+    var txtEdu = null;
+
+    var chkTB = null;
+    var chkSurgery = null;
+    var chkHospital = null;
 
     var chkTest = null;
     var chkMED1 = null;
@@ -79,25 +120,66 @@
         lblVillage = document.getElementById("lblVillage");
         lblCase = document.getElementById("lblCase");
         
-        drpDispensary = document.getElementById("drpDispensary");
+        btnChart = document.getElementById("btnChart");
         
-        txtWeight = document.getElementById("txtWeight");
-        txtTemp = document.getElementById("txtTemp");
-        txtBPTop = document.getElementById("txtBPTop");
-        txtBPBottom = document.getElementById("txtBPBottom");
-        txtHR = document.getElementById("txtHR");
-        txtGlucose = document.getElementById("txtGlucose");
+        chkDisTest = document.getElementById("chkDisTest");
+        chkDisMED1 = document.getElementById("chkDisMED1");
+        chkDisMED2 = document.getElementById("chkDisMED2");
+        chkDisGYN = document.getElementById("chkDisGYN");
+        chkDisOPHT = document.getElementById("chkDisOPHT");
+        chkDisDENT = document.getElementById("chkDisDENT");
+        chkDisTriageV = document.getElementById("chkDisTriageV");
+
+        drpLastV = document.getElementById("drpLastV");
+        drpLastPZQ = document.getElementById("drpLastPZQ");
+        drpLastWorm = document.getElementById("drpLastWorm");
+        drpLastVitA = document.getElementById("drpLastVitA");
+
+        chkParac = document.getElementById("chkParac");
+        chkBenz = document.getElementById("chkBenz");
+        chkCeft = document.getElementById("chkCeft");
         
-        chkPreg = document.getElementById("chkPreg");
-        chkBreast = document.getElementById("chkBreast");
+        chkHealthy = document.getElementById("chkHealthy");
+        chkNTR = document.getElementById("chkNTR");
     
-        txtLive = document.getElementById("txtLive");
-        txtGrav = document.getElementById("txtGrav");
-        txtPara = document.getElementById("txtPara");
-        txtAbort = document.getElementById("txtAbort");
-        txtLNMP = document.getElementById("txtLNMP");
+        drpMSK = document.getElementById("drpMSK");
+        drpWorms = document.getElementById("drpWorms");
+        drpAsthma = document.getElementById("drpAsthma");
+        drpBron = document.getElementById("drpBron");
+        drpPneu = document.getElementById("drpPneu");
+        drpCough = document.getElementById("drpCough");
+        drpMal = document.getElementById("drpMal");
+        drpSchisto = document.getElementById("drpSchisto");
+        drpTyphoid = document.getElementById("drpTyphoid");
+        drpGERD = document.getElementById("drpGERD");
+        drpPUD = document.getElementById("drpPUD");
+        drpHyper = document.getElementById("drpHyper");
+        drpDiabetes = document.getElementById("drpDiabetes");
+        drpCon = document.getElementById("drpCon");
+        drpDiarrhea = document.getElementById("drpDiarrhea");
+        drpPID = document.getElementById("drpPID");
+        drpSTI = document.getElementById("drpSTI");
+        drpSyph = document.getElementById("drpSyph");
+        drpEye = document.getElementById("drpEye");
+        drpVit = document.getElementById("drpVit");
+        txtTopical = document.getElementById("txtTopical");
+        txtOther = document.getElementById("txtOther");
+        txtAssess = document.getElementById("txtAssess");
     
-        txtComplaint = document.getElementById("txtComplaint");
+        txtWeeks = document.getElementById("txtWeeks");
+        rdoANCYes = document.getElementById("rdoANCYes");
+        rdoANCNo = document.getElementById("rdoANCNo");
+        rdoAnemiaYes = document.getElementById("rdoAnemiaYes");
+        rdoAnemiaNo = document.getElementById("rdoAnemiaNo");
+        drpIPTP = document.getElementById("drpIPTP");
+        drpSulfadar = document.getElementById("drpSulfadar");
+
+        txtFollow = document.getElementById("txtFollow");
+        txtEdu = document.getElementById("txtEdu");
+
+        chkTB = document.getElementById("chkTB");
+        chkSurgery = document.getElementById("chkSurgery");
+        chkHospital = document.getElementById("chkHospital");
     
         chkTest = document.getElementById("chkTest");
         chkMED1 = document.getElementById("chkMED1");
@@ -110,7 +192,7 @@
         btnSubmit = document.getElementById("btnSubmit");
 
         // clear all
-        clearAll();
+        //clearAll();
 
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
@@ -119,7 +201,7 @@
         drpVisit.addEventListener("change", getThisVisit);
 
         // event listener for the button
-        btnSubmit.addEventListener("click", onSubmit);
+        //btnSubmit.addEventListener("click", onSubmit);
 
         /*
         // feedback from uploading?
@@ -130,7 +212,7 @@
         */
         
         // populate dropdowns
-        getDispensaries();
+        getPatients();
         // dropdowns are done one at a time
 
         // screen will only be populated if an existing visit is selected
@@ -171,16 +253,14 @@
         xmlhttp = new XMLHttpRequest();
 
         // which response do we want?
-        if (response === "dispensaries") {
-            xmlhttp.addEventListener("readystatechange", dispensariesResponse);
-        } else if (response === "patients") {
+        if (response === "patients") {
             xmlhttp.addEventListener("readystatechange", patientsResponse);
         } else if (response === "visits") {
             xmlhttp.addEventListener("readystatechange", visitsResponse);
         } else if (response === "stats") {
             xmlhttp.addEventListener("readystatechange", statsResponse);
-        } else if (response === "basic") {
-            xmlhttp.addEventListener("readystatechange", basicResponse);
+        } else if (response === "clinic") {
+            xmlhttp.addEventListener("readystatechange", clinicResponse);
         } else if (response === "submit") {
             xmlhttp.addEventListener("readystatechange", submitResponse);
         }
@@ -195,24 +275,62 @@
     function clearAll() {
         lblCase.innerHTML = "Case #";
         
-        drpDispensary.selectedIndex = 0;
-        txtWeight.value = "";
-        txtTemp.value = "";
-        txtBPTop.value = "";
-        txtBPBottom.value = "";
-        txtHR.value = "";
-        txtGlucose.value = "";
+        // tests
+        drpLastV.selectedIndex = 0;
+        drpLastPZQ.selectedIndex = 0;
+        drpLastWorm.selectedIndex = 0;
+        drpLastVitA.selectedIndex = 0;
 
-        chkPreg.checked = false;
-        chkBreast.checked = false;
+        // drug administration
+        chkParac.checked = false;
+        chkBenz.checked = false;
+        chkCeft.checked = false;
 
-        txtLive.value = "";
-        txtGrav.value = "";
-        txtPara.value = "";
-        txtAbort.value = "";
-        txtLNMP.value = "";
+        // diagnosis
+        chkHealthy.checked = false;
+        chkNTR.checked = false;
 
-        txtComplaint.innerHTML = "";
+        drpMSK.selectedIndex = 0;
+        drpWorms.selectedIndex = 0;
+        drpAsthma.selectedIndex = 0;
+        drpBron.selectedIndex = 0;
+        drpPneu.selectedIndex = 0;
+        drpCough.selectedIndex = 0;
+        drpMal.selectedIndex = 0;
+        drpSchisto.selectedIndex = 0;
+        drpTyphoid.selectedIndex = 0;
+        drpGERD.selectedIndex = 0;
+        drpPUD.selectedIndex = 0;
+        drpHyper.selectedIndex = 0;
+        drpDiabetes.selectedIndex = 0;
+        drpCon.selectedIndex = 0;
+        drpDiarrhea.selectedIndex = 0;
+        drpPID.selectedIndex = 0;
+        drpSTI.selectedIndex = 0;
+        drpSyph.selectedIndex = 0;
+        drpEye.selectedIndex = 0;
+        drpVit.selectedIndex = 0;
+        txtTopical.value = "";
+        txtOther.value = "";
+        txtAssess.innerHTML = "";
+
+        // pregnancy
+        txtWeeks.value = "";
+        rdoANCYes.checked = false;
+        rdoANCNo.checked = false;
+        rdoAnemiaYes.checked = false;
+        rdoAnemiaNo.checked = false;
+        drpIPTP.selectedIndex = 0;
+        drpSulfadar.selectedIndex = 0;
+
+        // other
+        txtFollow.innerHTML = "";
+        txtEdu.innerHTML = "";
+
+        // referral
+        chkTB.checked = false;
+        chkSurgery.checked = false;
+        chkHospital.checked = false;
 
         // stations
         chkTest.checked = false;
@@ -228,20 +346,10 @@
 
     // ---------------------------------------------------------------- data requests
 
-    function getDispensaries() {
-        // construct the JSON object to send to the handler
-        var sendJSON = {
-            "menu": "dispensaries"
-        };
-
-        // send the json off
-        sendJson(sendJSON, dropdownScript, "dispensaries");
-    }
-
     function getPatients() {
         // construct the JSON object to send to the handler
         var sendJSON = {
-            "menu": "newpatients"
+            "menu": "patients"
         };
 
         // send the json off
@@ -278,23 +386,17 @@
     }
 
     function getThisVisit() {
-        // check for new entry
-        if (drpVisit.selectedIndex === 0) {
-            // clear the board
-            clearAll();
+        // clear the board
+        clearAll();
 
-        } else {
+        // construct the JSON object to send to the handler
+        var sendJSON = {
+            "request": "clinic",
+            "id": drpVisit[drpVisit.selectedIndex].value
+        };
 
-            // construct the JSON object to send to the handler
-            var sendJSON = {
-                "request": "basic",
-                "id": drpVisit[drpVisit.selectedIndex].value
-            };
-
-            // send the json off
-            sendJson(sendJSON, dataScript, "basic");
-
-        }
+        // send the json off
+        sendJson(sendJSON, dataScript, "clinic");
     }
 
     // ---------------------------------------------------------------- data transfers
@@ -379,62 +481,6 @@
     
     // ---------------------------------------------------------------- data response
 
-    function dispensariesResponse(e) {
-        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
-            // remove event listener
-            xmlhttp.removeEventListener("readystatechange", dispensariesResponse);
-
-            // get the json data received
-            var response = JSON.parse(xmlhttp.responseText);
-
-            // clear the dropdown
-            drpDispensary.innerHTML = "";
-
-            // how many entries are in the JSON?
-            var entryCount = response.entries.length;
-
-            // do we have entries to display?
-            if (entryCount > 0) {
-
-                // populate the dropdown menu
-                for (var i = 0; i < entryCount; i++) {
-
-                    // build the option element and add properties
-                    var option = new Option();
-                    option.id = i;
-                    option.text = response.entries[i];
-                    option.value = response.entries[i];
-
-                    // add element to dropdown
-                    drpDispensary.append(option);
-                }
-
-                // set sponsor data for first entry
-                drpDispensary.selectedIndex = 0;
-
-            } else {
-                // no data to display
-
-                // build an empty option element and add properties
-                var option = new Option();
-                option.id = 0;
-                option.text = "Empty";
-                option.value = 0;
-
-                // add element to dropdown
-                drpDispensary.append(option);
-
-                // set sponsor data for first entry
-                drpDispensary.selectedIndex = 0;
-
-            }
-            
-            // move onto patients
-            getPatients();
-
-        }
-    }
-
     function patientsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
             // remove event listener
@@ -517,15 +563,6 @@
             // how many entries are in the JSON?
             var entryCount = response.entries.length;
 
-            // first entry into the list is for a new entry option
-            var first = new Option();
-            first.id = 0;
-            first.text = "New Visit";
-            first.value = 0;
-
-            // add element to as a new option
-            drpVisit.append(first);
-
             // do we have entries to display?
             if (entryCount > 0) {
 
@@ -534,8 +571,9 @@
 
                     // build the option element and add properties
                     var option = new Option();
-                    option.id = i + 1;
-                    option.text = "Visit #" + option.id;
+                    option.id = i;
+                    var temp = i + 1
+                    option.text = "Visit #" + temp;
                     option.value = response.entries[i];
 
                     // add element to dropdown
@@ -549,9 +587,10 @@
             // set sponsor data for first entry
             drpVisit.selectedIndex = 0;
 
-            // loading check
+            // load the first visit selected
+            //getThisVisit();
             notLoading();
-            
+
             /*
             // failure or no entries?
             if (response.success) {
@@ -592,10 +631,10 @@
         }
     }
 
-    function basicResponse() {
+    function clinicResponse() {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
             // remove event listener
-            xmlhttp.removeEventListener("readystatechange", statsResponse);
+            xmlhttp.removeEventListener("readystatechange", clinicResponse);
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
@@ -613,6 +652,7 @@
                         drpDispensary.selectedIndex = n;
                         break;
                     }
+                    
                 }
 
                 txtWeight.value = response.entries[0].weight;

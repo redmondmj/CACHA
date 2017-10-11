@@ -543,7 +543,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4 class="col-12 control-label">Follow Up</h4>
-                                <textarea class="form-control" id="txtFollow" name="followUpNotes" style="height: 3em;"></textarea>
+                                <textarea id="txtFollow" class="form-control" name="followUpNotes" style="height: 3em;"></textarea>
                             </div>
                             <br/>
                         </div>
@@ -558,7 +558,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4 class="col-12 control-label">Education</h4>
-                                <textarea class="form-control" id="txtEdu" name="education" style="height: 3em;"></textarea>
+                                <textarea id="txtEdu" class="form-control" name="education" style="height: 3em;"></textarea>
                             </div>
                             <br/>
                         </div>
@@ -661,15 +661,20 @@
                                     </label>
                                 </div>
                             </div>
+                        </div> <!-- /stations -->
 
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-6 col-centered">
+                                <button id="btnSubmit" class="btn btn-default">Submit</button>
+                            </div>
                         </div>
-                        <!-- FORM ENDS -->
 
-
-                    </div>
-
-
+                    </div> <!-- form-horizontal border -->
                 </div> <!-- /divDisplay -->
+
+                <div id="loadingOverlay"></div>
 
             </div> <!-- /cover-container -->
         </div> <!-- /site-wrapper-inner -->
