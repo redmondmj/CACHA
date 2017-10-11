@@ -73,7 +73,7 @@
     var rdoANCNo = null;
     var rdoAnemiaYes = null;
     var rdoAnemiaNo = null;
-    var drpIPTP = null;
+    var drpIPTp = null;
     var drpSulfadar = null;
 
     var txtFollow = null;
@@ -171,7 +171,7 @@
         rdoANCNo = document.getElementById("rdoANCNo");
         rdoAnemiaYes = document.getElementById("rdoAnemiaYes");
         rdoAnemiaNo = document.getElementById("rdoAnemiaNo");
-        drpIPTP = document.getElementById("drpIPTP");
+        drpIPTp = document.getElementById("drpIPTp");
         drpSulfadar = document.getElementById("drpSulfadar");
 
         txtFollow = document.getElementById("txtFollow");
@@ -192,7 +192,7 @@
         btnSubmit = document.getElementById("btnSubmit");
 
         // clear all
-        //clearAll();
+        clearAll();
 
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
@@ -447,7 +447,7 @@
         }
         // construct json object to send to the handler script
         var sendJSON = {
-            "upload": "basic",
+            "upload": "clinic",
             "patientid": drpPatient[drpPatient.selectedIndex].value,
             "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
             "weight": txtWeight.value.replace(/[^0-9\.-]+/g,""),

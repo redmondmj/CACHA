@@ -91,8 +91,7 @@
                     public $complaint = "";
                     
                     public $test = false;
-                    public $med1 = false;
-                    public $med2 = false;
+                    public $med = false;
                     public $gyn = false;
                     public $opht = false;
                     public $dent = false;
@@ -107,8 +106,7 @@
                     $basic->dispensary = $row["VisitedDispensary"];
 
                     $basic->test = $row["TriageTesting"];
-                    $basic->med1 = $row["TriageMedical"];
-                    $basic->med2 = $row["TriageMedical2"];
+                    $basic->med = $row["TriageMedical"];
                     $basic->gyn = $row["TriageGYN"];
                     $basic->opht = $row["TriageOPHT"];
                     $basic->dent = $row["TriageDENT"];

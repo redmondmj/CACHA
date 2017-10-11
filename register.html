@@ -74,11 +74,6 @@
                             <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
                         </div>
 
-                        <!--
-                    <div class="row">
-                        <h4 class="col-12 control-label">Triage</h4>
-                    </div> -->
-
                         <br/>
 
                         <div class="row">
@@ -132,20 +127,38 @@
                                 </div>
                             </div>
 
-                            <br/>
-
                             <div class="row">
-                                <div class="col-3" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkPreg">
-                                <input id="chkPreg" type="checkbox" name="checkboxes" value="1">
-                                Pregnant?
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="col-12 control-label" for="anc">Pregnant?</label>
+                                    <div class="col-12">
+                                        <div class="radio">
+                                            <label for="rdoPregYes">
+                                                <input id="rdoPregYes" type="radio" name="anc" value="yes" >
+                                                Yes
+                                            </label>
+                                            |
+                                            <label for="rdoPregNo">
+                                                <input id="rdoPregNo" type="radio" name="anc" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkBreast">
-                                <input id="chkBreast" type="checkbox" name="checkboxes" value="1">
-                                Breastfeeding?
-                                </label>
+                                    <label class="col-12 control-label" for="anc">Breastfeeding?</label>
+                                    <div class="col-12">
+                                        <div class="radio">
+                                            <label for="rdoBreastYes">
+                                                <input id="rdoBreastYes" type="radio" name="anc" value="yes" >
+                                                Yes
+                                            </label>
+                                            |
+                                            <label for="rdoBreastNo">
+                                                <input id="rdoBreastNo" type="radio" name="anc" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -206,77 +219,78 @@
                         </div>
                         <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
                             <div class="row">
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkTest">
-                                <input id="chkTest" type="checkbox" name="checkboxes" value="1">
-                                Test
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageTest">Test</label>
+                                    <select id="drpTriageTest" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkMED1">
-                                <input id="chkMED1" type="checkbox" name="checkboxes" value="2">
-                                MED1
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageMED">Medical</label>
+                                    <select id="drpTriageMED" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkMED2">
-                                <input id="chkMED2" type="checkbox" name="checkboxes" value="2">
-                                    MED2
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageGYN">Gynaecologist</label>
+                                    <select id="drpTriageGYN" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
-
-                                <div class="col-2" style="text-align: left;">
-                                </div>
-
                             </div>
 
                             <div class="row">
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkGYN">
-                                <input id="chkGYN" type="checkbox" name="checkboxes" value="3">
-                                    GYN
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageOPHT">Optometrist</label>
+                                    <select id="drpTriageOPHT" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkOPHT">
-                                <input id="chkOPHT" type="checkbox" name="checkboxes" value="4">
-                                    OPHT
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageDENT">Dentist</label>
+                                    <select id="drpTriageDENT" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkDENT">
-                                <input id="chkDENT" type="checkbox" name="checkboxes" value="5">
-                                    DENT
-                                </label>
-                                </div>
-
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkTriageV">
-                                <input id="chkTriageV" type="checkbox" name="checkboxes" value="6">
-                                    V
-                                </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageV">Triage V</label>
+                                    <select id="drpTriageV" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
                             </div>
                             <!-- /row -->
-
-                            <br/>
-
-                            <div class="row">
-                                <div class="col-6 col-centered">
-                                    <button id="btnSubmit" class="btn btn-default">Submit</button>
-                                </div>
-                            </div>
-
                         </div>
                         <!-- /horizontal border -->
-                    </div>
-                    <!-- /divDisplay inner cover  -->
 
-                    <div id="loadingOverlay"></div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-6 col-centered">
+                                <button id="btnSubmit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+
+                    </div> <!-- /form-horizontal border -->
+                </div> <!-- /divDisplay inner cover  -->
+
+                <div id="loadingOverlay"></div>
 
                 </div>
                 <!-- /clear container -->
@@ -298,7 +312,7 @@
         <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
 
         <script src="js/spin.min.js"></script>
-        <script src="js/basic.js"></script>
+        <script src="js/register.js"></script>
 
 </body>
 
