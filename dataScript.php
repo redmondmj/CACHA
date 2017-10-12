@@ -13,6 +13,8 @@
         $sql = "SELECT FirstName,LastName,BirthYear,BirthMonth,BirthDay,Village FROM tbl_patient WHERE PatientID = '" . $data["id"] . "'";
     } else if ($data["request"] == "basic") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
+    } else if ($data["request"] == "clinic") {
+        $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     }
 
     try {
@@ -134,8 +136,77 @@
                     array_push($response->entries, $basic);
                 }
 
-            } else if ($data["request"] == "something") {
-                // add the entries to the response object
+            } else if ($data["request"] == "clinic") {
+                // construct a new object to send the data
+                class clinicInfo {
+
+
+                    public lastv;
+                    public lastpzq;
+                    public lastworm;
+                    public lastvita;
+                    public "parac";
+                    public "benz";
+                    public "ceft";
+        
+                    $clinic->lastv = $row["lastv"];
+                    $clinic->lastpzq = $row["lastpzq"];
+                    $clinic->lastworm = $row["lastworm"];
+                    $clinic->lastv = $row[""];
+                    $clinic->lastv = $row[""];
+                    $clinic->lastv = $row[""];
+                    $clinic->lastv = $row[""];
+
+                    public "healthy";
+                    public "ntr";
+                    public "msk";
+                    public "eye";
+                    public "vit";
+                    public "dds": drpDDS[drpDDS.selectedIndex].value,
+                    public "worms": drpWorms[drpWorms.selectedIndex].value,
+                    public "mal": drpMal[drpMal.selectedIndex].value,
+                    public "schisto": drpSchisto[drpSchisto.selectedIndex].value,
+                    public "typhoid": drpTyphoid[drpTyphoid.selectedIndex].value,
+                    public "asthma": drpAsthma[drpAsthma.selectedIndex].value,
+                    public "bronc": drpBron[drpBron.selectedIndex].value,
+                    public "pneu": drpPneu[drpPneu.selectedIndex].value,
+                    public "cough": drpCough[drpCough.selectedIndex].value,
+                    public "gerd": drpGERD[drpGERD.selectedIndex].value,
+                    public "pud": drpPUD[drpPUD.selectedIndex].value,
+                    public "hyper": drpHyper[drpHyper.selectedIndex].value,
+                    public "con": drpCon[drpCon.selectedIndex].value,
+                    public "diarrhea": drpDiarrhea[drpDiarrhea.selectedIndex].value,
+                    public "diarrheatype": drpDiarrheaType[drpDiarrheaType.selectedIndex].value,
+                    public "diabetes": drpDiabetes[drpDiabetes.selectedIndex].value,
+                    public "pid": drpPID[drpPID.selectedIndex].value,
+                    public "sti": drpSTI[drpSTI.selectedIndex].value,
+                    public "syph": drpSyph[drpSyph.selectedIndex].value,
+                    public "topical": txtTopical.value,
+                    public "other": txtOther.value,
+                    public "assess": txtAssess.innerHTML,
+        
+                    public "weeks": txtWeeks.value,
+                    public "anc": anc,
+                    public "anemia": anemia,
+                    public "lastiptp": drpIPTp[drpIPTp.selectedIndex].value,
+                    public "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
+        
+                    public "follow": txtFollow.value,
+                    public "edu": txtEdu.value,
+        
+                    public "tb": tb,
+                    public "surgery": surgery,
+                    public "hospital": hospital,
+        
+                    public "test": drpTriageTest[drpTriageTest.selectedIndex].value,
+                    public "med": drpTriageMED[drpTriageMED.selectedIndex].value,
+                    public "gyn": drpTriageGYN[drpTriageGYN.selectedIndex].value,
+                    public "opht": drpTriageOPHT[drpTriageOPHT.selectedIndex].value,
+                    public "dent": drpTriageDENT[drpTriageDENT.selectedIndex].value,
+                    public "triagev": drpTriageV[drpTriageV.selectedIndex].value
+
+
+                }
 
 
             } else if ($data["request"] == "somethingelse") {
