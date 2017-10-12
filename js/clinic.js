@@ -415,70 +415,91 @@
         loading();
         
         // checkboxes
-        var preg = "no";
-        var breast = "no";
-        if (chkPreg.checked) {
-            preg = "yes";
-        }
-        if (chkBreast.checked) {
-            breast = "yes";
-        }
+        var parac = "no";
+        var benz = "no";
+        var ceft = "no";
+        if (chkParac.checked) {parac = "yes";}
+        if (chkBenz.checked) {benz = "yes";}
+        if (chkCeft.checked) {ceft = "yes";}
 
-        // stations
-        var test = "no";
-        var med1 = "no";
-        var med2 = "no";
-        var gyn = "no";
-        var opht = "no";
-        var dent = "no";
-        var triagev = "no";
-        if (chkTest.checked) {
-            test = "yes";
-        }
-        if (chkMED1.checked) {
-            med1 = "yes";
-        }
-        if (chkMED2.checked) {
-            med2 = "yes";
-        }
-        if (chkGYN.checked) {
-            gyn = "yes";
-        }
-        if (chkOPHT.checked) {
-            opht = "yes";
-        }
-        if (chkDENT.checked) {
-            dent = "yes";
-        }
-        if (chkTriageV.checked) {
-            triagev = "yes";
-        }
+        var healthy = "no";
+        var ntr = "no";
+        if (chkHealthy.checked) {healthy = "yes";}
+        if (chkNTR.checked) {ntr = "yes";}
+
+        var tb = "no";
+        var surgery = "no";
+        var hospital = "no";
+        if (chkTB.checked) {tb = "yes";}
+        if (chkSurgery.checked) {surgery = "yes";}
+        if (chkHospital.checked) {hospital = "yes";}
+
+        // radio buttons
+        var anc = "no";
+        var anemia = "no";
+        if (rdoANCYes.checked) {anc = "yes";}
+        if (rdoAnemiaYes.checked) {anemia = "yes";}
+
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "clinic",
             "patientid": drpPatient[drpPatient.selectedIndex].value,
-            "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
-            "weight": txtWeight.value.replace(/[^0-9\.-]+/g,""),
-            "temp": txtTemp.value.replace(/[^0-9\.-]+/g,""),
-            "BPTop": txtBPTop.value,
-            "BPBottom": txtBPBottom.value,
-            "heart": txtHR.value,
-            "glucose": txtGlucose.value,
-            "pregnant": preg,
-            "breast": breast,
-            "living": txtLive.value,
-            "grav": txtGrav.value,
-            "para": txtPara.value,
-            "abortus": txtAbort.value,
-            "period": txtLNMP.value,
-            "complaint": txtComplaint.value,
-            "test": test,
-            "med1": med1,
-            "med2": med2,
-            "gyn": gyn,
-            "opht": opht,
-            "dent": dent,
-            "triagev": triagev
+            "visit": drpVisit[drpVisit.selectedIndex].value,
+            "lastv": drpLastV[drpLastV.selectedIndex].value,
+            "lastpzq": drpLastPZQ[drpLastPZQ.selectedIndex].value,
+            "lastworm": drpLastWorm[drpLastWorm.selectedIndex].value,
+            "lastvita": drpLastVitA[drpLastVitA.selectedIndex].value,
+            "parac": parac,
+            "benz": benz,
+            "ceft": ceft,
+
+            "healthy": healthy,
+            "ntr": ntr,
+            "msk": drpMSK[drpMSK.selectedIndex].value,
+            "eye": drpEye[drpEye.selectedIndex].value,
+            "vit": drpVit[drpVit.selectedIndex].value,
+            "dds": drpDDS[drpDDS.selectedIndex].value,
+            "worms": drpWorms[drpWorms.selectedIndex].value,
+            "mal": drpMal[drpMal.selectedIndex].value,
+            "schisto": drpSchisto[drpSchisto.selectedIndex].value,
+            "typhoid": drpTyphoid[drpTyphoid.selectedIndex].value,
+            "asthma": drpAsthma[drpAsthma.selectedIndex].value,
+            "bronc": drpBron[drpBron.selectedIndex].value,
+            "pneu": drpPneu[drpPneu.selectedIndex].value,
+            "cough": drpCough[drpCough.selectedIndex].value,
+            "gerd": drpGERD[drpGERD.selectedIndex].value,
+            "pud": drpPUD[drpPUD.selectedIndex].value,
+            "hyper": drpHyper[drpHyper.selectedIndex].value,
+            "con": drpCon[drpCon.selectedIndex].value,
+            "diarrhea": drpDiarrhea[drpDiarrhea.selectedIndex].value,
+            "diarrheatype": drpDiarrheaType[drpDiarrheaType.selectedIndex].value,
+            "diabetes": drpDiabetes[drpDiabetes.selectedIndex].value,
+            "pid": drpPID[drpPID.selectedIndex].value,
+            "sti": drpSTI[drpSTI.selectedIndex].value,
+            "syph": drpSyph[drpSyph.selectedIndex].value,
+            "topical": txtTopical.value,
+            "other": txtOther.value,
+            "assess": txtAssess.innerHTML,
+
+            "weeks": txtWeeks.value,
+            "anc": anc,
+            "anemia": anemia,
+            "lastiptp": drpIPTp[drpIPTp.selectedIndex].value,
+            "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
+
+            "follow": txtFollow.value,
+            "edu": txtEdu.value,
+
+            "tb": tb,
+            "surgery": surgery,
+            "hospital": hospital,
+
+            "test": drpTriageTest[drpTriageTest.selectedIndex].value,
+            "med": drpTriageMED[drpTriageMED.selectedIndex].value,
+            "gyn": drpTriageGYN[drpTriageGYN.selectedIndex].value,
+            "opht": drpTriageOPHT[drpTriageOPHT.selectedIndex].value,
+            "dent": drpTriageDENT[drpTriageDENT.selectedIndex].value,
+            "triagev": drpTriageV[drpTriageV.selectedIndex].value
         };
         
         console.log(sendJSON);
@@ -761,6 +782,11 @@
                 // text
                 txtFollow.value = response.entries[0].follow;
                 txtEdu.value = response.entries[0].edu;
+
+                // referrals
+                if (response.entries[0].tb) {chkTB.checked = true;} else {chkTB.checked = false;}
+                if (response.entries[0].surgery) {chkSurgery.checked = true;} else {chkSurgery.checked = false;}
+                if (response.entries[0].hospital) {chkHospital.checked = true;} else {chkHospital.checked = false;}
 
                 // stations
                 lblTriageTest.value = response.entries[0].test;
