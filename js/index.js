@@ -222,7 +222,7 @@
                     option.value = response.entries[i];
 
                     // add element to sampleList as a new option
-                    drpVillage.append(option);
+                    $(drpVillage).append(option);
                 }
 
                 // set sponsor data for first entry
@@ -238,7 +238,7 @@
                 option.value = 0;
 
                 // add element to sampleList as a new option
-                drpVillage.append(option);
+                $(drpVillage).append(option);
 
                 // set sponsor data for first entry
                 drpVillage.selectedIndex = 0;

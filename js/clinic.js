@@ -20,17 +20,20 @@
     var lblName = null;
     var lblAge = null;
     var lblVillage = null;
+
     var lblCase = null;
-    
+    var lblWeight = null;
+    var lblBP = null;
+    var lblTemp = null;
+
     var btnChart = null;
 
-    var chkDisTest = null;
-    var chkDisMED1 = null;
-    var chkDisMED2 = null;
-    var chkDisGYN = null;
-    var chkDisOPHT = null;
-    var chkDisDENT = null;
-    var chkDisTriageV = null;
+    var lblTriageTest = null;
+    var lblTriageMED = null;
+    var lblTriageV = null;
+    var lblTriageGYN = null;
+    var lblTriageOPHT = null;
+    var lblTriageDENT = null;
     
     var drpLastV = null;
     var drpLastPZQ = null;
@@ -59,11 +62,13 @@
     var drpDiabetes = null;
     var drpCon = null;
     var drpDiarrhea = null;
+    var drpDiarrheaType = null;
     var drpPID = null;
     var drpSTI = null;
     var drpSyph = null;
     var drpEye = null;
     var drpVit = null;
+    var drpDDS = null;
     var txtTopical = null;
     var txtOther = null;
     var txtAssess = null;
@@ -83,13 +88,12 @@
     var chkSurgery = null;
     var chkHospital = null;
 
-    var chkTest = null;
-    var chkMED1 = null;
-    var chkMED2 = null;
-    var chkGYN = null;
-    var chkOPHT = null;
-    var chkDENT = null;
-    var chkTriageV = null;
+    var drpTriageTest = null;
+    var drpTriageMED = null;
+    var drpTriageGYN = null;
+    var drpTriageOPHT = null;
+    var drpTriageDENT = null;
+    var drpTriageV = null;
 
     var btnSubmit = null;
 
@@ -118,17 +122,20 @@
         lblName = document.getElementById("lblName");
         lblAge = document.getElementById("lblAge");
         lblVillage = document.getElementById("lblVillage");
+        
         lblCase = document.getElementById("lblCase");
+        lblWeight = document.getElementById("lblWeight");
+        lblBP = document.getElementById("lblBP");
+        lblTemp = document.getElementById("lblTemp");
         
         btnChart = document.getElementById("btnChart");
         
-        chkDisTest = document.getElementById("chkDisTest");
-        chkDisMED1 = document.getElementById("chkDisMED1");
-        chkDisMED2 = document.getElementById("chkDisMED2");
-        chkDisGYN = document.getElementById("chkDisGYN");
-        chkDisOPHT = document.getElementById("chkDisOPHT");
-        chkDisDENT = document.getElementById("chkDisDENT");
-        chkDisTriageV = document.getElementById("chkDisTriageV");
+        lblTriageTest = document.getElementById("lblTriageTest");
+        lblTriageMED = document.getElementById("lblTriageMED");
+        lblTriageV = document.getElementById("lblTriageV");
+        lblTriageGYN = document.getElementById("lblTriageGYN");
+        lblTriageOPHT = document.getElementById("lblTriageOPHT");
+        lblTriageDENT = document.getElementById("lblTriageDENT");
 
         drpLastV = document.getElementById("drpLastV");
         drpLastPZQ = document.getElementById("drpLastPZQ");
@@ -157,11 +164,13 @@
         drpDiabetes = document.getElementById("drpDiabetes");
         drpCon = document.getElementById("drpCon");
         drpDiarrhea = document.getElementById("drpDiarrhea");
+        drpDiarrheaType = document.getElementById("drpDiarrheaType");
         drpPID = document.getElementById("drpPID");
         drpSTI = document.getElementById("drpSTI");
         drpSyph = document.getElementById("drpSyph");
         drpEye = document.getElementById("drpEye");
         drpVit = document.getElementById("drpVit");
+        drpDDS = document.getElementById("drpDDS");
         txtTopical = document.getElementById("txtTopical");
         txtOther = document.getElementById("txtOther");
         txtAssess = document.getElementById("txtAssess");
@@ -181,13 +190,12 @@
         chkSurgery = document.getElementById("chkSurgery");
         chkHospital = document.getElementById("chkHospital");
     
-        chkTest = document.getElementById("chkTest");
-        chkMED1 = document.getElementById("chkMED1");
-        chkMED2 = document.getElementById("chkMED2");
-        chkGYN = document.getElementById("chkGYN");
-        chkOPHT = document.getElementById("chkOPHT");
-        chkDENT = document.getElementById("chkDENT");
-        chkTriageV = document.getElementById("chkTriageV");
+        drpTriageTest = document.getElementById("drpTriageTest");
+        drpTriageMED = document.getElementById("drpTriageMED");
+        drpTriageGYN = document.getElementById("drpTriageGYN");
+        drpTriageOPHT = document.getElementById("drpTriageOPHT");
+        drpTriageDENT = document.getElementById("drpTriageDENT");
+        drpTriageV = document.getElementById("drpTriageV");
     
         btnSubmit = document.getElementById("btnSubmit");
 
@@ -200,7 +208,8 @@
         // event listener for visit information
         drpVisit.addEventListener("change", getThisVisit);
 
-        // event listener for the button
+        // event listener for the buttons
+        //btnChart.addEventListener("click", toChart);
         //btnSubmit.addEventListener("click", onSubmit);
 
         /*
@@ -333,13 +342,12 @@
         chkHospital.checked = false;
 
         // stations
-        chkTest.checked = false;
-        chkMED1.checked = false;
-        chkMED2.checked = false;
-        chkGYN.checked = false;
-        chkOPHT.checked = false;
-        chkDENT.checked = false;
-        chkTriageV.checked = false;
+        drpTriageTest.selectedIndex = 0;
+        drpTriageMED.selectedIndex = 0;
+        drpTriageGYN.selectedIndex = 0;
+        drpTriageOPHT.selectedIndex = 0;
+        drpTriageDENT.selectedIndex = 0;
+        drpTriageV.selectedIndex = 0;
     }
     
     // ------------------------------------------------------------ event handlers
@@ -508,7 +516,7 @@
                     option.value = response.entries[i].id;
 
                     // add element to dropdown
-                    drpPatient.append(option);
+                    $(drpPatient).append(option);
                 }
 
                 // set sponsor data for first entry
@@ -527,7 +535,7 @@
                 option.value = 0;
 
                 // add element to dropdown
-                drpPatient.append(option);
+                $(drpPatient).append(option);
 
                 // set sponsor data for first entry
                 drpPatient.selectedIndex = 0;
@@ -577,7 +585,7 @@
                     option.value = response.entries[i];
 
                     // add element to dropdown
-                    drpVisit.append(option);
+                    $(drpVisit).append(option);
                 }
 
             } else {
@@ -646,42 +654,157 @@
 
                 lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
 
-                // run through the dispensary list until we find a match
-                for (var n=0;n < drpDispensary.length;n++) {
-                    if (drpDispensary[n].value === response.entries[0].dispensary) {
-                        drpDispensary.selectedIndex = n;
+                // run through the test lists until we find a match
+                for (var n=0;n < drpLastV.length;n++) {
+                    if (drpLastV[n].value === response.entries[0].lastv) {
+                        drpLastV.selectedIndex = n;
                         break;
                     }
-                    
+                }
+                for (n=0;n < drpLastPZQ.length;n++) {
+                    if (drpLastPZQ[n].value === response.entries[0].lastpzq) {
+                        drpLastPZQ.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpLastWorm.length;n++) {
+                    if (drpLastWorm[n].value === response.entries[0].lastworm) {
+                        drpLastWorm.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpLastVitA.length;n++) {
+                    if (drpLastVitA[n].value === response.entries[0].lastvita) {
+                        drpLastVitA.selectedIndex = n;
+                        break;
+                    }
                 }
 
-                txtWeight.value = response.entries[0].weight;
-                txtTemp.value = response.entries[0].temp;
-                txtBPTop.value = response.entries[0].BPTop;
-                txtBPBottom.value = response.entries[0].BPBottom;
-                txtHR.value = response.entries[0].heart;
-                txtGlucose.value = response.entries[0].glucose;
+                // admin section
+                if (response.entries[0].parac) {chkParac.checked = true;} else {chkParac.checked = false;}
+                if (response.entries[0].benz) {chkBenz.checked = true;} else {chkBenz.checked = false;}
+                if (response.entries[0].ceft) {chkCeft.checked = true;} else {chkCeft.checked = false;}
 
-                // checkboxes
-                if (response.entries[0].pregnant === "yes") {chkPreg.checked = true} else {chkPreg.checked = false}
-                if (response.entries[0].breast === "yes") {chkBreast.checked = true} else {chkBreast.checked = false}
+                // diagnosis
+                if (response.entries[0].healthy) {chkHealthy.checked = true;} else {chkHealthy.checked = false;}
+                if (response.entries[0].ntr) {chkNTR.checked = true;} else {chkNTR.checked = false;}
 
-                txtLive.value = response.entries[0].living;
-                txtGrav.value = response.entries[0].grav;
-                txtPara.value = response.entries[0].para;
-                txtAbort.value = response.entries[0].abortus;
-                txtLNMP.value = response.entries[0].period;
+                drpMSK.selectedIndex = response.entries[0].msk;
+                drpEye.selectedIndex = response.entries[0].eye;
+                drpVit.selectedIndex = response.entries[0].vit;
+                drpDDS.selectedIndex = response.entries[0].dds;
 
-                txtComplaint.innerHTML = response.entries[0].complaint;
+                drpWorms.selectedIndex = response.entries[0].worms;
+                drpMal.selectedIndex = response.entries[0].mal;
+                drpSchisto.selectedIndex = response.entries[0].schisto;
+                drpTyphoid.selectedIndex = response.entries[0].typhoid;
+
+                drpAsthma.selectedIndex = response.entries[0].asthma;
+                drpBron.selectedIndex = response.entries[0].bron;
+                drpPneu.selectedIndex = response.entries[0].pneu;
+                drpCough.selectedIndex = response.entries[0].cough;
+
+                drpGERD.selectedIndex = response.entries[0].gerd;
+                drpPUD.selectedIndex = response.entries[0].pud;
+                drpHyper.selectedIndex = response.entries[0].hyper;
+
+                drpCon.selectedIndex = response.entries[0].con;
+                drpDiarrhea.selectedIndex = response.entries[0].diarrhea;
+                if (response.entries[0].diarrheatype === "watery") {
+                    drpDiarrheaType.selectedIndex = 1;
+                } else if (response.entries[0].diarrheatype === "bloody") {
+                    drpDiarrheaType.selectedIndex = 2;
+                } else {
+                    drpDiarrheaType.selectedIndex = 0;
+                }
+
+                drpDiabetes.selectedIndex = response.entries[0].diabetes;
+                drpPID.selectedIndex = response.entries[0].pid;
+                drpSTI.selectedIndex = response.entries[0].sti;
+                drpSyph.selectedIndex = response.entries[0].syph;
+
+                txtTopical.value = response.entries[0].topical;
+                txtOther.value = response.entries[0].otherdx;
+
+                txtAssess.innerHTML = response.entries[0].assess;
+
+                // pregnancy
+                txtWeeks.value = response.entries[0].weeks;
+                if (response.entries[0].anc === "yes") {
+                    rdoANCYes.checked = true;
+                    rdoANCNo.checked = false;
+                } else {
+                    rdoANCYes.checked = false;
+                    rdoANCNo.checked = false;
+                }
+                if (response.entries[0].anemia === "yes") {
+                    rdoAnemiaYes.checked = true;
+                    rdoAnemiaNo.checked = false;
+                } else {
+                    rdoAnemiaYes.checked = false;
+                    rdoAnemiaNo.checked = false;
+                }
+
+                for (n=0;n < drpIPTp.length;n++) {
+                    if (drpIPTp[n].value === response.entries[0].iptp) {
+                        drpIPTp.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpSulfadar.length;n++) {
+                    if (drpSulfadar[n].value === response.entries[0].sulfadar) {
+                        drpSulfadar.selectedIndex = n;
+                        break;
+                    }
+                }
+
+                // text
+                txtFollow.value = response.entries[0].follow;
+                txtEdu.value = response.entries[0].edu;
 
                 // stations
-                if (response.entries[0].test === "yes") {chkTest.checked = true} else {chkTest.checked = false}
-                if (response.entries[0].med1 === "yes") {chkMED1.checked = true} else {chkMED1.checked = false}
-                if (response.entries[0].med2 === "yes") {chkMED2.checked = true} else {chkMED2.checked = false}
-                if (response.entries[0].gyn === "yes") {chkGYN.checked = true} else {chkGYN.checked = false}
-                if (response.entries[0].opht === "yes") {chkOPHT.checked = true} else {chkOPHT.checked = false}
-                if (response.entries[0].dent === "yes") {chkDENT.checked = true} else {chkDENT.checked = false}
-                if (response.entries[0].stationv === "yes") {chkTriageV.checked = true} else {chkTriageV.checked = false}
+                lblTriageTest.value = response.entries[0].test;
+                for (n=0;n < drpTriageTest.length;n++) {
+                    if (drpTriageTest[n].value === response.entries[0].test) {
+                        drpTriageTest.selectedIndex = n;
+                        break;
+                    }
+                }
+                lblTriageMED.value = response.entries[0].med;
+                for (n=0;n < drpTriageMED.length;n++) {
+                    if (drpTriageMED[n].value === response.entries[0].med) {
+                        drpTriageMED.selectedIndex = n;
+                        break;
+                    }
+                }
+                lblTriageGYN.value = response.entries[0].gyn;
+                for (n=0;n < drpTriageGYN.length;n++) {
+                    if (drpTriageGYN[n].value === response.entries[0].gyn) {
+                        drpTriageGYN.selectedIndex = n;
+                        break;
+                    }
+                }
+                lblTriageOPHT.value = response.entries[0].opht;
+                for (n=0;n < drpTriageOPHT.length;n++) {
+                    if (drpTriageOPHT[n].value === response.entries[0].opht) {
+                        drpTriageOPHT.selectedIndex = n;
+                        break;
+                    }
+                }
+                lblTriageDENT.value = response.entries[0].dent;
+                for (n=0;n < drpTriageDENT.length;n++) {
+                    if (drpTriageDENT[n].value === response.entries[0].dent) {
+                        drpTriageDENT.selectedIndex = n;
+                        break;
+                    }
+                }
+                lblTriageV.value = response.entries[0].stationv;
+                for (n=0;n < drpTriageV.length;n++) {
+                    if (drpTriageV[n].value === response.entries[0].stationv) {
+                        drpTriageV.selectedIndex = n;
+                        break;
+                    }
+                }
 
             } else {
 

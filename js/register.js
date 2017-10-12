@@ -379,7 +379,7 @@
                     option.value = response.entries[i];
 
                     // add element to dropdown
-                    drpDispensary.append(option);
+                    $(drpDispensary).append(option);
                 }
 
                 // set sponsor data for first entry
@@ -395,7 +395,7 @@
                 option.value = 0;
 
                 // add element to dropdown
-                drpDispensary.append(option);
+                $(drpDispensary).append(option);
 
                 // set sponsor data for first entry
                 drpDispensary.selectedIndex = 0;
@@ -435,7 +435,7 @@
                     option.value = response.entries[i].id;
 
                     // add element to dropdown
-                    drpPatient.append(option);
+                    $(drpPatient).append(option);
                 }
 
                 // set sponsor data for first entry
@@ -454,7 +454,7 @@
                 option.value = 0;
 
                 // add element to dropdown
-                drpPatient.append(option);
+                $(drpPatient).append(option);
 
                 // set sponsor data for first entry
                 drpPatient.selectedIndex = 0;
@@ -497,7 +497,7 @@
             first.value = 0;
 
             // add element to as a new option
-            drpVisit.append(first);
+            $(drpVisit).append(first);
 
             // do we have entries to display?
             if (entryCount > 0) {
@@ -512,7 +512,7 @@
                     option.value = response.entries[i];
 
                     // add element to dropdown
-                    drpVisit.append(option);
+                    $(drpVisit).append(option);
                 }
 
             } else {
