@@ -1,0 +1,48 @@
+/* MAIN */
+
+body {
+  background-color: #FFFFFF;
+  /*font-size: 20px;*/
+  margin: 20px;
+  color:#353535;
+}
+
+
+/* MEDIA STUFF */
+
+div {
+  padding:2px;
+}
+
+@media print {
+  @page {                
+    size: A4;
+    margin: 15mm;
+  }
+
+  html, body {
+    width: 1024px;
+  }
+
+  body {
+    margin: 0 auto;
+  }
+
+  div {
+    color: Black;
+    border-color: Black;
+  }
+
+  input {
+    color: Black;
+  }
+
+  textarea {
+    color: Black;
+  }
+
+  hr {
+    border-color: Black;
+  }
+
+}
