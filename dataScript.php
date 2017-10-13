@@ -140,75 +140,119 @@
                 // construct a new object to send the data
                 class clinicInfo {
 
+                    // tests
+                    public $lastv = "";
+                    public $lastpzq = "";
+                    public $lastworm = "";
+                    public $lastvita = "";
 
-                    public lastv;
-                    public lastpzq;
-                    public lastworm;
-                    public lastvita;
-                    public "parac";
-                    public "benz";
-                    public "ceft";
+                    // administrated
+                    public $parac = "";
+                    public $benz = "";
+                    public $ceft = "";
         
-                    $clinic->lastv = $row["lastv"];
-                    $clinic->lastpzq = $row["lastpzq"];
-                    $clinic->lastworm = $row["lastworm"];
-                    $clinic->lastv = $row[""];
-                    $clinic->lastv = $row[""];
-                    $clinic->lastv = $row[""];
-                    $clinic->lastv = $row[""];
+                    // diagnosis
+                    public $healthy = "";
+                    public $ntr = "";
+                    public $msk = 0;
+                    public $eye = 0;
+                    public $vit = 0;
+                    public $dds = 0;
+                    public $worms = 0;
+                    public $mal = 0;
+                    public $schisto = 0;
+                    public $typhoid = 0;
+                    public $asthma = 0;
+                    public $bronc = 0;
+                    public $pneu = 0;
+                    public $cough = 0;
+                    public $gerd = 0;
+                    public $pud = 0;
+                    public $hyper = 0;
+                    public $con = 0;
+                    public $diarrhea = 0;
+                    public $diarrheatype = "";
+                    public $diabetes = 0;
+                    public $pid = 0;
+                    public $sti = 0;
+                    public $syph = 0;
+                    public $topical = "";
+                    public $other = "";
+                    public $assess = "";
+        
+                    // pregnancy
+                    public $weeks = 0;
+                    public $anc = "";
+                    public $anemia = "";
+                    public $lastiptp = "";
+                    public $sulfadar = 0;
+        
+                    // notes
+                    public $follow = "";
+                    public $edu = "";
+        
+                    // referral
+                    public $tb = "";
+                    public $surgery = "";
+                    public $hospital = "";
+        
+                    // practitioner
+                    public $doc = "";
 
-                    public "healthy";
-                    public "ntr";
-                    public "msk";
-                    public "eye";
-                    public "vit";
-                    public "dds": drpDDS[drpDDS.selectedIndex].value,
-                    public "worms": drpWorms[drpWorms.selectedIndex].value,
-                    public "mal": drpMal[drpMal.selectedIndex].value,
-                    public "schisto": drpSchisto[drpSchisto.selectedIndex].value,
-                    public "typhoid": drpTyphoid[drpTyphoid.selectedIndex].value,
-                    public "asthma": drpAsthma[drpAsthma.selectedIndex].value,
-                    public "bronc": drpBron[drpBron.selectedIndex].value,
-                    public "pneu": drpPneu[drpPneu.selectedIndex].value,
-                    public "cough": drpCough[drpCough.selectedIndex].value,
-                    public "gerd": drpGERD[drpGERD.selectedIndex].value,
-                    public "pud": drpPUD[drpPUD.selectedIndex].value,
-                    public "hyper": drpHyper[drpHyper.selectedIndex].value,
-                    public "con": drpCon[drpCon.selectedIndex].value,
-                    public "diarrhea": drpDiarrhea[drpDiarrhea.selectedIndex].value,
-                    public "diarrheatype": drpDiarrheaType[drpDiarrheaType.selectedIndex].value,
-                    public "diabetes": drpDiabetes[drpDiabetes.selectedIndex].value,
-                    public "pid": drpPID[drpPID.selectedIndex].value,
-                    public "sti": drpSTI[drpSTI.selectedIndex].value,
-                    public "syph": drpSyph[drpSyph.selectedIndex].value,
-                    public "topical": txtTopical.value,
-                    public "other": txtOther.value,
-                    public "assess": txtAssess.innerHTML,
-        
-                    public "weeks": txtWeeks.value,
-                    public "anc": anc,
-                    public "anemia": anemia,
-                    public "lastiptp": drpIPTp[drpIPTp.selectedIndex].value,
-                    public "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
-        
-                    public "follow": txtFollow.value,
-                    public "edu": txtEdu.value,
-        
-                    public "tb": tb,
-                    public "surgery": surgery,
-                    public "hospital": hospital,
-        
-                    public "test": drpTriageTest[drpTriageTest.selectedIndex].value,
-                    public "med": drpTriageMED[drpTriageMED.selectedIndex].value,
-                    public "gyn": drpTriageGYN[drpTriageGYN.selectedIndex].value,
-                    public "opht": drpTriageOPHT[drpTriageOPHT.selectedIndex].value,
-                    public "dent": drpTriageDENT[drpTriageDENT.selectedIndex].value,
-                    public "triagev": drpTriageV[drpTriageV.selectedIndex].value
+                    // sti chart
 
+
+                    // stations
+                    public $test = "";
+                    public $med = "";
+                    public $gyn = "";
+                    public $opht = "";
+                    public $dent = "";
+                    public $triagev = "";
 
                 }
 
+                while ($row = $result->fetch_assoc()) {
 
+                    $clinic->lastv = $row["LastHIVTest"];
+                    $clinic->lastpzq = $row["LastPZQTx"];
+                    $clinic->lastworm = $row["LastWormTx"];
+                    $clinic->lastvita = $row["LastVitA"];
+
+                    $clinic->healthy = $row["DX_Healthy"];
+                    $clinic->ntr = $row["DX_NoTreatment"];
+                    $clinic->msk = $row["DX_MSK"];
+                    $clinic->eye = $row["DX_Eye"];
+                    $clinic->vit = $row["DX_Vit"];
+                    $clinic->dds = $row["DX_DDS"];
+                    $clinic->worms = $row["DX_Worms"];
+                    $clinic->mal = $row["DX_Malaria"];
+                    $clinic->schisto = $row["DX_Schisto"];
+                    $clinic->typhoid = $row["DX_Typhoid"];
+                    $clinic->asthma = $row["DX_Asthma"];
+                    $clinic->bronc = $row["DX_Bronchitis"];
+                    $clinic->pneu = $row["DX_Pneumonia"];
+                    $clinic->cough = $row["DX_Cough"];
+                    $clinic->gerd = $row["DX_Gerd"];
+                    $clinic->pud = $row["DX_PUD"];
+                    $clinic->hyper = $row["DX_Hypertension"];
+                    $clinic->con = $row["DX_Constipation"];
+                    $clinic->diarrhea = $row["DX_Diarrhea"];
+                    $clinic->diarrheatype = $row["DX_DiarrheaType"];
+                    $clinic->diabetes = $row["DX_Diabetes"];
+                    $clinic->pid = $row["DX_PID"];
+                    $clinic->sti = $row["DX_STI"];
+                    $clinic->syph = $row["DX_Syphilis"];
+                    $clinic->topical = $row["DX_Topical"];
+                    $clinic->topicaldesc = $row["DX_TopicalDesc"];
+                    $clinic->other = $row["DX_Other"];
+                    $clinic->otherdesc = $row["DX_OtherDesc"];
+                    $clinic->assess = $row["DX_Assess"];
+
+                    $clinic->parac = $row["parac"];
+                    $clinic->benz = $row["benz"];
+                    $clinic->ceft = $row["ceft"];
+                }
             } else if ($data["request"] == "somethingelse") {
                 // add the entries to the response object
                 /*while ($row = $result->fetch_assoc()) {

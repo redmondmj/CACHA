@@ -14,9 +14,11 @@
 
     //var lblFeedback = null;
 
+    // dropdowns
     var drpPatient = null;
     var drpVisit = null;
 
+    // top info
     var lblName = null;
     var lblAge = null;
     var lblVillage = null;
@@ -26,8 +28,6 @@
     var lblBP = null;
     var lblTemp = null;
 
-    var btnChart = null;
-
     var lblTriageTest = null;
     var lblTriageMED = null;
     var lblTriageV = null;
@@ -35,18 +35,23 @@
     var lblTriageOPHT = null;
     var lblTriageDENT = null;
     
+    var lblComplaint = null;
+    var btnChart = null;
+    
+    // tests
     var drpLastV = null;
     var drpLastPZQ = null;
     var drpLastWorm = null;
     var drpLastVitA = null;
 
+    // administrated
     var chkParac = null;
     var chkBenz = null;
     var chkCeft = null;
 
+    // diagnosis
     var chkHealthy = null;
     var chkNTR = null;
-
     var drpMSK = null;
     var drpWorms = null;
     var drpAsthma = null;
@@ -69,10 +74,13 @@
     var drpEye = null;
     var drpVit = null;
     var drpDDS = null;
+    var drpTopical = null;
     var txtTopical = null;
+    var drpOther = null;
     var txtOther = null;
     var txtAssess = null;
 
+    // pregnancy
     var txtWeeks = null;
     var rdoANCYes = null;
     var rdoANCNo = null;
@@ -81,13 +89,56 @@
     var drpIPTp = null;
     var drpSulfadar = null;
 
+    // notes
     var txtFollow = null;
     var txtEdu = null;
 
+    // referral
     var chkTB = null;
     var chkSurgery = null;
     var chkHospital = null;
 
+    // STI/PID chart
+    var chkSTI = null;
+    var chkPID = null;
+
+    var txtPTInit = null;
+    var drpPTSex = null;
+    var drpPTPreg = null;
+    var txtPTMonth = null;
+    var drpPTBF = null;
+    var txtPTMTZ = null;
+    var txtPTDoxy = null;
+    var txtPTAmox = null;
+
+    var txtPT1Init = null;
+    var drpPT1Sex = null;
+    var drpPT1Preg = null;
+    var txtPT1Month = null;
+    var drpPT1BF = null;
+    var txtPT1MTZ = null;
+    var txtPT1Doxy = null;
+    var txtPT1Amox = null;
+
+    var txtPT2Init = null;
+    var drpPT2Sex = null;
+    var drpPT2Preg = null;
+    var txtPT2Month = null;
+    var drpPT2BF = null;
+    var txtPT2MTZ = null;
+    var txtPT2Doxy = null;
+    var txtPT2Amox = null;
+
+    var txtPT3Init = null;
+    var drpPT3Sex = null;
+    var drpPT3Preg = null;
+    var txtPT3Month = null;
+    var drpPT3BF = null;
+    var txtPT3MTZ = null;
+    var txtPT3Doxy = null;
+    var txtPT3Amox = null;
+
+    // stations
     var drpTriageTest = null;
     var drpTriageMED = null;
     var drpTriageGYN = null;
@@ -116,9 +167,11 @@
 
         //lblFeedback = document.getElementById("lblFeedback");
         
+        // dropdowns
         drpPatient = document.getElementById("drpPatient");
         drpVisit = document.getElementById("drpVisit");
 
+        // top info
         lblName = document.getElementById("lblName");
         lblAge = document.getElementById("lblAge");
         lblVillage = document.getElementById("lblVillage");
@@ -128,8 +181,6 @@
         lblBP = document.getElementById("lblBP");
         lblTemp = document.getElementById("lblTemp");
         
-        btnChart = document.getElementById("btnChart");
-        
         lblTriageTest = document.getElementById("lblTriageTest");
         lblTriageMED = document.getElementById("lblTriageMED");
         lblTriageV = document.getElementById("lblTriageV");
@@ -137,15 +188,21 @@
         lblTriageOPHT = document.getElementById("lblTriageOPHT");
         lblTriageDENT = document.getElementById("lblTriageDENT");
 
+        lblComplaint = document.getElementById("lblComplaint");
+        btnChart = document.getElementById("btnChart");
+
+        // tests
         drpLastV = document.getElementById("drpLastV");
         drpLastPZQ = document.getElementById("drpLastPZQ");
         drpLastWorm = document.getElementById("drpLastWorm");
         drpLastVitA = document.getElementById("drpLastVitA");
 
+        // administrated
         chkParac = document.getElementById("chkParac");
         chkBenz = document.getElementById("chkBenz");
         chkCeft = document.getElementById("chkCeft");
         
+        // diagnosis
         chkHealthy = document.getElementById("chkHealthy");
         chkNTR = document.getElementById("chkNTR");
     
@@ -171,10 +228,13 @@
         drpEye = document.getElementById("drpEye");
         drpVit = document.getElementById("drpVit");
         drpDDS = document.getElementById("drpDDS");
+        drpTopical = document.getElementById("drpTopical");
         txtTopical = document.getElementById("txtTopical");
+        drpOther = document.getElementById("drpOther");
         txtOther = document.getElementById("txtOther");
         txtAssess = document.getElementById("txtAssess");
     
+        // pregnancy
         txtWeeks = document.getElementById("txtWeeks");
         rdoANCYes = document.getElementById("rdoANCYes");
         rdoANCNo = document.getElementById("rdoANCNo");
@@ -183,13 +243,55 @@
         drpIPTp = document.getElementById("drpIPTp");
         drpSulfadar = document.getElementById("drpSulfadar");
 
+        // notes
         txtFollow = document.getElementById("txtFollow");
         txtEdu = document.getElementById("txtEdu");
 
+        // referral
         chkTB = document.getElementById("chkTB");
         chkSurgery = document.getElementById("chkSurgery");
         chkHospital = document.getElementById("chkHospital");
     
+        // STI/PID chart
+        chkSTI = document.getElementById("chkHospital");
+        chkPID = document.getElementById("chkHospital");
+
+        txtPTInit = document.getElementById("txtPTInit");
+        drpPTSex = document.getElementById("drpPTSex");
+        drpPTPreg = document.getElementById("drpPTPreg");
+        txtPTMonth = document.getElementById("txtPTMonth");
+        drpPTBF = document.getElementById("drpPTBF");
+        txtPTMTZ = document.getElementById("txtPTMTZ");
+        txtPTDoxy = document.getElementById("txtPTDoxy");
+        txtPTAmox = document.getElementById("txtPTAmox");
+
+        txtPTInit = document.getElementById("txtPT1Init");
+        drpPTSex = document.getElementById("drpPT1Sex");
+        drpPTPreg = document.getElementById("drpPT1Preg");
+        txtPTMonth = document.getElementById("txtPT1Month");
+        drpPTBF = document.getElementById("drpPT1BF");
+        txtPTMTZ = document.getElementById("txtPT1MTZ");
+        txtPTDoxy = document.getElementById("txtPT1Doxy");
+        txtPTAmox = document.getElementById("txtPT1Amox");
+
+        txtPTInit = document.getElementById("txtPT2Init");
+        drpPTSex = document.getElementById("drpPT2Sex");
+        drpPTPreg = document.getElementById("drpPT2Preg");
+        txtPTMonth = document.getElementById("txtPT2Month");
+        drpPTBF = document.getElementById("drpPT2BF");
+        txtPTMTZ = document.getElementById("txtPT2MTZ");
+        txtPTDoxy = document.getElementById("txtPT2Doxy");
+        txtPTAmox = document.getElementById("txtPT2Amox");
+
+        txtPTInit = document.getElementById("txtPT3Init");
+        drpPTSex = document.getElementById("drpPT3Sex");
+        drpPTPreg = document.getElementById("drpPT3Preg");
+        txtPTMonth = document.getElementById("txtPT3Month");
+        drpPTBF = document.getElementById("drpPT3BF");
+        txtPTMTZ = document.getElementById("txtPT3MTZ");
+        txtPTDoxy = document.getElementById("txtPT3Doxy");
+        txtPTAmox = document.getElementById("txtPT3Amox");
+
         drpTriageTest = document.getElementById("drpTriageTest");
         drpTriageMED = document.getElementById("drpTriageMED");
         drpTriageGYN = document.getElementById("drpTriageGYN");
@@ -586,6 +688,8 @@
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
 
+            console.log("visits response");
+
             // clear the dropdown
             drpVisit.innerHTML = "";
 
@@ -653,7 +757,7 @@
                 // bad feedback
                 //feedback(response.reason);
             }
-            
+            console.log("stats response");
             // move onto visits
             getVisits();
             
@@ -744,8 +848,20 @@
                 drpSTI.selectedIndex = response.entries[0].sti;
                 drpSyph.selectedIndex = response.entries[0].syph;
 
-                txtTopical.value = response.entries[0].topical;
-                txtOther.value = response.entries[0].otherdx;
+                for (n=0;n < drpTopical.length;n++) {
+                    if (drpTopical[n].value === response.entries[0].topical) {
+                        drpTopical.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtTopical.value = response.entries[0].topicaldesc;
+                for (n=0;n < drpOther.length;n++) {
+                    if (drpOther[n].value === response.entries[0].other) {
+                        drpOther.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtOther.value = response.entries[0].otherdesc;
 
                 txtAssess.innerHTML = response.entries[0].assess;
 
@@ -787,6 +903,103 @@
                 if (response.entries[0].tb) {chkTB.checked = true;} else {chkTB.checked = false;}
                 if (response.entries[0].surgery) {chkSurgery.checked = true;} else {chkSurgery.checked = false;}
                 if (response.entries[0].hospital) {chkHospital.checked = true;} else {chkHospital.checked = false;}
+
+                // STI/PID info
+                txtPTInit.value = response.entries[0].ptinit;
+                for (n=0;n < drpPTSex.length;n++) {
+                    if (drpPTSex[n].value === response.entries[0].ptsex) {
+                        drpPTSex.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpPTPreg.length;n++) {
+                    if (drpPTPreg[n].value === response.entries[0].ptpreg) {
+                        drpPTPreg.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPTMonth.value = response.entries[0].ptmonth;
+                for (n=0;n < drpPTBF.length;n++) {
+                    if (drpPTBF[n].value === response.entries[0].ptbf) {
+                        drpPTBF.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPTMTZ.value = response.entries[0].ptmtz;
+                txtPTDoxy.value = response.entries[0].ptdoxy;
+                txtPTAmox.value = response.entries[0].ptamox;
+
+                txtPT1Init.value = response.entries[0].pt1init;
+                for (n=0;n < drpPT1Sex.length;n++) {
+                    if (drpPT1Sex[n].value === response.entries[0].pt1sex) {
+                        drpPT1Sex.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpPT1Preg.length;n++) {
+                    if (drpPT1Preg[n].value === response.entries[0].pt1preg) {
+                        drpPT1Preg.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT1Month.value = response.entries[0].pt1month;
+                for (n=0;n < drpPT1BF.length;n++) {
+                    if (drpPT1BF[n].value === response.entries[0].pt1bf) {
+                        drpPT1BF.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT1MTZ.value = response.entries[0].pt1mtz;
+                txtPT1Doxy.value = response.entries[0].pt1doxy;
+                txtPT1Amox.value = response.entries[0].pt1amox;
+
+                txtPT2Init.value = response.entries[0].pt2init;
+                for (n=0;n < drpPT2Sex.length;n++) {
+                    if (drpPT2Sex[n].value === response.entries[0].pt2sex) {
+                        drpPT2Sex.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpPT2Preg.length;n++) {
+                    if (drpPT2Preg[n].value === response.entries[0].pt2preg) {
+                        drpPT2Preg.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT2Month.value = response.entries[0].pt2month;
+                for (n=0;n < drpPT2BF.length;n++) {
+                    if (drpPT2BF[n].value === response.entries[0].pt2bf) {
+                        drpPT2BF.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT2MTZ.value = response.entries[0].pt2mtz;
+                txtPT2Doxy.value = response.entries[0].pt2doxy;
+                txtPT2Amox.value = response.entries[0].pt2amox;
+
+                txtPT3Init.value = response.entries[0].pt3init;
+                for (n=0;n < drpPT3Sex.length;n++) {
+                    if (drpPT3Sex[n].value === response.entries[0].pt3sex) {
+                        drpPT3Sex.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n=0;n < drpPT3Preg.length;n++) {
+                    if (drpPT3Preg[n].value === response.entries[0].pt3preg) {
+                        drpPT3Preg.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT3Month.value = response.entries[0].pt3month;
+                for (n=0;n < drpPT3BF.length;n++) {
+                    if (drpPT3BF[n].value === response.entries[0].pt3bf) {
+                        drpPT3BF.selectedIndex = n;
+                        break;
+                    }
+                }
+                txtPT3MTZ.value = response.entries[0].pt3mtz;
+                txtPT3Doxy.value = response.entries[0].pt3doxy;
+                txtPT3Amox.value = response.entries[0].pt3amox;
 
                 // stations
                 lblTriageTest.value = response.entries[0].test;
