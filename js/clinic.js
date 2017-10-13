@@ -138,6 +138,9 @@
     var txtPT3Doxy = null;
     var txtPT3Amox = null;
 
+    // practitioner
+    var drpPract = null;
+
     // stations
     var drpTriageTest = null;
     var drpTriageMED = null;
@@ -265,33 +268,37 @@
         txtPTDoxy = document.getElementById("txtPTDoxy");
         txtPTAmox = document.getElementById("txtPTAmox");
 
-        txtPTInit = document.getElementById("txtPT1Init");
-        drpPTSex = document.getElementById("drpPT1Sex");
-        drpPTPreg = document.getElementById("drpPT1Preg");
-        txtPTMonth = document.getElementById("txtPT1Month");
-        drpPTBF = document.getElementById("drpPT1BF");
-        txtPTMTZ = document.getElementById("txtPT1MTZ");
-        txtPTDoxy = document.getElementById("txtPT1Doxy");
-        txtPTAmox = document.getElementById("txtPT1Amox");
+        txtPT1Init = document.getElementById("txtPT1Init");
+        drpPT1Sex = document.getElementById("drpPT1Sex");
+        drpPT1Preg = document.getElementById("drpPT1Preg");
+        txtPT1Month = document.getElementById("txtPT1Month");
+        drpPT1BF = document.getElementById("drpPT1BF");
+        txtPT1MTZ = document.getElementById("txtPT1MTZ");
+        txtPT1Doxy = document.getElementById("txtPT1Doxy");
+        txtPT1Amox = document.getElementById("txtPT1Amox");
 
-        txtPTInit = document.getElementById("txtPT2Init");
-        drpPTSex = document.getElementById("drpPT2Sex");
-        drpPTPreg = document.getElementById("drpPT2Preg");
-        txtPTMonth = document.getElementById("txtPT2Month");
-        drpPTBF = document.getElementById("drpPT2BF");
-        txtPTMTZ = document.getElementById("txtPT2MTZ");
-        txtPTDoxy = document.getElementById("txtPT2Doxy");
-        txtPTAmox = document.getElementById("txtPT2Amox");
+        txtPT2Init = document.getElementById("txtPT2Init");
+        drpPT2Sex = document.getElementById("drpPT2Sex");
+        drpPT2Preg = document.getElementById("drpPT2Preg");
+        txtPT2Month = document.getElementById("txtPT2Month");
+        drpPT2BF = document.getElementById("drpPT2BF");
+        txtPT2MTZ = document.getElementById("txtPT2MTZ");
+        txtPT2Doxy = document.getElementById("txtPT2Doxy");
+        txtPT2Amox = document.getElementById("txtPT2Amox");
 
-        txtPTInit = document.getElementById("txtPT3Init");
-        drpPTSex = document.getElementById("drpPT3Sex");
-        drpPTPreg = document.getElementById("drpPT3Preg");
-        txtPTMonth = document.getElementById("txtPT3Month");
-        drpPTBF = document.getElementById("drpPT3BF");
-        txtPTMTZ = document.getElementById("txtPT3MTZ");
-        txtPTDoxy = document.getElementById("txtPT3Doxy");
-        txtPTAmox = document.getElementById("txtPT3Amox");
+        txtPT3Init = document.getElementById("txtPT3Init");
+        drpPT3Sex = document.getElementById("drpPT3Sex");
+        drpPT3Preg = document.getElementById("drpPT3Preg");
+        txtPT3Month = document.getElementById("txtPT3Month");
+        drpPT3BF = document.getElementById("drpPT3BF");
+        txtPT3MTZ = document.getElementById("txtPT3MTZ");
+        txtPT3Doxy = document.getElementById("txtPT3Doxy");
+        txtPT3Amox = document.getElementById("txtPT3Amox");
 
+        // practitioner
+        drpPract = document.getElementById("drpPract");
+
+        // stations
         drpTriageTest = document.getElementById("drpTriageTest");
         drpTriageMED = document.getElementById("drpTriageMED");
         drpTriageGYN = document.getElementById("drpTriageGYN");
@@ -323,7 +330,7 @@
         */
         
         // populate dropdowns
-        getPatients();
+        getPractitioners();
         // dropdowns are done one at a time
 
         // screen will only be populated if an existing visit is selected
@@ -364,7 +371,9 @@
         xmlhttp = new XMLHttpRequest();
 
         // which response do we want?
-        if (response === "patients") {
+        if (response === "practitioners") {
+            xmlhttp.addEventListener("readystatechange", practitionersResponse);
+        } else if (response === "patients") {
             xmlhttp.addEventListener("readystatechange", patientsResponse);
         } else if (response === "visits") {
             xmlhttp.addEventListener("readystatechange", visitsResponse);
@@ -455,6 +464,16 @@
     // ------------------------------------------------------------ event handlers
 
     // ---------------------------------------------------------------- data requests
+
+    function getPractitioners() {
+        // construct the JSON object to send to the handler
+        var sendJSON = {
+            "menu": "practitioners"
+        };
+
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "practitioners");
+    }
 
     function getPatients() {
         // construct the JSON object to send to the handler
@@ -611,6 +630,77 @@
     }
     
     // ---------------------------------------------------------------- data response
+
+    function practitionersResponse(e) {
+        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+            // remove event listener
+            xmlhttp.removeEventListener("readystatechange", practitionersResponse);
+
+            // get the json data received
+            var response = JSON.parse(xmlhttp.responseText);
+
+            // clear the dropdown
+            drpPract.innerHTML = "";
+
+            // how many entries are in the JSON?
+            var entryCount = response.entries.length;
+
+            // do we have entries to display?
+            if (entryCount > 0) {
+
+                // first entry into the list is for a blank entry option
+                var first = new Option();
+                first.id = 0;
+                first.text = "None Selected";
+                first.value = 0;
+
+                // add element as an option
+                $(drpPract).append(first);
+
+                // populate the dropdown menu
+                for (var i = 0; i < entryCount; i++) {
+
+                    // build the option element and add properties
+                    var option = new Option();
+                    option.id = i + 1;
+                    option.text = response.entries[i].title + " " + response.entries[i].fname + " " + response.entries[i].lname;
+                    option.value = response.entries[i].id;
+
+                    // add element to dropdown
+                    $(drpPract).append(option);
+                }
+
+            } else {
+                // no data to display
+
+                // build an empty option element and add properties
+                var option = new Option();
+                option.id = 0;
+                option.text = "No Practitioners";
+                option.value = 0;
+
+                // add element to dropdown
+                $(drpPract).append(option);
+
+                /*
+                // failure or no entries?
+                if (response.success) {
+                    // feedback
+                    feedback("No entries in the database");
+                } else {
+                    feedback(response.reason);
+                }
+                */
+            }
+            
+            // set sponsor data for first entry
+            drpPract.selectedIndex = 0;
+            
+            // move onto the next list
+            getPatients();
+
+        }
+    }
 
     function patientsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
