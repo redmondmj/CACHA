@@ -633,10 +633,10 @@
                         </table>
                     </td>
                     <td>
-                      <?php dropContent($rx_Eye); ?>
+                      Eye:<?php dropContent($rx_Eye); ?>
                     </td>
                     <td>
-                      <?php dropContent($rx_Other); ?>
+                      Other RX:<?php dropContent($rx_Other); ?>
                     </td>
                 </tr>
             </table>
