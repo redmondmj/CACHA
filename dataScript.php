@@ -272,7 +272,7 @@
                     $clinic->gyn = $row["TriageGYN"];
                     $clinic->opht = $row["TriageOPHT"];
                     $clinic->dent = $row["TriageDENT"];
-                    $clinic->triagev = $row["TriageVenDis"];
+                    $clinic->stationv = $row["TriageVenDis"];
 
                     // top stuff
                     $clinic->weight = $row["Weight"];

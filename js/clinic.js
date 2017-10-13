@@ -872,6 +872,13 @@
                 lblBP.innerHTML = "BP: " + response.entries[0].bp;
                 lblTemp.innerHTML = "Temp (&#8451;): " + response.entries[0].temp;
 
+                lblTriageTest.innerHTML = response.entries[0].test;
+                lblTriageMED.innerHTML = response.entries[0].med;
+                lblTriageV.innerHTML = response.entries[0].stationv;
+                lblTriageGYN.innerHTML = response.entries[0].gyn;
+                lblTriageOPHT.innerHTML = response.entries[0].opht;
+                lblTriageDENT.innerHTML = response.entries[0].dent;
+
                 // tests
                 // run through the test lists until we find a match
                 for (var n=0;n < drpLastV.length;n++) {
