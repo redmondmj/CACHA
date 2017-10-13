@@ -13,6 +13,8 @@
         $sql = "SELECT FirstName,LastName,BirthYear,BirthMonth,BirthDay,Village FROM tbl_patient WHERE PatientID = '" . $data["id"] . "'";
     } else if ($data["request"] == "basic") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
+    } else if ($data["request"] == "clinic") {
+        $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     }
 
     try {
@@ -134,10 +136,123 @@
                     array_push($response->entries, $basic);
                 }
 
-            } else if ($data["request"] == "something") {
-                // add the entries to the response object
+            } else if ($data["request"] == "clinic") {
+                // construct a new object to send the data
+                class clinicInfo {
+
+                    // tests
+                    public $lastv = "";
+                    public $lastpzq = "";
+                    public $lastworm = "";
+                    public $lastvita = "";
+
+                    // administrated
+                    public $parac = "";
+                    public $benz = "";
+                    public $ceft = "";
+        
+                    // diagnosis
+                    public $healthy = "";
+                    public $ntr = "";
+                    public $msk = 0;
+                    public $eye = 0;
+                    public $vit = 0;
+                    public $dds = 0;
+                    public $worms = 0;
+                    public $mal = 0;
+                    public $schisto = 0;
+                    public $typhoid = 0;
+                    public $asthma = 0;
+                    public $bronc = 0;
+                    public $pneu = 0;
+                    public $cough = 0;
+                    public $gerd = 0;
+                    public $pud = 0;
+                    public $hyper = 0;
+                    public $con = 0;
+                    public $diarrhea = 0;
+                    public $diarrheatype = "";
+                    public $diabetes = 0;
+                    public $pid = 0;
+                    public $sti = 0;
+                    public $syph = 0;
+                    public $topical = "";
+                    public $other = "";
+                    public $assess = "";
+        
+                    // pregnancy
+                    public $weeks = 0;
+                    public $anc = "";
+                    public $anemia = "";
+                    public $lastiptp = "";
+                    public $sulfadar = 0;
+        
+                    // notes
+                    public $follow = "";
+                    public $edu = "";
+        
+                    // referral
+                    public $tb = "";
+                    public $surgery = "";
+                    public $hospital = "";
+        
+                    // practitioner
+                    public $doc = "";
+
+                    // sti chart
 
 
+                    // stations
+                    public $test = "";
+                    public $med = "";
+                    public $gyn = "";
+                    public $opht = "";
+                    public $dent = "";
+                    public $triagev = "";
+
+                }
+
+                while ($row = $result->fetch_assoc()) {
+
+                    $clinic->lastv = $row["LastHIVTest"];
+                    $clinic->lastpzq = $row["LastPZQTx"];
+                    $clinic->lastworm = $row["LastWormTx"];
+                    $clinic->lastvita = $row["LastVitA"];
+
+                    $clinic->healthy = $row["DX_Healthy"];
+                    $clinic->ntr = $row["DX_NoTreatment"];
+                    $clinic->msk = $row["DX_MSK"];
+                    $clinic->eye = $row["DX_Eye"];
+                    $clinic->vit = $row["DX_Vit"];
+                    $clinic->dds = $row["DX_DDS"];
+                    $clinic->worms = $row["DX_Worms"];
+                    $clinic->mal = $row["DX_Malaria"];
+                    $clinic->schisto = $row["DX_Schisto"];
+                    $clinic->typhoid = $row["DX_Typhoid"];
+                    $clinic->asthma = $row["DX_Asthma"];
+                    $clinic->bronc = $row["DX_Bronchitis"];
+                    $clinic->pneu = $row["DX_Pneumonia"];
+                    $clinic->cough = $row["DX_Cough"];
+                    $clinic->gerd = $row["DX_Gerd"];
+                    $clinic->pud = $row["DX_PUD"];
+                    $clinic->hyper = $row["DX_Hypertension"];
+                    $clinic->con = $row["DX_Constipation"];
+                    $clinic->diarrhea = $row["DX_Diarrhea"];
+                    $clinic->diarrheatype = $row["DX_DiarrheaType"];
+                    $clinic->diabetes = $row["DX_Diabetes"];
+                    $clinic->pid = $row["DX_PID"];
+                    $clinic->sti = $row["DX_STI"];
+                    $clinic->syph = $row["DX_Syphilis"];
+                    $clinic->topical = $row["DX_Topical"];
+                    $clinic->topicaldesc = $row["DX_TopicalDesc"];
+                    $clinic->other = $row["DX_Other"];
+                    $clinic->otherdesc = $row["DX_OtherDesc"];
+                    $clinic->assess = $row["DX_Assess"];
+
+                    $clinic->parac = $row["parac"];
+                    $clinic->benz = $row["benz"];
+                    $clinic->ceft = $row["ceft"];
+                }
             } else if ($data["request"] == "somethingelse") {
                 // add the entries to the response object
                 /*while ($row = $result->fetch_assoc()) {

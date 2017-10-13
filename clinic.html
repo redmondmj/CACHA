@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
                                 <div class="col-12">
-                                    <select id="drpPatient" name="drpPatient" class="form-control"></select>
+                                    <select id="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
                                 <div class="col-12">
-                                    <select id="drpVisit" name="drpVisit" class="form-control"></select>
+                                    <select id="drpVisit" class="form-control"></select>
                                 </div>
                             </div>
                         </div>
@@ -104,15 +104,15 @@
                                 <label id="lblTriageV">unknown</label>
                             </div>
                             <div class="col-2">
-                                <b><label class="control-label" for="lblTriageTest">Gyna</label></b>
+                                <b><label class="control-label" for="lblTriageGYN">Gyna</label></b>
                                 <label id="lblTriageGYN">unknown</label>
                             </div>
                             <div class="col-2">
-                                <b><label class="control-label" for="lblTriageMED">Optometrist</label></b>
+                                <b><label class="control-label" for="lblTriageOPHT">Optometrist</label></b>
                                 <label id="lblTriageOPHT">unknown</label>
                             </div>
                             <div class="col-2">
-                                <b><label class="control-label" for="lblTriageV">Dentist</label></b>
+                                <b><label class="control-label" for="lblTriageDENT">Dentist</label></b>
                                 <label id="lblTriageDENT">unknown</label>
                             </div>
                         </div>
@@ -120,9 +120,9 @@
 
                         <div class="row">
                             <div class="col-9">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
+                                <label id="lblComplaint">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <input id="btnChart" type="button" class="btn btn-default" value="Full Chart">
                             </div>
                         </div>
@@ -397,9 +397,9 @@
                             <div class="col-3">
                                 <label class="control-label" for="drpDiarrheaType">DIARRHEA TYPE</label>
                                 <select id="drpDiarrheaType" class="form-control">
-                                    <option value="">N/A</option>
-                                    <option value="blood">Bloody</option>
-                                    <option value="water">Watery</option>
+                                    <option value="no">N/A</option>
+                                    <option value="yes">Bloody</option>
+                                    <option value="no">Watery</option>
                                 </select>
                             </div>
                         </div>
@@ -445,15 +445,33 @@
                         
 
                         <div class="row">
-                            <div class="col-12">
-                                <label class="control-label" for="txtTopical">TOPICAL</label>
+                            <div class="col-3">
+                                <label class="control-label" for="drpTopical">TOPICAL</label>
+                                <select id="drpTopical" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-9">
+                                <label class="control-label" for="txtTopical">&nbsp;</label> <!-- pushes box down -->
                                 <input id="txtTopical" type="text" placeholder="Describe..." class="form-control">
                             </div>
                         </div>
                         <!--ROW11-->
                         <div class="row">
-                            <div class="col-12">
-                                <label class="control-label" for="txtOther">OTHER DX</label>
+                            <div class="col-3">
+                                <label class="control-label" for="drpOther">OTHER DX</label>
+                                <select id="drpOther" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-9">
+                                <label class="control-label" for="txtOther">&nbsp;</label> <!-- pushes box down -->
                                 <input id="txtOther" type="text" placeholder="Describe..." class="form-control">
                             </div>
                         </div>
@@ -599,7 +617,88 @@
                         </div>
                         <br/>
 
-                        <!-- Stations section !-->
+                        <div class="row">
+                            <h4 class="col-12 control-label">STI and PID Info</h4>
+                            <table style="width:100%; font-size: 15px;">
+                                <tr>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%; text-align: center"><input id="chkSTI" type="checkbox" value="Stipt">STI</th>
+                                    <th style="width: 11%; text-align: center">or</th>
+                                    <th style="width: 11%; text-align: center"><input id="chkPID" type="checkbox" value="Pidpt">PID</th>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%; text-align: center">200MG</th>
+                                    <th style="width: 11%; text-align: center">100MG</th>
+                                    <th style="width: 11%; text-align: center">250MG</th>
+                                </tr>
+                            </table>
+
+                            <table style="width:100%; font-size: 15px;">
+                                <tr>
+                                    <th style="width: 11%; text-align: center;"></th>
+                                    <th style="width: 11%; text-align: center;">INITIALS</th>
+                                    <th style="width: 11%; text-align: center;">SEX</th>
+                                    <th style="width: 11%; text-align: center;">PREG</th>
+                                    <th style="width: 11%; text-align: center;">MTH</th>
+                                    <th style="width: 11%; text-align: center;">B.F.</th>
+                                    <th style="width: 11%; text-align: center;">MTZ</th>
+                                    <th style="width: 11%; text-align: center;">DOXY</th>
+                                    <th style="width: 11%; text-align: center;">AMOX</th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">PT</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTInit" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTSex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTPreg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTMonth" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTBF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTMTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTDoxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTAmox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P1</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P2</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P3</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3bf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+
+                        <!-- Stations section -->
                         <div class="row">
                             <h4 class="col-12 control-label">Stations</h4>
                         </div>
