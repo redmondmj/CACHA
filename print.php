@@ -35,9 +35,9 @@
       $lastPeriod = $row['LastPeriod'];
       $pregnant = $row['Pregnant'];
       $breastfeed = $row['Breastfeed'];
-      $numOfPreg = $row['NumOfPreg'];
-      $numLiveBirth = $row['NumLiveBirth'];
-      $numAbortions = $row['NumAbortions'];
+      $numOfPreg = $row['Gravida'];
+      $numLiveBirth = $row['Para'];
+      $numAbortions = $row['Abortus'];
       $numLivingChildren = $row['NumLivingChildren'];
       $vTest = $row['VTest'];
       $malariaTest = $row['MalariaTest'];
@@ -77,9 +77,9 @@
       $dx_STI = $row['DX_STI'];
       $dx_Syphilis = $row['DX_Syphilis'];
       $dx_Topical = $row['DX_Topical'];
-      $dx_TopicalDescrip = $row['DX_TopicalDescrip'];
+      $dx_TopicalDescrip = $row['DX_TopicalDesc'];
       $dx_Other = $row['DX_Other'];
-      $dx_OtherDescrip = $row['DX_OtherDescrip'];
+      $dx_OtherDescrip = $row['DX_OtherDesc'];
       $regANC = $row['RegANC'];
       $prevIPTpYes = $row['PrevIPTpYes'];
       $lastIPTpx /* check this */ = $row['LastIPTpx'];
@@ -136,32 +136,32 @@
       $rxNum = $row['RXNum'];
       $firstName = $row['FirstName'];
       $lastName = $row['LastName'];
-      $village = $row['village'];
-      $birthday = $row['Birthday'];
+      $village = $row['Village'];
+      $birthYear = $row['BirthYear'];
       $sex = $row['sex'];
       $eyeVal1 = $row['Eye_Val1'];
       $eyeVal2 = $row['Eye_Val2'];
       $eyeVal3 = $row['Eye_Val3'];
       $pregWeeks = $row['Pregnant_Weeks'];
 
+      $age = date("Y") - $birthYear;
+
       $returnMission = "no";
       if($returnTo == "mission"){
         $returnMission = "yes";
+        $returnDispensary = "";
       } else {
         $returnDispensary = $returnTo;
+        $returnMission = "";
       }
       
-      if($row['DX_Eye'] != 0){
-        $eyes = "yes";
-      } else {
-        $eyes = "no";
-      }
-
-      if($row['DX_Vit'] != 0) {
-        $dx_Vit = "yes";
-      } else {
-        $dx_Vit = "no";
-      }
+      $eyes =$row['DX_Eye'];
+      $dx_Vit = $row['DX_Vit'];
+      
+      
+      $practitioners = trim($practitioners);
+      $practitioners = trim($practitioners, ",");
+      $practitioners = trim($practitioners, " ,");
 
       if(($urineGlucoseTest == "yes") || ($urineLeucTest != "yes") || ($urineNitritesTest != "yes") || ($urineRBCTest != "yes")){
         $urineTest = "yes";
@@ -307,7 +307,7 @@
               <?php dropCheckbox("no", "M"); ?>
               <?php dropCheckbox("yes", "F"); ?>
             <?php endif ?>          
-            AGE: <?php dropContent( $birthday); ?>
+            AGE: <?php dropContent( $age); ?>
             WEIGHT: <?php dropContent( $weight); ?>KG
           </div>
           <div>
@@ -392,10 +392,10 @@
         </div>
 
         <div class="col-4" style="background:#EAFFDE">
-          LAST HIV TEST? <?php dropContent( $lastHIVTest); ?><br>
-          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?><br>
-          LAST WORM TX? <?php dropContent( $lastWormTx); ?><br>
-          LAST VIT A? <?php dropContent( $lastVitA); ?><br>
+          LAST HIV TEST? <?php dropContent( $lastHIVTest); ?>3 months<br>
+          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?>3 months<br>
+          LAST WORM TX? <?php dropContent( $lastWormTx); ?>3 months<br>
+          LAST VIT A? <?php dropContent( $lastVitA); ?>3 months<br>
           PREV MEDS? <?php dropContent( $prevMeds); ?>
         </div>
 
@@ -770,9 +770,9 @@
             <?php dropCheckbox("no", "SURGERY"); ?>
           <?php endif ?>
           <?php if (preg_match('/hospital/', $referral)) : ?>
-            <?php dropCheckbox("yes", "TB"); ?>
+            <?php dropCheckbox("yes", "HOSPITAL"); ?>
           <?php else : ?>
-            <?php dropCheckbox("no", "TB"); ?>
+            <?php dropCheckbox("no", "HOSPITAL"); ?>
           <?php endif ?>
           <span style="font-weight:bold">RX #:</span> <?php dropContent($rxNum); ?>
         </div>

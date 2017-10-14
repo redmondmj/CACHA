@@ -10,7 +10,7 @@
     // which request is it?
     if ($data["request"] == "stats") {
         // grab the data we want
-        $sql = "SELECT * FROM tbl_patient WHERE PatientID = " . $data["id"];
+        $sql = "SELECT FirstName,LastName,BirthYear,BirthMonth,BirthDay,Village FROM tbl_patient WHERE PatientID = '" . $data["id"] . "'";
     } else if ($data["request"] == "basic") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     } else if ($data["request"] == "clinic") {
@@ -38,13 +38,8 @@
                 while ($row = $result->fetch_assoc()) {
                     // new data object
                     $stats = new Stats();
-                    if (!empty($row["FirstName"])) {
-                        $stats->name = $row["FirstName"];
-                        if (!empty($row["LastName"])) {$stats->name .= " " . $row["LastName"];}
-                    } else if (!empty($row["LastName"])) {$stats->name = $row["LastName"];
-                    } else {$stats->name = "No Name";}
-
-                    if (!empty($row["Village"])) {$stats->village = $row["Village"];}
+                    $stats->name = $row["FirstName"] . " " . $row["LastName"];
+                    $stats->village = $row["Village"];
                     
                     // time to calculate age
                     $year = $row["BirthYear"];
@@ -143,13 +138,7 @@
 
             } else if ($data["request"] == "clinic") {
                 // construct a new object to send the data
-                class ClinicInfo {
-
-                    // top data
-                    public $weight = "";
-                    public $bp = "";
-                    public $temp = "";
-                    public $complaint = "";
+                class clinicInfo {
 
                     // tests
                     public $lastv = "";
@@ -187,10 +176,8 @@
                     public $pid = 0;
                     public $sti = 0;
                     public $syph = 0;
-                    public $topical = 0;
-                    public $topicaldesc = "";
-                    public $other = 0;
-                    public $otherdesc = "";
+                    public $topical = "";
+                    public $other = "";
                     public $assess = "";
         
                     // pregnancy
@@ -205,49 +192,15 @@
                     public $edu = "";
         
                     // referral
-                    public $referral = "";
+                    public $tb = "";
+                    public $surgery = "";
+                    public $hospital = "";
         
-                    // sti chart
-                    public $chart = "";
-                
-                    public $ptinit = "";
-                    public $ptsex = "";
-                    public $ptpreg = "";
-                    public $ptmonth = 0;
-                    public $ptbf = "";
-                    public $ptmtz = 0;
-                    public $ptdoxy = 0;
-                    public $ptamox = 0;
-
-                    public $p1init = "";
-                    public $p1sex = "";
-                    public $p1preg = "";
-                    public $p1month = 0;
-                    public $p1bf = "";
-                    public $p1mtz = 0;
-                    public $p1doxy = 0;
-                    public $p1amox = 0;
-                
-                    public $p2init = "";
-                    public $p2sex = "";
-                    public $p2preg = "";
-                    public $p2month = 0;
-                    public $p2bf = "";
-                    public $p2mtz = 0;
-                    public $p2doxy = 0;
-                    public $p2amox = 0;
-                
-                    public $p3init = "";
-                    public $p3sex = "";
-                    public $p3preg = "";
-                    public $p3month = 0;
-                    public $p3bf = "";
-                    public $p3mtz = 0;
-                    public $p3doxy = 0;
-                    public $p3amox = 0;
-
                     // practitioner
-                    public $pract = 0;
+                    public $doc = "";
+
+                    // sti chart
+
 
                     // stations
                     public $test = "";
@@ -261,37 +214,11 @@
 
                 while ($row = $result->fetch_assoc()) {
 
-                    // response object to send
-                    $clinic = new ClinicInfo();
-
-                    // pulled and placed in the order they appear in the database
-
-                    // stations
-                    $clinic->test = $row["TriageTesting"];
-                    $clinic->med = $row["TriageMedical"];
-                    $clinic->gyn = $row["TriageGYN"];
-                    $clinic->opht = $row["TriageOPHT"];
-                    $clinic->dent = $row["TriageDENT"];
-                    $clinic->stationv = $row["TriageVenDis"];
-
-                    // top stuff
-                    $clinic->weight = $row["Weight"];
-                    $clinic->temp = $row["Temperature"];
-                    if ((!empty($row["Systolic"])) || (!empty($row["Diastolic"]))) {$clinic->bp = $row["Systolic"] . "/" . $row["Diastolic"];} 
-                    else {$clinic->bp = "";}
-                    $clinic->weeks = $row["Pregnant_Weeks"];
-
-                    // assessment and complaint
-                    $clinic->complaint = $row["ChiefComplaint"];
-                    $clinic->assess = $row["Assessment"];
-
-                    // last test
                     $clinic->lastv = $row["LastHIVTest"];
                     $clinic->lastpzq = $row["LastPZQTx"];
                     $clinic->lastworm = $row["LastWormTx"];
                     $clinic->lastvita = $row["LastVitA"];
 
-                    // diagnosis
                     $clinic->healthy = $row["DX_Healthy"];
                     $clinic->ntr = $row["DX_NoTreatment"];
                     $clinic->msk = $row["DX_MSK"];
@@ -311,7 +238,7 @@
                     $clinic->hyper = $row["DX_Hypertension"];
                     $clinic->con = $row["DX_Constipation"];
                     $clinic->diarrhea = $row["DX_Diarrhea"];
-                    $clinic->diarrheatype = $row["DX_DiarrheaBloody"];
+                    $clinic->diarrheatype = $row["DX_DiarrheaType"];
                     $clinic->diabetes = $row["DX_Diabetes"];
                     $clinic->pid = $row["DX_PID"];
                     $clinic->sti = $row["DX_STI"];
@@ -320,66 +247,11 @@
                     $clinic->topicaldesc = $row["DX_TopicalDesc"];
                     $clinic->other = $row["DX_Other"];
                     $clinic->otherdesc = $row["DX_OtherDesc"];
+                    $clinic->assess = $row["DX_Assess"];
 
-                    // pregnancy stuff
-                    $clinic->anc = $row["RegANC"];
-                    $clinic->anemia = $row["ClinicalAnemia"];
-                    $clinic->iptp = $row["LastIPTpx"];
-                    $clinic->sulfadar = $row["Sulfadar"];
-
-                    // administrated
-                    $clinic->parac = $row["Rx_Paracetamol"];
-                    $clinic->benz = $row["Rx_BenzPen"];
-                    $clinic->ceft = $row["Rx_Ceftriaxone"];
-
-                    // chart
-                    $clinic->chart = $row["SP_Type"];
-                
-                    $clinic->ptinit = $row["SP_PTInitials"];
-                    $clinic->ptsex = $row["SP_PTSex"];
-                    $clinic->ptpreg = $row["SP_PTPreg"];
-                    $clinic->ptmonth = $row["SP_PTMonths"];
-                    $clinic->ptbf = $row["SP_PTBF"];
-                    $clinic->ptmtz = $row["SP_PTMTZ"];
-                    $clinic->ptdoxy = $row["SP_PTDoxy"];
-                    $clinic->ptamox = $row["SP_PTAmox"];
-
-                    $clinic->p1init = $row["SP_PT1Initials"];
-                    $clinic->p1sex = $row["SP_PT1Sex"];
-                    $clinic->p1preg = $row["SP_PT1Preg"];
-                    $clinic->p1month = $row["SP_PT1Months"];
-                    $clinic->p1bf = $row["SP_PT1BF"];
-                    $clinic->p1mtz = $row["SP_PT1MTZ"];
-                    $clinic->p1doxy = $row["SP_PT1Doxy"];
-                    $clinic->p1amox = $row["SP_PT1Amox"];
-                
-                    $clinic->p2init = $row["SP_PT2Initials"];
-                    $clinic->p2sex = $row["SP_PT2Sex"];
-                    $clinic->p2preg = $row["SP_PT2Preg"];
-                    $clinic->p2month = $row["SP_PT2Months"];
-                    $clinic->p2bf = $row["SP_PT2BF"];
-                    $clinic->p2mtz = $row["SP_PT2MTZ"];
-                    $clinic->p2doxy = $row["SP_PT2Doxy"];
-                    $clinic->p2amox = $row["SP_PT2Amox"];
-                
-                    $clinic->p3init = $row["SP_PT3Initials"];
-                    $clinic->p3sex = $row["SP_PT3Sex"];
-                    $clinic->p3preg = $row["SP_PT3Preg"];
-                    $clinic->p3month = $row["SP_PT3Months"];
-                    $clinic->p3bf = $row["SP_PT3BF"];
-                    $clinic->p3mtz = $row["SP_PT3MTZ"];
-                    $clinic->p3doxy = $row["SP_PT3Doxy"];
-                    $clinic->p3amox = $row["SP_PT3Amox"];
-
-                    // follow-up and education
-                    $clinic->follow = $row["FollowUp"];
-                    $clinic->edu = $row["Education"];
-
-                    // clinic practitioner
-                    $clinic->pract = $row["DR_Clinic"];
-
-                    // put the object into the response
-                    array_push($response->entries, $clinic);
+                    $clinic->parac = $row["parac"];
+                    $clinic->benz = $row["benz"];
+                    $clinic->ceft = $row["ceft"];
                 }
             } else if ($data["request"] == "somethingelse") {
                 // add the entries to the response object
