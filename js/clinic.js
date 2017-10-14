@@ -318,8 +318,8 @@
         drpVisit.addEventListener("change", getThisVisit);
 
         // event listener for the buttons
-        //btnChart.addEventListener("click", toChart);
-        //btnSubmit.addEventListener("click", onSubmit);
+        btnChart.addEventListener("click", toChart);
+        btnSubmit.addEventListener("click", onSubmit);
 
         /*
         // feedback from uploading?
@@ -411,27 +411,32 @@
         chkNTR.checked = false;
 
         drpMSK.selectedIndex = 0;
+        drpEye.selectedIndex = 0;
+        drpVit.selectedIndex = 0;
+        drpDDS.selectedIndex = 0;
         drpWorms.selectedIndex = 0;
+        drpMal.selectedIndex = 0;
+        drpSchisto.selectedIndex = 0;
+        drpTyphoid.selectedIndex = 0;
         drpAsthma.selectedIndex = 0;
         drpBron.selectedIndex = 0;
         drpPneu.selectedIndex = 0;
         drpCough.selectedIndex = 0;
-        drpMal.selectedIndex = 0;
-        drpSchisto.selectedIndex = 0;
-        drpTyphoid.selectedIndex = 0;
         drpGERD.selectedIndex = 0;
         drpPUD.selectedIndex = 0;
         drpHyper.selectedIndex = 0;
-        drpDiabetes.selectedIndex = 0;
         drpCon.selectedIndex = 0;
         drpDiarrhea.selectedIndex = 0;
+        drpDiarrheaType.selectedIndex = 0;
+        drpDiabetes.selectedIndex = 0;
         drpPID.selectedIndex = 0;
         drpSTI.selectedIndex = 0;
         drpSyph.selectedIndex = 0;
-        drpEye.selectedIndex = 0;
-        drpVit.selectedIndex = 0;
+        drpTopical.selectedIndex = 0;
         txtTopical.value = "";
+        drpOther.selectedIndex = 0;
         txtOther.value = "";
+
         txtAssess.innerHTML = "";
 
         // pregnancy
@@ -452,6 +457,49 @@
         chkSurgery.checked = false;
         chkHospital.checked = false;
 
+        // STI/PID chart
+        chkSTI.checked = false;
+        chkPID.checked = false;
+
+        txtPTInit.value = "";
+        drpPTSex.selectedIndex = 0;
+        drpPTPreg.selectedIndex = 0;
+        txtPTMonth.value = "";
+        drpPTBF.selectedIndex = 0;
+        txtPTMTZ.value = "";
+        txtPTDoxy.value = "";
+        txtPTAmox.value = "";
+
+        txtP1Init.value = "";
+        drpP1Sex.selectedIndex = 0;
+        drpP1Preg.selectedIndex = 0;
+        txtP1Month.value = "";
+        drpP1BF.selectedIndex = 0;
+        txtP1MTZ.value = "";
+        txtP1Doxy.value = "";
+        txtP1Amox.value = "";
+
+        txtP2Init.value = "";
+        drpP2Sex.selectedIndex = 0;
+        drpP2Preg.selectedIndex = 0;
+        txtP2Month.value = "";
+        drpP2BF.selectedIndex = 0;
+        txtP2MTZ.value = "";
+        txtP2Doxy.value = "";
+        txtP2Amox.value = "";
+
+        txtP3Init.value = "";
+        drpP3Sex.selectedIndex = 0;
+        drpP3Preg.selectedIndex = 0;
+        txtP3Month.value = "";
+        drpP3BF.selectedIndex = 0;
+        txtP3MTZ.value = "";
+        txtP3Doxy.value = "";
+        txtP3Amox.value = "";
+
+        // practitioner
+        drpPract.selectedIndex = 0;
+
         // stations
         drpTriageTest.selectedIndex = 0;
         drpTriageMED.selectedIndex = 0;
@@ -459,6 +507,11 @@
         drpTriageOPHT.selectedIndex = 0;
         drpTriageDENT.selectedIndex = 0;
         drpTriageV.selectedIndex = 0;
+    }
+
+    function toChart() {
+        var win = window.open("print.php", '_blank');
+        win.focus();
     }
     
     // ------------------------------------------------------------ event handlers
@@ -534,7 +587,7 @@
 
         // loading
         loading();
-        
+
         // checkboxes
         var parac = "no";
         var benz = "no";
@@ -548,12 +601,14 @@
         if (chkHealthy.checked) {healthy = "yes";}
         if (chkNTR.checked) {ntr = "yes";}
 
-        var tb = "no";
-        var surgery = "no";
-        var hospital = "no";
-        if (chkTB.checked) {tb = "yes";}
-        if (chkSurgery.checked) {surgery = "yes";}
-        if (chkHospital.checked) {hospital = "yes";}
+        var referral = "";
+        if (chkTB.checked) {referral = "tb";}
+        if (chkSurgery.checked) {referral = "surgery";}
+        if (chkHospital.checked) {referral = "hospital";}
+
+        var chart = "";
+        if (chkSTI.checked) {chart = "sti";}
+        if (chkPID.checked) {chart = "pid";}
 
         // radio buttons
         var anc = "no";
@@ -564,8 +619,8 @@
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "clinic",
-            "patientid": drpPatient[drpPatient.selectedIndex].value,
-            "visit": drpVisit[drpVisit.selectedIndex].value,
+            //"patientid": drpPatient[drpPatient.selectedIndex].value,
+            "visitid": drpVisit[drpVisit.selectedIndex].value,
             "lastv": drpLastV[drpLastV.selectedIndex].value,
             "lastpzq": drpLastPZQ[drpLastPZQ.selectedIndex].value,
             "lastworm": drpLastWorm[drpLastWorm.selectedIndex].value,
@@ -598,22 +653,62 @@
             "pid": drpPID[drpPID.selectedIndex].value,
             "sti": drpSTI[drpSTI.selectedIndex].value,
             "syph": drpSyph[drpSyph.selectedIndex].value,
-            "topical": txtTopical.value,
-            "other": txtOther.value,
+            "topical": drpTopical[drpTopical.selectedIndex].value,
+            "topicaldesc": txtTopical.value,
+            "other": drpOther[drpOther.selectedIndex].value,
+            "otherdesc": txtOther.value,
             "assess": txtAssess.innerHTML,
 
             "weeks": txtWeeks.value,
             "anc": anc,
             "anemia": anemia,
-            "lastiptp": drpIPTp[drpIPTp.selectedIndex].value,
+            "iptp": drpIPTp[drpIPTp.selectedIndex].value,
             "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
 
-            "follow": txtFollow.value,
-            "edu": txtEdu.value,
+            "follow": txtFollow.innerHTML,
+            "edu": txtEdu.innerHTML,
 
-            "tb": tb,
-            "surgery": surgery,
-            "hospital": hospital,
+            "referral": referral,
+
+            "chart": chart,
+
+            "PTInit": txtPTInit.value,
+            "PTSex": drpPTSex[drpPTSex.selectedIndex].value,
+            "PTPreg": drpPTPreg[drpPTPreg.selectedIndex].value,
+            "PTMonth": txtPTMonth.value,
+            "PTBF": drpPTBF[drpPTBF.selectedIndex].value,
+            "PTMTZ": txtPTMTZ.value,
+            "PTDoxy": txtPTDoxy.value,
+            "PTAmox": txtPTAmox.value,
+
+            "P1Init": txtP1Init.value,
+            "P1Sex": drpP1Sex[drpP1Sex.selectedIndex].value,
+            "P1Preg": drpP1Preg[drpP1Preg.selectedIndex].value,
+            "P1Month": txtP1Month.value,
+            "P1BF": drpP1BF[drpP1BF.selectedIndex].value,
+            "P1MTZ": txtP1MTZ.value,
+            "P1Doxy": txtP1Doxy.value,
+            "P1Amox": txtP1Amox.value,
+
+            "P2Init": txtP2Init.value,
+            "P2Sex": drpP2Sex[drpP2Sex.selectedIndex].value,
+            "P2Preg": drpP2Preg[drpP2Preg.selectedIndex].value,
+            "P2Month": txtP2Month.value,
+            "P2BF": drpP2BF[drpP2BF.selectedIndex].value,
+            "P2MTZ": txtP2MTZ.value,
+            "P2Doxy": txtP2Doxy.value,
+            "P2Amox": txtP2Amox.value,
+
+            "P3Init": txtP3Init.value,
+            "P3Sex": drpP3Sex[drpP3Sex.selectedIndex].value,
+            "P3Preg": drpP3Preg[drpP3Preg.selectedIndex].value,
+            "P3Month": txtP3Month.value,
+            "P3BF": drpP3BF[drpP3BF.selectedIndex].value,
+            "P3MTZ": txtP3MTZ.value,
+            "P3Doxy": txtP3Doxy.value,
+            "P3Amox": txtP3Amox.value,
+        
+            "pract": drpPract[drpPract.selectedIndex].value,
 
             "test": drpTriageTest[drpTriageTest.selectedIndex].value,
             "med": drpTriageMED[drpTriageMED.selectedIndex].value,
@@ -907,13 +1002,13 @@
                 }
 
                 // admin section
-                if (response.entries[0].parac) {chkParac.checked = true;} else {chkParac.checked = false;}
-                if (response.entries[0].benz) {chkBenz.checked = true;} else {chkBenz.checked = false;}
-                if (response.entries[0].ceft) {chkCeft.checked = true;} else {chkCeft.checked = false;}
+                if (response.entries[0].parac === "yes") {chkParac.checked = true;} else {chkParac.checked = false;}
+                if (response.entries[0].benz === "yes") {chkBenz.checked = true;} else {chkBenz.checked = false;}
+                if (response.entries[0].ceft === "yes") {chkCeft.checked = true;} else {chkCeft.checked = false;}
 
                 // diagnosis
-                if (response.entries[0].healthy) {chkHealthy.checked = true;} else {chkHealthy.checked = false;}
-                if (response.entries[0].ntr) {chkNTR.checked = true;} else {chkNTR.checked = false;}
+                if (response.entries[0].healthy === "yes") {chkHealthy.checked = true;} else {chkHealthy.checked = false;}
+                if (response.entries[0].ntr === "yes") {chkNTR.checked = true;} else {chkNTR.checked = false;}
 
                 drpMSK.selectedIndex = response.entries[0].msk;
                 drpEye.selectedIndex = response.entries[0].eye;
@@ -1009,7 +1104,6 @@
                 if (response.entries[0].chart === "sti") {chkSTI.checked = true;} else {chkSTI.checked = false;}
                 if (response.entries[0].chart === "pid") {chkPID.checked = true;} else {chkPID.checked = false;}
 
-                console.log(response.entries[0].ptinit);
                 txtPTInit.value = response.entries[0].ptinit;
                 for (n=0;n < drpPTSex.length;n++) {
                     if (drpPTSex[n].value === response.entries[0].ptsex) {
