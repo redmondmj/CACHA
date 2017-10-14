@@ -209,7 +209,7 @@
 
     function dropContent($text) {
       if ($text == "") {
-        $text = "?";
+        $text = "--";
       }
       echo "<span style='color:#000000;padding-right:10px'>$text</span>";
     }
