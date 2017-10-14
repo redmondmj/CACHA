@@ -290,7 +290,7 @@
         if (!empty($pud)) {$sql .= "DX_PUD = '$pud',";}
         if (!empty($hypertension)) {$sql .= "DX_Hypertension = '$hypertension',";}
         if (!empty($constipation)) {$sql .= "DX_Constipation = '$constipation',";}
-        if (!empty($diarrhea)) {$sql .= "DX_Diarrhea = '$diarreha',";}
+        if (!empty($diarrhea)) {$sql .= "DX_Diarrhea = '$diarrhea',";}
         if (!empty($bloody)) {$sql .= "DX_DiarrheaBloody = '$bloody',";}
         if (!empty($diabetes)) {$sql .= "DX_Diabetes = '$diabetes',";}
         if (!empty($pid)) {$sql .= "DX_PID = '$pid',";}
