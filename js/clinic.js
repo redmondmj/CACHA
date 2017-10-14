@@ -974,6 +974,8 @@
                 lblTriageOPHT.innerHTML = response.entries[0].opht;
                 lblTriageDENT.innerHTML = response.entries[0].dent;
 
+                lblComplaint.innerHTML = response.entries[0].complaint;
+
                 // tests
                 // run through the test lists until we find a match
                 for (var n=0;n < drpLastV.length;n++) {
