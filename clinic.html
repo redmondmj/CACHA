@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
                                 <div class="col-12">
-                                    <select id="drpPatient" name="drpPatient" class="form-control"></select>
+                                    <select id="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
                                 <div class="col-12">
-                                    <select id="drpVisit" name="drpVisit" class="form-control"></select>
+                                    <select id="drpVisit" class="form-control"></select>
                                 </div>
                             </div>
                         </div>
@@ -78,75 +78,55 @@
 
                         <!-- Patient/Visit -->
                         <div class="row">
-                            <label id="lblName" class="col-5 control-label" style="text-align: left;">Full Name:</label>
-                            <label id="lblAge" class="col-2 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblName" class="col-6 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-3 control-label" style="text-align: left;">Age:</label>
                             <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
-                            <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
                         </div>
 
+                        <div class="row">
+                            <label id="lblCase" class="col-3 control-label" style="text-align: left;">Case #:</label>
+                            <label id="lblWeight" class="col-3 control-label" style="text-align: left;">Weight (Kg):</label>
+                            <label id="lblBP" class="col-3 control-label" style="text-align: left;">BP:</label>
+                            <label id="lblTemp" class="col-3 control-label" style="text-align: left;">Temp (&#8451;):</label>
+                        </div>
+                        <br/>
+                        <div class="row" style="text-align:center">
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageTest">Testing</label></b>
+                                <label id="lblTriageTest">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageMED">Medical</label></b>
+                                <label id="lblTriageMED">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageV">Triage V</label></b>
+                                <label id="lblTriageV">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageGYN">Gyna</label></b>
+                                <label id="lblTriageGYN">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageOPHT">Optometrist</label></b>
+                                <label id="lblTriageOPHT">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageDENT">Dentist</label></b>
+                                <label id="lblTriageDENT">unknown</label>
+                            </div>
+                        </div>
                         <br/>
 
                         <div class="row">
                             <div class="col-9">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
+                                <label id="lblComplaint">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <input id="btnChart" type="button" class="btn btn-default" value="Full Chart">
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-1">
-                                <label class="checkbox-inline" for="chkDisTest">
-                                    <input id="chkDisTest" type="checkbox" name="displayboxes" value="0" disabled>
-                                    Test
-                                </label>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="checkbox-inline" for="chkDisMED1">
-                                    <input id="chkDisMED1" type="checkbox" name="displayboxes" value="1" disabled>
-                                    MED1
-                                </label>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="checkbox-inline" for="chkDisMED2">
-                                    <input id="chkDisMED2" type="checkbox" name="displayboxes" value="2" disabled>
-                                    MED2
-                                </label>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="checkbox-inline" for="chkDisGYN">
-                                    <input id="chkDisGYN" type="checkbox" name="displayboxes" value="3" disabled>
-                                    GYN
-                                </label>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="checkbox-inline" for="chkDisOPHT">
-                                    <input id="chkDisOPHT" type="checkbox" name="displayboxes" value="4" disabled>
-                                    OPHT
-                                </label>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="checkbox-inline" for="chkDisDENT">
-                                    <input id="chkDisDENT" type="checkbox" name="displayboxes" value="5" disabled>
-                                    DENT
-                                </label>
-                            </div>
-
-                            <div class="col-1">
-                                <label class="checkbox-inline" for="chkDisTriageV">
-                                    <input id="chkDisTriageV" type="checkbox" name="displayboxes" value="6" disabled>
-                                    V
-                                </label>
-                            </div>
-                        </div>
-                        <!-- ROW1 -->
-                            
                         <div class="row">
                             <div class="col-12 borderDiv"></div>
                         </div>
@@ -156,39 +136,39 @@
                         <div class="row">
                             <h4 class="col-12 control-label">Previous Tests</h4>
                             <div class="col-3">
-                                <label class="control-label" for="hiv">Last HIV Tx</label>
-                                <select id="drpLastV" name="hiv" class="form-control">
+                                <label class="control-label" for="drpLastV">Last HIV Tx</label>
+                                <select id="drpLastV" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under3">Under 3 Months</option>
-                                    <option value="over3">Over 3 Months</option>
+                                    <option value="under">Under 3 Months</option>
+                                    <option value="over">Over 3 Months</option>
                                 </select>
                             </div>
                             <div class="col-3">
-                                <label class="control-label" for="pzq">Last PZQ Tx</label>
-                                <select id="drpLastPZQ" name="pzq" class="form-control">
+                                <label class="control-label" for="drpLastPZQ">Last PZQ Tx</label>
+                                <select id="drpLastPZQ" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under3">Under 3 Months</option>
-                                    <option value="over3">Over 3 Months</option>
+                                    <option value="under">Under 3 Months</option>
+                                    <option value="over">Over 3 Months</option>
                                 </select>
                             </div>
                             <div class="col-3">
-                                <label class="control-label" for="worm">Last WORM Tx</label>
-                                <select id="drpLastWorm" name="nitrates" class="form-control">
+                                <label class="control-label" for="drpLastWorm">Last WORM Tx</label>
+                                <select id="drpLastWorm" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under3">Under 3 Months</option>
-                                    <option value="over3">Over 3 Months</option>
+                                    <option value="under">Under 3 Months</option>
+                                    <option value="over">Over 3 Months</option>
                                 </select>
                             </div>
                             <div class="col-3">
-                                <label class="control-label" for="vita">Last Vit A</label>
-                                <select id="drpLastVitA" name="vita" class="form-control">
+                                <label class="control-label" for="drpLastVitA">Last Vit A</label>
+                                <select id="drpLastVitA" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under3">Under 3 Months</option>
-                                    <option value="over3">Over 3 Months</option>
+                                    <option value="under">Under 3 Months</option>
+                                    <option value="over">Over 3 Months</option>
                                 </select>
                             </div>
                         </div>
@@ -208,14 +188,12 @@
                                     Paracetamol
                                 </label>
                             </div>
-
                             <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="chkBenz">
                                     <input id="chkBenz" type="checkbox" name="adminboxes" value="BezPen">
                                     Benz-Pen-G 2.4 MIU
                                 </label>
                             </div>
-
                             <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="chkCeft">
                                     <input id="chkCeft" type="checkbox" name="adminboxes" value="Ceftriaxone">
@@ -230,73 +208,53 @@
                         </div>
                         <br/>
 
+                        <!-- diagnosis -->
                         <div class="row">
                             <h4 class="col-12 control-label">Diagnosis</h4>
                             <div class="col-4">
-                                <label class="control-label" for="healthy">Healthy</label>
+                                <label class="control-label" for="chkHealthy">Healthy</label>
                                 <input id="chkHealthy" type="checkbox">
                             </div>
                             <div class="col-8">
-                                <label class="control-label" for="NTR">No Treatment Required</label>
+                                <label class="control-label" for="chkNTR">No Treatment Required</label>
                                 <input id="chkNTR" type="checkbox">
                             </div>
                         </div>
 
                         <br/>
 
-                        <!--ROW5-->
+                        <!-- ROW1 -->
                         <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="MSK">MSK</label>
-                                <select id="drpMSK" name="MSK" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpMSK">MSK</label>
+                                <select id="drpMSK" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="WORMS">WORMS</label>
-                                <select id="drpWorms" name="WORMS" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpEye">EYE</label>
+                                <select id="drpEye" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="ASTHMA">ASTHMA</label>
-                                <select id="drpAsthma" name="ASTHMA" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpVit">VITAMINS</label>
+                                <select id="drpVit" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                        </div>
-                        <!--ROW6-->
-                        <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="BRONCHITIS">BRONCHITIS</label>
-                                <select id="drpBron" name="BRONCHITIS" class="form-control">
-                                    <option value="0">N/A</option>
-                                    <option value="1">+</option>
-                                    <option value="2">++</option>
-                                    <option value="3">+++</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label class="control-label" for="PNEUMONIA">PNEUMONIA</label>
-                                <select id="drpPneu" name="PNEUMONIA" class="form-control">
-                                    <option value="0">N/A</option>
-                                    <option value="1">+</option>
-                                    <option value="2">++</option>
-                                    <option value="3">+++</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label class="control-label" for="COUGH">COUGH</label>
-                                <select id="drpCough" name="COUGH" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpDDS">DDS</label>
+                                <select id="drpDDS" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
@@ -305,29 +263,38 @@
                             </div>
                         </div>
 
-                        <!--ROW5-->
+                        <!-- ROW2 -->
                         <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="MALARIA">MALARIA</label>
-                                <select id="drpMal" name="MALARIA" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpWorms">WORMS</label>
+                                <select id="drpWorms" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="SCHISTO">SCHISTO</label>
-                                <select id="drpSchisto" name="SCHISTO" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpMal">MALARIA</label>
+                                <select id="drpMal" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="TYPHOID">TYPHOID</label>
-                                <select id="drpTyphoid" name="TYPHOID" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpSchisto">SCHISTO</label>
+                                <select id="drpSchisto" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="drpTyphoid">TYPHOID</label>
+                                <select id="drpTyphoid" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
@@ -335,29 +302,71 @@
                                 </select>
                             </div>
                         </div>
+
+                        <!-- ROW3 -->
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="control-label" for="drpAsthma">ASTHMA</label>
+                                <select id="drpAsthma" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="drpBron">BRONCHITIS</label>
+                                <select id="drpBron" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="drpPneu">PNEUMONIA</label>
+                                <select id="drpPneu" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="drpCough">COUGH</label>
+                                <select id="drpCough" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         <!--ROW8-->
                         <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="GERD">GERD</label>
-                                <select id="drpGERD" name="GERD" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpGERD">GERD</label>
+                                <select id="drpGERD" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="PUD">PUD</label>
-                                <select id="drpPUD" name="PUD" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpPUD">PUD</label>
+                                <select id="drpPUD" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="HYPERTENSION">HYPERTENSION</label>
-                                <select id="drpHyper" name="HYPERTENSION" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpHyper">HYPERTENSION</label>
+                                <select id="drpHyper" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
@@ -367,76 +376,65 @@
                         </div>
                         <!--ROW9-->
                         <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="DIABETES">DIABETES</label>
-                                <select id="drpDiabetes" name="DIABETES" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpCon">CONSTIPATION</label>
+                                <select id="drpCon" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="CONSTIPATION">CONSTIPATION</label>
-                                <select id="drpCon" name="CONSTIPATION" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpDiarrhea">DIARRHEA</label>
+                                <select id="drpDiarrhea" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="DIARRHEA">DIARRHEA</label>
-                                <select id="drpDiarrhea" name="DIARRHEA" class="form-control">
-                                    <option value="">N/A</option>
-                                    <option value="blood">Bloody</option>
-                                    <option value="water">Watery</option>
+                            <div class="col-3">
+                                <label class="control-label" for="drpDiarrheaType">DIARRHEA TYPE</label>
+                                <select id="drpDiarrheaType" class="form-control">
+                                    <option value="no">N/A</option>
+                                    <option value="yes">Bloody</option>
+                                    <option value="no">Watery</option>
                                 </select>
                             </div>
                         </div>
                         <!--ROW10-->
                         <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="PID">PID</label>
-                                <select id="drpPID" name="PID" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpDiabetes">DIABETES</label>
+                                <select id="drpDiabetes" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="STI">STI</label>
-                                <select id="drpSTI" name="STI" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpPID">PID</label>
+                                <select id="drpPID" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <label class="control-label" for="SYPHILIS">SYPHILIS</label>
-                                <select id="drpSyph" name="SYPHILIS" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpSTI">STI</label>
+                                <select id="drpSTI" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
                                     <option value="3">+++</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <label class="control-label" for="EYE">EYE</label>
-                                <select id="drpEye" name="EYE" class="form-control">
-                                    <option value="0">N/A</option>
-                                    <option value="1">+</option>
-                                    <option value="2">++</option>
-                                    <option value="3">+++</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label class="control-label" for="VITAMINS">VITAMINS</label>
-                                <select id="drpVit" name="VITAMINS" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpSyph">SYPHILIS</label>
+                                <select id="drpSyph" class="form-control">
                                     <option value="0">N/A</option>
                                     <option value="1">+</option>
                                     <option value="2">++</option>
@@ -444,18 +442,37 @@
                                 </select>
                             </div>
                         </div>
+                        
 
                         <div class="row">
-                            <div class="col-12">
-                                <label class="control-label" for="TOPICAL">TOPICAL</label>
-                                <input id="txtTopical" type="text" placeholder="Describe..." name="TOPICAL" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpTopical">TOPICAL</label>
+                                <select id="drpTopical" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-9">
+                                <label class="control-label" for="txtTopical">&nbsp;</label> <!-- pushes box down -->
+                                <input id="txtTopical" type="text" placeholder="Describe..." class="form-control">
                             </div>
                         </div>
                         <!--ROW11-->
                         <div class="row">
-                            <div class="col-12">
-                                <label class="control-label" for="OTHER">OTHER DX</label>
-                                <input id="txtOther" type="text" placeholder="Describe..." name="OTHER" class="form-control">
+                            <div class="col-3">
+                                <label class="control-label" for="drpOther">OTHER DX</label>
+                                <select id="drpOther" class="form-control">
+                                    <option value="0">N/A</option>
+                                    <option value="1">+</option>
+                                    <option value="2">++</option>
+                                    <option value="3">+++</option>
+                                </select>
+                            </div>
+                            <div class="col-9">
+                                <label class="control-label" for="txtOther">&nbsp;</label> <!-- pushes box down -->
+                                <input id="txtOther" type="text" placeholder="Describe..." class="form-control">
                             </div>
                         </div>
 
@@ -515,8 +532,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-4">
-                                <label class="control-label" for="IPTp">Last IPTp</label>
-                                <select id="drpIPTP" name="IPTP" class="form-control">
+                                <label class="control-label" for="drpIPTP">Last IPTp</label>
+                                <select id="drpIPTP" class="form-control">
                                     <option value="never">Never</option>
                                     <option value="less">> One Month Ago</option>
                                     <option value="greater">< One Month Ago</option>
@@ -524,7 +541,7 @@
                             </div>
                             <div class="col-4">
                                 <label class="control-label" for="drpSulfadar">Sulfadar SP500/25</label>
-                                <select id="drpSulfadar" name="Sulfadar" class="form-control">
+                                <select id="drpSulfadar" class="form-control">
                                     <option value="0">None</option>
                                     <option value="3">3 Tabs</option>
                                     <option value="6">6 Tabs</option>
@@ -600,71 +617,155 @@
                         </div>
                         <br/>
 
-                        <!-- Stations section - Exact copy of register.html!-->
                         <div class="row">
-                            <h4 class="col-12 control-label">Reassign Stations</h4>
+                            <h4 class="col-12 control-label">STI and PID Info</h4>
+                            <table style="width:100%; font-size: 15px;">
+                                <tr>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%; text-align: center"><input id="chkSTI" type="checkbox" value="Stipt">STI</th>
+                                    <th style="width: 11%; text-align: center">or</th>
+                                    <th style="width: 11%; text-align: center"><input id="chkPID" type="checkbox" value="Pidpt">PID</th>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%"></th>
+                                    <th style="width: 11%; text-align: center">200MG</th>
+                                    <th style="width: 11%; text-align: center">100MG</th>
+                                    <th style="width: 11%; text-align: center">250MG</th>
+                                </tr>
+                            </table>
+
+                            <table style="width:100%; font-size: 15px;">
+                                <tr>
+                                    <th style="width: 11%; text-align: center;"></th>
+                                    <th style="width: 11%; text-align: center;">INITIALS</th>
+                                    <th style="width: 11%; text-align: center;">SEX</th>
+                                    <th style="width: 11%; text-align: center;">PREG</th>
+                                    <th style="width: 11%; text-align: center;">MTH</th>
+                                    <th style="width: 11%; text-align: center;">B.F.</th>
+                                    <th style="width: 11%; text-align: center;">MTZ</th>
+                                    <th style="width: 11%; text-align: center;">DOXY</th>
+                                    <th style="width: 11%; text-align: center;">AMOX</th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">PT</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTInit" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTSex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTPreg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTMonth" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpPTBF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTMTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTDoxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtPTAmox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P1</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP1BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP1Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P2</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP2BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP2Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 11%; text-align: center;">P3</td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Month" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><select id="drpP3bf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3MTZ" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Doxy" type="number" style="width: 45px"></td>
+                                    <td style="width: 11%; text-align: center;"><input id="txtP3Amox" type="number" style="width: 45px"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+
+                        <!-- Stations section -->
+                        <div class="row">
+                            <h4 class="col-12 control-label">Stations</h4>
                         </div>
                         <div style="padding:1em; border-style: solid; border-width: 3px; border-color: white; border-radius: 15px; padding: 1em">
                             <div class="row">
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkTest">
-                                        <input id="chkTest" type="checkbox" name="stationboxes" value="0">
-                                        Test
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageTest">Triage Testing</label>
+                                    <select id="drpTriageTest" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkMED1">
-                                        <input id="chkMED1" type="checkbox" name="stationboxes" value="1">
-                                        MED1
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageMED">Medical</label>
+                                    <select id="drpTriageMED" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkMED2">
-                                        <input id="chkMED2" type="checkbox" name="stationboxes" value="2">
-                                        MED2
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageGYN">Gynaecologist</label>
+                                    <select id="drpTriageGYN" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
-
-                                <div class="col-2" style="text-align: left;">
-                                </div>
-
                             </div>
 
                             <div class="row">
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkGYN">
-                                        <input id="chkGYN" type="checkbox" name="stationboxes" value="3">
-                                        GYN
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageOPHT">Optometrist</label>
+                                    <select id="drpTriageOPHT" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkOPHT">
-                                        <input id="chkOPHT" type="checkbox" name="stationboxes" value="4">
-                                        OPHT
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageDENT">Dentist</label>
+                                    <select id="drpTriageDENT" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
 
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkDENT">
-                                        <input id="chkDENT" type="checkbox" name="stationboxes" value="5">
-                                        DENT
-                                    </label>
-                                </div>
-
-                                <div class="col-2" style="text-align: left;">
-                                    <label class="checkbox-inline" for="chkTriageV">
-                                        <input id="chkTriageV" type="checkbox" name="stationboxes" value="6">
-                                        V
-                                    </label>
+                                <div class="col-4" style="text-align: left;">
+                                    <label class="control-label" for="drpTriageV">Triage V</label>
+                                    <select id="drpTriageV" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div> <!-- /stations -->
+                            <!-- /row -->
+                        </div>
+                        <!-- /horizontal border -->
 
                         <br/>
-                        
+
                         <div class="row">
                             <div class="col-6 col-centered">
                                 <button id="btnSubmit" class="btn btn-default">Submit</button>
