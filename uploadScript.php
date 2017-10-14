@@ -280,7 +280,7 @@
         if (!empty($dds)) {$sql .= "DX_DDS = '$dds',";}
         if (!empty($worms)) {$sql .= "DX_Worms = '$worms',";}
         if (!empty($malaria)) {$sql .= "DX_Malaria = '$malaria',";}
-        if (!empty($schisto)) {$sql .= "DX_Schisto = '$schisto,";}
+        if (!empty($schisto)) {$sql .= "DX_Schisto = '$schisto',";}
         if (!empty($typhoid)) {$sql .= "DX_Typhoid = '$typhoid',";}
         if (!empty($asthma)) {$sql .= "DX_Asthma = '$asthma',";}
         if (!empty($bronchitis)) {$sql .= "DX_Bronchitis = '$bronchitis',";}
