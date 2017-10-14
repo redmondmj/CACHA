@@ -142,6 +142,7 @@
       $eyeVal1 = $row['Eye_Val1'];
       $eyeVal2 = $row['Eye_Val2'];
       $eyeVal3 = $row['Eye_Val3'];
+      $pregWeeks = $row['Pregnant_Weeks'];
 
       $returnMission = "no";
       if($returnTo == "mission"){
@@ -160,6 +161,14 @@
         $dx_Vit = "yes";
       } else {
         $dx_Vit = "no";
+      }
+
+      if(($urineGlucoseTest == "yes") || ($urineLeucTest != "yes") || ($urineNitritesTest != "yes") || ($urineRBCTest != "yes")){
+        $urineTest = "yes";
+      } elseif (($urineGlucoseTest == "pending") || ($urineLeucTest != "pending") || ($urineNitritesTest != "pending") || ($urineRBCTest != "pending")){
+        $urineTest = "pending";
+      } else {
+        $urineTest = "no";
       }
 
       $alu = $row['Rx_ALU'];
@@ -212,6 +221,19 @@
         $text = "?";
       }
       echo "<span style='color:#000000;padding-right:10px'>$text</span>";
+    }
+
+    function severity($test, $text){
+      $severity = "";
+      if($test == "1"){
+        $severity = " +";
+      } elseif($test == "2") {
+        $severity = " ++";
+      }elseif($test == "3"){
+        $severity = " +++";
+      }
+
+      echo $text . $severity;
     }
 
 ?>
@@ -387,98 +409,88 @@
           </div>
           <div class="row">
             <div class="col-3">
-              <?php dropCheckbox($dx_Healthy, "HEALTHY"); ?>
+              <?php severity($dx_Healthy, "HEALTHY"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_NoTreatment, "NTR"); ?>
+              <?php severity($dx_NoTreatment, "NTR"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_MSK, "MSK"); ?>
-            </div>
-            <!-- COME BACK TO ME -->
-            <div class="col-3">
-              <?php dropCheckbox($MISSING, "+"); ?>
+              <?php severity($dx_MSK, "MSK"); ?>
             </div>
           </div>
           <div class="row">
             <div class="col-3">
-              <?php dropCheckbox($MISSING, "++"); ?>
-              </div>
-            <div class="col-3">
-              <?php dropCheckbox($MISSING, "+++"); ?>
+              <?php severity($dx_Worms, "WORMS"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Worms, "WORMS"); ?>
-            </div>
-            <div class="col-3">
-              <?php dropCheckbox($dx_Asthma, "ASTHMA"); ?>
+              <?php severity($dx_Asthma, "ASTHMA"); ?>
             </div>
           </div>
           <div class="row">
              <div class="col-3">
-              <?php dropCheckbox($dx_Bronchitis, "BRONCHITUS"); ?>
+              <?php severity($dx_Bronchitis, "BRONCHITUS"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Pneumonia, "PNEUMONIA"); ?>
+              <?php severity($dx_Pneumonia, "PNEUMONIA"); ?>
             </div>
             <div class="col-3">              
-              <?php dropCheckbox($dx_Cough, "COUGH"); ?>
+              <?php severity($dx_Cough, "COUGH"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Malaria, "MALARIA"); ?>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-3">
-              <?php dropCheckbox($dx_Schisto, "SCHISTO"); ?>
-            </div>
-            <div class="col-3">
-              <?php dropCheckbox($dx_Typhoid, "TYPHOD"); ?>
-            </div>
-            <div class="col-3">
-              <?php dropCheckbox($dx_Gerd, "GERD"); ?>
-            </div>
-            <div class="col-3">
-              <?php dropCheckbox($dx_PUD, "PUD"); ?>
+              <?php severity($dx_Malaria, "MALARIA"); ?>
             </div>
           </div>
           <div class="row">
             <div class="col-3">
-              <?php dropCheckbox($dx_Constipation, "CONSTIPATION"); ?>
+              <?php severity($dx_Schisto, "SCHISTO"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Diarrhea, "DIARRHEA"); ?>
+              <?php severity($dx_Typhoid, "TYPHOD"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Hypertension, "HYPERTENSION"); ?>
+              <?php severity($dx_Gerd, "GERD"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Diabetes, "DIABETES"); ?>
+              <?php severity($dx_PUD, "PUD"); ?>
             </div>
           </div>
           <div class="row">
             <div class="col-3">
-              <?php dropCheckbox($dx_PID, "PID"); ?>
+              <?php severity($dx_Constipation, "CONSTIPATION"); ?>
+            </div>
+            <div class="col-3">
+              <?php severity($dx_Diarrhea, "DIARRHEA"); ?>
+            </div>
+            <div class="col-3">
+              <?php severity($dx_Hypertension, "HYPERTENSION"); ?>
+            </div>
+            <div class="col-3">
+              <?php severity($dx_Diabetes, "DIABETES"); ?>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <?php severity($dx_PID, "PID"); ?>
             </div>
             <div class="col-3">              
-              <?php dropCheckbox($dx_STI, "STI"); ?>
+              <?php severity($dx_STI, "STI"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Syphilis, "SYPHILIS"); ?>
+              <?php severity($dx_Syphilis, "SYPHILIS"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($eyes, "EYES"); ?>
+              <?php severity($eyes, "EYES"); ?>
             </div>
           </div>
           <div class="row">
             <div class="col-3">
-              <?php dropCheckbox($vitamins, "VITAMINS"); ?>
+              <?php severity($dx_Vit, "VITAMINS"); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Topical, "TOPICAL"); ?> <?php dropContent($dx_TopicalDescrip); ?>
+              <?php severity($dx_Topical, "TOPICAL"); ?> <?php dropContent($dx_TopicalDescrip); ?>
             </div>
             <div class="col-3">
-              <?php dropCheckbox($dx_Other, "OTHER"); ?> <?php dropContent($dx_OtherDescrip); ?>
+              <?php severity($dx_Other, "OTHER"); ?> <?php dropContent($dx_OtherDescrip); ?>
             </div>
           </div>
 
@@ -513,7 +525,7 @@
           <div class="row">
             <div class="col-12">
               LAST  IPTp: >1 MONTH AGO 
-              <?php if ($lastIPTpx /* check this */ == "0") : ?>
+              <?php if ($lastIPTpx == "0") : ?>
                 <?php dropCheckbox("yes","YES"); ?>
                 <?php dropCheckbox("no","NO"); ?>
               <?php else : ?>
@@ -570,7 +582,7 @@
           <div>
             <div class="row">
             <div class="col-2">KIT:</div>
-            <div class="col-5"><?php dropCheckbox($pcmKit, "(PCM-ALB/MEB)"); ?></div>
+            <div class="col-5"><?php dropCheckbox($rx_Kit_PCM, "(PCM-ALB/MEB)"); ?></div>
             <div class="col-5"><?php dropCheckbox($rx_Kit_Pregnancy, "PREGNANCY KIT(VITS+FE)"); ?></div>
             </div>
             <div class="row">
