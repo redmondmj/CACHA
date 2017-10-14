@@ -7,7 +7,7 @@
     $mysql_pass = "p2DaavTC03Vr";
     $mysql_host = "localhost:3306";
     $db_name = "cacha_medrec";
-    
+
     // build the response object
     class ResponseObject {
         public $success = false;
