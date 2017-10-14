@@ -3,11 +3,16 @@
     //header("Content-Type: application/json; charset=UTF-8");
 
     // the user, password, host, and name for the database
-    $mysql_user = "cacha_web";
-    $mysql_pass = "p2DaavTC03Vr";
-    $mysql_host = "localhost:3306";
+    //$mysql_user = "cacha_web";
+    //$mysql_pass = "p2DaavTC03Vr";
+    //$mysql_host = "localhost:3306";
+    //$db_name = "cacha_medrec";
+
+    $mysql_user = "root";
+    $mysql_pass = "";
+    $mysql_host = "localhost";
     $db_name = "cacha_medrec";
-    
+
     // build the response object
     class ResponseObject {
         public $success = false;
