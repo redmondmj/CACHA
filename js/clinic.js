@@ -654,10 +654,10 @@
             "sti": drpSTI[drpSTI.selectedIndex].value,
             "syph": drpSyph[drpSyph.selectedIndex].value,
             "topical": drpTopical[drpTopical.selectedIndex].value,
-            "topicaldesc": txtTopical.innerHTML,
+            "topicaldesc": txtTopical.value,
             "other": drpOther[drpOther.selectedIndex].value,
-            "otherdesc": txtOther.innerHTML,
-            "assess": txtAssess.innerHTML,
+            "otherdesc": txtOther.value,
+            "assess": txtAssess.value,
 
             "weeks": txtWeeks.value,
             "anc": anc,
@@ -665,8 +665,8 @@
             "iptp": drpIPTp[drpIPTp.selectedIndex].value,
             "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
 
-            "follow": txtFollow.innerHTML,
-            "edu": txtEdu.innerHTML,
+            "follow": txtFollow.value,
+            "edu": txtEdu.value,
 
             "referral": referral,
 
