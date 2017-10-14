@@ -654,9 +654,9 @@
             "sti": drpSTI[drpSTI.selectedIndex].value,
             "syph": drpSyph[drpSyph.selectedIndex].value,
             "topical": drpTopical[drpTopical.selectedIndex].value,
-            "topicaldesc": txtTopical.value,
+            "topicaldesc": txtTopical.innerHTML,
             "other": drpOther[drpOther.selectedIndex].value,
-            "otherdesc": txtOther.value,
+            "otherdesc": txtOther.innerHTML,
             "assess": txtAssess.innerHTML,
 
             "weeks": txtWeeks.value,
