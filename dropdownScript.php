@@ -20,6 +20,8 @@
         $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "'";
     } else if ($request["menu"] == "dispensaries") {
         $sql = "SELECT * FROM tbl_dispensary";
+    } else if ($request["menu"] == "practitioners") {
+        $sql = "SELECT * FROM tbl_practitioner";
     } else {
         $response->reason = "Invalid menu request";
         echo json_encode($response);
@@ -53,7 +55,11 @@
                     // new patient
                     $pat = new Patient();
                     $pat->id = $row["PatientID"];
-                    $pat->name = $row["FirstName"] . " " . $row["LastName"];
+                    if (!empty($row["FirstName"])) {
+                        $pat->name = $row["FirstName"];
+                        if (!empty($row["LastName"])) {$pat->name .= " " . $row["LastName"];}
+                    } else if (!empty($row["LastName"])) {$pat->name = $row["LastName"];
+                    } else {$pat->name = "No Name";}
                     
                     array_push($response->entries, $pat);
                 }
@@ -68,7 +74,31 @@
                 while ($row = $result->fetch_assoc()) {
                     array_push($response->entries, $row["Dispensary"]);
                 }
+            } else if ($request["menu"] == "practitioners") {
+
+                // build new object to pass
+                class Practitioner {
+                    public $id = 0;
+                    public $title = "";
+                    public $fname = "";
+                    public $lname = "";
+                }
+
+                // add the entries to the response object
+                while ($row = $result->fetch_assoc()) {
+
+                    // new practitioner
+                    $medic = new Practitioner();
+                    $medic->id = $row["PractitionerID"];
+                    if (!empty($row["Title"])) {$medic->title = $row["Title"];}
+                    if (!empty($row["FirstName"])) {$medic->fname = $row["FirstName"];}
+                    if (!empty($row["LastName"])) {$medic->lname = $row["LastName"];}
+
+                    // add the practitioner object to the response
+                    array_push($response->entries, $medic);
+                }
             }
+
         } else {
             // no entries
         }
