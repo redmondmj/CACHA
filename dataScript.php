@@ -380,75 +380,75 @@
                     // put the object into the response
                     array_push($response->entries, $clinic);
                 }
-            } else if ($data["request"] == "somethingelse") {
-                // add the entries to the response object
-                /*while ($row = $result->fetch_assoc()) {
-                    array_push($response->entries, $row["Dispensary"]);
-                }*/
-            }
-            } else if ($data["request"] == "rx") {
-                // construct a new object to send the data
-                class RxInfo {
-
-                    // top data
-                    public $weight = "";
-                    public $bp = "";
-                    public $temp = "";
-                    public $complaint = "";
-
-                    // administrated
-                    public $parac = "";
-                    public $benz = "";
-                    public $ceft = "";
-        
-                    // assessment notes
-                    public $assess = "";
-        
-                    // pregnancy
-                    public $sulfadar = 0;
-        
-                    // sti chart
-                    public $chart = "";
-                
-                    public $ptinit = "";
-                    public $ptsex = "";
-                    public $ptpreg = "";
-                    public $ptmonth = 0;
-                    public $ptbf = "";
-                    public $ptmtz = 0;
-                    public $ptdoxy = 0;
-                    public $ptamox = 0;
-
-                    public $p1init = "";
-                    public $p1sex = "";
-                    public $p1preg = "";
-                    public $p1month = 0;
-                    public $p1bf = "";
-                    public $p1mtz = 0;
-                    public $p1doxy = 0;
-                    public $p1amox = 0;
-                
-                    public $p2init = "";
-                    public $p2sex = "";
-                    public $p2preg = "";
-                    public $p2month = 0;
-                    public $p2bf = "";
-                    public $p2mtz = 0;
-                    public $p2doxy = 0;
-                    public $p2amox = 0;
-                
-                    public $p3init = "";
-                    public $p3sex = "";
-                    public $p3preg = "";
-                    public $p3month = 0;
-                    public $p3bf = "";
-                    public $p3mtz = 0;
-                    public $p3doxy = 0;
-                    public $p3amox = 0;
-
-                    // practitioner
-                    public $pract = 0;
+                } else if ($data["request"] == "somethingelse") {
+                    // add the entries to the response object
+                    /*while ($row = $result->fetch_assoc()) {
+                        array_push($response->entries, $row["Dispensary"]);
+                    }*/
                 }
+                } else if ($data["request"] == "rx") {
+                    // construct a new object to send the data
+                    class RxInfo {
+
+                        // top data
+                        public $weight = "";
+                        public $bp = "";
+                        public $temp = "";
+                        public $complaint = "";
+
+                        // administrated
+                        public $parac = "";
+                        public $benz = "";
+                        public $ceft = "";
+            
+                        // assessment notes
+                        public $assess = "";
+            
+                        // pregnancy
+                        public $sulfadar = 0;
+            
+                        // sti chart
+                        public $chart = "";
+                    
+                        public $ptinit = "";
+                        public $ptsex = "";
+                        public $ptpreg = "";
+                        public $ptmonth = 0;
+                        public $ptbf = "";
+                        public $ptmtz = 0;
+                        public $ptdoxy = 0;
+                        public $ptamox = 0;
+
+                        public $p1init = "";
+                        public $p1sex = "";
+                        public $p1preg = "";
+                        public $p1month = 0;
+                        public $p1bf = "";
+                        public $p1mtz = 0;
+                        public $p1doxy = 0;
+                        public $p1amox = 0;
+                    
+                        public $p2init = "";
+                        public $p2sex = "";
+                        public $p2preg = "";
+                        public $p2month = 0;
+                        public $p2bf = "";
+                        public $p2mtz = 0;
+                        public $p2doxy = 0;
+                        public $p2amox = 0;
+                    
+                        public $p3init = "";
+                        public $p3sex = "";
+                        public $p3preg = "";
+                        public $p3month = 0;
+                        public $p3bf = "";
+                        public $p3mtz = 0;
+                        public $p3doxy = 0;
+                        public $p3amox = 0;
+
+                        // practitioner
+                        public $pract = 0;
+                    }
                 while ($row = $result->fetch_assoc()) {
                     
                     // response object to send
@@ -457,74 +457,74 @@
                     // pulled and placed in the order they appear in the database
 
                     // stations
-                    $clinic->test = $row["TriageTesting"];
-                    $clinic->med = $row["TriageMedical"];
-                    $clinic->gyn = $row["TriageGYN"];
-                    $clinic->opht = $row["TriageOPHT"];
-                    $clinic->dent = $row["TriageDENT"];
-                    $clinic->stationv = $row["TriageVenDis"];
+                    $rx->test = $row["TriageTesting"];
+                    $rx->med = $row["TriageMedical"];
+                    $rx->gyn = $row["TriageGYN"];
+                    $rx->opht = $row["TriageOPHT"];
+                    $rx->dent = $row["TriageDENT"];
+                    $rx->stationv = $row["TriageVenDis"];
 
-                    // top stuff
-                    $clinic->weight = $row["Weight"];
-                    $clinic->temp = $row["Temperature"];
-                    if ((!empty($row["Systolic"])) || (!empty($row["Diastolic"]))) {$clinic->bp = $row["Systolic"] . "/" . $row["Diastolic"];} 
-                    else {$clinic->bp = "";}
-                    $clinic->weeks = $row["Pregnant_Weeks"];
+                        // top stuff
+                    $rx->weight = $row["Weight"];
+                    $rx->temp = $row["Temperature"];
+                        if ((!empty($row["Systolic"])) || (!empty($row["Diastolic"]))) {$rx->bp = $row["Systolic"] . "/" . $row["Diastolic"];} 
+                        else {$rx->bp = "";}
+                    $rx->weeks = $row["Pregnant_Weeks"];
 
-                    // assessment and complaint
-                    $clinic->complaint = $row["ChiefComplaint"];
-                    $clinic->assess = $row["Assessment"];
+                        // assessment and complaint
+                    $rx->complaint = $row["ChiefComplaint"];
+                    $rx->assess = $row["Assessment"];
 
-                    // pregnancy stuff
-                    $clinic->sulfadar = $row["Sulfadar"];
+                        // pregnancy stuff
+                    $rx->sulfadar = $row["Sulfadar"];
 
-                    // administrated
-                    $clinic->parac = $row["Rx_Paracetamol"];
-                    $clinic->benz = $row["Rx_BenzPen"];
-                    $clinic->ceft = $row["Rx_Ceftriaxone"];
+                        // administrated
+                    $rx->parac = $row["Rx_Paracetamol"];
+                    $rx->benz = $row["Rx_BenzPen"];
+                    $rx->ceft = $row["Rx_Ceftriaxone"];
 
-                    // chart
-                    $clinic->chart = $row["SP_Type"];
-                
-                    $clinic->ptinit = $row["SP_PTInitials"];
-                    $clinic->ptsex = $row["SP_PTSex"];
-                    $clinic->ptpreg = $row["SP_PTPreg"];
-                    $clinic->ptmonth = $row["SP_PTMonths"];
-                    $clinic->ptbf = $row["SP_PTBF"];
-                    $clinic->ptmtz = $row["SP_PTMTZ"];
-                    $clinic->ptdoxy = $row["SP_PTDoxy"];
-                    $clinic->ptamox = $row["SP_PTAmox"];
+                        // chart
+                    $rx->chart = $row["SP_Type"];
+                    
+                    $rx->ptinit = $row["SP_PTInitials"];
+                    $rx->ptsex = $row["SP_PTSex"];
+                    $rx->ptpreg = $row["SP_PTPreg"];
+                    $rx->ptmonth = $row["SP_PTMonths"];
+                    $rx->ptbf = $row["SP_PTBF"];
+                    $rx->ptmtz = $row["SP_PTMTZ"];
+                    $rx->ptdoxy = $row["SP_PTDoxy"];
+                    $rx->ptamox = $row["SP_PTAmox"];
 
-                    $clinic->p1init = $row["SP_PT1Initials"];
-                    $clinic->p1sex = $row["SP_PT1Sex"];
-                    $clinic->p1preg = $row["SP_PT1Preg"];
-                    $clinic->p1month = $row["SP_PT1Months"];
-                    $clinic->p1bf = $row["SP_PT1BF"];
-                    $clinic->p1mtz = $row["SP_PT1MTZ"];
-                    $clinic->p1doxy = $row["SP_PT1Doxy"];
-                    $clinic->p1amox = $row["SP_PT1Amox"];
-                
-                    $clinic->p2init = $row["SP_PT2Initials"];
-                    $clinic->p2sex = $row["SP_PT2Sex"];
-                    $clinic->p2preg = $row["SP_PT2Preg"];
-                    $clinic->p2month = $row["SP_PT2Months"];
-                    $clinic->p2bf = $row["SP_PT2BF"];
-                    $clinic->p2mtz = $row["SP_PT2MTZ"];
-                    $clinic->p2doxy = $row["SP_PT2Doxy"];
-                    $clinic->p2amox = $row["SP_PT2Amox"];
-                
-                    $clinic->p3init = $row["SP_PT3Initials"];
-                    $clinic->p3sex = $row["SP_PT3Sex"];
-                    $clinic->p3preg = $row["SP_PT3Preg"];
-                    $clinic->p3month = $row["SP_PT3Months"];
-                    $clinic->p3bf = $row["SP_PT3BF"];
-                    $clinic->p3mtz = $row["SP_PT3MTZ"];
-                    $clinic->p3doxy = $row["SP_PT3Doxy"];
-                    $clinic->p3amox = $row["SP_PT3Amox"];
+                    $rx->p1init = $row["SP_PT1Initials"];
+                    $rx->p1sex = $row["SP_PT1Sex"];
+                    $rx->p1preg = $row["SP_PT1Preg"];
+                    $rx->p1month = $row["SP_PT1Months"];
+                    $rx->p1bf = $row["SP_PT1BF"];
+                    $rx->p1mtz = $row["SP_PT1MTZ"];
+                    $rx->p1doxy = $row["SP_PT1Doxy"];
+                    $rx->p1amox = $row["SP_PT1Amox"];
+                    
+                    $rx->p2init = $row["SP_PT2Initials"];
+                    $rx->p2sex = $row["SP_PT2Sex"];
+                    $rx->p2preg = $row["SP_PT2Preg"];
+                    $rx->p2month = $row["SP_PT2Months"];
+                    $rx->p2bf = $row["SP_PT2BF"];
+                    $rx->p2mtz = $row["SP_PT2MTZ"];
+                    $rx->p2doxy = $row["SP_PT2Doxy"];
+                    $rx->p2amox = $row["SP_PT2Amox"];
+                    
+                    $rx->p3init = $row["SP_PT3Initials"];
+                    $rx->p3sex = $row["SP_PT3Sex"];
+                    $rx->p3preg = $row["SP_PT3Preg"];
+                    $rx->p3month = $row["SP_PT3Months"];
+                    $rx->p3bf = $row["SP_PT3BF"];
+                    $rx->p3mtz = $row["SP_PT3MTZ"];
+                    $rx->p3doxy = $row["SP_PT3Doxy"];
+                    $rx->p3amox = $row["SP_PT3Amox"];
 
 
-                    // Rx practitioner
-                    $clinic->pract = $row["DR_Rx"];
+                        // Rx practitioner
+                    $rx->pract = $row["DR_Rx"];
 
                     // put the object into the response
                     array_push($response->entries, $rx);
