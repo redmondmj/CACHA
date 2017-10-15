@@ -156,10 +156,9 @@
         // pregnancy
         drpSulfadar = document.getElementById("drpSulfadar");
 
-
         // STI/PID chart
-        chkSTI = document.getElementById("chkHospital");
-        chkPID = document.getElementById("chkHospital");
+        chkSTI = document.getElementById("chkSTI");
+        chkPID = document.getElementById("chkPID");
 
         txtPTInit = document.getElementById("txtPTInit");
         drpPTSex = document.getElementById("drpPTSex");
@@ -211,9 +210,8 @@
         btnSubmit = document.getElementById("btnSubmit");
 
         // clear all
-        document.addEventListener("DOMContentLoaded", function() {
-            clearAll();
-        });
+        //clearAll();
+
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
 
@@ -309,7 +307,6 @@
         // pregnancy
         drpSulfadar.selectedIndex = 0;
 
-
         // STI/PID chart
         chkSTI.checked = false;
         chkPID.checked = false;
@@ -396,9 +393,7 @@
         loading();
 
         // clear the board
-        document.addEventListener("DOMContentLoaded", function() {
-            clearAll();
-        });
+        //clearAll();
 
         // construct the JSON object to send to the handler
         var sendJSON = {
@@ -424,9 +419,8 @@
 
     function getThisVisit() {
         // clear the board
-        document.addEventListener("DOMContentLoaded", function() {
-            clearAll();
-        });
+        //clearAll();
+
         // construct the JSON object to send to the handler
         var sendJSON = {
             "request": "rx",
@@ -731,7 +725,8 @@
             drpVisit.selectedIndex = 0;
 
             // load the first visit selected
-            getThisVisit();
+            //getThisVisit();
+            notLoading();
 
             /*
             // failure or no entries?

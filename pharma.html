@@ -287,25 +287,27 @@
                         <!-- Most Common Drugs -->
                         <div class="row">
                             <h4 class="col-12 control-label">Most Common Drugs</h4>
-                            <div class="col-3" style="text-align: left;">
+                            <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="checkboxes-0">
-                                    <input id="kit" type="checkbox" name="checkboxes" value="PcmAlbMeb">
-                                    PCM-ALB/MEB
-                                </label><br>
+                                    <input id="chkPCM" type="checkbox" name="checkboxes" value="PcmAlbMeb">
+                                    PCM-ALB/MEB (Kit)
+                                </label>
+                            </div>
+                            <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="checkboxes-0">
-                                    <input id="kit" type="checkbox" name="checkboxes" value="pregnancyKit">
+                                    <input id="chkKit" type="checkbox" name="checkboxes" value="pregnancyKit">
                                     Pregnancy Kit (Vits+FE)
                                 </label>
                             </div>
-
-                            <div class="col-3" style="text-align: left;">
+                            <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="checkboxes-1">
-                                    <input id="pud" type="checkbox" name="checkboxes" value="pud">
+                                    <input id="chkPUD" type="checkbox" name="checkboxes" value="pud">
                                     PUD: 7/7 AMOX250 3x2 + OMEP20 1x2 + MTZ200MG 3x2
                                 </label>
                             </div>
-
-                            <div class="col-3" style="text-align: left;">
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
                                 <label class="control-label" for="drpPZQ">PZQ600 #TABS</label>
                                 <select id="drpPZQ" class="form-control">
                                     <option value="0">0</option>
@@ -323,20 +325,15 @@
                                     <option value="6">6</option>
                                 </select>
                             </div>
-                            <div class="col-3" style="text-align: left;">
+                            <div class="col-4">
                                 <label class="control-label" for="drpPZQ">ALU 3/7</label>
-                                <select id="drpPZQ" class="form-control">
-                                    <option value="1x2">1x2</option>
-                                    <option value="2x2">2x2</option>
-                                    <option value="3x2">3x2</option>
-                                    <option value="4x2">4x2</option>
+                                <select id="drpALU" class="form-control">
+                                    <option value="1">1x2</option>
+                                    <option value="2">2x2</option>
+                                    <option value="3">3x2</option>
+                                    <option value="4">4x2</option>
                                 </select>
                             </div>
-                        </div>
-
-                        <!-- Prenancy Rx -->
-                        <div class="row">
-                            <div class="col-4"></div>
                             <div class="col-4">
                                 <label class="control-label" for="drpSulfadar">Sulfadar SP500/25</label>
                                 <select id="drpSulfadar" class="form-control">
@@ -346,9 +343,8 @@
                                     <option value="9">9 Tabs</option>
                                 </select>
                             </div>
-                            <div class="col-4"></div>
                         </div>
-                        
+
                         <br/>
                         <div class="row">
                             <div class="col-12 borderDiv"></div>
@@ -438,14 +434,18 @@
                         <br/>
 
                         <div class="row">
-                            <div class="col-12">
-                                <h4 class="col-12 control-label">Practitioner</h4>
+                            <div class="col-8">
+                                <h4 class="control-label">Practitioner</h4>
                                 <select id="drpPract" class="form-control">
                                     <option value="no">n/a</option>
                                     <option value="Dr Feelgood">Dr Feelgood</option>
                                     <option value="Nurse Joy">Nurse Joy</option>
                                     <option value="Nurse Betty">Nurse Betty</option>
                                 </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="txtRX">Number of Rx:</label>
+                                <input id="txtRX" type="number" class="form-control">
                             </div>
                         </div>
 
@@ -454,14 +454,6 @@
                             <div class="col-12 borderDiv"></div>
                         </div>
                         <br/>
-
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <label class="control-label" for="numRx">Quantity of Perscriptions:</label>
-                                <input type="number" id="numRx" name="numRX" class="form-control">
-                            </div>
-                        </div>
 
                         <br/>
 
