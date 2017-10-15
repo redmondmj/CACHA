@@ -3,7 +3,7 @@
 
     // retrieve data
     var dropdownScript = "dropdownScript.php";
-    var dataScript = "pharmahandler.php";
+    var dataScript = "dataScript.php";
     var uploadScript = "uploadScript.php";
 
     // XMLHttpRequest object
