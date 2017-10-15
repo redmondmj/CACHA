@@ -22,6 +22,10 @@
         $sql = "SELECT * FROM tbl_dispensary";
     } else if ($request["menu"] == "practitioners") {
         $sql = "SELECT * FROM tbl_practitioner";
+    } else if ($request["menu"] == "msk") {
+        $sql = "SELECT * FROM tbl_drugs";
+    } else if ($request["menu"] == "asthma") {
+        $sql = "SELECT * FROM tbl_drugs";
     } else {
         $response->reason = "Invalid menu request";
         echo json_encode($response);
@@ -96,6 +100,50 @@
 
                     // add the practitioner object to the response
                     array_push($response->entries, $medic);
+                }
+            } else if ($request["menu"] == "msk") {
+
+                // construct new object to add to the response
+                class MSKDrugs {
+                    public $id = 0;
+                    //public $value = "";
+                    public $display = "";
+                }
+
+                while ($row = $result->fetch_assoc()) {
+
+                    // build the list object
+                    $drugs = new MSKDrugs();
+                    $drugs->id = $row["drugID"];
+                    $quantity = $row["drugQuantity"];
+                    $name = $row["drugName"];
+                    $direct = $row["drugDirections"];
+                    //$drugs->value = ;
+                    $drugs->display = $quantity . " " . $name . " (" . $direct . ")";
+
+                    array_push($response->entries, $drugs);
+                }
+            } else if ($request["menu"] == "asthma") {
+
+                // construct new object to add to the response
+                class AsthmaDrugs {
+                    public $id = 0;
+                    //public $value = "";
+                    public $display = "";
+                }
+
+                while ($row = $result->fetch_assoc()) {
+
+                    // build the list object
+                    $drugs = new AsthmaDrugs();
+                    $drugs->id = $row["drugID"];
+                    $quantity = $row["drugQuantity"];
+                    $name = $row["drugName"];
+                    $direct = $row["drugDirections"];
+                    //$drugs->value = ;
+                    $drugs->display = $quantity . " " . $name . " (" . $direct . ")";
+
+                    array_push($response->entries, $drugs);
                 }
             }
 
