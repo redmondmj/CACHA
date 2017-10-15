@@ -410,6 +410,9 @@
                     public $alu = "";
                     public $sulfadar = 0;
         
+                    public $msk = "";
+                    public $asthma = "";
+
                     // sti chart
                     public $chart = "";
                 
@@ -501,6 +504,8 @@
                     $rx->alu = $row["Rx_ALU"];
                     $rx->pud = $row["Rx_PUD"];
                     $rx->pzq = $row["Rx_PZQ_Tabs"];
+                    $rx->msk = $row["Rx_MSK"];
+                    $rx->asthma = $row["Rx_Asthma"];
 
                     // chart
                     $rx->chart = $row["SP_Type"];

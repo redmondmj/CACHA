@@ -37,6 +37,10 @@
 
     var lblComplaint = null;
     var btnChart = null;
+    
+    // notes
+    var txtAssess = null;
+    var txtMeds = null;
 
     // administrated
     var chkParac = null;
@@ -50,9 +54,8 @@
     var drpPZQ = null;
     var drpALU = null;
     var drpSulfadar = null;
-
-    // Assessment Notes
-    var txtAssess = null;
+    var drpMSK = null;
+    var drpAsthma = null;
 
     // STI/PID chart
     var chkSTI = null;
@@ -166,6 +169,8 @@
         drpPZQ = document.getElementById("drpPZQ");
         drpALU = document.getElementById("drpALU");
         drpSulfadar = document.getElementById("drpSulfadar");
+        drpMSK = document.getElementById("drpMSK");
+        drpAsthma = document.getElementById("drpAsthma");
 
         // STI/PID chart
         chkSTI = document.getElementById("chkSTI");
@@ -286,6 +291,10 @@
         // which response do we want?
         if (response === "practitioners") {
             xmlhttp.addEventListener("readystatechange", practitionersResponse);
+        } else if (response === "msk") {
+            xmlhttp.addEventListener("readystatechange", mskResponse);
+        } else if (response === "asthma") {
+            xmlhttp.addEventListener("readystatechange", asthmaResponse);
         } else if (response === "patients") {
             xmlhttp.addEventListener("readystatechange", patientsResponse);
         } else if (response === "visits") {
@@ -328,6 +337,8 @@
         drpPZQ.selectedIndex = 0;
         drpALU.selectedIndex = 0;
         drpSulfadar.selectedIndex = 0;
+        drpMSK.selectedIndex = 0;
+        drpAsthma.selectedIndex = 0;
 
         // STI/PID chart
         chkSTI.checked = false;
@@ -399,6 +410,26 @@
 
         // send the json off
         sendJson(sendJSON, dropdownScript, "practitioners");
+    }
+
+    function getMSK() {
+        // construct the JSON object to send to the handler
+        var sendJSON = {
+            "menu": "msk"
+        };
+
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "msk");
+    }
+
+    function getAsthma() {
+        // construct the JSON object to send to the handler
+        var sendJSON = {
+            "menu": "asthma"
+        };
+
+        // send the json off
+        sendJson(sendJSON, dropdownScript, "asthma");
     }
 
     function getPatients() {
@@ -607,11 +638,135 @@
             drpPract.selectedIndex = 0;
 
             // move onto the next list
-            getPatients();
+            getMSK();
 
         }
     }
 
+    function mskResponse(e) {
+        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+            // remove event listener
+            xmlhttp.removeEventListener("readystatechange", mskResponse);
+
+            // get the json data received
+            var response = JSON.parse(xmlhttp.responseText);
+
+            // clear the dropdown
+            drpMSK.innerHTML = "";
+
+            // how many entries are in the JSON?
+            var entryCount = response.entries.length;
+
+            // first entry into the list is for a new entry option
+            var first = new Option();
+            first.id = 0;
+            first.text = "Nothing";
+            first.value = "";
+
+            // add element to as a new option
+            $(drpMSK).append(first);
+
+            // do we have entries to display?
+            if (entryCount > 0) {
+
+                // populate the dropdown menu
+                for (var i = 0; i < entryCount; i++) {
+
+                    // build the option element and add properties
+                    var option = new Option();
+                    option.id = i + 1;
+                    option.text = response.entries[i].display;
+                    option.value = response.entries[i].id;
+
+                    // add element to dropdown
+                    $(drpMSK).append(option);
+                }
+
+            } else {
+                // no data to display
+            }
+
+            // set sponsor data for first entry
+            drpAsthma.selectedIndex = 0;
+
+            // move on
+            getAsthma();
+            
+            /*
+            // failure or no entries?
+            if (response.success) {
+                // feedback
+                //feedback("No entries in the database");
+            } else {
+                //feedback(response.reason);
+            }
+            */
+
+        }
+    }
+
+    function asthmaResponse(e) {
+        if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+            // remove event listener
+            xmlhttp.removeEventListener("readystatechange", asthmaResponse);
+
+            // get the json data received
+            var response = JSON.parse(xmlhttp.responseText);
+
+            // clear the dropdown
+            drpAsthma.innerHTML = "";
+
+            // how many entries are in the JSON?
+            var entryCount = response.entries.length;
+
+            // first entry into the list is for a new entry option
+            var first = new Option();
+            first.id = 0;
+            first.text = "Nothing";
+            first.value = "";
+
+            // add element to as a new option
+            $(drpAsthma).append(first);
+
+            // do we have entries to display?
+            if (entryCount > 0) {
+
+                // populate the dropdown menu
+                for (var i = 0; i < entryCount; i++) {
+
+                    // build the option element and add properties
+                    var option = new Option();
+                    option.id = i + 1;
+                    option.text = response.entries[i].display;
+                    option.value = response.entries[i].id;
+
+                    // add element to dropdown
+                    $(drpAsthma).append(option);
+                }
+
+            } else {
+                // no data to display
+            }
+
+            // set sponsor data for first entry
+            drpAsthma.selectedIndex = 0;
+
+            // move on
+            getPatients();
+            
+            /*
+            // failure or no entries?
+            if (response.success) {
+                // feedback
+                //feedback("No entries in the database");
+            } else {
+                //feedback(response.reason);
+            }
+            */
+
+        }
+    }
+    
     function patientsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
             // remove event listener
@@ -818,6 +973,19 @@
                 for (n = 0; n < drpSulfadar.length; n++) {
                     if (drpSulfadar[n].value === response.entries[0].sulfadar) {
                         drpSulfadar.selectedIndex = n;
+                        break;
+                    }
+                }
+
+                for (n = 0; n < drpMSK.length; n++) {
+                    if (drpMSK[n].value === response.entries[0].msk) {
+                        drpMSK.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n = 0; n < drpAsthma.length; n++) {
+                    if (drpAsthma[n].value === response.entries[0].asthma) {
+                        drpAsthma.selectedIndex = n;
                         break;
                     }
                 }
