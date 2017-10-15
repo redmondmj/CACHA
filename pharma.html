@@ -56,109 +56,89 @@
                     </div>
                 </div>
 
-                <div class="inner cover">
-                    <h1 class="cover-heading">Pharmacy</h1>
+                <div id="divDisplay" class="inner cover">
+                    <!-- <h1 class="cover-heading">Pharmacy</h1> -->
                     <!-- Main Content Area -->
                     <div class="form-horizontal border">
-                        <form class="form-horizontal" method="POST">
-                            <!-- Basic Info -->
-                            <!-- Patient/Visit -->
-                            <div class="form-row justify-content-center">
-                                <!-- Select Patient -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="patientName">Choose Patient:</label>
-                                    <div class="col-12">
-                                        <select id="patientName" name="patientName" class="form-control" onchange="fetch_select(this.value);">
-                                            <?php include 'loadPatient.php' ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Select Visit -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="visit">Choose Visit:</label>
-                                    <div class="col-12">
-                                        <select id="visit" name="visit" class="form-control">
-                                            <?php include 'loadVisit.php' ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Patient/Visit -->
-                            <div class="row">
-                                <label class="col-3 control-label" style="text-align: left;">Full Name:</label>
-                                <label class="col-2 control-label">Age:</label>
-                                <label class="col-2 control-label">Weight:</label>
-                                <label class="col-2 control-label">Village:</label>
-                                <label class="col-2 control-label">Case #:</label>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12" style="height: 1em;"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
-                                </div>
-                                <div class="col-2">
-                                    <input type="button" class="btn btn-default" value="Full Chart" onclick="location.href = 'print.php?id=5';">
+                        <!-- Patient/Visit -->
+                        <div class="form-row justify-content-center">
+                            <!-- Select Patient -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
+                                <div class="col-12">
+                                    <select id="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" disabled>
-                                    Test
-                                    </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                        MED1
-                                    </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                            MED2
-                                        </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-2">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3" disabled>
-                                        GYN
-                                    </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-3">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4" disabled>
-                                        OPHT
-                                    </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-4">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5" disabled>
-                                        DENT
-                                    </label>
-                                </div>
-
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-5">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6" disabled>
-                                        V
-                                    </label>
+                            <!-- Select Visit -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
+                                <div class="col-12">
+                                    <select id="drpVisit" class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
+                        </div>
+
+                        <div class="row">
+                            <h3 class="col-12 control-label">Patient Info</h3>
+                        </div>
+
+                        <!-- Patient/Visit -->
+                        <div class="row">
+                            <label id="lblName" class="col-6 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-3 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
+                        </div>
+
+                        <div class="row">
+                            <label id="lblCase" class="col-3 control-label" style="text-align: left;">Case #:</label>
+                            <label id="lblWeight" class="col-3 control-label" style="text-align: left;">Weight (Kg):</label>
+                            <label id="lblBP" class="col-3 control-label" style="text-align: left;">BP:</label>
+                            <label id="lblTemp" class="col-3 control-label" style="text-align: left;">Temp (&#8451;):</label>
+                        </div>
+                        <br/>
+                        <div class="row" style="text-align:center">
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageTest">Testing</label></b><br/>
+                                <label id="lblTriageTest">unknown</label>
                             </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageMED">Medical</label></b><br/>
+                                <label id="lblTriageMED">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageV">V</label></b><br/>
+                                <label id="lblTriageV">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageGYN">Gyna</label></b><br/>
+                                <label id="lblTriageGYN">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageOPHT">Eye</label></b><br/>
+                                <label id="lblTriageOPHT">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageDENT">Dentist</label></b><br/>
+                                <label id="lblTriageDENT">unknown</label>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-9">
+                                <label id="lblComplaint">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue.
+                        </div>
+                        <div class="col-3">
+                            <input id="btnChart" type="button" class="btn btn-default" value="Full Chart">
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div class="row">
+                        <div class="col-12 borderDiv"></div>
+                    </div>
+                    <br/>
                             <!-- FORM LAYOUT BEGINS -->
                             <div class="form-horizontal">
                                 <button data-toggle="collapse" data-target="#msk" class="btn btn-default">MSK (click for drugs)</button>
@@ -167,277 +147,329 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <label class="control-label" for="1">Sample 1</label>
-                                            <input type="checkbox" value="1">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="2">Sample 2</label>
-                                            <input type="checkbox" value="2">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="3">Sample 3</label>
-                                            <input type="checkbox" value="3">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label class="control-label" for="4">Sample 4</label>
-                                            <input type="checkbox" value="5">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="5">Sample 5</label>
-                                            <input type="checkbox" value="5">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="6">Sample 6</label>
-                                            <input type="checkbox" value="6">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label class="control-label" for="7">Sample 7</label>
-                                            <input type="checkbox" value="7">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="8">Sample 8</label>
-                                            <input type="checkbox" value="8">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="9">Sample 9</label>
-                                            <input type="checkbox" value="9">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br>
-                            <div class="form-horizontal">
-                                <button data-toggle="collapse" data-target="#asthma" class="btn btn-default">Asthma (click for drugs)</button>
-                                <div class="row collapse" id="asthma">
-                                    <h4>Populate options from tbl_drugs</h4>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label class="control-label" for="1">Sample 1</label>
-                                            <input type="checkbox" value="1">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="2">Sample 2</label>
-                                            <input type="checkbox" value="2">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="3">Sample 3</label>
-                                            <input type="checkbox" value="3">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label class="control-label" for="4">Sample 4</label>
-                                            <input type="checkbox" value="5">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="5">Sample 5</label>
-                                            <input type="checkbox" value="5">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="6">Sample 6</label>
-                                            <input type="checkbox" value="6">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label class="control-label" for="7">Sample 7</label>
-                                            <input type="checkbox" value="7">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="8">Sample 8</label>
-                                            <input type="checkbox" value="8">
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="control-label" for="9">Sample 9</label>
-                                            <input type="checkbox" value="9">
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="checkbox" value="1">
                             </div>
-                            <!-- Most Common Drugs -->
-                            <div class="row">
-                                <div class="col-12" style="height: 4em;"></div>
+                            <div class="col-4">
+                                <label class="control-label" for="2">Sample 2</label>
+                                <input type="checkbox" value="2">
                             </div>
-                            <div class="row">
-                                <h4 class="col-12 control-label">Most Common Drugs</h4>
+                            <div class="col-4">
+                                <label class="control-label" for="3">Sample 3</label>
+                                <input type="checkbox" value="3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="4">Sample 4</label>
+                                <input type="checkbox" value="5">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="5">Sample 5</label>
+                                <input type="checkbox" value="5">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="6">Sample 6</label>
+                                <input type="checkbox" value="6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="7">Sample 7</label>
+                                <input type="checkbox" value="7">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="8">Sample 8</label>
+                                <input type="checkbox" value="8">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="9">Sample 9</label>
+                                <input type="checkbox" value="9">
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-horizontal">
+                    <button data-toggle="collapse" data-target="#asthma" class="btn btn-default">Asthma (click for drugs)</button>
+                    <div class="row collapse" id="asthma">
+                        <h4>Populate options from tbl_drugs</h4>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="1">Sample 1</label>
+                                <input type="checkbox" value="1">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="2">Sample 2</label>
+                                <input type="checkbox" value="2">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="3">Sample 3</label>
+                                <input type="checkbox" value="3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="4">Sample 4</label>
+                                <input type="checkbox" value="5">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="5">Sample 5</label>
+                                <input type="checkbox" value="5">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="6">Sample 6</label>
+                                <input type="checkbox" value="6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="7">Sample 7</label>
+                                <input type="checkbox" value="7">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="8">Sample 8</label>
+                                <input type="checkbox" value="8">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="9">Sample 9</label>
+                                <input type="checkbox" value="9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Assessment Notes -->
 
-                                <div class="col-3" style="text-align: left;">
+                <div class="row">
+                    <div class="col-12 borderDiv">
+                        <h4 class="col-12 control-label">Assessment Notes</h4>
+                        <textarea id="txtAssess" class="form-control" style="height: 6em;"></textarea>
+                        <br/>
+                    </div>
+                </div>
 
-                                    <label class="checkbox-inline" for="checkboxes-0">
+                <br/>
+
+                <!-- Most Common Drugs -->
+                <div class="row">
+                    <div class="col-12" style="height: 4em;"></div>
+                </div>
+                <div class="row">
+                    <h4 class="col-12 control-label">Most Common Drugs</h4>
+
+                    <div class="col-3" style="text-align: left;">
+
+                        <label class="checkbox-inline" for="checkboxes-0">
                                     <input id="kit" type="checkbox" name="checkboxes" value="PcmAlbMeb">
                                     PCM-ALB/MEB
                                 </label><br>
-                                    <label class="checkbox-inline" for="checkboxes-0">
+                        <label class="checkbox-inline" for="checkboxes-0">
                                     <input id="kit" type="checkbox" name="checkboxes" value="pregnancyKit">
                                     Pregnancy Kit (Vits+FE)
                                 </label>
-                                </div>
+                    </div>
 
-                                <div class="col-3" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-1">
+                    <div class="col-3" style="text-align: left;">
+                        <label class="checkbox-inline" for="checkboxes-1">
                                         <input id="pud" type="checkbox" name="checkboxes" value="pud">
                                         PUD: 7/7 AMOX250 3x2 + OMEP20 1x2 + MTZ200MG 3x2
                                     </label>
-                                </div>
+                    </div>
 
-                                <div class="col-3" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-2">
+                    <div class="col-3" style="text-align: left;">
+                        <label class="checkbox-inline" for="checkboxes-2">
                                         <input id="pzq" type="checkbox" name="checkboxes" value="pzq">
                                         PZQ600 #TABS STAT: 15
                                     </label>
-                                </div>
-                                <div class="col-3" style="text-align: left;">
-                                    ALU 3/7<br/>
-                                    <input type="checkbox" id="chk1x2" name="1x2" value="1x2">1x2
-                                    <input type="checkbox" id="chk2x2" name="2x2" value="2x2">2x2
-                                    <input type="checkbox" id="chk3x2" name="3x2" value="3x2">3x2
-                                    <input type="checkbox" id="chk4x2" name="4x2" value="4x2">4x2
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
-                            <!-- Admin Section (drugs administered during exam) -->
-                            <div class="row">
-                                <h4 class="col-12 control-label">Admin</h4>
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-0">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Paracetamol">
-                                    Paracetamol
-                                </label>
-                                </div>
-
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="BezPen">
-                                    Benz-Pen-G 2.4 MIU
-                                </label>
-                                </div>
-
-                                <div class="col-4" style="text-align: left;">
-                                    <label class="checkbox-inline" for="checkboxes-2">
-                                    <input id="adminRx" type="checkbox" name="checkboxes" value="Ceftriaxone">
-                                    Ceftriaxone 250MG
-                                </label>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
-                            <div class="row">
-                                <h4 class="col-12 control-label">STI and PID Info</h4>
-                                <table style="width:100%; font-size: 15px;">
-                                    <tr>
-                                        <th style="width: 24%; text-align: center"><input type="checkbox" id="chkStipt" name="Stipt" value="Stipt">STI</th>
-                                        <th style="width: 7%">or</th>
-                                        <th style="width: 19%; text-align: center"><input type="checkbox" id="chkPidpt" name="Pidpt" value="Pidpt">PID</th>
-                                        <th style="width: 12.5%">#</th>
-                                        <th style="width: 12.5%"><input type="number" id="txt#pt" name="pt#" style="width: 30px"></th>
-                                        <th style="width: 12.5%">200MG</th>
-                                        <th style="width: 12.5%">100MG</th>
-                                        <th style="width: 12.5%">250MG</th>
-                                    </tr>
-
-                                </table>
-
-                                <table style="width:100%; font-size: 15px;">
-
-                                    <tr>
-                                        <th style="width: 12%"></th>
-                                        <th style="width: 13.5%">INITIALS</th>
-                                        <th style="width: 12%">SEX</th>
-                                        <th style="width: 12.5%">PREG</th>
-                                        <th style="width: 12.5%">MTH</th>
-                                        <th style="width: 12.5%">B.F.</th>
-                                        <th style="width: 12.5%">MTZ</th>
-                                        <th style="width: 12.5%">DOXY</th>
-                                        <th style="width: 12.5%">AMOX</th>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 12%; text-align: center;">PT</td>
-                                        <td style="width: 13.5%; text-align: center;"><input type="text" maxlength="3" id="txtPtinit" name="Ptinit" value="" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selPTsex" name="selPTsex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selPTpreg" name="selPTpreg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtPtmth" name="Ptmth" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selPTbf" name="selPTbf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtPtmtz" name="Ptmtz" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtPtdoxy" name="Ptdoxy" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtPtAmox" name="Ptamox" style="width: 30px"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 12%; text-align: center;">P1</td>
-                                        <td style="width: 13.5%; text-align: center;"><input type="text" maxlength="3" id="txtP1init" name="P1init" value="" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP1sex" name="selP1sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP1preg" name="selP1preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP1mth" name="P1mth" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP1bf" name="selP1bf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP1mtz" name="P1mtz" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP1doxy" name="P1doxy" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP1Amox" name="P1amox" style="width: 30px"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 12%; text-align: center;">P2</td>
-                                        <td style="width: 13.5%; text-align: center;"><input type="text" maxlength="3" id="txtP2init" name="P2init" value="" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP2sex" name="selP2sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP2preg" name="selP2preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP2mth" name="P2mth" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP2bf" name="selP2bf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP2mtz" name="P2mtz" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP2doxy" name="P2doxy" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP2Amox" name="P2amox" style="width: 30px"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 12%; text-align: center;">P3</td>
-                                        <td style="width: 13.5%; text-align: center;"><input type="text" maxlength="3" id="txtP3init" name="P3init" value="" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP3sex" name="selP3sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP3preg" name="selP3preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP3mth" name="P3mth" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><select id="selP3bf" name="selP3bf"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP3mtz" name="P3mtz" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP3doxy" name="P3doxy" style="width: 30px"></td>
-                                        <td style="width: 12.5%; text-align: center;"><input type="number" id="txtP3Amox" name="P3amox" style="width: 30px"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4"></div>
-                                <div class="col-4">
-                                    <label class="control-label" for="numRx">Quantity of Perscriptions:</label>
-                                    <input type="number" id="numRx" name="numRX" class="form-control">
-                                </div>
-                            </div>
-                            <!-- FORM LAYOUT ENDS -->
-                            <!--Submit Form-->
-                            <?php include "bottom.php"; ?>
-
-
-                        </form>
+                    </div>
+                    <div class="col-3" style="text-align: left;">
+                        ALU 3/7<br/>
+                        <input type="checkbox" id="chk1x2" name="1x2" value="1x2">1x2
+                        <input type="checkbox" id="chk2x2" name="2x2" value="2x2">2x2
+                        <input type="checkbox" id="chk3x2" name="3x2" value="3x2">3x2
+                        <input type="checkbox" id="chk4x2" name="4x2" value="4x2">4x2
                     </div>
 
-
-
-
-
-
+                </div>
+                <div class="row">
+                    <div class="col-12" style="height: 2em;"></div>
+                </div>
+                <!-- Admin Section (drugs administered during exam) -->
+                <div class="row">
+                    <h4 class="col-12 control-label">Admin</h4>
+                    <div class="col-4" style="text-align: left;">
+                        <label class="checkbox-inline" for="chkParac">
+            <input id="chkParac" type="checkbox" name="adminboxes" value="Paracetamol">
+            Paracetamol
+        </label>
+                    </div>
+                    <div class="col-4" style="text-align: left;">
+                        <label class="checkbox-inline" for="chkBenz">
+            <input id="chkBenz" type="checkbox" name="adminboxes" value="BezPen">
+            Benz-Pen-G 2.4 MIU
+        </label>
+                    </div>
+                    <div class="col-4" style="text-align: left;">
+                        <label class="checkbox-inline" for="chkCeft">
+            <input id="chkCeft" type="checkbox" name="adminboxes" value="Ceftriaxone">
+            Ceftriaxone 250MG
+        </label>
+                    </div>
                 </div>
 
+                <br/>
+                <div class="row">
+                    <div class="col-12 borderDiv"></div>
+                </div>
+                <br/>
 
+                <!-- Prenancy Rx -->
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <label class="control-label" for="drpSulfadar">Sulfadar SP500/25</label>
+                        <select id="drpSulfadar" class="form-control">
+                            <option value="0">None</option>
+                            <option value="3">3 Tabs</option>
+                            <option value="6">6 Tabs</option>
+                            <option value="9">9 Tabs</option>
+                        </select>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="height: 2em;"></div>
+                </div>
+                <!-- STI PID section -->
+                <div class="row">
+                    <h4 class="col-12 control-label">STI and PID Info</h4>
+                    <table style="width:100%; font-size: 15px;">
+                        <tr>
+                            <th style="width: 11%"></th>
+                            <th style="width: 11%; text-align: center"><input id="chkSTI" type="checkbox" value="Stipt">STI</th>
+                            <th style="width: 11%; text-align: center">or</th>
+                            <th style="width: 11%; text-align: center"><input id="chkPID" type="checkbox" value="Pidpt">PID</th>
+                            <th style="width: 11%"></th>
+                            <th style="width: 11%"></th>
+                            <th style="width: 11%; text-align: center">200MG</th>
+                            <th style="width: 11%; text-align: center">100MG</th>
+                            <th style="width: 11%; text-align: center">250MG</th>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; font-size: 15px;">
+                        <tr>
+                            <th style="width: 11%; text-align: center;"></th>
+                            <th style="width: 11%; text-align: center;">INITIALS</th>
+                            <th style="width: 11%; text-align: center;">SEX</th>
+                            <th style="width: 11%; text-align: center;">PREG</th>
+                            <th style="width: 11%; text-align: center;">MTH</th>
+                            <th style="width: 11%; text-align: center;">B.F.</th>
+                            <th style="width: 11%; text-align: center;">MTZ</th>
+                            <th style="width: 11%; text-align: center;">DOXY</th>
+                            <th style="width: 11%; text-align: center;">AMOX</th>
+                        </tr>
+                        <tr>
+                            <td style="width: 11%; text-align: center;">PT</td>
+                            <td style="width: 11%; text-align: center;"><input id="txtPTInit" type="text" maxlength="3" value="" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpPTSex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpPTPreg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtPTMonth" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpPTBF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtPTMTZ" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtPTDoxy" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtPTAmox" type="number" style="width: 45px"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 11%; text-align: center;">P1</td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP1Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP1Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP1Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP1Month" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP1BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP1MTZ" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP1Doxy" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP1Amox" type="number" style="width: 45px"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 11%; text-align: center;">P2</td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP2Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP2Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP2Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP2Month" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP2BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP2MTZ" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP2Doxy" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP2Amox" type="number" style="width: 45px"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 11%; text-align: center;">P3</td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP3Init" type="text" maxlength="3" value="" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP3Sex"><option value=""></option><option value="m">M</option><option value="f">F</option></select></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP3Preg"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP3Month" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><select id="drpP3BF"><option value=""></option><option value="y">Y</option><option value="n">N</option></select></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP3MTZ" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP3Doxy" type="number" style="width: 45px"></td>
+                            <td style="width: 11%; text-align: center;"><input id="txtP3Amox" type="number" style="width: 45px"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br/>
+                <div class="row">
+                    <div class="col-12 borderDiv"></div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="col-12 control-label">Practitioner</h4>
+                        <select id="drpPract" class="form-control">
+                            <option value="no">n/a</option>
+                            <option value="Dr Feelgood">Dr Feelgood</option>
+                            <option value="Nurse Joy">Nurse Joy</option>
+                            <option value="Nurse Betty">Nurse Betty</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="row">
+                    <div class="col-12 borderDiv"></div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <label class="control-label" for="numRx">Quantity of Perscriptions:</label>
+                        <input type="number" id="numRx" name="numRX" class="form-control">
+                    </div>
+                </div>
+
+                <br/>
+
+                <div class="row">
+                    <div class="col-6 col-centered">
+                        <button id="btnSubmit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
 
 
             </div>
 
+            <div id="loadingOverlay"></div>
+
+
+
+
         </div>
+
+
+
+
+    </div>
+
+    </div>
 
     </div>
 
@@ -454,6 +486,10 @@
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <script src="js/spin.min.js"></script>
+    <script src="js/rx.js"></script>
 </body>
 
 </html>
