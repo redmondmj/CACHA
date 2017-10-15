@@ -152,7 +152,7 @@
         // tests
         $lastHIV = $data["lastv"];
         $lastPZQ = $data["lastpzq"];
-        $lastWORM = $data["lastworm"];
+        $lastWorm = $data["lastworm"];
         $lastVitA = $data["lastvita"];
 
         // administrated
@@ -354,6 +354,9 @@
         // follow-up and education
         if (!empty($follow)) {$sql .= "FollowUp = '$follow',";}
         if (!empty($edu)) {$sql .= "Education = '$edu',";}
+
+        // referral
+        if (!empty($referral)) {$sql .= "Referral = '$referral',";}
 
         // clinic practitioner
         if (!empty($pract)) {$sql .= "DR_Clinic = '$pract',";}

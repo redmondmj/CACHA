@@ -256,8 +256,8 @@
         chkHospital = document.getElementById("chkHospital");
 
         // STI/PID chart
-        chkSTI = document.getElementById("chkHospital");
-        chkPID = document.getElementById("chkHospital");
+        chkSTI = document.getElementById("chkSTI");
+        chkPID = document.getElementById("chkPID");
 
         txtPTInit = document.getElementById("txtPTInit");
         drpPTSex = document.getElementById("drpPTSex");
@@ -957,6 +957,10 @@
             var response = JSON.parse(xmlhttp.responseText);
 
             if (response.success) {
+
+                // clear everything first
+                clearAll();
+
                 // populate the data
 
                 //console.log(response);
@@ -1023,7 +1027,7 @@
                 drpTyphoid.selectedIndex = response.entries[0].typhoid;
 
                 drpAsthma.selectedIndex = response.entries[0].asthma;
-                drpBron.selectedIndex = response.entries[0].bron;
+                drpBron.selectedIndex = response.entries[0].bronc;
                 drpPneu.selectedIndex = response.entries[0].pneu;
                 drpCough.selectedIndex = response.entries[0].cough;
 

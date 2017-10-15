@@ -49,114 +49,100 @@
                 <div class="inner cover">
                     <!-- Main Content Area -->
                     <div class="form-horizontal border">
-                        <form>
-                            <!-- Basic Info -->
-                            <!-- Patient/Visit -->
-                            <div class="form-row justify-content-center">
-                                <!-- Select Patient -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="patientName">Choose Patient:</label>
-                                    <div class="col-12">
-                                        <select id="patientName" name="patientName" class="form-control" onchange="fetch_select(this.value);">
-                                                        <?php include 'loadPatient.php' ?>
-                                                    </select>
-                                    </div>
-                                </div>
 
-                                <!-- Select Visit -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="visit">Choose Visit:</label>
-                                    <div class="col-12">
-                                        <select id="visit" name="visit" class="form-control">
-                                                        <?php include 'loadVisit.php' ?>
-                                                    </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Patient/Visit -->
-                            <div class="row">
-                                <label class="col-3 control-label" style="text-align: left;">Full Name:</label>
-                                <label class="col-2 control-label">Age:</label>
-                                <label class="col-2 control-label">Weight:</label>
-                                <label class="col-2 control-label">Village:</label>
-                                <label class="col-2 control-label">Case #:</label>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12" style="height: 1em;"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
-                                </div>
-                                <div class="col-2">
-                                    <input type="button" class="btn btn-default" value="Full Chart" onclick="location.href = 'print.php?id=5';">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="chkTest">
-                                                <input type="checkbox" name="Test" id="chkTest" value="1" disabled>
-                                                Test
-                                                </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="chkMed1">
-                                                <input type="checkbox" name="med1" id="chkMed1" value="2" disabled>
-                                                    MED1
-                                                </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="chkMed2">
-                                                    <input type="checkbox" name="Med2" id="chkMed2" value="2" disabled>
-                                                        MED2
-                                                    </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="chkGyn">
-                                                <input type="checkbox" name="Gyn" id="chkGyn" value="3" disabled>
-                                                    GYN
-                                                </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="chkOpht">
-                                                <input type="checkbox" name="OPHT" id="chkOpht" value="4" disabled>
-                                                    OPHT
-                                                </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="chkDent">
-                                                <input type="checkbox" name="Dent" id="chkDent" value="5" disabled>
-                                                    DENT
-                                                </label>
-                                </div>
-
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="chkV">
-                                                <input type="checkbox" name="V" id="chkV" value="6" disabled>
-                                                    V
-                                                </label>
-                                </div>
-                            </div>
-
-
-
-                            <div class="row">
+                        <!-- Patient/Visit -->
+                        <div class="form-row justify-content-center">
+                            <!-- Select Patient -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
                                 <div class="col-12">
-                                    <h4 class="col-12 control-label">Diagnosis</h4>
-                                    <textarea class="form-control" id="txtOtherDX" name="txtOtherDX" style="height: 8em;"></textarea>
-                                    <div class="col-12" style="height: 2em;"></div>
+                                    <select id="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
-                            <!--abondend attempt !-->
-                            <!-- <div class="row form-horizontal">
+
+                            <!-- Select Visit -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
+                                <div class="col-12">
+                                    <select id="drpVisit" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h3 class="col-12 control-label">Patient Info</h3>
+                        </div>
+
+                        <!-- Patient/Visit -->
+                        <div class="row">
+                            <label id="lblName" class="col-6 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-3 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
+                        </div>
+
+                        <div class="row">
+                            <label id="lblCase" class="col-3 control-label" style="text-align: left;">Case #:</label>
+                            <label id="lblWeight" class="col-3 control-label" style="text-align: left;">Weight (Kg):</label>
+                            <label id="lblBP" class="col-3 control-label" style="text-align: left;">BP:</label>
+                            <label id="lblTemp" class="col-3 control-label" style="text-align: left;">Temp (&#8451;):</label>
+                        </div>
+                        <br/>
+                        <div class="row" style="text-align:center">
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageTest">Testing</label></b><br/>
+                                <label id="lblTriageTest">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageMED">Medical</label></b><br/>
+                                <label id="lblTriageMED">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageV">V</label></b><br/>
+                                <label id="lblTriageV">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageGYN">Gyna</label></b><br/>
+                                <label id="lblTriageGYN">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageOPHT">Eye</label></b><br/>
+                                <label id="lblTriageOPHT">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageDENT">Dentist</label></b><br/>
+                                <label id="lblTriageDENT">unknown</label>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-9">
+                                <label id="lblComplaint">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </label>
+                            </div>
+                            <div class="col-3">
+                                <input id="btnChart" type="button" class="btn btn-default" value="Full Chart">
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+
+
+                        <!-- Assessment Notes -->
+                        <div class="row">
+                            <div class="col-12 borderDiv">
+                                <h4 class="col-12 control-label">Assessment Notes</h4>
+                                <textarea id="txtAssess" class="form-control" style="height: 6em;"></textarea>
+                                <br/>
+                            </div>
+                        </div>
+
+                        <br>
+                        <!--abondend attempt !-->
+                        <!-- <div class="row form-horizontal">
                             <div class="row">
                                 <div class="col-4">
                                     <input type="checkbox" id="val1" value="">
@@ -170,85 +156,92 @@
                                 </div>
                             </div>
                         </div> !-->
-                            <!-- This is greeeasy! :S -->
-                            <table>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>
-                                        <p style="font-size:15em">V</p>
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>val 1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="text" id="txtVal1" value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>val 2</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="text" id="txtVal2" value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <span style="text-align:center;">val 3</span>
-                                        <br>
-                                        <input type="text" id="txtVal3" value="">
-                                    </td>
-                                </tr>
-                            </table>
-                            <!--Submit Form-->
-                            <?php include "bottom.php"; ?>
-                            <!-- FormBottom-->
-
-                        </form>
+                        <!-- This is greeeasy! :S -->
+                        <div class="row"></div>
+                        <table>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <p style="font-size:15em">V</p>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>val 1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" id="txtVal1" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>val 2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" id="txtVal2" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <span style="text-align:center;">val 3</span>
+                                    <br>
+                                    <input type="text" id="txtVal3" value="">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+                    <!--Submit Form-->
+
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-6 col-centered">
+                            <button id="btnSubmit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+
                 </div>
-
-                <br/>
-
-
             </div>
-        </div>
 
+            <br/>
+
+
+        </div>
     </div>
+
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
         window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
+    </script> -->
     <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

@@ -46,356 +46,353 @@
                     <!-- Main Content Area -->
 
                     <div class="form-horizontal border">
-                        <form>
-                            <!-- Basic Info -->
-                            <!-- Patient/Visit -->
-                            <div class="form-row justify-content-center">
-                                <!-- Select Patient -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="patientName">Choose Patient:</label>
-                                    <div class="col-12">
-                                        <select id="patientName" name="patientName" class="form-control" onchange="fetch_select(this.value);">
-                                                <?php include 'loadPatient.php' ?>
-                                            </select>
-                                    </div>
-                                </div>
 
-                                <!-- Select Visit -->
-                                <div class="form-group">
-                                    <label class="col-12 control-label" for="visit">Choose Visit:</label>
-                                    <div class="col-12">
-                                        <select id="visit" name="visit" class="form-control">
-                                                <?php include 'loadVisit.php' ?>
-                                            </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Patient/Visit -->
-                            <div class="row">
-                                <label class="col-3 control-label" style="text-align: left;">Full Name:</label>
-                                <label class="col-2 control-label">Age:</label>
-                                <label class="col-2 control-label">Weight:</label>
-                                <label class="col-2 control-label">Village:</label>
-                                <label class="col-2 control-label">Case #:</label>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12" style="height: 1em;"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue. </p>
-                                </div>
-                                <div class="col-2">
-                                    <input type="button" class="btn btn-default" value="Full Chart" onclick="location.href = 'print.php?id=5';">
+                        <!-- Patient/Visit -->
+                        <div class="form-row justify-content-center">
+                            <!-- Select Patient -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpPatient">Choose Patient:</label>
+                                <div class="col-12">
+                                    <select id="drpPatient" class="form-control"></select>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-0">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" disabled>
-                                        Test
-                                        </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                            MED1
-                                        </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-1">
-                                            <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" disabled>
-                                                MED2
-                                            </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-2">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3" disabled>
-                                            GYN
-                                        </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-3">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4" disabled>
-                                            OPHT
-                                        </label>
-                                </div>
-
-                                <div class="col-2">
-                                    <label class="checkbox-inline" for="checkboxes-4">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5" disabled>
-                                            DENT
-                                        </label>
-                                </div>
-
-                                <div class="col-1">
-                                    <label class="checkbox-inline" for="checkboxes-5">
-                                        <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6" disabled>
-                                            V
-                                        </label>
+                            <!-- Select Visit -->
+                            <div class="form-group">
+                                <label class="col-12 control-label" for="drpVisit">Choose Visit:</label>
+                                <div class="col-12">
+                                    <select id="drpVisit" class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="row">
+                        </div>
+
+                        <div class="row">
+                            <h3 class="col-12 control-label">Patient Info</h3>
+                        </div>
+
+                        <!-- Patient/Visit -->
+                        <div class="row">
+                            <label id="lblName" class="col-6 control-label" style="text-align: left;">Full Name:</label>
+                            <label id="lblAge" class="col-3 control-label" style="text-align: left;">Age:</label>
+                            <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
+                        </div>
+
+                        <div class="row">
+                            <label id="lblCase" class="col-3 control-label" style="text-align: left;">Case #:</label>
+                            <label id="lblWeight" class="col-3 control-label" style="text-align: left;">Weight (Kg):</label>
+                            <label id="lblBP" class="col-3 control-label" style="text-align: left;">BP:</label>
+                            <label id="lblTemp" class="col-3 control-label" style="text-align: left;">Temp (&#8451;):</label>
+                        </div>
+                        <br/>
+                        <div class="row" style="text-align:center">
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageTest">Testing</label></b><br/>
+                                <label id="lblTriageTest">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageMED">Medical</label></b><br/>
+                                <label id="lblTriageMED">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageV">V</label></b><br/>
+                                <label id="lblTriageV">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageGYN">Gyna</label></b><br/>
+                                <label id="lblTriageGYN">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageOPHT">Eye</label></b><br/>
+                                <label id="lblTriageOPHT">unknown</label>
+                            </div>
+                            <div class="col-2">
+                                <b><label class="control-label" for="lblTriageDENT">Dentist</label></b><br/>
+                                <label id="lblTriageDENT">unknown</label>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-9">
+                                <label id="lblComplaint">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis interdum sem hendrerit congue.</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="btnChart" type="button" class="btn btn-default" value="Full Chart">
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+                        <!-- FORM STARTS -->
+
+                        <div class="row">
+                            <h4 class="col-12 control-label">Tests</h4>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="v">V</label>
+                                <select id="v" name="v" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+
+
+                            <div class="col-4">
+                                <label class="control-label" for="malaria">MALARIA</label>
+                                <select id="malaria" name="malaria" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+
+
+                            <div class="col-4">
+                                <label class="control-label" for="syphilis">SYPHILIS</label>
+                                <select id="syphilis" name="syphilis" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-3">
+                                <label class="control-label" for="typh">TYPH</label>
+                                <select id="typh" name="typh" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+                            <div class="col-3">
+                                <label class="control-label" for="pregnancy">PREGNANCY</label>
+                                <select id="pregnancy" name="pregnancy" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12" style="height: 1.5em;"></div>
+                        </div>
+
+                        <!-- nCol -->
+                        <div class="row">
+                            <h4 class="col-12 control-label">Urine</h4>
+
+                        </div>
+
+                        <!-- LEUC RBC GLUCOSE NITRATES -->
+                        <div class="row">
+
+                            <div class="col-3">
+                                <label class="control-label" for="leuc">LEUC</label>
+                                <select id="leuc" name="leuc" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+                            <div class="col-3">
+                                <label class="control-label" for="rbc">RBC</label>
+                                <select id="rbc" name="rbc" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+
+                            <div class="col-3">
+                                <label class="control-label" for="glucose">GLUCOSE</label>
+                                <select id="glucose" name="glucose" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+
+                            <div class="col-3">
+                                <label class="control-label" for="nitrates">NITRATES</label>
+                                <select id="nitrates" name="nitrates" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Positive">Positive</option>
+                                        <option value="Negative">Negative</option>
+                                    </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12" style="height: 1.5em;"></div>
+                        </div>
+                        <!-- nCol -->
+                        <div class="row">
+                            <h4 class="col-12 control-label">Other Treatment</h4>
+                            <div class="col-11"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="control-label" for="hiv">Last HIV Test</label>
+                                <select id="hiv" name="hiv" class="form-control">
+                                            <option value="unknown">Unknown</option>
+                                            <option value="never">Never</option>
+                                            <option value="under3">Under 3 Months</option>
+                                            <option value="over3">Over 3 Months Ago</option>
+                                        </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="pzq">Last PZQ Tx</label>
+                                <select id="pzq" name="pzq" class="form-control">
+                                            <option value="unknown">Unknown</option>
+                                            <option value="never">Never</option>
+                                            <option value="under3">Under 3 Months</option>
+                                            <option value="over3">Over 3 Months Ago</option>
+                                        </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="worm">Last WORM Tx</label>
+                                <select id="nitrates" name="nitrates" class="form-control">
+                                            <option value="unknown">Unknown</option>
+                                            <option value="never">Never</option>
+                                            <option value="under3">Under 3 Months</option>
+                                            <option value="over3">Over 3 Months Ago</option>
+                                        </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="control-label" for="vita">Last Vit A</label>
+                                <select id="vita" name="vita" class="form-control">
+                                            <option value="unknown">Unknown</option>
+                                            <option value="never">Never</option>
+                                            <option value="under3">Under 3 Months</option>
+                                            <option value="over3">Over 3 Months Ago</option>
+                                        </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12" style="height: 2em;"></div>
+                        </div>
+
+                        <div class="row">
+                            <h4 class="col-12 control-label">Admin</h4>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="control-label" for="paracetamol">Paracetamol</label>
+                                <input type="checkbox" value="paracetamol">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="benzpeng">Benz-Pen-G 2.4 MIU</label>
+                                <input type="checkbox" value="benzpeng">
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="ceftriaxone">Ceftriaxone 250mg</label>
+                                <input type="checkbox" value="ceftriaxone">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="height: 1.5em;"></div>
+                        </div>
+                        <div class="row">
+
+                            <h4 class="col-12 control-label">Other Medications</h4>
+                            <div class="col-12">
+                                <textarea class="form-control" id="othermeds" name="othermeds" style="height: 4em;"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <h4 class="col-12 control-label">Prev Medications</h4>
+                            <div class="col-12">
+                                <textarea class="form-control" id="prevmeds" name="prevmeds" style="height: 4em;"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Test Notes Section -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="col-12 control-label">Test Notes</h4>
+                                <textarea class="form-control" id="txtTestNotes" name="txtTestNotes" style="height: 4em;"></textarea>
                                 <div class="col-12" style="height: 2em;"></div>
                             </div>
-                            <!-- FORM STARTS -->
-
                             <div class="row">
-                                <h4 class="col-12 control-label">Tests</h4>
-
+                                <div class="col-12" style="height: 4em;"></div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-4">
-                                    <label class="control-label" for="v">V</label>
-                                    <select id="v" name="v" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-
-
-                                <div class="col-4">
-                                    <label class="control-label" for="malaria">MALARIA</label>
-                                    <select id="malaria" name="malaria" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-
-
-                                <div class="col-4">
-                                    <label class="control-label" for="syphilis">SYPHILIS</label>
-                                    <select id="syphilis" name="syphilis" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-
-
-
-
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col-3">
-                                    <label class="control-label" for="typh">TYPH</label>
-                                    <select id="typh" name="typh" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-3">
-                                    <label class="control-label" for="pregnancy">PREGNANCY</label>
-                                    <select id="pregnancy" name="pregnancy" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-                                <div class="col-3"></div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-12" style="height: 1.5em;"></div>
-                            </div>
-
-                            <!-- nCol -->
-                            <div class="row">
-                                <h4 class="col-12 control-label">Urine</h4>
-
-                            </div>
-
-                            <!-- LEUC RBC GLUCOSE NITRATES -->
-                            <div class="row">
-
-                                <div class="col-3">
-                                    <label class="control-label" for="leuc">LEUC</label>
-                                    <select id="leuc" name="leuc" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-3">
-                                    <label class="control-label" for="rbc">RBC</label>
-                                    <select id="rbc" name="rbc" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="col-3">
-                                    <label class="control-label" for="glucose">GLUCOSE</label>
-                                    <select id="glucose" name="glucose" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="col-3">
-                                    <label class="control-label" for="nitrates">NITRATES</label>
-                                    <select id="nitrates" name="nitrates" class="form-control">
-                                        <option value="No">No</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Positive">Positive</option>
-                                        <option value="Negative">Negative</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12" style="height: 1.5em;"></div>
-                            </div>
-                            <!-- nCol -->
-                            <div class="row">
-                                <h4 class="col-12 control-label">Other Treatment</h4>
-                                <div class="col-11"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3">
-                                    <label class="control-label" for="hiv">Last HIV Test</label>
-                                    <select id="hiv" name="hiv" class="form-control">
-                                            <option value="unknown">Unknown</option>
-                                            <option value="never">Never</option>
-                                            <option value="under3">Under 3 Months</option>
-                                            <option value="over3">Over 3 Months Ago</option>
-                                        </select>
-                                </div>
-                                <div class="col-3">
-                                    <label class="control-label" for="pzq">Last PZQ Tx</label>
-                                    <select id="pzq" name="pzq" class="form-control">
-                                            <option value="unknown">Unknown</option>
-                                            <option value="never">Never</option>
-                                            <option value="under3">Under 3 Months</option>
-                                            <option value="over3">Over 3 Months Ago</option>
-                                        </select>
-                                </div>
-                                <div class="col-3">
-                                    <label class="control-label" for="worm">Last WORM Tx</label>
-                                    <select id="nitrates" name="nitrates" class="form-control">
-                                            <option value="unknown">Unknown</option>
-                                            <option value="never">Never</option>
-                                            <option value="under3">Under 3 Months</option>
-                                            <option value="over3">Over 3 Months Ago</option>
-                                        </select>
-                                </div>
-                                <div class="col-3">
-                                    <label class="control-label" for="vita">Last Vit A</label>
-                                    <select id="vita" name="vita" class="form-control">
-                                            <option value="unknown">Unknown</option>
-                                            <option value="never">Never</option>
-                                            <option value="under3">Under 3 Months</option>
-                                            <option value="over3">Over 3 Months Ago</option>
-                                        </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12" style="height: 2em;"></div>
-                            </div>
-
-                            <div class="row">
-                                <h4 class="col-12 control-label">Medication</h4>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-4">
-                                    <label class="control-label" for="paracetamol">Paracetamol</label>
-                                    <input type="checkbox" value="paracetamol">
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label" for="benzpeng">Benz-Pen-G 2.4 MIU</label>
-                                    <input type="checkbox" value="benzpeng">
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label" for="ceftriaxone">Ceftriaxone 250mg</label>
-                                    <input type="checkbox" value="ceftriaxone">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12" style="height: 1.5em;"></div>
-                            </div>
-                            <div class="row">
-
-                                <h4 class="col-12 control-label">Other Medications</h4>
-                                <div class="col-12">
-                                    <textarea class="form-control" id="othermeds" name="othermeds" style="height: 4em;"></textarea>
-                                </div>
-                            </div>
-                            <!-- Test Notes Section -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="col-12 control-label">Test Notes</h4>
-                                    <textarea class="form-control" id="txtTestNotes" name="txtTestNotes" style="height: 4em;"></textarea>
-                                    <div class="col-12" style="height: 2em;"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12" style="height: 4em;"></div>
-                                </div>
-                            </div>
-
-
-                            <!--Submit Form-->
-                            <?php include "bottom.php"; ?>
-                            <!-- FORM ENDS -->
-                        </form>
+                        </div>
                     </div>
-
-
-
+                    <br>
+                    <!-- Submit time -->
+                    <div class="row">
+                        <div class="col-6 col-centered">
+                            <button id="btnSubmit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
 
                 </div>
 
 
 
 
-
-
-
-
             </div>
+
+
+
+
+
+
+
 
         </div>
 
     </div>
 
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
         window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
+    </script> -->
     <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
