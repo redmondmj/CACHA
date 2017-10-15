@@ -43,11 +43,16 @@
     var chkBenz = null;
     var chkCeft = null;
 
+    // other drugs
+    var chkPCM = null;
+    var chkKit = null;
+    var chkPUD = null;
+    var drpPZQ = null;
+    var drpALU = null;
+    var drpSulfadar = null;
+
     // Assessment Notes
     var txtAssess = null;
-
-    // pregnancy
-    var drpSulfadar = null;
 
     // STI/PID chart
     var chkSTI = null;
@@ -91,6 +96,7 @@
 
     // practitioner
     var drpPract = null;
+    var txtRX = null;
 
     // stations
     var drpTriageTest = null;
@@ -145,15 +151,20 @@
         lblComplaint = document.getElementById("lblComplaint");
         btnChart = document.getElementById("btnChart");
 
-        // administrated
+        // notes
+        txtAssess = document.getElementById("txtAssess");
+        txtMeds = document.getElementById("txtMeds");
+
+        // drugs
         chkParac = document.getElementById("chkParac");
         chkBenz = document.getElementById("chkBenz");
         chkCeft = document.getElementById("chkCeft");
 
-        // Assessment notes
-        txtAssess = document.getElementById("txtAssess");
-
-        // pregnancy
+        chkPCM = document.getElementById("chkPCM");
+        chkKit = document.getElementById("chkKit");
+        chkPUD = document.getElementById("chkPUD");
+        drpPZQ = document.getElementById("drpPZQ");
+        drpALU = document.getElementById("drpALU");
         drpSulfadar = document.getElementById("drpSulfadar");
 
         // STI/PID chart
@@ -198,6 +209,7 @@
 
         // practitioner
         drpPract = document.getElementById("drpPract");
+        txtRX = document.getElementById("txtRX");
 
         // stations
         // drpTriageTest = document.getElementById("drpTriageTest");
@@ -210,7 +222,7 @@
         btnSubmit = document.getElementById("btnSubmit");
 
         // clear all
-        //clearAll();
+        clearAll();
 
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
@@ -294,17 +306,27 @@
     }
 
     function clearAll() {
-        lblCase.innerHTML = "Case #";
 
-        // drug administration
+        // top stuff
+        lblCase.innerHTML = "Case #:";
+        lblWeight.innerHTML = "Weight (Kg):";
+        lblBP.innerHTML = "";
+        lblTemp.innerHTML = "Temp (&#8451;):";
+
+        // notes
+        txtAssess.innerHTML = "";
+        txtMeds.innerHTML = "";
+
+        // drugs
         chkParac.checked = false;
         chkBenz.checked = false;
         chkCeft.checked = false;
 
-        // assessment
-        txtAssess.innerHTML = "";
-
-        // pregnancy
+        chkPCM.checked = false;
+        chkKit.checked = false;
+        chkPUD.checked = false;
+        drpPZQ.selectedIndex = 0;
+        drpALU.selectedIndex = 0;
         drpSulfadar.selectedIndex = 0;
 
         // STI/PID chart
@@ -347,16 +369,17 @@
         txtP3Doxy.value = "";
         txtP3Amox.value = "";
 
-        // practitioner
+        // bottom
         drpPract.selectedIndex = 0;
+        txtRX.value = 0;
 
         // stations
-        drpTriageTest.selectedIndex = 0;
-        drpTriageMED.selectedIndex = 0;
-        drpTriageGYN.selectedIndex = 0;
-        drpTriageOPHT.selectedIndex = 0;
-        drpTriageDENT.selectedIndex = 0;
-        drpTriageV.selectedIndex = 0;
+        //drpTriageTest.selectedIndex = 0;
+        //drpTriageMED.selectedIndex = 0;
+        //drpTriageGYN.selectedIndex = 0;
+        //drpTriageOPHT.selectedIndex = 0;
+        //drpTriageDENT.selectedIndex = 0;
+        //drpTriageV.selectedIndex = 0;
     }
 
     function toChart() {
@@ -419,7 +442,7 @@
 
     function getThisVisit() {
         // clear the board
-        //clearAll();
+        clearAll();
 
         // construct the JSON object to send to the handler
         var sendJSON = {
@@ -725,8 +748,8 @@
             drpVisit.selectedIndex = 0;
 
             // load the first visit selected
-            //getThisVisit();
-            notLoading();
+            getThisVisit();
+            //notLoading();
 
             /*
             // failure or no entries?
@@ -769,16 +792,29 @@
 
                 lblComplaint.innerHTML = response.entries[0].complaint;
 
+                // notes
+                txtAssess.innerHTML = response.entries[0].assess;
+                txtMeds.innerHTML = response.entries[0].meds;
 
-                // admin section
+                // drugs
                 if (response.entries[0].parac === "yes") { chkParac.checked = true; } else { chkParac.checked = false; }
                 if (response.entries[0].benz === "yes") { chkBenz.checked = true; } else { chkBenz.checked = false; }
                 if (response.entries[0].ceft === "yes") { chkCeft.checked = true; } else { chkCeft.checked = false; }
-
-                // assessment notes
-                txtAssess.innerHTML = response.entries[0].assess;
-
-                // pregnancy
+                if (response.entries[0].pcm === "yes") { chkPCM.checked = true; } else { chkPCM.checked = false; }
+                if (response.entries[0].kit === "yes") { chkKit.checked = true; } else { chkKit.checked = false; }
+                if (response.entries[0].pud === "yes") { chkPUD.checked = true; } else { chkPUD.checked = false; }
+                for (var n = 0; n < drpPZQ.length; n++) {
+                    if (drpPZQ[n].value === response.entries[0].pzq) {
+                        drpPZQ.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n = 0; n < drpALU.length; n++) {
+                    if (drpALU[n].value === response.entries[0].alu) {
+                        drpALU.selectedIndex = n;
+                        break;
+                    }
+                }
                 for (n = 0; n < drpSulfadar.length; n++) {
                     if (drpSulfadar[n].value === response.entries[0].sulfadar) {
                         drpSulfadar.selectedIndex = n;
@@ -886,13 +922,14 @@
                 txtP3Doxy.value = response.entries[0].p3doxy;
                 txtP3Amox.value = response.entries[0].p3amox;
 
-                // practitioner
+                // practitioner and rx
                 for (n = 0; n < drpPract.length; n++) {
                     if (drpPract[n].value === response.entries[0].pract) {
                         drpPract.selectedIndex = n;
                         break;
                     }
                 }
+                txtRX.value = response.entries[0].rxnum;
 
             } else {
 
