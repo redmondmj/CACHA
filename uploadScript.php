@@ -568,6 +568,66 @@
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
 
+    } else if ($data["upload"] == "eye") {
+        
+        $visitID = $data["visitid"];
+
+        // eye values
+        $eye1 = $data["eyeval1"];
+        $eye2 = $data["eyeval2"];
+        $eye3 = $data["eyeval3"];
+        
+        // practitioner and rxnum
+        $pract = $data["pract"];
+
+        // notes
+        $assess = $data["assess"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        // notes
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+
+        // eye values
+        if (!empty($eye1)) {$sql .= "Eye_Val1 = '$eye1',";}
+        if (!empty($eye2)) {$sql .= "Eye_Val2 = '$eye2',";}
+        if (!empty($eye3)) {$sql .= "Eye_Val3 = '$eye3',";}
+        
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Eye = '$pract',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
+
+    } else if ($data["upload"] == "dent") {
+        
+        $visitID = $data["visitid"];
+
+        // practitioner and rxnum
+        $pract = $data["pract"];
+
+        // notes
+        $assess = $data["assess"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        // notes
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Dental = '$pract',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
+
     }
     
     try {
