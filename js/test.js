@@ -226,8 +226,8 @@
             xmlhttp.addEventListener("readystatechange", visitsResponse);
         } else if (response === "stats") {
             xmlhttp.addEventListener("readystatechange", statsResponse);
-        } else if (response === "rx") {
-            xmlhttp.addEventListener("readystatechange", rxResponse);
+        } else if (response === "test") {
+            xmlhttp.addEventListener("readystatechange", testResponse);
         } else if (response === "submit") {
             xmlhttp.addEventListener("readystatechange", submitResponse);
         }
@@ -378,65 +378,34 @@
             //"patientid": drpPatient[drpPatient.selectedIndex].value,
             "visitid": drpVisit[drpVisit.selectedIndex].value,
             
-            // notes
-            "assess": txtAssess.value,
-            "meds": txtMeds.value,
+            // tests
+            "v": drpHIV[drpHIV.selectedIndex].value,
+            "mal": drpMal[drpMal.selectedIndex].value,
+            "syph": drpSyph[drpSyph.selectedIndex].value,
+            "typh": drpTyphoid[drpTyphoid.selectedIndex].value,
+            "preg": drpPreg[drpPreg.selectedIndex].value,
+
+            "lastv": drpLastV[drpLastV.selectedIndex].value,
+            "lastpzq": drpLastPZQ[drpLastPZQ.selectedIndex].value,
+            "lastworm": drpLastWorm[drpLastWorm.selectedIndex].value,
+            "lastvita": drpLastVitA[drpLastVitA.selectedIndex].value,
+
+            "leuc": drpLeuc[drpLeuc.selectedIndex].value,
+            "rbc": drpRBC[drpRBC.selectedIndex].value,
+            "glucose": drpGlucose[drpGlucose.selectedIndex].value,
+            "nit": drpNit[drpNit.selectedIndex].value,
 
             // drugs
             "parac": parac,
             "benz": benz,
             "ceft": ceft,
-            "pcm": pcm,
-            "kit": kit,
-            "pud": pud,
 
-            "pzq": drpPZQ[drpPZQ.selectedIndex].value,
-            "alu": drpALU[drpALU.selectedIndex].value,
-            "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
-            "msk": drpMSK[drpMSK.selectedIndex].value,
-            "asthma": drpAsthma[drpAsthma.selectedIndex].value,
-            
-            "chart": chart,
-            //sti pid
-            "PTInit": txtPTInit.value,
-            "PTSex": drpPTSex[drpPTSex.selectedIndex].value,
-            "PTPreg": drpPTPreg[drpPTPreg.selectedIndex].value,
-            "PTMonth": txtPTMonth.value,
-            "PTBF": drpPTBF[drpPTBF.selectedIndex].value,
-            "PTMTZ": txtPTMTZ.value,
-            "PTDoxy": txtPTDoxy.value,
-            "PTAmox": txtPTAmox.value,
+            // notes
+            "assess": txtAssess.value,
+            "meds": txtMeds.value,
 
-            "P1Init": txtP1Init.value,
-            "P1Sex": drpP1Sex[drpP1Sex.selectedIndex].value,
-            "P1Preg": drpP1Preg[drpP1Preg.selectedIndex].value,
-            "P1Month": txtP1Month.value,
-            "P1BF": drpP1BF[drpP1BF.selectedIndex].value,
-            "P1MTZ": txtP1MTZ.value,
-            "P1Doxy": txtP1Doxy.value,
-            "P1Amox": txtP1Amox.value,
-
-            "P2Init": txtP2Init.value,
-            "P2Sex": drpP2Sex[drpP2Sex.selectedIndex].value,
-            "P2Preg": drpP2Preg[drpP2Preg.selectedIndex].value,
-            "P2Month": txtP2Month.value,
-            "P2BF": drpP2BF[drpP2BF.selectedIndex].value,
-            "P2MTZ": txtP2MTZ.value,
-            "P2Doxy": txtP2Doxy.value,
-            "P2Amox": txtP2Amox.value,
-
-            "P3Init": txtP3Init.value,
-            "P3Sex": drpP3Sex[drpP3Sex.selectedIndex].value,
-            "P3Preg": drpP3Preg[drpP3Preg.selectedIndex].value,
-            "P3Month": txtP3Month.value,
-            "P3BF": drpP3BF[drpP3BF.selectedIndex].value,
-            "P3MTZ": txtP3MTZ.value,
-            "P3Doxy": txtP3Doxy.value,
-            "P3Amox": txtP3Amox.value,
-
+            // practitioner
             "pract": drpPract[drpPract.selectedIndex].value,
-
-            "rxnum": txtRX.value,
 
         };
 
@@ -657,16 +626,6 @@
             // load the first visit selected
             getThisVisit();
             //notLoading();
-
-            /*
-            // failure or no entries?
-            if (response.success) {
-                // feedback
-                //feedback("No entries in the database");
-            } else {
-                //feedback(response.reason);
-            }
-            */
 
         }
     }
