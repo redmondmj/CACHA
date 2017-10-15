@@ -10,10 +10,9 @@
 
     <title>CACHA - Dental</title>
     <!-- load jQuery -->
-    <script src="bin/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
 </head>
@@ -126,16 +125,36 @@
                         </div>
                         <br/>
 
-                        <!-- ROW1 -->
                         <div class="row">
-                            <div class="col-12">
-                                <h4 class="col-12 control-label">Assessment Notes</h4>
-                                <textarea class="form-control" id="txtassesmentNotes" name="txtassesmentNotess" style="height: 6em;"></textarea>
-                                <div class="col-12" style="height: 2em;"></div>
+                            <div class="col-12 borderDiv">
+                                <h4 class="col-12 control-label">Assessment</h4>
+                                <textarea id="txtAssess" class="form-control" style="height: 6em;"></textarea>
+                                <br/>
                             </div>
                         </div>
-                        <!-- /horizontal border -->
 
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="col-12 control-label">Practitioner</h4>
+                                <select id="drpPract" class="form-control">
+                                    <option value="no">n/a</option>
+                                    <option value="Dr Feelgood">Dr Feelgood</option>
+                                    <option value="Nurse Joy">Nurse Joy</option>
+                                    <option value="Nurse Betty">Nurse Betty</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
                         <br/>
 
                         <div class="row">
@@ -144,27 +163,24 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> <!-- /border -->
+                </div> <!-- /divDisplay -->
 
-
-                </div>
+                <div id="loadingOverlay"></div>
             </div>
-
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script> -->
     <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="js/spin.min.js"></script>
+    <script src="js/dental.js"></script>
 </body>
 
 </html>

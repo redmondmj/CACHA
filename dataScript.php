@@ -19,6 +19,10 @@
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     } else if ($data["request"] == "test") {
         $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
+    } else if ($data["request"] == "eye") {
+        $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
+    } else if ($data["request"] == "dent") {
+        $sql = "SELECT * FROM tbl_visit WHERE VisitID = " . $data["id"];
     }
 
     try {
@@ -659,6 +663,129 @@
 
                     // put the object into the response
                     array_push($response->entries, $test);
+                }
+
+            } else if ($data["request"] == "eye") {
+
+                // construct a new object to send the data
+                class EyeInfo {
+
+                    // top data
+                    public $weight = "";
+                    public $bp = "";
+                    public $temp = "";
+                    public $complaint = "";
+
+                    // eye values
+                    public $eyeval1 = "";
+                    public $eyeval2 = "";
+                    public $eyeval3 = "";
+
+                    // notes
+                    public $assess = "";
+
+                    // practitioner
+                    public $pract = 0;
+
+                    // stations
+                    public $test = "";
+                    public $med = "";
+                    public $gyn = "";
+                    public $opht = "";
+                    public $dent = "";
+                    public $triagev = "";
+
+                }
+
+                while ($row = $result->fetch_assoc()) {
+
+                    // response object to send
+                    $eye = new EyeInfo();
+
+                    // pulled and placed in the order they appear in the database
+
+                    // stations
+                    $eye->test = $row["TriageTesting"];
+                    $eye->med = $row["TriageMedical"];
+                    $eye->gyn = $row["TriageGYN"];
+                    $eye->opht = $row["TriageOPHT"];
+                    $eye->dent = $row["TriageDENT"];
+                    $eye->stationv = $row["TriageVenDis"];
+
+                    // top stuff
+                    $eye->weight = $row["Weight"];
+                    $eye->temp = $row["Temperature"];
+                    if ((!empty($row["Systolic"])) || (!empty($row["Diastolic"]))) {$eye->bp = $row["Systolic"] . "/" . $row["Diastolic"];} 
+                    else {$eye->bp = "";}
+
+                    $eye->assess = $row["Assessment"];
+
+                    $eye->eyeval1 = $row["Eye_Val1"];
+                    $eye->eyeval2 = $row["Eye_Val2"];
+                    $eye->eyeval3 = $row["Eye_Val3"];
+
+                    // eye practitioner
+                    $eye->pract = $row["DR_Eye"];
+
+                    // put the object into the response
+                    array_push($response->entries, $eye);
+                }
+
+            } else if ($data["request"] == "dent") {
+
+                // construct a new object to send the data
+                class DentInfo {
+
+                    // top data
+                    public $weight = "";
+                    public $bp = "";
+                    public $temp = "";
+                    public $complaint = "";
+
+                    // notes
+                    public $assess = "";
+
+                    // practitioner
+                    public $pract = 0;
+
+                    // stations
+                    public $test = "";
+                    public $med = "";
+                    public $gyn = "";
+                    public $opht = "";
+                    public $dent = "";
+                    public $triagev = "";
+
+                }
+
+                while ($row = $result->fetch_assoc()) {
+
+                    // response object to send
+                    $dent = new DentInfo();
+
+                    // pulled and placed in the order they appear in the database
+
+                    // stations
+                    $dent->test = $row["TriageTesting"];
+                    $dent->med = $row["TriageMedical"];
+                    $dent->gyn = $row["TriageGYN"];
+                    $dent->opht = $row["TriageOPHT"];
+                    $dent->dent = $row["TriageDENT"];
+                    $dent->stationv = $row["TriageVenDis"];
+
+                    // top stuff
+                    $dent->weight = $row["Weight"];
+                    $dent->temp = $row["Temperature"];
+                    if ((!empty($row["Systolic"])) || (!empty($row["Diastolic"]))) {$dent->bp = $row["Systolic"] . "/" . $row["Diastolic"];} 
+                    else {$dent->bp = "";}
+
+                    $dent->assess = $row["Assessment"];
+
+                    // eye practitioner
+                    $dent->pract = $row["DR_Dental"];
+
+                    // put the object into the response
+                    array_push($response->entries, $dent);
                 }
 
             }

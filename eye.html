@@ -1,7 +1,3 @@
-<!-- Backend Note
-    Diagnosis = Other DX fr clinic page.
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +10,7 @@
 
     <title>CACHA - Eye</title>
     <!-- load jQuery -->
-    <script src="bin/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -46,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="inner cover">
+                <div id="divDisplay" class="inner cover">
                     <!-- Main Content Area -->
                     <div class="form-horizontal border">
 
@@ -86,7 +82,9 @@
                             <label id="lblBP" class="col-3 control-label" style="text-align: left;">BP:</label>
                             <label id="lblTemp" class="col-3 control-label" style="text-align: left;">Temp (&#8451;):</label>
                         </div>
+
                         <br/>
+                        
                         <div class="row" style="text-align:center">
                             <div class="col-2">
                                 <b><label class="control-label" for="lblTriageTest">Testing</label></b><br/>
@@ -113,6 +111,7 @@
                                 <label id="lblTriageDENT">unknown</label>
                             </div>
                         </div>
+
                         <br/>
 
                         <div class="row">
@@ -130,106 +129,74 @@
                         </div>
                         <br/>
 
-
                         <!-- Assessment Notes -->
                         <div class="row">
                             <div class="col-12 borderDiv">
-                                <h4 class="col-12 control-label">Assessment Notes</h4>
+                                <h4 class="col-12 control-label">Assessment</h4>
                                 <textarea id="txtAssess" class="form-control" style="height: 6em;"></textarea>
                                 <br/>
                             </div>
                         </div>
 
                         <br>
-                        <!--abondend attempt !-->
-                        <!-- <div class="row form-horizontal">
-                            <div class="row">
-                                <div class="col-4">
-                                    <input type="checkbox" id="val1" value="">
+                        
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-4">
+                                <p style="font-size:8em">V</p>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <label class="control-label" for="txtVal1">Value 1</label>
+                                    <input id="txtVal1" type="text" value="">
                                 </div>
-                                <div class="col-4">
-                                    <p style="font-size:10em">V</p>
-                                    V
+                                <div class="row">
+                                    <label class="control-label" for="txtVal2">Value 2</label>
+                                    <input id="txtVal2" type="text" value=""><br/>
                                 </div>
-                                <div class="col-4">
-                                    <input type="checkbox" id="val2" value="">
+                                <div class="row">
+                                    <label class="control-label" for="txtVal3">Value 3</label>
+                                    <input id="txtVal3" type="text" value="">
                                 </div>
                             </div>
-                        </div> !-->
-                        <!-- This is greeeasy! :S -->
-                        <div class="row"></div>
-                        <table>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <p style="font-size:15em">V</p>
-                                </td>
-                                <td>
-                                    <table>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>val 1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="text" id="txtVal1" value="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>val 2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="text" id="txtVal2" value="">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td>
-                                    <span style="text-align:center;">val 3</span>
-                                    <br>
-                                    <input type="text" id="txtVal3" value="">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!--Submit Form-->
-
-                    <br/>
-
-                    <div class="row">
-                        <div class="col-6 col-centered">
-                            <button id="btnSubmit" class="btn btn-default">Submit</button>
                         </div>
-                    </div>
 
-                </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="col-12 control-label">Practitioner</h4>
+                                <select id="drpPract" class="form-control">
+                                    <option value="no">n/a</option>
+                                    <option value="Dr Feelgood">Dr Feelgood</option>
+                                    <option value="Nurse Joy">Nurse Joy</option>
+                                    <option value="Nurse Betty">Nurse Betty</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 borderDiv"></div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-6 col-centered">
+                                <button id="btnSubmit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+
+                    </div> <!-- /border -->
+                </div> <!-- /divDisplay -->
+
+                <div id="loadingOverlay"></div>
+
             </div>
-
-            <br/>
-
-
         </div>
     </div>
 
@@ -246,6 +213,9 @@
     <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="js/spin.min.js"></script>
+    <script src="js/eye.js"></script>
 </body>
 
 </html>
