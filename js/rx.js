@@ -500,27 +500,41 @@
         if (chkBenz.checked) { benz = "yes"; }
         if (chkCeft.checked) { ceft = "yes"; }
 
+        var pcm = "no";
+        var kit = "no";
+        var pud = "no";
+        if (chkPCM.checked) { pcm = "yes"; }
+        if (chkKit.checked) { kit = "yes"; }
+        if (chkPUD.checked) { pud = "yes"; }
 
         var chart = "";
         if (chkSTI.checked) { chart = "sti"; }
         if (chkPID.checked) { chart = "pid"; }
-
-
 
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "rx",
             //"patientid": drpPatient[drpPatient.selectedIndex].value,
             "visitid": drpVisit[drpVisit.selectedIndex].value,
-            // Admin
+            
+            // notes
+            "assess": txtAssess.value,
+            "meds": txtMeds.value,
+
+            // drugs
             "parac": parac,
             "benz": benz,
             "ceft": ceft,
+            "pcm": pcm,
+            "kit": kit,
+            "pud": pud,
 
-            "assess": txtAssess.value,
-
+            "pzq": drpPZQ[drpPZQ.selectedIndex].value,
+            "alu": drpALU[drpALU.selectedIndex].value,
             "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
-
+            "msk": drpMSK[drpMSK.selectedIndex].value,
+            "asthma": drpAsthma[drpAsthma.selectedIndex].value,
+            
             "chart": chart,
             //sti pid
             "PTInit": txtPTInit.value,
@@ -561,7 +575,8 @@
 
             "pract": drpPract[drpPract.selectedIndex].value,
 
-            "RxQty": numRx.value,
+            "rxnum": txtRX.value,
+
         };
 
         console.log(sendJSON);
@@ -1126,9 +1141,7 @@
 
                 // place the visit on the current visit
                 drpVisit.selectedIndex[drpVisit.length];
-
             } else {
-
                 // bad feedback
                 //feedback(response.reason);
             }

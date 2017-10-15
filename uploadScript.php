@@ -367,7 +367,138 @@
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
 
-        //UPDATE tbl_visit SET TriageTesting = 'pending',TriageMedical = 'complete',TriageGYN = 'pending',TriageOPHT = 'no',TriageDENT = 'no',TriageVenDis = 'pending',LastHIVTest = 'unknown',LastPZQTx = 'unknown',LastVitA = 'unknown',DX_Healthy = 'no',DX_NoTreatment = 'no',DX_DDS = 'no',DX_DiarrheaBloody = 'no',DX_STI = '2',RegANC = 'no',ClinicalAnemia = 'no',LastIPTpx = 'never',Rx_Paracetamol = 'no',Rx_BenzPen = 'no',Rx_Ceftriaxone = 'no',SP_PTInitials = 'SP',SP_PTSex = 'm',SP_PTMTZ = '1',SP_PTDoxy = '2',SP_PTAmox = '3',SP_PT1Initials = 'SG',SP_PT1Sex = 'f',DR_Clinic = '6' WHERE VisitID = 9
+    } else if ($data["upload"] == "rx") {
+        
+        $visitID = $data["visitid"];
+
+        // notes
+        $assess = $data["assess"];
+        $meds = $data["meds"];
+
+        // drugs
+        $parac = $data["parac"];
+        $benz = $data["benz"];
+        $ceft = $data["ceft"];
+        $pcm = $data["pcm"];
+        $kit = $data["kit"];
+        $pud = $data["pud"];
+        $pzq = $data["pzq"];
+        $alu = $data["alu"];
+        $sulfadar = $data["sulfadar"];
+        $msk = $data["msk"];
+        $asthma = $data["asthma"];
+        
+        // chart
+        $chart = $data["chart"];
+
+        $ptinit = $data["PTInit"];
+        $ptsex = $data["PTSex"];
+        $ptpreg = $data["PTPreg"];
+        $ptmonth = $data["PTMonth"];
+        $ptbf = $data["PTBF"];
+        $ptmtz = $data["PTMTZ"];
+        $ptdoxy = $data["PTDoxy"];
+        $ptamox = $data["PTAmox"];
+
+        $p1init = $data["P1Init"];
+        $p1sex = $data["P1Sex"];
+        $p1preg = $data["P1Preg"];
+        $p1month = $data["P1Month"];
+        $p1bf = $data["P1BF"];
+        $p1mtz = $data["P1MTZ"];
+        $p1doxy = $data["P1Doxy"];
+        $p1amox = $data["P1Amox"];
+
+        $p2init = $data["P2Init"];
+        $p2sex = $data["P2Sex"];
+        $p2preg = $data["P2Preg"];
+        $p2month = $data["P2Month"];
+        $p2bf = $data["P2BF"];
+        $p2mtz = $data["P2MTZ"];
+        $p2doxy = $data["P2Doxy"];
+        $p2amox = $data["P2Amox"];
+
+        $p3init = $data["P3Init"];
+        $p3sex = $data["P3Sex"];
+        $p3preg = $data["P3Preg"];
+        $p3month = $data["P3Month"];
+        $p3bf = $data["P3BF"];
+        $p3mtz = $data["P3MTZ"];
+        $p3doxy = $data["P3Doxy"];
+        $p3amox = $data["P3Amox"];
+
+        // practitioner and rxnum
+        $pract = $data["pract"];
+        $rxnum = $data["rxnum"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
+        
+        if (!empty($sulfadar)) {$sql .= "Sulfadar = '$sulfadar',";}
+
+        if (!empty($parac)) {$sql .= "Rx_Paracetamol = '$parac',";}
+        if (!empty($benz)) {$sql .= "Rx_BenzPen = '$benz',";}
+        if (!empty($ceft)) {$sql .= "Rx_Ceftriaxone = '$ceft',";}
+
+        if (!empty($pcm)) {$sql .= "Rx_Kit_PCM = '$pcm',";}
+        if (!empty($kit)) {$sql .= "Rx_Kit_Pregnancy = '$kit',";}
+        if (!empty($alu)) {$sql .= "Rx_ALU = '$alu',";}
+        if (!empty($pud)) {$sql .= "Rx_PUD = '$pud',";}
+        if (!empty($pzq)) {$sql .= "Rx_PZQ_Tabs = '$pzq',";}
+        if (!empty($msk)) {$sql .= "Rx_MSK = '$msk',";}
+        if (!empty($asthma)) {$sql .= "Rx_Asthma = '$asthma',";}
+
+        // chart
+        if (!empty($chart)) {$sql .= "SP_Type = '$chart',";}
+        
+        if (!empty($ptinit)) {$sql .= "SP_PTInitials = '$ptinit',";}
+        if (!empty($ptsex)) {$sql .= "SP_PTSex = '$ptsex',";}
+        if (!empty($ptpreg)) {$sql .= "SP_PTPreg = '$ptpreg',";}
+        if (!empty($ptmonth)) {$sql .= "SP_PTMonths = '$ptmonth',";}
+        if (!empty($ptbf)) {$sql .= "SP_PTBF = '$ptbf',";}
+        if (!empty($ptmtz)) {$sql .= "SP_PTMTZ = '$ptmtz',";}
+        if (!empty($ptdoxy)) {$sql .= "SP_PTDoxy = '$ptdoxy',";}
+        if (!empty($ptamox)) {$sql .= "SP_PTAmox = '$ptamox',";}
+        
+        if (!empty($p1init)) {$sql .= "SP_PT1Initials = '$p1init',";}
+        if (!empty($p1sex)) {$sql .= "SP_PT1Sex = '$p1sex',";}
+        if (!empty($p1preg)) {$sql .= "SP_PT1Preg = '$p1preg',";}
+        if (!empty($p1month)) {$sql .= "SP_PT1Months = '$p1month',";}
+        if (!empty($p1bf)) {$sql .= "SP_PT1BF = '$p1bf',";}
+        if (!empty($p1mtz)) {$sql .= "SP_PT1MTZ = '$p1mtz',";}
+        if (!empty($p1doxy)) {$sql .= "SP_PT1Doxy = '$p1doxy',";}
+        if (!empty($p1amox)) {$sql .= "SP_PT1Amox = '$p1amox',";}
+        
+        if (!empty($p2init)) {$sql .= "SP_PT2Initials = '$p2init',";}
+        if (!empty($p2sex)) {$sql .= "SP_PT2Sex = '$p2sex',";}
+        if (!empty($p2preg)) {$sql .= "SP_PT2Preg = '$p2preg',";}
+        if (!empty($p2month)) {$sql .= "SP_PT2Months = '$p2month',";}
+        if (!empty($p2bf)) {$sql .= "SP_PT2BF = '$p2bf',";}
+        if (!empty($p2mtz)) {$sql .= "SP_PT2MTZ = '$p2mtz',";}
+        if (!empty($p2doxy)) {$sql .= "SP_PT2Doxy = '$p2doxy',";}
+        if (!empty($p2amox)) {$sql .= "SP_PT2Amox = '$p2amox',";}
+
+        if (!empty($p3init)) {$sql .= "SP_PT3Initials = '$p3init',";}
+        if (!empty($p3sex)) {$sql .= "SP_PT3Sex = '$p3sex',";}
+        if (!empty($p3preg)) {$sql .= "SP_PT3Preg = '$p3preg',";}
+        if (!empty($p3month)) {$sql .= "SP_PT3Months = '$p3month',";}
+        if (!empty($p3bf)) {$sql .= "SP_PT3BF = '$p3bf',";}
+        if (!empty($p3mtz)) {$sql .= "SP_PT3MTZ = '$p3mtz',";}
+        if (!empty($p3doxy)) {$sql .= "SP_PT3Doxy = '$p3doxy',";}
+        if (!empty($p3amox)) {$sql .= "SP_PT3Amox = '$p3amox',";}
+
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Rx = '$pract',";}
+        if (!empty($rxnum)) {$sql .= "RXNum = '$rxnum',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
 
     }
     
