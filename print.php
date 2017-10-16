@@ -130,7 +130,7 @@
       $followUp = $row['FollowUp'];
       $returnTo = $row['ReturnTo'];
       $education = $row['Education'];
-      $practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
+      //$practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
       // Use these instead:
       $practitionerClinic = $row['DR_Clinic'];
       $practitionerClinic2 = $row['DR_Clinic2'];
@@ -236,7 +236,10 @@
 
     function severity($test, $text){
       $severity = "";
-      if($test == "1"){
+      if($test == null){
+        $text = "";
+        $Severity = "";
+      } elseif($test == "1"){
         $severity = " +";
       } elseif($test == "2") {
         $severity = " ++";
@@ -247,6 +250,44 @@
       echo $text . $severity;
     }
     
+    function practitioner($test, $text){
+      $practitioner = "";
+      if($test == null){
+        $text = "";
+        $practitioner = "";
+      } elseif($test == "1"){
+        $practitioner = " Karin Eulre";
+      } elseif($test == "2") {
+        $practitioner = " Chris Nolan";
+      }elseif($test == "3"){
+        $practitioner = " Mark Hardy";
+      }elseif($test == "4"){
+        $practitioner = " Christa Wilton";
+      }elseif($test == "5"){
+        $practitioner = " Jessica Fong";
+      }elseif($test == "6"){
+        $practitioner = " Deanna Rumsey";
+      }elseif($test == "7"){
+        $practitioner = " Wade Mitchell";
+      }elseif($test == "8"){
+        $practitioner = " Tara Andrusiak";
+      }elseif($test == "9"){
+        $practitioner = " Judy Kyte";
+      }elseif($test == "10"){
+        $practitioner = " Nancy Laframboise";
+      }elseif($test == "11"){
+        $practitioner = " Warren Meek";
+      }elseif($test == "12"){
+        $practitioner = " Dave Glass";
+      }elseif($test == "13"){
+        $practitioner = " Erin MacKenzie";
+      }elseif($test == "14"){
+        $practitioner= " Kelly Crotty";
+      }
+    
+
+      echo $text . $practitioner;
+    }
 
 ?>
 
@@ -473,10 +514,10 @@
           </div>
           <div class="row">
             <div class="col-3">
-              <?php severity($dx_Healthy, "HEALTHY"); ?>
+              <?php dropCheckbox($dx_Healthy, "HEALTHY"); ?>
             </div>
             <div class="col-3">
-              <?php severity($dx_NoTreatment, "NTR"); ?>
+              <?php dropCheckbox($dx_NoTreatment, "NTR"); ?>
             </div>
             <div class="col-3">
               <?php severity($dx_MSK, "MSK"); ?>
@@ -760,7 +801,13 @@
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">PRACTITIONERS:</span><br>
-          <?php dropContent($practitioners) ?>
+          <?php practitioner($practitionerClinic, "Clinc: ") ?>
+          <?php practitioner($practitionerClinic2, "Clinc2: ") ?>
+          <?php practitioner($practitionerClinic3, "Clin3: ") ?>
+          <?php practitioner($practitionerTest, "Test: ") ?>
+          <?php practitioner($practitionerEye, "Eye: ") ?>
+          <?php practitioner($practitionerDental, "Dental: ") ?>
+          <?php practitioner($practitionerRx, "Rx: ") ?>
         </div>
       </div>
 
