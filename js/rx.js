@@ -324,8 +324,8 @@
         lblTemp.innerHTML = "Temp (&#8451;):";
 
         // notes
-        txtAssess.value = "";
-        txtMeds.value = "";
+        txtAssess.innerHTML = "";
+        txtMeds.innerHTML = "";
 
         // drugs
         chkParac.checked = false;
@@ -427,8 +427,6 @@
         sendJson(sendJSON, dropdownScript, "drugs");
     }
 
-
-
     function getPatients() {
         // construct the JSON object to send to the handler
         var sendJSON = {
@@ -444,7 +442,7 @@
         loading();
 
         // clear the board
-        //clearAll();
+        clearAll();
 
         // construct the JSON object to send to the handler
         var sendJSON = {
@@ -653,7 +651,6 @@
 
         }
     }
-
 
     function drugsResponse(e) {
         if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
