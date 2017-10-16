@@ -1,4 +1,4 @@
-(function () {
+(function() {
     "use strict";
 
     // retrieve data
@@ -21,7 +21,7 @@
     var lblAge = null;
     var lblVillage = null;
     var lblCase = null;
-    
+
     var drpDispensary = null;
 
     var txtWeight = null;
@@ -30,7 +30,7 @@
     var txtBPBottom = null;
     var txtHR = null;
     var txtGlucose = null;
-    
+
     var rdoPregYes = null;
     var rdoPregNo = null;
     var rdoBreastYes = null;
@@ -71,7 +71,7 @@
         divDisplay = document.getElementById("divDisplay");
 
         //lblFeedback = document.getElementById("lblFeedback");
-        
+
         drpPatient = document.getElementById("drpPatient");
         drpVisit = document.getElementById("drpVisit");
 
@@ -79,36 +79,37 @@
         lblAge = document.getElementById("lblAge");
         lblVillage = document.getElementById("lblVillage");
         lblCase = document.getElementById("lblCase");
-        
+
         drpDispensary = document.getElementById("drpDispensary");
-        
+
         txtWeight = document.getElementById("txtWeight");
         txtTemp = document.getElementById("txtTemp");
         txtBPTop = document.getElementById("txtBPTop");
         txtBPBottom = document.getElementById("txtBPBottom");
         txtHR = document.getElementById("txtHR");
         txtGlucose = document.getElementById("txtGlucose");
-        
+
         rdoPregYes = document.getElementById("rdoPregYes");
         rdoPregNo = document.getElementById("rdoPregNo");
         rdoBreastYes = document.getElementById("rdoBreastYes");
         rdoBreastNo = document.getElementById("rdoBreastNo");
-    
+
         txtLive = document.getElementById("txtLive");
         txtGrav = document.getElementById("txtGrav");
         txtPara = document.getElementById("txtPara");
         txtAbort = document.getElementById("txtAbort");
         txtLNMP = document.getElementById("txtLNMP");
-    
+
         txtComplaint = document.getElementById("txtComplaint");
-    
+
         drpTriageTest = document.getElementById("drpTriageTest");
         drpTriageMED = document.getElementById("drpTriageMED");
         drpTriageGYN = document.getElementById("drpTriageGYN");
         drpTriageOPHT = document.getElementById("drpTriageOPHT");
         drpTriageDENT = document.getElementById("drpTriageDENT");
         drpTriageV = document.getElementById("drpTriageV");
-    
+
+
         btnSubmit = document.getElementById("btnSubmit");
 
         // clear all
@@ -121,6 +122,7 @@
         drpVisit.addEventListener("change", getThisVisit);
 
         // event listener for the button
+        btnPrintReg.addEventListener("click", toPrintReg);
         btnSubmit.addEventListener("click", onSubmit);
 
         /*
@@ -130,7 +132,7 @@
             feedback(lblFeedback.innerHTML);
         }
         */
-        
+
         // populate dropdowns
         getDispensaries();
         // dropdowns are done one at a time
@@ -168,7 +170,7 @@
     function sendJson(json, script, response) {
         // turn object into a string
         var sendString = JSON.stringify(json);
-        
+
         // send string to the server handler
         xmlhttp = new XMLHttpRequest();
 
@@ -193,10 +195,10 @@
         // send it
         xmlhttp.send(sendString);
     }
-    
+
     function clearAll() {
         lblCase.innerHTML = "Case #";
-        
+
         drpDispensary.selectedIndex = 0;
         txtWeight.value = "";
         txtTemp.value = "";
@@ -225,8 +227,9 @@
         drpTriageOPHT.selectedIndex = 0;
         drpTriageDENT.selectedIndex = 0;
         drpTriageV.selectedIndex = 0;
+
     }
-    
+
     // ------------------------------------------------------------ event handlers
 
     // ---------------------------------------------------------------- data requests
@@ -250,11 +253,11 @@
         // send the json off
         sendJson(sendJSON, dropdownScript, "patients");
     }
-    
+
     function getPatientStats() {
         // loading
         loading();
-        
+
         // clear the board
         clearAll();
 
@@ -287,7 +290,7 @@
 
         // check for new entry
         if (drpVisit.selectedIndex !== 0) {
-            
+
             // construct the JSON object to send to the handler
             var sendJSON = {
                 "request": "basic",
@@ -300,13 +303,18 @@
         }
     }
 
+    function toPrintReg() {
+        var win = window.open("printRegistration.php?id=" + drpVisit[drpVisit.selectedIndex].value, '_blank');
+        win.focus();
+    }
+
     // ---------------------------------------------------------------- data transfers
 
     function onSubmit(e) {
 
         // loading
         loading();
-        
+
         // checkboxes
         var preg = "no";
         var breast = "no";
@@ -322,8 +330,8 @@
             "upload": "basic",
             "patientid": drpPatient[drpPatient.selectedIndex].value,
             "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
-            "weight": txtWeight.value.replace(/[^0-9\.-]+/g,""),
-            "temp": txtTemp.value.replace(/[^0-9\.-]+/g,""),
+            "weight": txtWeight.value.replace(/[^0-9\.-]+/g, ""),
+            "temp": txtTemp.value.replace(/[^0-9\.-]+/g, ""),
             "BPTop": txtBPTop.value,
             "BPBottom": txtBPBottom.value,
             "heart": txtHR.value,
@@ -343,13 +351,13 @@
             "dent": drpTriageDENT[drpTriageDENT.selectedIndex].value,
             "triagev": drpTriageV[drpTriageV.selectedIndex].value
         };
-        
+
         console.log(sendJSON);
-        
+
         // send the json off
         sendJson(sendJSON, uploadScript, "submit");
     }
-    
+
     // ---------------------------------------------------------------- data response
 
     function dispensariesResponse(e) {
@@ -401,7 +409,7 @@
                 drpDispensary.selectedIndex = 0;
 
             }
-            
+
             // move onto patients
             getPatients();
 
@@ -472,7 +480,7 @@
                 }
                 */
             }
-            
+
         }
     }
 
@@ -524,7 +532,7 @@
 
             // loading check
             notLoading();
-            
+
             /*
             // failure or no entries?
             if (response.success) {
@@ -545,7 +553,7 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-            
+
             if (response.success) {
                 // populate the data
                 // dispensary
@@ -558,10 +566,10 @@
                 // bad feedback
                 //feedback(response.reason);
             }
-            
+
             // move onto visits
             getVisits();
-            
+
         }
     }
 
@@ -572,14 +580,14 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-            
+
             if (response.success) {
                 // populate the data
-                
+
                 lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
 
                 // run through the dispensary list until we find a match
-                for (var n=0;n < drpDispensary.length;n++) {
+                for (var n = 0; n < drpDispensary.length; n++) {
                     if (drpDispensary[n].value === response.entries[0].dispensary) {
                         drpDispensary.selectedIndex = n;
                         break;
@@ -618,37 +626,37 @@
                 txtComplaint.innerHTML = response.entries[0].complaint;
 
                 // stations
-                for (n=0;n < drpTriageTest.length;n++) {
+                for (n = 0; n < drpTriageTest.length; n++) {
                     if (drpTriageTest[n].value === response.entries[0].test) {
                         drpTriageTest.selectedIndex = n;
                         break;
                     }
                 }
-                for (n=0;n < drpTriageMED.length;n++) {
+                for (n = 0; n < drpTriageMED.length; n++) {
                     if (drpTriageMED[n].value === response.entries[0].med) {
                         drpTriageMED.selectedIndex = n;
                         break;
                     }
                 }
-                for (n=0;n < drpTriageGYN.length;n++) {
+                for (n = 0; n < drpTriageGYN.length; n++) {
                     if (drpTriageGYN[n].value === response.entries[0].gyn) {
                         drpTriageGYN.selectedIndex = n;
                         break;
                     }
                 }
-                for (n=0;n < drpTriageOPHT.length;n++) {
+                for (n = 0; n < drpTriageOPHT.length; n++) {
                     if (drpTriageOPHT[n].value === response.entries[0].opht) {
                         drpTriageOPHT.selectedIndex = n;
                         break;
                     }
                 }
-                for (n=0;n < drpTriageDENT.length;n++) {
+                for (n = 0; n < drpTriageDENT.length; n++) {
                     if (drpTriageDENT[n].value === response.entries[0].dent) {
                         drpTriageDENT.selectedIndex = n;
                         break;
                     }
                 }
-                for (n=0;n < drpTriageV.length;n++) {
+                for (n = 0; n < drpTriageV.length; n++) {
                     if (drpTriageV[n].value === response.entries[0].stationv) {
                         drpTriageV.selectedIndex = n;
                         break;
@@ -661,10 +669,10 @@
                 // bad feedback
                 //feedback(response.reason);
             }
-            
+
             // not loading
             notLoading();
-            
+
         }
     }
 
@@ -675,7 +683,7 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-            
+
             if (response.success) {
                 // update the dropdown
                 getVisits();
@@ -688,10 +696,10 @@
                 // bad feedback
                 //feedback(response.reason);
             }
-            
+
             // not loading
             notLoading();
-            
+
         }
     }
 
