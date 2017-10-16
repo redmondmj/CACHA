@@ -385,7 +385,6 @@
         $pzq = $data["pzq"];
         $alu = $data["alu"];
         $sulfadar = $data["sulfadar"];
-        $drugs = $data["drugs"];
 
         $other = $data["other"];
         
