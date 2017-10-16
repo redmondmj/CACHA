@@ -56,6 +56,7 @@
     var drpSulfadar = null;
     var drpMSK = null;
     var drpAsthma = null;
+    var txtOther = null;
 
     // STI/PID chart
     var chkSTI = null;
@@ -171,6 +172,7 @@
         drpSulfadar = document.getElementById("drpSulfadar");
         drpMSK = document.getElementById("drpMSK");
         drpAsthma = document.getElementById("drpAsthma");
+        txtOther = document.getElementById("txtOther");
 
         // STI/PID chart
         chkSTI = document.getElementById("chkSTI");
@@ -323,8 +325,8 @@
         lblTemp.innerHTML = "Temp (&#8451;):";
 
         // notes
-        txtAssess.innerHTML = "";
-        txtMeds.innerHTML = "";
+        txtAssess.value = "";
+        txtMeds.value = "";
 
         // drugs
         chkParac.checked = false;
@@ -339,6 +341,7 @@
         drpSulfadar.selectedIndex = 0;
         drpMSK.selectedIndex = 0;
         drpAsthma.selectedIndex = 0;
+        txtOther.innerHTML = "";
 
         // STI/PID chart
         chkSTI.checked = false;
@@ -534,6 +537,7 @@
             "sulfadar": drpSulfadar[drpSulfadar.selectedIndex].value,
             "msk": drpMSK[drpMSK.selectedIndex].value,
             "asthma": drpAsthma[drpAsthma.selectedIndex].value,
+            "other": txtOther.value,
             
             "chart": chart,
             //sti pid
@@ -965,6 +969,7 @@
                 // notes
                 txtAssess.innerHTML = response.entries[0].assess;
                 txtMeds.innerHTML = response.entries[0].meds;
+                txtOther.innerHTML = response.entries[0].other;
 
                 // drugs
                 if (response.entries[0].parac === "yes") { chkParac.checked = true; } else { chkParac.checked = false; }

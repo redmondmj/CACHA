@@ -417,6 +417,8 @@
                     public $msk = "";
                     public $asthma = "";
 
+                    public $other = "";
+
                     // sti chart
                     public $chart = "";
                 
@@ -510,6 +512,8 @@
                     $rx->pzq = $row["Rx_PZQ_Tabs"];
                     $rx->msk = $row["Rx_MSK"];
                     $rx->asthma = $row["Rx_Asthma"];
+
+                    $rx->other = $row["Rx_Other"];
 
                     // chart
                     $rx->chart = $row["SP_Type"];
