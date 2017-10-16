@@ -385,8 +385,7 @@
         $pzq = $data["pzq"];
         $alu = $data["alu"];
         $sulfadar = $data["sulfadar"];
-        $msk = $data["msk"];
-        $asthma = $data["asthma"];
+        $drugs = $data["drugs"];
 
         $other = $data["other"];
         
@@ -450,8 +449,6 @@
         if (!empty($alu)) {$sql .= "Rx_ALU = '$alu',";}
         if (!empty($pud)) {$sql .= "Rx_PUD = '$pud',";}
         if (!empty($pzq)) {$sql .= "Rx_PZQ_Tabs = '$pzq',";}
-        if (!empty($msk)) {$sql .= "Rx_MSK = '$msk',";}
-        if (!empty($asthma)) {$sql .= "Rx_Asthma = '$asthma',";}
         if (!empty($other)) {$sql .= "Rx_Other = '$other',";}
 
         // chart
