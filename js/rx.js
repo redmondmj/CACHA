@@ -229,6 +229,9 @@
         // clear all
         clearAll();
 
+        // event listener for drugs
+        drpDrugs.addEventListener("change", addDrug);
+
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
 
@@ -394,6 +397,10 @@
     function toChart() {
         var win = window.open("print.php?id=" + drpVisit[drpVisit.selectedIndex].value, '_blank');
         win.focus();
+    }
+
+    function addDrug() {
+        txtOther.value = txtOther.value + drpDrugs.value;
     }
 
     // ------------------------------------------------------------ event handlers
