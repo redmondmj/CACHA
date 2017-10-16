@@ -86,6 +86,7 @@
     var rdoANCNo = null;
     var rdoAnemiaYes = null;
     var rdoAnemiaNo = null;
+    var drpRedundant = null;
     var drpIPTp = null;
     var drpSulfadar = null;
 
@@ -139,7 +140,9 @@
     var txtP3Amox = null;
 
     // practitioner
-    var drpPract = null;
+    var drpPract1 = null;
+    var drpPract2 = null;
+    var drpPract3 = null;
 
     // stations
     var drpTriageTest = null;
@@ -243,9 +246,10 @@
         rdoANCNo = document.getElementById("rdoANCNo");
         rdoAnemiaYes = document.getElementById("rdoAnemiaYes");
         rdoAnemiaNo = document.getElementById("rdoAnemiaNo");
+        drpRedundant = document.getElementById("drpRedundant");
         drpIPTp = document.getElementById("drpIPTp");
         drpSulfadar = document.getElementById("drpSulfadar");
-
+        
         // notes
         txtFollow = document.getElementById("txtFollow");
         txtEdu = document.getElementById("txtEdu");
@@ -296,7 +300,9 @@
         txtP3Amox = document.getElementById("txtP3Amox");
 
         // practitioner
-        drpPract = document.getElementById("drpPract");
+        drpPract1 = document.getElementById("drpPract1");
+        drpPract2 = document.getElementById("drpPract2");
+        drpPract3 = document.getElementById("drpPract3");
 
         // stations
         drpTriageTest = document.getElementById("drpTriageTest");
@@ -310,6 +316,9 @@
 
         // clear all
         clearAll();
+
+        // redundancy prevention
+        drpRedundant.addEventListener("change", redundancyPrevention);
 
         // event listener for changing patients
         drpPatient.addEventListener("change", getPatientStats);
@@ -438,6 +447,7 @@
         txtOther.value = "";
 
         txtAssess.innerHTML = "";
+        txtMeds.innerHTML = "";
 
         // pregnancy
         txtWeeks.value = "";
@@ -445,7 +455,9 @@
         rdoANCNo.checked = false;
         rdoAnemiaYes.checked = false;
         rdoAnemiaNo.checked = false;
+        drpRedundant.selectedIndex = 0;
         drpIPTp.selectedIndex = 0;
+        drpIPTp.disabled = true;
         drpSulfadar.selectedIndex = 0;
 
         // other
@@ -498,7 +510,9 @@
         txtP3Amox.value = "";
 
         // practitioner
-        drpPract.selectedIndex = 0;
+        drpPract1.selectedIndex = 0;
+        drpPract2.selectedIndex = 0;
+        drpPract3.selectedIndex = 0;
 
         // stations
         drpTriageTest.selectedIndex = 0;
@@ -512,6 +526,15 @@
     function toChart() {
         var win = window.open("print.php?id=" + drpVisit[drpVisit.selectedIndex].value, '_blank');
         win.focus();
+    }
+
+    function redundancyPrevention() {
+        if (drpRedundant.selectedIndex === 0) {
+            drpIPTp.selectedIndex = 0;
+            drpIPTp.disabled = true;
+        } else {
+            drpIPTp.disabled = false;
+        }
     }
 
     // ------------------------------------------------------------ event handlers
@@ -603,8 +626,8 @@
 
         var referral = "";
         if (chkTB.checked) { referral = "tb"; }
-        if (chkSurgery.checked) { referral = "surgery"; }
         if (chkHospital.checked) { referral = "hospital"; }
+        if (chkSurgery.checked) { referral = "surgery"; }
 
         var chart = "";
         if (chkSTI.checked) { chart = "sti"; }
@@ -659,6 +682,8 @@
             "otherdesc": txtOther.value,
             "assess": txtAssess.value,
 
+            "meds": txtMeds.value,
+
             "weeks": txtWeeks.value,
             "anc": anc,
             "anemia": anemia,
@@ -708,7 +733,9 @@
             "P3Doxy": txtP3Doxy.value,
             "P3Amox": txtP3Amox.value,
 
-            "pract": drpPract[drpPract.selectedIndex].value,
+            "pract1": drpPract1[drpPract1.selectedIndex].value,
+            "pract2": drpPract2[drpPract2.selectedIndex].value,
+            "pract3": drpPract3[drpPract3.selectedIndex].value,
 
             "test": drpTriageTest[drpTriageTest.selectedIndex].value,
             "med": drpTriageMED[drpTriageMED.selectedIndex].value,
@@ -735,7 +762,9 @@
             var response = JSON.parse(xmlhttp.responseText);
 
             // clear the dropdown
-            drpPract.innerHTML = "";
+            drpPract1.innerHTML = "";
+            drpPract2.innerHTML = "";
+            drpPract3.innerHTML = "";
 
             // how many entries are in the JSON?
             var entryCount = response.entries.length;
@@ -744,25 +773,45 @@
             if (entryCount > 0) {
 
                 // first entry into the list is for a blank entry option
-                var first = new Option();
-                first.id = 0;
-                first.text = "None Selected";
-                first.value = 0;
+                var first1 = new Option();
+                var first2 = new Option();
+                var first3 = new Option();
+                first1.id = 0;
+                first2.id = 0;
+                first3.id = 0;
+                first1.text = "None Selected";
+                first2.text = "None Selected";
+                first3.text = "None Selected";
+                first1.value = 0;
+                first2.value = 0;
+                first3.value = 0;
 
-                // add element as an option
-                $(drpPract).append(first);
+                // add elements as an option
+                $(drpPract1).append(first1);
+                $(drpPract2).append(first2);
+                $(drpPract3).append(first3);
 
                 // populate the dropdown menu
                 for (var i = 0; i < entryCount; i++) {
 
                     // build the option element and add properties
-                    var option = new Option();
-                    option.id = i + 1;
-                    option.text = response.entries[i].title + " " + response.entries[i].fname + " " + response.entries[i].lname;
-                    option.value = response.entries[i].id;
+                    var option1 = new Option();
+                    var option2 = new Option();
+                    var option3 = new Option();
+                    option1.id = i + 1;
+                    option2.id = i + 1;
+                    option3.id = i + 1;
+                    option1.text = response.entries[i].title + " " + response.entries[i].fname + " " + response.entries[i].lname;
+                    option2.text = response.entries[i].title + " " + response.entries[i].fname + " " + response.entries[i].lname;
+                    option3.text = response.entries[i].title + " " + response.entries[i].fname + " " + response.entries[i].lname;
+                    option1.value = response.entries[i].id;
+                    option2.value = response.entries[i].id;
+                    option3.value = response.entries[i].id;
 
                     // add element to dropdown
-                    $(drpPract).append(option);
+                    $(drpPract1).append(option1);
+                    $(drpPract2).append(option2);
+                    $(drpPract3).append(option3);
                 }
 
             } else {
@@ -775,7 +824,9 @@
                 option.value = 0;
 
                 // add element to dropdown
-                $(drpPract).append(option);
+                $(drpPract1).append(option);
+                $(drpPract2).append(option);
+                $(drpPract3).append(option);
 
                 /*
                 // failure or no entries?
@@ -789,7 +840,9 @@
             }
 
             // set sponsor data for first entry
-            drpPract.selectedIndex = 0;
+            drpPract1.selectedIndex = 0;
+            drpPract2.selectedIndex = 0;
+            drpPract3.selectedIndex = 0;
 
             // move onto the next list
             getPatients();
@@ -1006,7 +1059,8 @@
                         break;
                     }
                 }
-
+                txtMeds.innerHTML = response.entries[0].txtMeds;
+                
                 // admin section
                 if (response.entries[0].parac === "yes") { chkParac.checked = true; } else { chkParac.checked = false; }
                 if (response.entries[0].benz === "yes") { chkBenz.checked = true; } else { chkBenz.checked = false; }
@@ -1090,6 +1144,8 @@
                         break;
                     }
                 }
+                // redundancy protection
+                if (drpIPTp.selectedIndex !== 0) {drpIPTp.disabled = false;drpRedundant.selectedIndex = 1;}
                 for (n = 0; n < drpSulfadar.length; n++) {
                     if (drpSulfadar[n].value === response.entries[0].sulfadar) {
                         drpSulfadar.selectedIndex = n;
@@ -1207,9 +1263,21 @@
                 txtP3Amox.value = response.entries[0].p3amox;
 
                 // practitioner
-                for (n = 0; n < drpPract.length; n++) {
-                    if (drpPract[n].value === response.entries[0].pract) {
-                        drpPract.selectedIndex = n;
+                for (n = 0; n < drpPract1.length; n++) {
+                    if (drpPract1[n].value === response.entries[0].pract1) {
+                        drpPract1.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n = 0; n < drpPract2.length; n++) {
+                    if (drpPract2[n].value === response.entries[0].pract2) {
+                        drpPract2.selectedIndex = n;
+                        break;
+                    }
+                }
+                for (n = 0; n < drpPract3.length; n++) {
+                    if (drpPract3[n].value === response.entries[0].pract3) {
+                        drpPract3.selectedIndex = n;
                         break;
                     }
                 }
@@ -1259,8 +1327,6 @@
                 }
 
             } else {
-
-
                 // bad feedback
                 //feedback(response.reason);
             }
