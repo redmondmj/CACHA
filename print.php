@@ -136,8 +136,11 @@
       $practitionerEye = $row['DR_Eye'];
       $practitionerDental = $row['DR_Dental'];
       $practitionerRx = $row['DR_Rx'];
-      
-      $referral = $row['Referral'];
+
+
+      $referralTB = $row['RefTB'];
+      $referralHospital = $row['RefHospital'];
+      $referralSurgery = $row['RefSurgery'];
       $rxNum = $row['RXNum'];
       $firstName = $row['FirstName'];
       $lastName = $row['LastName'];
@@ -240,39 +243,8 @@
 
       echo $text . $severity;
     }
+    
 
-    function getPractitioner($id){
-      $mysql_user = "cacha_web";
-      $mysql_pass = "p2DaavTC03Vr";
-      $mysql_host = "localhost:3306";
-      $db_name = "cacha_medrec";
-  
-      // build the response object
-      class ResponseObject {
-          public $success = false;
-          public $reason = "";
-          public $entries = array();
-      }
-  
-      $response = new ResponseObject();
-      @$connect = new mysqli($mysql_host, $mysql_user, $mysql_pass, $db_name);
-      if ($connect->connect_error) {
-          $response->reason = $connect->connect_error;
-          echo json_encode($response);
-          die;
-      }
-      try{
-        $sql2="SELECT `FirstName`,`LastName` FROM `tbl_practitioner` WHERE `PractitionerID` = $id";
-        $result = mysqli_query($connect, $sql2) or die(mysqli_error($connect));
-        $row = mysqli_fetch_assoc($result);
-        echo "<span style='color:#000000;padding-right:10px'>$result</span>";
-      } catch(Error $e){
-        echo false;
-      } finally {
-        // mysqli_stmt_close($connect);
-          mysqli_close($connect);
-      }
-    }
 ?>
 
 
@@ -783,29 +755,28 @@
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">PRACTITIONERS:</span><br>
-          <?php getPractitioner($practitionerClinic); ?>
+          <?php dropContent($practitioners) ?>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">REFERRAL:</span>
-          <?php if (preg_match('/tb/', $referral)) : ?>
-            <?php dropCheckbox("yes", "TB"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "TB"); ?>
-          <?php endif ?>
-
-          <?php if (preg_match('/surgery/', $referral)) : ?>
-            <?php dropCheckbox("yes", "SURGERY"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "SURGERY"); ?>
-          <?php endif ?>
-          <?php if (preg_match('/hospital/', $referral)) : ?>
-            <?php dropCheckbox("yes", "HOSPITAL"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "HOSPITAL"); ?>
-          <?php endif ?>
+            <?php if ($referralTB == "yes") : ?>
+            <?php dropCheckbox("yes","TB"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","TB"); ?>
+            <?php endif ?>
+            <?php if ($referralHospital == "yes") : ?>
+            <?php dropCheckbox("yes","Hospital"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","Hospital"); ?>
+            <?php endif ?>
+            <?php if ($referralSurgery == "yes") : ?>
+            <?php dropCheckbox("yes","Surgey"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","Surgery"); ?>
+            <?php endif ?>
           <span style="font-weight:bold">RX #:</span> <?php dropContent($rxNum); ?>
         </div>
       </div>
