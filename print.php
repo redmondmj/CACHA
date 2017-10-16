@@ -271,14 +271,15 @@
           <div>Alliance de Sante Communitaire Canada-Afrique</div>
           Triage: <!--<?php //dropContent("Sample Text"); ?> Not sure anything is supposed to be here -->
 
-          <?php dropCheckbox($triageTesting, "TESTING"); ?>
+
+          Testing: <?php dropContent($triageTesting); ?>
           <div>
             Triage:
-            <?php dropCheckbox($triageMedical, "MED"); ?>
-            <?php dropCheckbox($triageGYN, "GYN"); ?>
-            <?php dropCheckbox($triageOPHT, "OPHT"); ?>
-            <?php dropCheckbox($triageDENT, "DENT"); ?>
-            <?php dropCheckbox($triageVenDis, "V"); ?>
+            MED: <?php dropContent($triageMedical); ?>
+            GYN: <?php dropContent($triageGYN); ?>
+            OPT: <?php dropContent($triageOPHT); ?>
+            DENT: <?php dropContent($triageDENT); ?>
+            V: <?php dropContent($triageVenDis); ?>
           </div>
         </div>
 
