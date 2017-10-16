@@ -548,7 +548,7 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
-        $sql .= "TriageTesting = 'complete'";
+        $sql .= "TriageTesting = 'complete',";
 
         if (!empty($v)) {$sql .= "VTest = '$v',";}
         if (!empty($mal)) {$sql .= "MalariaTest = '$mal',";}
@@ -600,7 +600,7 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
-        $sql .= "TriageOPHT = 'complete'";
+        $sql .= "TriageOPHT = 'complete',";
 
         // notes
         if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
@@ -632,7 +632,7 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
 
-        $sql .= "TriageDENT = 'complete'";
+        $sql .= "TriageDENT = 'complete',";
         
         // notes
         if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
