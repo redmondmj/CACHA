@@ -81,7 +81,7 @@
       $dx_Other = $row['DX_Other'];
       $dx_OtherDescrip = $row['DX_OtherDesc'];
       $regANC = $row['RegANC'];
-      $prevIPTpYes = $row['PrevIPTpYes'];
+      $prevIPTpYes = $row['LastIPTpx'];
       $lastIPTpx /* check this */ = $row['LastIPTpx'];
       $clinicalAnemia = $row['ClinicalAnemia'];
       $sulfadar = $row['Sulfadar'];
@@ -94,8 +94,8 @@
       $rx_PUD = $row['Rx_PUD'];
       $rx_PZQ_Tabs = $row['Rx_PZQ_Tabs'];
       $rx_PZQ_Dose = $row['Rx_PZQ_Dose'];
-      $rx_Eye = $row['RX_Eye'];
-      $rx_Other = $row['RX_Other'];
+      $rx_Eye = $row['Rx_Eye'];
+      $rx_Other = $row['Rx_Other'];
       $sp_PatInit = $row['SP_PTInitials'];
       $sp_PatGender = $row['SP_PTSex'];
       $sp_PatPreg = $row['SP_PTPreg'];
@@ -138,7 +138,7 @@
       $lastName = $row['LastName'];
       $village = $row['Village'];
       $birthYear = $row['BirthYear'];
-      $sex = $row['sex'];
+      $sex = $row['Sex'];
       $eyeVal1 = $row['Eye_Val1'];
       $eyeVal2 = $row['Eye_Val2'];
       $eyeVal3 = $row['Eye_Val3'];
