@@ -681,7 +681,7 @@
                     var option = new Option();
                     option.id = i + 1;
                     option.text = response.entries[i].display;
-                    option.value = response.entries[i].id;
+                    option.value = response.entries[i].display + ", ";
 
                     // add element to dropdown
                     $(drpDrugs).append(option);
