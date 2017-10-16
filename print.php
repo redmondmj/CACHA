@@ -96,7 +96,7 @@
       $rx_PZQ_Dose = $row['Rx_PZQ_Dose'];
       $rx_Eye = $row['RX_Eye'];
       $rx_Other = $row['RX_Other'];
-      $sp_PatInit = $row['SP_PTInitial'];
+      $sp_PatInit = $row['SP_PTInitials'];
       $sp_PatGender = $row['SP_PTSex'];
       $sp_PatPreg = $row['SP_PTPreg'];
       $sp_PatNumMonths = $row['SP_PTMonths'];
@@ -104,7 +104,7 @@
       $sp_PatMTZ = $row['SP_PTMTZ'];
       $sp_PatDoxy = $row['SP_PTDoxy'];
       $sp_PatAmox = $row['SP_PTAmox'];
-      $sp_Par1Init = $row['SP_PT1Initial'];
+      $sp_Par1Init = $row['SP_PT1Initials'];
       $sp_Par1Gender = $row['SP_PT1Sex'];
       $sp_Par1Preg = $row['SP_PT1Preg'];
       $sp_Par1NumMonths = $row['SP_PT1Months'];
@@ -112,7 +112,7 @@
       $sp_Par1MTZ = $row['SP_PT1MTZ'];
       $sp_Par1Doxy = $row['SP_PT1Doxy'];
       $sp_Par1Amox = $row['SP_PT1Amox'];
-      $sp_Par2Init = $row['SP_PT2Initial'];
+      $sp_Par2Init = $row['SP_PT2Initials'];
       $sp_Par2Gender = $row['SP_PT2Sex'];
       $sp_Par2Preg = $row['SP_PT2Preg'];
       $sp_Par2NumMonths = $row['SP_PT2Months'];
@@ -120,7 +120,7 @@
       $sp_Par2MTZ = $row['SP_PT2MTZ'];
       $sp_Par2Doxy = $row['SP_PT2Doxy'];
       $sp_Par2Amox = $row['SP_PT2Amox'];
-      $sp_Par3Init = $row['SP_PT3Initial'];
+      $sp_Par3Init = $row['SP_PT3Initials'];
       $sp_Par3Gender = $row['SP_PT3Sex'];
       $sp_Par3Preg = $row['SP_PT3Preg'];
       $sp_Par3NumMonths = $row['SP_PT3Months'];
