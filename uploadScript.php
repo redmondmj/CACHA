@@ -500,6 +500,134 @@
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
 
+    } else if ($data["upload"] == "test") {
+        
+        $visitID = $data["visitid"];
+
+        // test
+        $v = $data["v"];
+        $mal = $data["mal"];
+        $syph = $data["syph"];
+        $typh = $data["typh"];
+        $preg = $data["preg"];
+
+        $lastv = $data["lastv"];
+        $lastpzq = $data["lastpzq"];
+        $lastworm = $data["lastworm"];
+        $lastvita = $data["lastvita"];
+
+        $leuc = $data["leuc"];
+        $rbc = $data["rbc"];
+        $glucose = $data["glucose"];
+        $nit = $data["nit"];
+
+        // drugs
+        $parac = $data["parac"];
+        $benz = $data["benz"];
+        $ceft = $data["ceft"];
+        
+        // practitioner and rxnum
+        $pract = $data["pract"];
+
+        // notes
+        $assess = $data["assess"];
+        $meds = $data["meds"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        if (!empty($v)) {$sql .= "VTest = '$v',";}
+        if (!empty($mal)) {$sql .= "MalariaTest = '$mal',";}
+        if (!empty($syph)) {$sql .= "SyphilisTest = '$syph',";}
+        if (!empty($typh)) {$sql .= "TyphTest = '$typh',";}
+        if (!empty($leuc)) {$sql .= "UrineLeucTest = '$leuc',";}
+        if (!empty($rbc)) {$sql .= "UrineRBCTest = '$rbc',";}
+        if (!empty($glucose)) {$sql .= "UrineGlucoseTest = '$glucose',";}
+        if (!empty($nit)) {$sql .= "UrineNitritesTest = '$nit',";}
+        if (!empty($preg)) {$sql .= "PregnancyTest = '$preg',";}
+
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+
+        if (!empty($lastv)) {$sql .= "LastHIVTest = '$lastv',";}
+        if (!empty($lastpzq)) {$sql .= "LastPZQTx = '$lastpzq',";}
+        if (!empty($lastworm)) {$sql .= "LastWormTx = '$lastworm',";}
+        if (!empty($lastvita)) {$sql .= "LastVitA = '$lastvita',";}
+
+        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
+        
+        if (!empty($parac)) {$sql .= "Rx_Paracetamol = '$parac',";}
+        if (!empty($benz)) {$sql .= "Rx_BenzPen = '$benz',";}
+        if (!empty($ceft)) {$sql .= "Rx_Ceftriaxone = '$ceft',";}
+        
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Test = '$pract',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
+
+    } else if ($data["upload"] == "eye") {
+        
+        $visitID = $data["visitid"];
+
+        // eye values
+        $eye1 = $data["eyeval1"];
+        $eye2 = $data["eyeval2"];
+        $eye3 = $data["eyeval3"];
+        
+        // practitioner and rxnum
+        $pract = $data["pract"];
+
+        // notes
+        $assess = $data["assess"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        // notes
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+
+        // eye values
+        if (!empty($eye1)) {$sql .= "Eye_Val1 = '$eye1',";}
+        if (!empty($eye2)) {$sql .= "Eye_Val2 = '$eye2',";}
+        if (!empty($eye3)) {$sql .= "Eye_Val3 = '$eye3',";}
+        
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Eye = '$pract',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
+
+    } else if ($data["upload"] == "dent") {
+        
+        $visitID = $data["visitid"];
+
+        // practitioner and rxnum
+        $pract = $data["pract"];
+
+        // notes
+        $assess = $data["assess"];
+        
+        // build the giant sql string
+        $sql = "UPDATE tbl_visit SET ";
+        
+        // notes
+        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+
+        // rx practitioner
+        if (!empty($pract)) {$sql .= "DR_Dental = '$pract',";}
+    
+        // remove last comma and add bracket
+        $sql = substr_replace($sql ,"",-1);
+        
+        // add conditon
+        $sql .= " WHERE VisitID = $visitID";
+
     }
     
     try {
