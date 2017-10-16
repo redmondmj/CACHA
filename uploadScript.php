@@ -387,6 +387,8 @@
         $sulfadar = $data["sulfadar"];
         $msk = $data["msk"];
         $asthma = $data["asthma"];
+
+        $other = $data["other"];
         
         // chart
         $chart = $data["chart"];
@@ -450,6 +452,7 @@
         if (!empty($pzq)) {$sql .= "Rx_PZQ_Tabs = '$pzq',";}
         if (!empty($msk)) {$sql .= "Rx_MSK = '$msk',";}
         if (!empty($asthma)) {$sql .= "Rx_Asthma = '$asthma',";}
+        if (!empty($other)) {$sql .= "Rx_Other = '$other',";}
 
         // chart
         if (!empty($chart)) {$sql .= "SP_Type = '$chart',";}
