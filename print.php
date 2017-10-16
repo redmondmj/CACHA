@@ -131,7 +131,10 @@
       $returnTo = $row['ReturnTo'];
       $education = $row['Education'];
       $practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
+      // Use these instead:
       $practitionerClinic = $row['DR_Clinic'];
+      $practitionerClinic2 = $row['DR_Clinic2'];
+      $practitionerClinic3 = $row['DR_Clinic3'];
       $practitionerTest = $row['DR_Test'];
       $practitionerEye = $row['DR_Eye'];
       $practitionerDental = $row['DR_Dental'];
@@ -271,14 +274,15 @@
           <div>Alliance de Sante Communitaire Canada-Afrique</div>
           Triage: <!--<?php //dropContent("Sample Text"); ?> Not sure anything is supposed to be here -->
 
-          <?php dropCheckbox($triageTesting, "TESTING"); ?>
+
+          Testing: <?php dropContent($triageTesting); ?>
           <div>
             Triage:
-            <?php dropCheckbox($triageMedical, "MED"); ?>
-            <?php dropCheckbox($triageGYN, "GYN"); ?>
-            <?php dropCheckbox($triageOPHT, "OPHT"); ?>
-            <?php dropCheckbox($triageDENT, "DENT"); ?>
-            <?php dropCheckbox($triageVenDis, "V"); ?>
+            MED: <?php dropContent($triageMedical); ?>
+            GYN: <?php dropContent($triageGYN); ?>
+            OPT: <?php dropContent($triageOPHT); ?>
+            DENT: <?php dropContent($triageDENT); ?>
+            V: <?php dropContent($triageVenDis); ?>
           </div>
         </div>
 
