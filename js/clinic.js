@@ -510,7 +510,7 @@
     }
 
     function toChart() {
-        var win = window.open("print.php", '_blank');
+        var win = window.open("print.php?id=" + drpVisit[drpVisit.selectedIndex].value, '_blank');
         win.focus();
     }
 
