@@ -204,7 +204,10 @@
         // follow-up, education and referral
         $follow = $data["follow"];
         $edu = $data["edu"];
-        $referral = $data["referral"];
+
+        $tb = $data["tb"];
+        $hospital = $data["hospital"];
+        $surgery = $data["surgery"];
     
         // chart
         $chart = $data["chart"];
@@ -362,7 +365,9 @@
         if (!empty($edu)) {$sql .= "Education = '$edu',";}
 
         // referral
-        if (!empty($referral)) {$sql .= "Referral = '$referral',";}
+        if (!empty($tb)) {$sql .= "RefTB = '$tb',";}
+        if (!empty($hospital)) {$sql .= "RefHospital = '$hospital',";}
+        if (!empty($surgery)) {$sql .= "RefSurgery = '$surgery',";}
 
         // clinic practitioner
         if (!empty($pract1)) {$sql .= "DR_Clinic = '$pract1',";}
