@@ -506,6 +506,9 @@
         if (chkSTI.checked) { chart = "sti"; }
         if (chkPID.checked) { chart = "pid"; }
 
+        console.log(txtAssess.value);
+        console.log(txtAssess.innerHTML);
+
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "rx",
