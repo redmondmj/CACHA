@@ -624,10 +624,12 @@
         if (chkHealthy.checked) { healthy = "yes"; }
         if (chkNTR.checked) { ntr = "yes"; }
 
-        var referral = "";
-        if (chkTB.checked) { referral = "tb"; }
-        if (chkHospital.checked) { referral = "hospital"; }
-        if (chkSurgery.checked) { referral = "surgery"; }
+        var tb = "no";
+        var hospital = "no";
+        var surgery = "no";
+        if (chkTB.checked) { tb = "yes"; }
+        if (chkHospital.checked) { hospital = "yes"; }
+        if (chkSurgery.checked) { surgery = "yes"; }
 
         var chart = "";
         if (chkSTI.checked) { chart = "sti"; }
@@ -693,7 +695,9 @@
             "follow": txtFollow.value,
             "edu": txtEdu.value,
 
-            "referral": referral,
+            "tb": tb,
+            "hospital": hospital,
+            "surgery": surgery,
 
             "chart": chart,
 
@@ -1158,9 +1162,9 @@
                 txtEdu.innerHTML = response.entries[0].edu;
 
                 // referrals
-                if (response.entries[0].referral === "tb") { chkTB.checked = true; } else { chkTB.checked = false; }
-                if (response.entries[0].referral === "surgery") { chkSurgery.checked = true; } else { chkSurgery.checked = false; }
-                if (response.entries[0].referral === "hospital") { chkHospital.checked = true; } else { chkHospital.checked = false; }
+                if (response.entries[0].tb === "yes") { chkTB.checked = true; } else { chkTB.checked = false; }
+                if (response.entries[0].surgery === "yes") { chkSurgery.checked = true; } else { chkSurgery.checked = false; }
+                if (response.entries[0].hospital === "yes") { chkHospital.checked = true; } else { chkHospital.checked = false; }
 
                 // STI/PID info
                 if (response.entries[0].chart === "sti") { chkSTI.checked = true; } else { chkSTI.checked = false; }
