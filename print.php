@@ -402,9 +402,9 @@
 
         <div class="col-4" style="background:#EAFFDE">
           LAST HIV TEST? <?php dropContent( $lastHIVTest); ?>3 months<br>
-          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?>3 months<br>
-          LAST WORM TX? <?php dropContent( $lastWormTx); ?>3 months<br>
-          LAST VIT A? <?php dropContent( $lastVitA); ?>3 months<br>
+          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?>6 months<br>
+          LAST WORM TX? <?php dropContent( $lastWormTx); ?>6 months<br>
+          LAST VIT A? <?php dropContent( $lastVitA); ?>6 months<br>
           PREV MEDS? <?php dropContent( $prevMeds); ?>
         </div>
 
