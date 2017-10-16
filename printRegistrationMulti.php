@@ -8,10 +8,12 @@
     parse_str($parts['query'], $query);
     
     //assign visitID
-    $visitID = $query['id'];
+    $visitID1 = $query['id1'];
+    $visitID1 = $query['id2'];
+    $visitID1 = $query['id3'];
 
-    
-    $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID";
+   
+    $sql = "SELECT * FROM tbl_patient INNER JOIN tbl_visit ON tbl_patient.PatientID = tbl_visit.PatientID WHERE tbl_visit.VisitID = $visitID1";
 
   try{
       $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
@@ -104,7 +106,7 @@
         </div>
         <br>
         <div class="col-3" style="background:#EAFFDE">
-        <span style="font-weight:bold">CHART#:</span> <?php dropContent($visitID); ?><br>
+        <span style="font-weight:bold">CHART#:</span> <?php dropContent($visitID1); ?><br>
         <span style="font-weight:bold">DISPENSARY:</span> <?php dropContent($visitedDispensary); ?><br>
         <span style="font-weight:bold">TIME:</span> <?php dropContent($visitTime); ?><br>
         <span style="font-weight:bold">DATE:</span> <?php dropContent($visitDate); ?><br>
