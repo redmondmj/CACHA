@@ -81,8 +81,7 @@
       $dx_Other = $row['DX_Other'];
       $dx_OtherDescrip = $row['DX_OtherDesc'];
       $regANC = $row['RegANC'];
-      $prevIPTpYes = $row['PrevIPTpYes'];
-      $lastIPTpx /* check this */ = $row['LastIPTpx'];
+      $lastIPTpx = $row['LastIPTpx'];
       $clinicalAnemia = $row['ClinicalAnemia'];
       $sulfadar = $row['Sulfadar'];
       $rx_Paracetamol = $row['Rx_Paracetamol'];
@@ -132,6 +131,12 @@
       $returnTo = $row['ReturnTo'];
       $education = $row['Education'];
       $practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
+      $practitionerClinic = $row['DR_Clinic'];
+      $practitionerTest = $row['DR_Test'];
+      $practitionerEye = $row['DR_Eye'];
+      $practitionerDental = $row['DR_Dental'];
+      $practitionerRx = $row['DR_Rx'];
+      
       $referral = $row['Referral'];
       $rxNum = $row['RXNum'];
       $firstName = $row['FirstName'];
@@ -236,6 +241,19 @@
       echo $text . $severity;
     }
 
+    function getPractitioner($id){
+      try{
+        $sql2="SELECT `FirstName`,`LastName` FROM `tbl_practitioner` WHERE `PractitionerID` = $id";
+        $result = mysqli_query($connect, $sql2) or die(mysqli_error($connect));
+        $row = mysqli_fetch_assoc($result);
+        echo "<span style='color:#000000;padding-right:10px'>$result</span>";
+      } catch(Error $e){
+        echo false;
+      } finally {
+        // mysqli_stmt_close($connect);
+          mysqli_close($connect);
+      }
+    }
 ?>
 
 
@@ -585,7 +603,13 @@
             <div class="col-12"><?php dropCheckbox($rx_PUD, "PUD: 7/7 AMOX250 3X2 + OMEP20 1X2+ MTZ200MG 3X2"); ?></div>
             </div>
             <div class="row">
-            <div class="col-4"><?php dropCheckbox($rx_PZQ_Dose, "PZQ600mg"); ?></div>
+            <div class="col-4">
+              <?php if ($rx_PZQ_Tabs > 0) : ?>
+                <?php dropCheckbox("yes","PZQ600mg"); ?>
+              <?php else : ?>
+                <?php dropCheckbox("no","PZQ600mg"); ?>
+              <?php endif ?>
+            </div>
             <div class="col-8">#TABS STAT: <?php dropContent($rx_PZQ_Tabs); ?></div>
             </div>
           </div>
@@ -740,7 +764,7 @@
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">PRACTITIONERS:</span><br>
-          <?php dropContent($practitioners); ?>
+          <?php getPractitioner($practitionerClinic); ?>
         </div>
       </div>
 
