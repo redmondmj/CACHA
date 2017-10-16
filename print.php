@@ -81,7 +81,7 @@
       $dx_Other = $row['DX_Other'];
       $dx_OtherDescrip = $row['DX_OtherDesc'];
       $regANC = $row['RegANC'];
-      $prevIPTpYes = $row['LastIPTpx'];
+      $prevIPTpYes = $row['PrevIPTpYes'];
       $lastIPTpx /* check this */ = $row['LastIPTpx'];
       $clinicalAnemia = $row['ClinicalAnemia'];
       $sulfadar = $row['Sulfadar'];
@@ -512,26 +512,15 @@
 
           <div class="row">
             <div class="col-12">
-              PREVIOUS IPTp:
-              <?php if($prevIPTpYes == "1") : ?>
-                <?php dropCheckbox("yes","YES"); ?>
-                <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
-                <?php dropCheckbox("no","YES"); ?>
-                <?php dropCheckbox("yes","NO"); ?>
-              <?php endif ?>
+              PREVIOUS IPTp: 
+              <?php dropContent($lastIPTpx) ?>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              LAST  IPTp: >1 MONTH AGO 
-              <?php if ($lastIPTpx == "0") : ?>
-                <?php dropCheckbox("yes","YES"); ?>
-                <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
-                <?php dropCheckbox("no","YES"); ?>
-                <?php dropCheckbox("yes","NO"); ?>
-              <?php endif ?>
+              LAST  IPTp:  
+              <?php dropContent($lastIPTpx) ?>
+               -1 MONTH AGO
             </div>
           </div>
           <div class="row">
