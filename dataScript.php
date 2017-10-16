@@ -169,7 +169,9 @@
                     public $parac = "";
                     public $benz = "";
                     public $ceft = "";
-        
+
+                    public $meds = "";
+                    
                     // diagnosis
                     public $healthy = "";
                     public $ntr = "";
@@ -255,7 +257,9 @@
                     public $p3amox = 0;
 
                     // practitioner
-                    public $pract = 0;
+                    public $pract1 = 0;
+                    public $pract2 = 0;
+                    public $pract3 = 0;
 
                     // stations
                     public $test = "";
@@ -297,6 +301,8 @@
                     $clinic->lastpzq = $row["LastPZQTx"];
                     $clinic->lastworm = $row["LastWormTx"];
                     $clinic->lastvita = $row["LastVitA"];
+
+                    $clinic->meds = $row["PrevMeds"];
 
                     // diagnosis
                     $clinic->healthy = $row["DX_Healthy"];
@@ -383,7 +389,9 @@
                     $clinic->edu = $row["Education"];
 
                     // clinic practitioner
-                    $clinic->pract = $row["DR_Clinic"];
+                    $clinic->pract1 = $row["DR_Clinic"];
+                    $clinic->pract2 = $row["DR_Clinic2"];
+                    $clinic->pract3 = $row["DR_Clinic3"];
 
                     // put the object into the response
                     array_push($response->entries, $clinic);
