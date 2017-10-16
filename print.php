@@ -399,7 +399,7 @@
       
       <div class="row">
 
-        <div class="col-8" style="background:#EAFFDE">
+        <div class="col-5" style="background:#EAFFDE">
           <span style="font-weight:bold">ASSESSMENT:</span><br>
           <?php dropContent($assessment); ?>
         </div>
@@ -411,8 +411,59 @@
           LAST VIT A? <?php dropContent( $lastVitA); ?>6 months<br>
           PREV MEDS? <?php dropContent( $prevMeds); ?>
         </div>
+        <div class="col-3" style="background:#EAFFDE">
 
+              <!-- THIS IS GREASY INDEED!!!! -->
+              <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <p style="font-size:5em">V</p>
+                    </td>
+                    <td>
+                        <table>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>val 1</td></tr>
+                            <tr>
+                                <td>
+                                <?php dropContent($eyeVal1); ?>
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                              <td style="text-align: center; width: 300px;">
+                                val 3
+                                <br>
+                                <?php dropContent($eyeVal3); ?>
+                              </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>val 2</td></tr>
+                            <tr>
+                                <td>
+                                <?php dropContent($eyeVal2); ?>
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                        </table>
+                    </td>
+                    <td>
+                      Eye:<?php dropContent($rx_Eye); ?>
+                    </td>
+
+                </tr>
+            </table>
+            <!-- THIS IS GREASY INDEED!!!! -->
+          </div>
       </div>
+      
 
       <div class="row">
 
@@ -608,60 +659,10 @@
             <div class="col-8">#TABS STAT: <?php dropContent($rx_PZQ_Tabs); ?></div>
             </div>
           </div>
-
           <div>
+            Other RX:<?php dropContent($rx_Other); ?>
+  </div>
 
-              <!-- THIS IS GREASY INDEED!!!! -->
-              <table>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <p style="font-size:5em">V</p>
-                    </td>
-                    <td>
-                        <table>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>val 1</td></tr>
-                            <tr>
-                                <td>
-                                <?php dropContent($eyeVal1); ?>
-                                </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr>
-                              <td style="text-align: center; width: 300px;">
-                                val 3
-                                <br>
-                                <?php dropContent($eyeVal3); ?>
-                              </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>val 2</td></tr>
-                            <tr>
-                                <td>
-                                <?php dropContent($eyeVal2); ?>
-                                </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                        </table>
-                    </td>
-                    <td>
-                      Eye:<?php dropContent($rx_Eye); ?>
-                    </td>
-                    <td>
-                      Other RX:<?php dropContent($rx_Other); ?>
-                    </td>
-                </tr>
-            </table>
-            <!-- THIS IS GREASY INDEED!!!! -->
-          </div>
 
         </div>
       </div>
