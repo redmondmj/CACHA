@@ -215,7 +215,9 @@
                     public $edu = "";
         
                     // referral
-                    public $referral = "";
+                    public $tb = "";
+                    public $hospital = "";
+                    public $surgery = "";
         
                     // sti chart
                     public $chart = "";
@@ -392,6 +394,10 @@
                     $clinic->pract1 = $row["DR_Clinic"];
                     $clinic->pract2 = $row["DR_Clinic2"];
                     $clinic->pract3 = $row["DR_Clinic3"];
+
+                    $clinic->tb = $row["RefTB"];
+                    $clinic->hospital = $row["RefHospital"];
+                    $clinic->surgery = $row["RefSurgery"];
 
                     // put the object into the response
                     array_push($response->entries, $clinic);
