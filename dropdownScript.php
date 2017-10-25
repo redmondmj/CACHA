@@ -15,9 +15,9 @@
     } else if ($request["menu"] == "newpatients") {
         $sql = "SELECT * FROM tbl_patient";
     } else if ($request["menu"] == "patients") {
-        $sql = "SELECT DISTINCT tbl_patient.FirstName, tbl_patient.LastName, tbl_patient.PatientID FROM tbl_patient LEFT JOIN tbl_visit ON tbl_patient.PatientID=tbl_visit.PatientID WHERE VisitID IS NOT NULL ORDER BY VisitID DESC";
+        $sql = "SELECT DISTINCT tbl_patient.FirstName, tbl_patient.LastName, tbl_patient.PatientID FROM tbl_patient LEFT JOIN tbl_visit ON tbl_patient.PatientID=tbl_visit.PatientID WHERE VisitID IS NOT NULL ORDER BY tbl_patient.LastName";
     } else if ($request["menu"] == "visits") {
-        $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "'";
+        $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "' ORDER BY VisitID DESC";
     } else if ($request["menu"] == "dispensaries") {
         $sql = "SELECT * FROM tbl_dispensary";
     } else if ($request["menu"] == "practitioners") {

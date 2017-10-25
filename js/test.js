@@ -608,8 +608,7 @@
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i;
-                    var temp = i + 1
-                    option.text = "Visit #" + temp;
+                    option.text = "Case #" + response.entries[i];
                     option.value = response.entries[i];
 
                     // add element to dropdown
