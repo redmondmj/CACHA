@@ -12,7 +12,7 @@
     // page variables
     var divDisplay = null;
 
-    //var lblFeedback = null;
+    var lblFeedback = null;
 
     // dropdowns
     var drpPatient = null;
@@ -171,7 +171,7 @@
         // get references
         divDisplay = document.getElementById("divDisplay");
 
-        //lblFeedback = document.getElementById("lblFeedback");
+        lblFeedback = document.getElementById("lblFeedback");
 
         // dropdowns
         drpPatient = document.getElementById("drpPatient");
@@ -348,14 +348,14 @@
 
     // ------------------------------------------------------------ private methods
 
-    /*
+    
     function feedback(words) {
         // feedback
         lblFeedback.innerHTML = "<h5>" + words + "</h5>";
         // display for a short time
         $('#lblFeedback').css('display', 'block');
         $('#lblFeedback').delay(4000).fadeOut(1000);
-    } */
+    }
 
     function loading() {
         // disable screen by placing the loading overlay on top
@@ -820,27 +820,40 @@
 
             } else {
                 // no data to display
-
                 // build an empty option element and add properties
-                var option = new Option();
-                option.id = 0;
-                option.text = "No Practitioners";
-                option.value = 0;
+                var option1 = new Option();
+                var option2 = new Option();
+                var option3 = new Option();
+                option1.id = 0;
+                option2.id = 0;
+                option3.id = 0;
+                if (response.success) {
+                    option1.text = "No Practitioners";
+                    option2.text = "No Practitioners";
+                    option3.text = "No Practitioners";
+                } else {
+                    option1.text = "Failed";
+                    option2.text = "Failed";
+                    option3.text = "Failed";
+                }
+                option1.value = 0;
+                option2.value = 0;
+                option3.value = 0;
 
                 // add element to dropdown
-                $(drpPract1).append(option);
-                $(drpPract2).append(option);
-                $(drpPract3).append(option);
+                $(drpPract1).append(option1);
+                $(drpPract2).append(option2);
+                $(drpPract3).append(option3);
 
                 /*
-                // failure or no entries?
-                if (response.success) {
-                    // feedback
-                    feedback("No entries in the database");
-                } else {
-                    feedback(response.reason);
+                // disable if failed
+                if (!response.success) {
+                    drpPract1.disabled = true;
+                    drpPract2.disabled = true;
+                    drpPract3.disabled = true;
                 }
                 */
+
             }
 
             // set sponsor data for first entry
@@ -892,11 +905,11 @@
 
             } else {
                 // no data to display
-
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                option.text = "No Patients";
+                // failure or no entries?
+                if (response.success) {option.text = "No Patients";} else {option.text = "Failed";}
                 option.value = 0;
 
                 // add element to dropdown
@@ -907,16 +920,6 @@
 
                 // not loading 
                 notLoading();
-
-                /*
-                // failure or no entries?
-                if (response.success) {
-                    // feedback
-                    feedback("No entries in the database");
-                } else {
-                    feedback(response.reason);
-                }
-                */
             }
 
         }
@@ -936,13 +939,10 @@
                 lblName.innerHTML = "Full Name: " + response.entries[0].name;
                 lblAge.innerHTML = "Age: " + response.entries[0].age;
                 lblVillage.innerHTML = "Village: " + response.entries[0].village;
-
             } else {
-
-                // bad feedback
-                //feedback(response.reason);
+                // it'll just be blank
             }
-            console.log("stats response");
+
             // move onto visits
             getVisits();
 
@@ -956,8 +956,6 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-
-            console.log("visits response");
 
             // clear the dropdown
             drpVisit.innerHTML = "";
@@ -974,33 +972,29 @@
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i;
-                    var temp = i + 1
-                    option.text = "Visit #" + temp;
+                    option.text = "Case #" + response.entries[i];
                     option.value = response.entries[i];
 
                     // add element to dropdown
                     $(drpVisit).append(option);
                 }
+                
+                // set sponsor data for first entry
+                drpVisit.selectedIndex = 0;
+            
+                // load the first visit selected
+                getThisVisit();
 
             } else {
-                // no data to display
+                // failure or no entries?
+                if (!response.success) {
+                    // feedback
+                    feedback("Cases failed to load <br/>" + response.reason);
+                }
+
+                // not loading
+                notLoading();
             }
-
-            // set sponsor data for first entry
-            drpVisit.selectedIndex = 0;
-
-            // load the first visit selected
-            getThisVisit();
-
-            /*
-            // failure or no entries?
-            if (response.success) {
-                // feedback
-                //feedback("No entries in the database");
-            } else {
-                //feedback(response.reason);
-            }
-            */
 
         }
     }
@@ -1019,8 +1013,6 @@
                 clearAll();
 
                 // populate the data
-
-                //console.log(response);
 
                 // top stuff
                 lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
@@ -1332,7 +1324,7 @@
 
             } else {
                 // bad feedback
-                //feedback(response.reason);
+                feedback("Clinic data did not load properly <br/>" + response.reason);
             }
 
             // not loading
@@ -1350,16 +1342,13 @@
             var response = JSON.parse(xmlhttp.responseText);
 
             if (response.success) {
-                // update the dropdown
-                getVisits();
-
-                // place the visit on the current visit
-                drpVisit.selectedIndex[drpVisit.length];
-
+                // refresh all
+                getThisVisit();
+                // feedback
+                feedback("Submit Successful <br/>");
             } else {
-
                 // bad feedback
-                //feedback(response.reason);
+                feedback("Submit Failed <br/>" + response.reason);
             }
 
             // not loading
