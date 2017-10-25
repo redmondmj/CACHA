@@ -57,11 +57,20 @@
                     // new patient
                     $pat = new Patient();
                     $pat->id = $row["PatientID"];
+
+                    if (!empty($row["LastName"])) {
+                        $pat->name = $row["LastName"];
+                        if (!empty($row["FirstName"])) {$pat->name .= ", " . $row["FirstName"];}
+                    } else if (!empty($row["FirstName"])) {$pat->name = $row["FirstName"];
+                    } else {$pat->name = "No Name";}
+
+                    /*
                     if (!empty($row["FirstName"])) {
                         $pat->name = $row["FirstName"];
                         if (!empty($row["LastName"])) {$pat->name .= " " . $row["LastName"];}
                     } else if (!empty($row["LastName"])) {$pat->name = $row["LastName"];
                     } else {$pat->name = "No Name";}
+                    */
                     
                     array_push($response->entries, $pat);
                 }
