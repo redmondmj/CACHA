@@ -283,8 +283,20 @@
         $practitioner = " Erin MacKenzie";
       }elseif($test == "14"){
         $practitioner= " Kelly Crotty";
+      }elseif($test == "16"){
+        $practitioner= " Marianne Sumerman";
+      }elseif($test == "17"){
+        $practitioner= " Nyanda  Kombe";
+      }elseif($test == "18"){
+        $practitioner= " Rosalina Rutagarang";
+      }elseif($test == "19"){
+        $practitioner= " LAB NDH";
+      }elseif($test == "20"){
+        $practitioner= " Matoka DDS NDH";
+      }elseif($test == "21"){
+        $practitioner= " Veronique M.";
       }
-    
+
 
       echo $text . $practitioner;
     }
