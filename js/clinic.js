@@ -249,7 +249,7 @@
         drpRedundant = document.getElementById("drpRedundant");
         drpIPTp = document.getElementById("drpIPTp");
         drpSulfadar = document.getElementById("drpSulfadar");
-        
+
         // notes
         txtFollow = document.getElementById("txtFollow");
         txtEdu = document.getElementById("txtEdu");
@@ -636,10 +636,12 @@
         if (chkPID.checked) { chart = "pid"; }
 
         // radio buttons
-        var anc = "no";
-        var anemia = "no";
+        var anc = "";
+        var anemia = "";
         if (rdoANCYes.checked) { anc = "yes"; }
         if (rdoAnemiaYes.checked) { anemia = "yes"; }
+        if (rdoANCNo.checked) { anc = "no"; }
+        if (rdoAnemiaNo.checked) { anemia = "no"; }
 
         // construct json object to send to the handler script
         var sendJSON = {
@@ -1064,7 +1066,7 @@
                     }
                 }
                 txtMeds.innerHTML = response.entries[0].txtMeds;
-                
+
                 // admin section
                 if (response.entries[0].parac === "yes") { chkParac.checked = true; } else { chkParac.checked = false; }
                 if (response.entries[0].benz === "yes") { chkBenz.checked = true; } else { chkBenz.checked = false; }
@@ -1149,7 +1151,10 @@
                     }
                 }
                 // redundancy protection
-                if (drpIPTp.selectedIndex !== 0) {drpIPTp.disabled = false;drpRedundant.selectedIndex = 1;}
+                if (drpIPTp.selectedIndex !== 0) {
+                    drpIPTp.disabled = false;
+                    drpRedundant.selectedIndex = 1;
+                }
                 for (n = 0; n < drpSulfadar.length; n++) {
                     if (drpSulfadar[n].value === response.entries[0].sulfadar) {
                         drpSulfadar.selectedIndex = n;
