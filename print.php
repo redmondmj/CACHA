@@ -170,14 +170,16 @@
       $dx_Vit = $row['DX_Vit'];
       
       
-      $practitioners = trim($practitioners);
-      $practitioners = trim($practitioners, ",");
-      $practitioners = trim($practitioners, " ,");
+      // $practitioners = trim($practitioners);
+      // $practitioners = trim($practitioners, ",");
+      // $practitioners = trim($practitioners, " ,");
 
-      if(($urineGlucoseTest == "yes") || ($urineLeucTest != "yes") || ($urineNitritesTest != "yes") || ($urineRBCTest != "yes")){
-        $urineTest = "yes";
-      } elseif (($urineGlucoseTest == "pending") || ($urineLeucTest != "pending") || ($urineNitritesTest != "pending") || ($urineRBCTest != "pending")){
-        $urineTest = "pending";
+      if(($urineGlucoseTest == "Positive") || ($urineLeucTest == "Positive") || ($urineNitritesTest == "Positive") || ($urineRBCTest == "Positive")){
+        $urineTest = "Positive";
+      } elseif (($urineGlucoseTest == "Pending") || ($urineLeucTest == "Pending") || ($urineNitritesTest == "Pending") || ($urineRBCTest == "Pending")){
+        $urineTest = "Pending";
+      } elseif (($urineGlucoseTest == "Negative") || ($urineLeucTest == "Negative") || ($urineNitritesTest == "Negative") || ($urineRBCTest == "Negative")){
+        $urineTest = "Negative";
       } else {
         $urineTest = "no";
       }
@@ -283,8 +285,20 @@
         $practitioner = " Erin MacKenzie";
       }elseif($test == "14"){
         $practitioner= " Kelly Crotty";
+      }elseif($test == "16"){
+        $practitioner= " Marianne Sumerman";
+      }elseif($test == "17"){
+        $practitioner= " Nyanda  Kombe";
+      }elseif($test == "18"){
+        $practitioner= " Rosalina Rutagarang";
+      }elseif($test == "19"){
+        $practitioner= " LAB NDH";
+      }elseif($test == "20"){
+        $practitioner= " Matoka DDS NDH";
+      }elseif($test == "21"){
+        $practitioner= " Veronique M.";
       }
-    
+
 
       echo $text . $practitioner;
     }
@@ -608,9 +622,11 @@
               <?php if ($regANC == "yes") : ?>
                 <?php dropCheckbox("yes","YES"); ?>
                 <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
+              <?php elseif ($regANC == "no") : ?>
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
+              <?php else : ?>
+                <?php echo "No"; ?>
               <?php endif ?>
             </div>
           </div>
@@ -630,13 +646,15 @@
           </div>
           <div class="row">
             <div class="col-12">
-              CLINICAL ANEMIA 
+              CLINICAL ANEMIA: 
               <?php if ($clinicalAnemia == "yes") : ?>
                 <?php dropCheckbox("yes","YES"); ?>
                 <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
+              <?php elseif ($clinicalAnemia == "no") : ?>
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
+              <?php else : ?>
+                <?php echo "No"; ?>
               <?php endif ?>
             </div>
           </div>

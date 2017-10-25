@@ -13,11 +13,11 @@
     if ($request["menu"] == "village") {
         $sql = "SELECT Village FROM tbl_village";
     } else if ($request["menu"] == "newpatients") {
-        $sql = "SELECT * FROM tbl_patient";
+        $sql = "SELECT * FROM tbl_patient ORDER BY LastName";
     } else if ($request["menu"] == "patients") {
-        $sql = "SELECT DISTINCT tbl_patient.FirstName, tbl_patient.LastName, tbl_patient.PatientID FROM tbl_patient LEFT JOIN tbl_visit ON tbl_patient.PatientID=tbl_visit.PatientID WHERE VisitID IS NOT NULL ORDER BY VisitID DESC";
+        $sql = "SELECT DISTINCT tbl_patient.FirstName, tbl_patient.LastName, tbl_patient.PatientID FROM tbl_patient LEFT JOIN tbl_visit ON tbl_patient.PatientID=tbl_visit.PatientID WHERE VisitID IS NOT NULL ORDER BY tbl_patient.LastName";
     } else if ($request["menu"] == "visits") {
-        $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "'";
+        $sql = "SELECT VisitID FROM tbl_visit WHERE PatientID = '" . $request["id"] . "' ORDER BY VisitID DESC";
     } else if ($request["menu"] == "dispensaries") {
         $sql = "SELECT * FROM tbl_dispensary";
     } else if ($request["menu"] == "practitioners") {
@@ -57,11 +57,20 @@
                     // new patient
                     $pat = new Patient();
                     $pat->id = $row["PatientID"];
+
+                    if (!empty($row["LastName"])) {
+                        $pat->name = $row["LastName"];
+                        if (!empty($row["FirstName"])) {$pat->name .= ", " . $row["FirstName"];}
+                    } else if (!empty($row["FirstName"])) {$pat->name = $row["FirstName"];
+                    } else {$pat->name = "No Name";}
+
+                    /*
                     if (!empty($row["FirstName"])) {
                         $pat->name = $row["FirstName"];
                         if (!empty($row["LastName"])) {$pat->name .= " " . $row["LastName"];}
                     } else if (!empty($row["LastName"])) {$pat->name = $row["LastName"];
                     } else {$pat->name = "No Name";}
+                    */
                     
                     array_push($response->entries, $pat);
                 }

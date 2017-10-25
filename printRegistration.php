@@ -77,9 +77,9 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/reportStyles.css">
       <style>
-        @media print{
+        /* @media print{
           @page {size: landscape}
-        }
+        } */
       </style>
     <title>CACHA : Patient Report</title>
   </head>

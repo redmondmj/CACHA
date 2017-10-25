@@ -85,13 +85,13 @@
             $sql .= "Temperature,";
             $values .= "'$temp',";
         }
-        if (!empty($BPTop)) {
+        if (!empty($bptop)) {
             $sql .= "Systolic,";
-            $values .= "'$BPTop',";
+            $values .= "'$bptop',";
         }
-        if (!empty($BPBottom)) {
+        if (!empty($bpbottom)) {
             $sql .= "Diastolic,";
-            $values .= "'$BPBottom',";
+            $values .= "'$bpbottom',";
         }
         if (!empty($glucose)) {
             $sql .= "Glucose,";
