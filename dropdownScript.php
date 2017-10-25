@@ -13,7 +13,7 @@
     if ($request["menu"] == "village") {
         $sql = "SELECT Village FROM tbl_village";
     } else if ($request["menu"] == "newpatients") {
-        $sql = "SELECT * FROM tbl_patient";
+        $sql = "SELECT * FROM tbl_patient ORDER BY LastName";
     } else if ($request["menu"] == "patients") {
         $sql = "SELECT DISTINCT tbl_patient.FirstName, tbl_patient.LastName, tbl_patient.PatientID FROM tbl_patient LEFT JOIN tbl_visit ON tbl_patient.PatientID=tbl_visit.PatientID WHERE VisitID IS NOT NULL ORDER BY tbl_patient.LastName";
     } else if ($request["menu"] == "visits") {
