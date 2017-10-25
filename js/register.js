@@ -501,7 +501,7 @@
             // first entry into the list is for a new entry option
             var first = new Option();
             first.id = 0;
-            first.text = "New Visit";
+            first.text = "New Case";
             first.value = 0;
 
             // add element to as a new option
@@ -516,7 +516,7 @@
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i + 1;
-                    option.text = "Visit #" + option.id;
+                    option.text = "Case #" + response.entries[i];
                     option.value = response.entries[i];
 
                     // add element to dropdown
