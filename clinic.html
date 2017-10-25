@@ -150,8 +150,8 @@
                                 <select id="drpLastPZQ" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under">Under 3 Months</option>
-                                    <option value="over">Over 3 Months</option>
+                                    <option value="under">Under 6 Months</option>
+                                    <option value="over">Over 6 Months</option>
                                 </select>
                             </div>
                             <div class="col-3">
@@ -159,8 +159,8 @@
                                 <select id="drpLastWorm" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under">Under 3 Months</option>
-                                    <option value="over">Over 3 Months</option>
+                                    <option value="under">Under 6 Months</option>
+                                    <option value="over">Over 6 Months</option>
                                 </select>
                             </div>
                             <div class="col-3">
@@ -168,8 +168,8 @@
                                 <select id="drpLastVitA" class="form-control">
                                     <option value="unknown">Unknown</option>
                                     <option value="never">Never</option>
-                                    <option value="under">Under 3 Months</option>
-                                    <option value="over">Over 3 Months</option>
+                                    <option value="under">Under 6 Months</option>
+                                    <option value="over">Over 6 Months</option>
                                 </select>
                             </div>
                         </div>
@@ -180,6 +180,15 @@
                         </div>
                         <br/>
 
+                        <!-- Previous Meds -->
+                        <div class="row">
+                            <div class="col-12 borderDiv">
+                                <h4 class="col-12 control-label">Previous Meds</h4>
+                                <textarea id="txtMeds" class="form-control" style="height: 6em;"></textarea>
+                                <br/>
+                            </div>
+                        </div>
+                        <br/>
                         <!-- Admin Section (drugs administered during exam) -->
                         <div class="row">
                             <h4 class="col-12 control-label">Admin</h4>
@@ -531,15 +540,22 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-6">
-                                <label class="control-label" for="drpIPTp">Last IPTp</label>
+                            <div class="col-4">
+                                <label class="control-label" for="drpRedundant">IPTp before?</label>
+                                <select id="drpRedundant" class="form-control">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label" for="drpIPTp">When Last IPTp</label>
                                 <select id="drpIPTp" class="form-control">
                                     <option value="never">Never</option>
                                     <option value="less">&lt; One Month Ago</option>
                                     <option value="greater">&gt; One Month Ago</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <label class="control-label" for="drpSulfadar">Sulfadar SP500/25</label>
                                 <select id="drpSulfadar" class="form-control">
                                     <option value="0">None</option>
@@ -595,18 +611,16 @@
                                     TB
                                 </label>
                             </div>
-
-                            <div class="col-4" style="text-align: left;">
-                                <label class="checkbox-inline" for="chkSurgery">
-                                    <input id="chkSurgery" type="checkbox" name="referralboxes">
-                                    Surgery
-                                </label>
-                            </div>
-
                             <div class="col-4" style="text-align: left;">
                                 <label class="checkbox-inline" for="chkHospital">
                                     <input id="chkHospital" type="checkbox" name="referralboxes">
                                     Hospital
+                                </label>
+                            </div>
+                            <div class="col-4" style="text-align: left;">
+                                <label class="checkbox-inline" for="chkSurgery">
+                                    <input id="chkSurgery" type="checkbox" name="referralboxes">
+                                    Surgery
                                 </label>
                             </div>
                         </div>
@@ -700,9 +714,25 @@
                         <br/>
 
                         <div class="row">
-                            <div class="col-12">
-                                <h4 class="col-12 control-label">Practitioner</h4>
-                                <select id="drpPract" class="form-control">
+                            <h4 class="col-12 control-label">Practitioner</h4>
+                            <div class="col-4">
+                                <select id="drpPract1" class="form-control">
+                                    <option value="no">n/a</option>
+                                    <option value="Dr Feelgood">Dr Feelgood</option>
+                                    <option value="Nurse Joy">Nurse Joy</option>
+                                    <option value="Nurse Betty">Nurse Betty</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select id="drpPract2" class="form-control">
+                                    <option value="no">n/a</option>
+                                    <option value="Dr Feelgood">Dr Feelgood</option>
+                                    <option value="Nurse Joy">Nurse Joy</option>
+                                    <option value="Nurse Betty">Nurse Betty</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select id="drpPract3" class="form-control">
                                     <option value="no">n/a</option>
                                     <option value="Dr Feelgood">Dr Feelgood</option>
                                     <option value="Nurse Joy">Nurse Joy</option>
@@ -735,8 +765,9 @@
                                 <div class="col-4" style="text-align: left;">
                                     <label class="control-label" for="drpTriageMED">Medical</label>
                                     <select id="drpTriageMED" class="form-control">
-                                        <option value="no">No</option>
-                                        <option value="pending">Pending</option>
+                                        <option value="no">No Med1</option>
+                                        <option value="PendMed1">Pending Med1</option>
+                                        <option value="PendMed2">Pending Med2</option>
                                         <option value="complete">Complete</option>
                                     </select>
                                 </div>
@@ -744,8 +775,9 @@
                                 <div class="col-4" style="text-align: left;">
                                     <label class="control-label" for="drpTriageGYN">Gynaecologist</label>
                                     <select id="drpTriageGYN" class="form-control">
-                                        <option value="no">No</option>
-                                        <option value="pending">Pending</option>
+                                        <option value="no">No Gyn1</option>
+                                        <option value="PendGyn1">Pending Gyn1</option>
+                                        <option value="PendGyn2">Pending Gyn2</option>
                                         <option value="complete">Complete</option>
                                     </select>
                                 </div>
@@ -757,6 +789,7 @@
                                     <select id="drpTriageOPHT" class="form-control">
                                         <option value="no">No</option>
                                         <option value="pending">Pending</option>
+                                        <!-- <option value="pending testing">Pending Testing</option> -->
                                         <option value="complete">Complete</option>
                                     </select>
                                 </div>
@@ -766,6 +799,7 @@
                                     <select id="drpTriageDENT" class="form-control">
                                         <option value="no">No</option>
                                         <option value="pending">Pending</option>
+                                        <!-- <option value="pending testing">Pending Testing</option> -->
                                         <option value="complete">Complete</option>
                                     </select>
                                 </div>
@@ -775,6 +809,7 @@
                                     <select id="drpTriageV" class="form-control">
                                         <option value="no">No</option>
                                         <option value="pending">Pending</option>
+                                        <!-- <option value="pending testing">Pending Testing</option> -->
                                         <option value="complete">Complete</option>
                                     </select>
                                 </div>

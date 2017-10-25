@@ -75,7 +75,9 @@
                             <label id="lblVillage" class="col-3 control-label" style="text-align: left;">Village:</label>
                             <label id="lblCase" class="col-2 control-label" style="text-align: left;">Case #:</label>
                         </div>
-
+                        <div class="col-12">
+                            <input id="btnPrintReg" type="button" class="btn btn-default" value="Print Info">
+                        </div>
                         <br/>
 
                         <div class="row">
@@ -100,6 +102,7 @@
                                     <label for="txtTemp">Temp: (&#8451;)</label>
                                     <input id="txtTemp" type="text" class="form-control">
                                 </div>
+
                             </div>
                             <!--             Next Form Row            !-->
                             <!--             Next Form Row            !-->
@@ -135,12 +138,11 @@
                                     <div class="col-12">
                                         <div class="radio">
                                             <label for="rdoPregYes">
-                                                <input id="rdoPregYes" type="radio" name="anc" value="yes" >
+                                                <input id="rdoPregYes" type="radio" name="preg" value="yes" >
                                                 Yes
-                                            </label>
-                                            |
+                                            </label> |
                                             <label for="rdoPregNo">
-                                                <input id="rdoPregNo" type="radio" name="anc" value="no">
+                                                <input id="rdoPregNo" type="radio" name="preg" value="no">
                                                 No
                                             </label>
                                         </div>
@@ -151,12 +153,11 @@
                                     <div class="col-12">
                                         <div class="radio">
                                             <label for="rdoBreastYes">
-                                                <input id="rdoBreastYes" type="radio" name="anc" value="yes" >
+                                                <input id="rdoBreastYes" type="radio" name="breast" value="yes" >
                                                 Yes
-                                            </label>
-                                            |
+                                            </label> |
                                             <label for="rdoBreastNo">
-                                                <input id="rdoBreastNo" type="radio" name="anc" value="no">
+                                                <input id="rdoBreastNo" type="radio" name="breast" value="no">
                                                 No
                                             </label>
                                         </div>
@@ -289,32 +290,34 @@
                             </div>
                         </div>
 
-                    </div> <!-- /form-horizontal border -->
-                </div> <!-- /divDisplay inner cover  -->
+                    </div>
+                    <!-- /form-horizontal border -->
+                </div>
+                <!-- /divDisplay inner cover  -->
 
                 <div id="loadingOverlay"></div>
 
-                </div>
-                <!-- /clear container -->
             </div>
-            <!-- /site-wrapper-inner -->
+            <!-- /clear container -->
         </div>
-        <!-- /site-wrapper -->
+        <!-- /site-wrapper-inner -->
+    </div>
+    <!-- /site-wrapper -->
 
-        <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster
+    <!-- Placed at the end of the document so the pages load faster
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
         window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
     </script> -->
-        <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
-        <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="bin/bootstrap/assets/js/vendor/popper.min.js"></script>
+    <script src="bin/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bin/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-        <script src="js/spin.min.js"></script>
-        <script src="js/register.js"></script>
+    <script src="js/spin.min.js"></script>
+    <script src="js/register.js"></script>
 
 </body>
 

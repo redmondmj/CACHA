@@ -81,8 +81,7 @@
       $dx_Other = $row['DX_Other'];
       $dx_OtherDescrip = $row['DX_OtherDesc'];
       $regANC = $row['RegANC'];
-      $prevIPTpYes = $row['PrevIPTpYes'];
-      $lastIPTpx /* check this */ = $row['LastIPTpx'];
+      $lastIPTpx = $row['LastIPTpx'];
       $clinicalAnemia = $row['ClinicalAnemia'];
       $sulfadar = $row['Sulfadar'];
       $rx_Paracetamol = $row['Rx_Paracetamol'];
@@ -94,9 +93,9 @@
       $rx_PUD = $row['Rx_PUD'];
       $rx_PZQ_Tabs = $row['Rx_PZQ_Tabs'];
       $rx_PZQ_Dose = $row['Rx_PZQ_Dose'];
-      $rx_Eye = $row['RX_Eye'];
-      $rx_Other = $row['RX_Other'];
-      $sp_PatInit = $row['SP_PTInitial'];
+      $rx_Eye = $row['Rx_Eye'];
+      $rx_Other = $row['Rx_Other'];
+      $sp_PatInit = $row['SP_PTInitials'];
       $sp_PatGender = $row['SP_PTSex'];
       $sp_PatPreg = $row['SP_PTPreg'];
       $sp_PatNumMonths = $row['SP_PTMonths'];
@@ -104,7 +103,7 @@
       $sp_PatMTZ = $row['SP_PTMTZ'];
       $sp_PatDoxy = $row['SP_PTDoxy'];
       $sp_PatAmox = $row['SP_PTAmox'];
-      $sp_Par1Init = $row['SP_PT1Initial'];
+      $sp_Par1Init = $row['SP_PT1Initials'];
       $sp_Par1Gender = $row['SP_PT1Sex'];
       $sp_Par1Preg = $row['SP_PT1Preg'];
       $sp_Par1NumMonths = $row['SP_PT1Months'];
@@ -112,7 +111,7 @@
       $sp_Par1MTZ = $row['SP_PT1MTZ'];
       $sp_Par1Doxy = $row['SP_PT1Doxy'];
       $sp_Par1Amox = $row['SP_PT1Amox'];
-      $sp_Par2Init = $row['SP_PT2Initial'];
+      $sp_Par2Init = $row['SP_PT2Initials'];
       $sp_Par2Gender = $row['SP_PT2Sex'];
       $sp_Par2Preg = $row['SP_PT2Preg'];
       $sp_Par2NumMonths = $row['SP_PT2Months'];
@@ -120,7 +119,7 @@
       $sp_Par2MTZ = $row['SP_PT2MTZ'];
       $sp_Par2Doxy = $row['SP_PT2Doxy'];
       $sp_Par2Amox = $row['SP_PT2Amox'];
-      $sp_Par3Init = $row['SP_PT3Initial'];
+      $sp_Par3Init = $row['SP_PT3Initials'];
       $sp_Par3Gender = $row['SP_PT3Sex'];
       $sp_Par3Preg = $row['SP_PT3Preg'];
       $sp_Par3NumMonths = $row['SP_PT3Months'];
@@ -131,14 +130,26 @@
       $followUp = $row['FollowUp'];
       $returnTo = $row['ReturnTo'];
       $education = $row['Education'];
-      $practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
-      $referral = $row['Referral'];
+      //$practitioners = $row['DR_Register'] . ", " . $row['DR_Clinic'] . ", " . $row['DR_Test'] . ", " . $row['DR_Eye'] . ", " . $row['DR_Dental'] . ", " . $row['DR_Rx'];
+      // Use these instead:
+      $practitionerClinic = $row['DR_Clinic'];
+      $practitionerClinic2 = $row['DR_Clinic2'];
+      $practitionerClinic3 = $row['DR_Clinic3'];
+      $practitionerTest = $row['DR_Test'];
+      $practitionerEye = $row['DR_Eye'];
+      $practitionerDental = $row['DR_Dental'];
+      $practitionerRx = $row['DR_Rx'];
+
+
+      $referralTB = $row['RefTB'];
+      $referralHospital = $row['RefHospital'];
+      $referralSurgery = $row['RefSurgery'];
       $rxNum = $row['RXNum'];
       $firstName = $row['FirstName'];
       $lastName = $row['LastName'];
       $village = $row['Village'];
       $birthYear = $row['BirthYear'];
-      $sex = $row['sex'];
+      $sex = $row['Sex'];
       $eyeVal1 = $row['Eye_Val1'];
       $eyeVal2 = $row['Eye_Val2'];
       $eyeVal3 = $row['Eye_Val3'];
@@ -225,7 +236,10 @@
 
     function severity($test, $text){
       $severity = "";
-      if($test == "1"){
+      if($test == null){
+        $text = "";
+        $Severity = "";
+      } elseif($test == "1"){
         $severity = " +";
       } elseif($test == "2") {
         $severity = " ++";
@@ -234,6 +248,45 @@
       }
 
       echo $text . $severity;
+    }
+    
+    function practitioner($test, $text){
+      $practitioner = "";
+      if($test == null){
+        $text = "";
+        $practitioner = "";
+      } elseif($test == "1"){
+        $practitioner = " Karin Eulre";
+      } elseif($test == "2") {
+        $practitioner = " Chris Nolan";
+      }elseif($test == "3"){
+        $practitioner = " Mark Hardy";
+      }elseif($test == "4"){
+        $practitioner = " Christa Wilton";
+      }elseif($test == "5"){
+        $practitioner = " Jessica Fong";
+      }elseif($test == "6"){
+        $practitioner = " Deanna Rumsey";
+      }elseif($test == "7"){
+        $practitioner = " Wade Mitchell";
+      }elseif($test == "8"){
+        $practitioner = " Tara Andrusiak";
+      }elseif($test == "9"){
+        $practitioner = " Judy Kyte";
+      }elseif($test == "10"){
+        $practitioner = " Nancy Laframboise";
+      }elseif($test == "11"){
+        $practitioner = " Warren Meek";
+      }elseif($test == "12"){
+        $practitioner = " Dave Glass";
+      }elseif($test == "13"){
+        $practitioner = " Erin MacKenzie";
+      }elseif($test == "14"){
+        $practitioner= " Kelly Crotty";
+      }
+    
+
+      echo $text . $practitioner;
     }
 
 ?>
@@ -262,14 +315,15 @@
           <div>Alliance de Sante Communitaire Canada-Afrique</div>
           Triage: <!--<?php //dropContent("Sample Text"); ?> Not sure anything is supposed to be here -->
 
-          <?php dropCheckbox($triageTesting, "TESTING"); ?>
+
+          Testing: <?php dropContent($triageTesting); ?>
           <div>
             Triage:
-            <?php dropCheckbox($triageMedical, "MED"); ?>
-            <?php dropCheckbox($triageGYN, "GYN"); ?>
-            <?php dropCheckbox($triageOPHT, "OPHT"); ?>
-            <?php dropCheckbox($triageDENT, "DENT"); ?>
-            <?php dropCheckbox($triageVenDis, "V"); ?>
+            MED: <?php dropContent($triageMedical); ?>
+            GYN: <?php dropContent($triageGYN); ?>
+            OPT: <?php dropContent($triageOPHT); ?>
+            DENT: <?php dropContent($triageDENT); ?>
+            V: <?php dropContent($triageVenDis); ?>
           </div>
         </div>
 
@@ -386,20 +440,71 @@
       
       <div class="row">
 
-        <div class="col-8" style="background:#EAFFDE">
+        <div class="col-5" style="background:#EAFFDE">
           <span style="font-weight:bold">ASSESSMENT:</span><br>
           <?php dropContent($assessment); ?>
         </div>
 
         <div class="col-4" style="background:#EAFFDE">
           LAST HIV TEST? <?php dropContent( $lastHIVTest); ?>3 months<br>
-          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?>3 months<br>
-          LAST WORM TX? <?php dropContent( $lastWormTx); ?>3 months<br>
-          LAST VIT A? <?php dropContent( $lastVitA); ?>3 months<br>
+          LAST PZQ TX? <?php dropContent( $lastPZQTx); ?>6 months<br>
+          LAST WORM TX? <?php dropContent( $lastWormTx); ?>6 months<br>
+          LAST VIT A? <?php dropContent( $lastVitA); ?>6 months<br>
           PREV MEDS? <?php dropContent( $prevMeds); ?>
         </div>
+        <div class="col-3" style="background:#EAFFDE">
 
+              <!-- THIS IS GREASY INDEED!!!! -->
+              <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <p style="font-size:5em">V</p>
+                    </td>
+                    <td>
+                        <table>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>val 1</td></tr>
+                            <tr>
+                                <td>
+                                <?php dropContent($eyeVal1); ?>
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                              <td style="text-align: center; width: 300px;">
+                                val 3
+                                <br>
+                                <?php dropContent($eyeVal3); ?>
+                              </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>val 2</td></tr>
+                            <tr>
+                                <td>
+                                <?php dropContent($eyeVal2); ?>
+                                </td>
+                            </tr>
+                            <tr><td>&nbsp;</td></tr>
+                        </table>
+                    </td>
+                    <td>
+                      Eye:<?php dropContent($rx_Eye); ?>
+                    </td>
+
+                </tr>
+            </table>
+            <!-- THIS IS GREASY INDEED!!!! -->
+          </div>
       </div>
+      
 
       <div class="row">
 
@@ -409,10 +514,10 @@
           </div>
           <div class="row">
             <div class="col-3">
-              <?php severity($dx_Healthy, "HEALTHY"); ?>
+              <?php dropCheckbox($dx_Healthy, "HEALTHY"); ?>
             </div>
             <div class="col-3">
-              <?php severity($dx_NoTreatment, "NTR"); ?>
+              <?php dropCheckbox($dx_NoTreatment, "NTR"); ?>
             </div>
             <div class="col-3">
               <?php severity($dx_MSK, "MSK"); ?>
@@ -512,26 +617,15 @@
 
           <div class="row">
             <div class="col-12">
-              PREVIOUS IPTp:
-              <?php if($prevIPTpYes == "1") : ?>
-                <?php dropCheckbox("yes","YES"); ?>
-                <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
-                <?php dropCheckbox("no","YES"); ?>
-                <?php dropCheckbox("yes","NO"); ?>
-              <?php endif ?>
+              PREVIOUS IPTp: 
+              <?php dropContent($lastIPTpx) ?>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              LAST  IPTp: >1 MONTH AGO 
-              <?php if ($lastIPTpx == "0") : ?>
-                <?php dropCheckbox("yes","YES"); ?>
-                <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
-                <?php dropCheckbox("no","YES"); ?>
-                <?php dropCheckbox("yes","NO"); ?>
-              <?php endif ?>
+              LAST  IPTp:  
+              <?php dropContent($lastIPTpx) ?>
+               -1 MONTH AGO
             </div>
           </div>
           <div class="row">
@@ -596,64 +690,20 @@
             <div class="col-12"><?php dropCheckbox($rx_PUD, "PUD: 7/7 AMOX250 3X2 + OMEP20 1X2+ MTZ200MG 3X2"); ?></div>
             </div>
             <div class="row">
-            <div class="col-4"><?php dropCheckbox($rx_PZQ_Dose, "PZQ600mg"); ?></div>
+            <div class="col-4">
+              <?php if ($rx_PZQ_Tabs > 0) : ?>
+                <?php dropCheckbox("yes","PZQ600mg"); ?>
+              <?php else : ?>
+                <?php dropCheckbox("no","PZQ600mg"); ?>
+              <?php endif ?>
+            </div>
             <div class="col-8">#TABS STAT: <?php dropContent($rx_PZQ_Tabs); ?></div>
             </div>
           </div>
-
           <div>
+            Other RX:<?php dropContent($rx_Other); ?>
+  </div>
 
-              <!-- THIS IS GREASY INDEED!!!! -->
-              <table>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <p style="font-size:5em">V</p>
-                    </td>
-                    <td>
-                        <table>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>val 1</td></tr>
-                            <tr>
-                                <td>
-                                <?php dropContent($eyeVal1); ?>
-                                </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr>
-                              <td style="text-align: center; width: 300px;">
-                                val 3
-                                <br>
-                                <?php dropContent($eyeVal3); ?>
-                              </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>val 2</td></tr>
-                            <tr>
-                                <td>
-                                <?php dropContent($eyeVal2); ?>
-                                </td>
-                            </tr>
-                            <tr><td>&nbsp;</td></tr>
-                        </table>
-                    </td>
-                    <td>
-                      Eye:<?php dropContent($rx_Eye); ?>
-                    </td>
-                    <td>
-                      Other RX:<?php dropContent($rx_Other); ?>
-                    </td>
-                </tr>
-            </table>
-            <!-- THIS IS GREASY INDEED!!!! -->
-          </div>
 
         </div>
       </div>
@@ -751,29 +801,34 @@
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">PRACTITIONERS:</span><br>
-          <?php dropContent($practitioners); ?>
+          <?php practitioner($practitionerClinic, "Clinc: ") ?>
+          <?php practitioner($practitionerClinic2, "Clinc2: ") ?>
+          <?php practitioner($practitionerClinic3, "Clin3: ") ?>
+          <?php practitioner($practitionerTest, "Test: ") ?>
+          <?php practitioner($practitionerEye, "Eye: ") ?>
+          <?php practitioner($practitionerDental, "Dental: ") ?>
+          <?php practitioner($practitionerRx, "Rx: ") ?>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
           <span style="font-weight:bold">REFERRAL:</span>
-          <?php if (preg_match('/tb/', $referral)) : ?>
-            <?php dropCheckbox("yes", "TB"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "TB"); ?>
-          <?php endif ?>
-
-          <?php if (preg_match('/surgery/', $referral)) : ?>
-            <?php dropCheckbox("yes", "SURGERY"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "SURGERY"); ?>
-          <?php endif ?>
-          <?php if (preg_match('/hospital/', $referral)) : ?>
-            <?php dropCheckbox("yes", "HOSPITAL"); ?>
-          <?php else : ?>
-            <?php dropCheckbox("no", "HOSPITAL"); ?>
-          <?php endif ?>
+            <?php if ($referralTB == "yes") : ?>
+            <?php dropCheckbox("yes","TB"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","TB"); ?>
+            <?php endif ?>
+            <?php if ($referralHospital == "yes") : ?>
+            <?php dropCheckbox("yes","Hospital"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","Hospital"); ?>
+            <?php endif ?>
+            <?php if ($referralSurgery == "yes") : ?>
+            <?php dropCheckbox("yes","Surgey"); ?>
+            <?php else : ?>
+              <?php dropCheckbox("no","Surgery"); ?>
+            <?php endif ?>
           <span style="font-weight:bold">RX #:</span> <?php dropContent($rxNum); ?>
         </div>
       </div>

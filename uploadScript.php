@@ -85,13 +85,13 @@
             $sql .= "Temperature,";
             $values .= "'$temp',";
         }
-        if (!empty($BPTop)) {
+        if (!empty($bptop)) {
             $sql .= "Systolic,";
-            $values .= "'$BPTop',";
+            $values .= "'$bptop',";
         }
-        if (!empty($BPBottom)) {
+        if (!empty($bpbottom)) {
             $sql .= "Diastolic,";
-            $values .= "'$BPBottom',";
+            $values .= "'$bpbottom',";
         }
         if (!empty($glucose)) {
             $sql .= "Glucose,";
@@ -160,6 +160,8 @@
         $benz = $data["benz"];
         $ceft = $data["ceft"];
 
+        $meds = $data["meds"];
+
         // diagnosis
         $healthy = $data["healthy"];
         $ntr = $data["ntr"];
@@ -202,7 +204,10 @@
         // follow-up, education and referral
         $follow = $data["follow"];
         $edu = $data["edu"];
-        $referral = $data["referral"];
+
+        $tb = $data["tb"];
+        $hospital = $data["hospital"];
+        $surgery = $data["surgery"];
     
         // chart
         $chart = $data["chart"];
@@ -244,7 +249,9 @@
         $p3amox = $data["P3Amox"];
 
         // practitioner
-        $pract = $data["pract"];
+        $pract1 = $data["pract1"];
+        $pract2 = $data["pract2"];
+        $pract3 = $data["pract3"];
 
         // stations
         $test = $data["test"];
@@ -271,6 +278,8 @@
         if (!empty($lastPZQ)) {$sql .= "LastPZQTx = '$lastPZQ',";}
         if (!empty($lastWorm)) {$sql .= "LastWormTx = '$lastWorm',";}
         if (!empty($lastVitA)) {$sql .= "LastVitA = '$lastVitA',";}
+
+        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
 
         if (!empty($healthy)) {$sql .= "DX_Healthy = '$healthy',";}
         if (!empty($ntr)) {$sql .= "DX_NoTreatment = '$ntr',";}
@@ -356,10 +365,14 @@
         if (!empty($edu)) {$sql .= "Education = '$edu',";}
 
         // referral
-        if (!empty($referral)) {$sql .= "Referral = '$referral',";}
+        if (!empty($tb)) {$sql .= "RefTB = '$tb',";}
+        if (!empty($hospital)) {$sql .= "RefHospital = '$hospital',";}
+        if (!empty($surgery)) {$sql .= "RefSurgery = '$surgery',";}
 
         // clinic practitioner
-        if (!empty($pract)) {$sql .= "DR_Clinic = '$pract',";}
+        if (!empty($pract1)) {$sql .= "DR_Clinic = '$pract1',";}
+        if (!empty($pract2)) {$sql .= "DR_Clinic2 = '$pract2',";}
+        if (!empty($pract3)) {$sql .= "DR_Clinic3 = '$pract3',";}
     
         // remove last comma and add bracket
         $sql = substr_replace($sql ,"",-1);
@@ -385,8 +398,8 @@
         $pzq = $data["pzq"];
         $alu = $data["alu"];
         $sulfadar = $data["sulfadar"];
-        $msk = $data["msk"];
-        $asthma = $data["asthma"];
+
+        $other = $data["other"];
         
         // chart
         $chart = $data["chart"];
@@ -448,8 +461,7 @@
         if (!empty($alu)) {$sql .= "Rx_ALU = '$alu',";}
         if (!empty($pud)) {$sql .= "Rx_PUD = '$pud',";}
         if (!empty($pzq)) {$sql .= "Rx_PZQ_Tabs = '$pzq',";}
-        if (!empty($msk)) {$sql .= "Rx_MSK = '$msk',";}
-        if (!empty($asthma)) {$sql .= "Rx_Asthma = '$asthma',";}
+        if (!empty($other)) {$sql .= "Rx_Other = '$other',";}
 
         // chart
         if (!empty($chart)) {$sql .= "SP_Type = '$chart',";}
@@ -536,6 +548,8 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
+        $sql .= "TriageTesting = 'complete',";
+
         if (!empty($v)) {$sql .= "VTest = '$v',";}
         if (!empty($mal)) {$sql .= "MalariaTest = '$mal',";}
         if (!empty($syph)) {$sql .= "SyphilisTest = '$syph',";}
@@ -586,6 +600,8 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
+        $sql .= "TriageOPHT = 'complete',";
+
         // notes
         if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
 
@@ -615,6 +631,8 @@
         
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
+
+        $sql .= "TriageDENT = 'complete',";
         
         // notes
         if (!empty($assess)) {$sql .= "Assessment = '$assess',";}

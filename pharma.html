@@ -8,10 +8,10 @@
     <meta name="author" content="">
     <link rel="icon" href="bin/bootstrap/favicon.ico">
     <script src="bin/jquery-3.2.1.min.js"></script>
-    
+
     <title>CACHA - Pharmacy</title>
     <!-- load jQuery -->
-    <script src="bin/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="bin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -234,23 +234,22 @@
                                 </select>
                             </div>
                         </div>
-
+                        <br>
                         <div class="row">
-                            <div class="col-6">
-                                <label class="control-label" for="drpMSK">for MSK</label>
-                                <select id="drpMSK" class="form-control"></select>
-                            </div>
-                            <div class="col-6">
-                                <label class="control-label" for="drpAsthma">for Asthma</label>
-                                <select id="drpAsthma" class="form-control"></select>
+                            <div class="col-12">
+                                <h4 class="control-label" for="drpDrugs">Drug Options</h4>
+                                <select id="drpDrugs" class="form-control"></select>
                             </div>
                         </div>
 
-                        <br/>
+                        <br>
                         <div class="row">
-                            <div class="col-12 borderDiv"></div>
+                            <div class="col-12 borderDiv">
+                                <h4 class="col-12 control-label">Rx</h4>
+                                <textarea id="txtOther" class="form-control" style="height: 10em;"></textarea>
+                                <br/>
+                            </div>
                         </div>
-                        <br/>
 
                         <!-- STI PID section -->
                         <div class="row">
@@ -367,13 +366,14 @@
                     </div>
 
 
-                </div> <!-- /divDisplay -->
+                </div>
+                <!-- /divDisplay -->
 
-            <div id="loadingOverlay"></div>
+                <div id="loadingOverlay"></div>
+
+            </div>
 
         </div>
-
-    </div>
 
     </div>
 

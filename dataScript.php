@@ -169,7 +169,9 @@
                     public $parac = "";
                     public $benz = "";
                     public $ceft = "";
-        
+
+                    public $meds = "";
+                    
                     // diagnosis
                     public $healthy = "";
                     public $ntr = "";
@@ -213,7 +215,9 @@
                     public $edu = "";
         
                     // referral
-                    public $referral = "";
+                    public $tb = "";
+                    public $hospital = "";
+                    public $surgery = "";
         
                     // sti chart
                     public $chart = "";
@@ -255,7 +259,9 @@
                     public $p3amox = 0;
 
                     // practitioner
-                    public $pract = 0;
+                    public $pract1 = 0;
+                    public $pract2 = 0;
+                    public $pract3 = 0;
 
                     // stations
                     public $test = "";
@@ -297,6 +303,8 @@
                     $clinic->lastpzq = $row["LastPZQTx"];
                     $clinic->lastworm = $row["LastWormTx"];
                     $clinic->lastvita = $row["LastVitA"];
+
+                    $clinic->meds = $row["PrevMeds"];
 
                     // diagnosis
                     $clinic->healthy = $row["DX_Healthy"];
@@ -383,7 +391,13 @@
                     $clinic->edu = $row["Education"];
 
                     // clinic practitioner
-                    $clinic->pract = $row["DR_Clinic"];
+                    $clinic->pract1 = $row["DR_Clinic"];
+                    $clinic->pract2 = $row["DR_Clinic2"];
+                    $clinic->pract3 = $row["DR_Clinic3"];
+
+                    $clinic->tb = $row["RefTB"];
+                    $clinic->hospital = $row["RefHospital"];
+                    $clinic->surgery = $row["RefSurgery"];
 
                     // put the object into the response
                     array_push($response->entries, $clinic);
@@ -414,8 +428,9 @@
                     public $alu = "";
                     public $sulfadar = 0;
         
-                    public $msk = "";
-                    public $asthma = "";
+                    public $drugs = "";
+
+                    public $other = "";
 
                     // sti chart
                     public $chart = "";
@@ -508,8 +523,8 @@
                     $rx->alu = $row["Rx_ALU"];
                     $rx->pud = $row["Rx_PUD"];
                     $rx->pzq = $row["Rx_PZQ_Tabs"];
-                    $rx->msk = $row["Rx_MSK"];
-                    $rx->asthma = $row["Rx_Asthma"];
+
+                    $rx->other = $row["Rx_Other"];
 
                     // chart
                     $rx->chart = $row["SP_Type"];
