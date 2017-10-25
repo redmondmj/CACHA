@@ -143,7 +143,7 @@
             if (txtYear.value <= 1000) {
                 // probably a proper age
                 var date = new Date();
-                year = date.getFullYear() - parseInt(txtYear.value);
+                year = date.getFullYear() - (parseInt(txtYear.value) + 1);
             } else {
                 // probably a proper year
                 year = txtYear.value;
