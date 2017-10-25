@@ -174,9 +174,9 @@
       $practitioners = trim($practitioners, ",");
       $practitioners = trim($practitioners, " ,");
 
-      if(($urineGlucoseTest == "yes") || ($urineLeucTest != "yes") || ($urineNitritesTest != "yes") || ($urineRBCTest != "yes")){
+      if(($urineGlucoseTest == "yes") || ($urineLeucTest == "yes") || ($urineNitritesTest == "yes") || ($urineRBCTest == "yes")){
         $urineTest = "yes";
-      } elseif (($urineGlucoseTest == "pending") || ($urineLeucTest != "pending") || ($urineNitritesTest != "pending") || ($urineRBCTest != "pending")){
+      } elseif (($urineGlucoseTest == "pending") || ($urineLeucTest == "pending") || ($urineNitritesTest == "pending") || ($urineRBCTest == "pending")){
         $urineTest = "pending";
       } else {
         $urineTest = "no";
