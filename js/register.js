@@ -12,7 +12,7 @@
     // page variables
     var divDisplay = null;
 
-    //var lblFeedback = null;
+    var lblFeedback = null;
 
     var drpPatient = null;
     var drpVisit = null;
@@ -70,7 +70,7 @@
         // get references
         divDisplay = document.getElementById("divDisplay");
 
-        //lblFeedback = document.getElementById("lblFeedback");
+        lblFeedback = document.getElementById("lblFeedback");
 
         drpPatient = document.getElementById("drpPatient");
         drpVisit = document.getElementById("drpVisit");
@@ -143,14 +143,14 @@
 
     // ------------------------------------------------------------ private methods
 
-    /*
+    
     function feedback(words) {
         // feedback
         lblFeedback.innerHTML = "<h5>" + words + "</h5>";
         // display for a short time
         $('#lblFeedback').css('display', 'block');
         $('#lblFeedback').delay(4000).fadeOut(1000);
-    } */
+    }
 
     function loading() {
         // disable screen by placing the loading overlay on top
@@ -395,11 +395,11 @@
 
             } else {
                 // no data to display
-
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                option.text = "Empty";
+                // failure or no entries?
+                if (response.success) {option.text = "No Dispensaries";} else {option.text = "Failed";}
                 option.value = 0;
 
                 // add element to dropdown
@@ -407,7 +407,6 @@
 
                 // set sponsor data for first entry
                 drpDispensary.selectedIndex = 0;
-
             }
 
             // move onto patients
@@ -453,12 +452,11 @@
                 getPatientStats();
 
             } else {
-                // no data to display
-
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                option.text = "No Patients";
+                // failure or no entries?
+                if (response.success) {option.text = "No Patients";} else {option.text = "Failed";}
                 option.value = 0;
 
                 // add element to dropdown
@@ -469,16 +467,6 @@
 
                 // not loading 
                 notLoading();
-
-                /*
-                // failure or no entries?
-                if (response.success) {
-                    // feedback
-                    feedback("No entries in the database");
-                } else {
-                    feedback(response.reason);
-                }
-                */
             }
 
         }
@@ -525,6 +513,15 @@
 
             } else {
                 // no data to display
+                // build an empty option element and add properties
+                var option = new Option();
+                option.id = 0;
+                // failure or no entries?
+                if (response.success) {option.text = "No Cases";} else {option.text = "Failed";}
+                option.value = 0;
+
+                // add element to dropdown
+                $(drpVisit).append(option);
             }
 
             // set sponsor data for first entry
@@ -532,16 +529,6 @@
 
             // loading check
             notLoading();
-
-            /*
-            // failure or no entries?
-            if (response.success) {
-                // feedback
-                //feedback("No entries in the database");
-            } else {
-                //feedback(response.reason);
-            }
-            */
 
         }
     }
@@ -561,14 +548,11 @@
                 lblAge.innerHTML = "Age: " + response.entries[0].age;
                 lblVillage.innerHTML = "Village: " + response.entries[0].village;
 
+                // move onto visits
+                getVisits();
             } else {
-
-                // bad feedback
-                //feedback(response.reason);
+                // it'll just be blank 
             }
-
-            // move onto visits
-            getVisits();
 
         }
     }
@@ -664,10 +648,8 @@
                 }
 
             } else {
-
-
                 // bad feedback
-                //feedback(response.reason);
+                feedback("The basic information did not load properly <br/>" + response.reason);
             }
 
             // not loading
@@ -691,10 +673,11 @@
                 // place the visit on the current visit
                 drpVisit.selectedIndex[drpVisit.length];
 
+                // feedback
+                feedback("Submit Successful <br/>");
             } else {
-
                 // bad feedback
-                //feedback(response.reason);
+                feedback("Submit Failed <br/>" + response.reason);
             }
 
             // not loading
