@@ -170,14 +170,16 @@
       $dx_Vit = $row['DX_Vit'];
       
       
-      $practitioners = trim($practitioners);
-      $practitioners = trim($practitioners, ",");
-      $practitioners = trim($practitioners, " ,");
+      // $practitioners = trim($practitioners);
+      // $practitioners = trim($practitioners, ",");
+      // $practitioners = trim($practitioners, " ,");
 
-      if(($urineGlucoseTest == "yes") || ($urineLeucTest == "yes") || ($urineNitritesTest == "yes") || ($urineRBCTest == "yes")){
-        $urineTest = "yes";
-      } elseif (($urineGlucoseTest == "pending") || ($urineLeucTest == "pending") || ($urineNitritesTest == "pending") || ($urineRBCTest == "pending")){
-        $urineTest = "pending";
+      if(($urineGlucoseTest == "Positive") || ($urineLeucTest == "Positive") || ($urineNitritesTest == "Positive") || ($urineRBCTest == "Positive")){
+        $urineTest = "Positive";
+      } elseif (($urineGlucoseTest == "Pending") || ($urineLeucTest == "Pending") || ($urineNitritesTest == "Pending") || ($urineRBCTest == "Pending")){
+        $urineTest = "Pending";
+      } elseif (($urineGlucoseTest == "Negative") || ($urineLeucTest == "Negative") || ($urineNitritesTest == "Negative") || ($urineRBCTest == "Negative")){
+        $urineTest = "Negative";
       } else {
         $urineTest = "no";
       }
@@ -620,9 +622,11 @@
               <?php if ($regANC == "yes") : ?>
                 <?php dropCheckbox("yes","YES"); ?>
                 <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
+              <?php elseif ($regANC == "no") : ?>
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
+              <?php else : ?>
+                <?php echo "No"; ?>
               <?php endif ?>
             </div>
           </div>
@@ -642,13 +646,15 @@
           </div>
           <div class="row">
             <div class="col-12">
-              CLINICAL ANEMIA 
+              CLINICAL ANEMIA: 
               <?php if ($clinicalAnemia == "yes") : ?>
                 <?php dropCheckbox("yes","YES"); ?>
                 <?php dropCheckbox("no","NO"); ?>
-              <?php else : ?>
+              <?php elseif ($clinicalAnemia == "no") : ?>
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
+              <?php else : ?>
+                <?php echo "No"; ?>
               <?php endif ?>
             </div>
           </div>
