@@ -155,7 +155,7 @@
       $eyeVal3 = $row['Eye_Val3'];
       $pregWeeks = $row['Pregnant_Weeks'];
 
-      $age = date("Y") - $birthYear;
+      $age = date("Y") - $birthYear - 1;
 
       $returnMission = "no";
       if($returnTo == "mission"){
