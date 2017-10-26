@@ -180,8 +180,10 @@
         $urineTest = "Pending";
       } elseif (($urineGlucoseTest == "Negative") || ($urineLeucTest == "Negative") || ($urineNitritesTest == "Negative") || ($urineRBCTest == "Negative")){
         $urineTest = "Negative";
+      } elseif (($urineGlucoseTest == "No") || ($urineLeucTest == "No") || ($urineNitritesTest == "No") || ($urineRBCTest == "No")){
+        $urineTest = "No";
       } else {
-        $urineTest = "no";
+        $urineTest = "--";
       }
 
       $alu = $row['Rx_ALU'];
@@ -222,7 +224,7 @@
     }
 
     function dropCheckbox($test, $text){
-      if(($test != "no") && ($test != null)){
+      if(($test != "no") && ($test != null) && ($test != "No")){
         echo "<i class='fa fa-check-square-o fa-lg' style='color:#000000' aria-hidden='true'></i> <span style='padding-right:10px;font-size:10px'>$text</span>";                  
       } else {
         echo "<i class='fa fa-square-o fa-lg' style='color:#000000' aria-hidden='true'></i> <span style='padding-right:10px;font-size:10px'>$text</span>";
@@ -626,7 +628,7 @@
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
               <?php else : ?>
-                <?php echo "No"; ?>
+                <?php echo "--"; ?>
               <?php endif ?>
             </div>
           </div>
@@ -654,7 +656,7 @@
                 <?php dropCheckbox("no","YES"); ?>
                 <?php dropCheckbox("yes","NO"); ?>
               <?php else : ?>
-                <?php echo "No"; ?>
+                <?php echo "--"; ?>
               <?php endif ?>
             </div>
           </div>
