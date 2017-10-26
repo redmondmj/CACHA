@@ -12,7 +12,7 @@
     // page variables
     var divDisplay = null;
 
-    //var lblFeedback = null;
+    var lblFeedback = null;
 
     // dropdowns
     var drpPatient = null;
@@ -128,7 +128,7 @@
         // get references
         divDisplay = document.getElementById("divDisplay");
 
-        //lblFeedback = document.getElementById("lblFeedback");
+        lblFeedback = document.getElementById("lblFeedback");
 
         // dropdowns
         drpPatient = document.getElementById("drpPatient");
@@ -242,14 +242,6 @@
         btnChart.addEventListener("click", toChart);
         btnSubmit.addEventListener("click", onSubmit);
 
-        /*
-        // feedback from uploading?
-        if (lblFeedback.innerHTML !== "") {
-            // get the feedback
-            feedback(lblFeedback.innerHTML);
-        }
-        */
-
         // populate dropdowns
         getPractitioners();
         // dropdowns are done one at a time
@@ -260,14 +252,13 @@
 
     // ------------------------------------------------------------ private methods
 
-    /*
     function feedback(words) {
         // feedback
         lblFeedback.innerHTML = "<h5>" + words + "</h5>";
         // display for a short time
         $('#lblFeedback').css('display', 'block');
         $('#lblFeedback').delay(4000).fadeOut(1000);
-    } */
+    }
 
     function loading() {
         // disable screen by placing the loading overlay on top
@@ -625,24 +616,18 @@
 
             } else {
                 // no data to display
-
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                option.text = "No Practitioners";
+                if (response.success) {option.text = "No Practitioners";} else {option.text = "Failed";}
                 option.value = 0;
 
                 // add element to dropdown
-                $(drpPract).append(option);
+                $(drpPract).append(option1);
 
                 /*
-                // failure or no entries?
-                if (response.success) {
-                    // feedback
-                    feedback("No entries in the database");
-                } else {
-                    feedback(response.reason);
-                }
+                // disable if failed
+                if (!response.success) {drpPract.disabled = true;}
                 */
             }
 
@@ -683,7 +668,6 @@
 
                 // populate the dropdown menu
                 for (var i = 0; i < entryCount; i++) {
-
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i + 1;
@@ -695,23 +679,22 @@
                 }
             } else {
                 // no data to display
-            }
+                // build an empty option element and add properties
+                var option = new Option();
+                option.id = 1;
+                // failure or no entries?
+                if (response.success) {option.text = "No Drugs Listed";} else {option.text = "Failed";}
+                option.value = 0;
 
-            // set sponsor data for first entry
-            //drpAsthma.selectedIndex = 0;
+                // add element to dropdown
+                $(drpDrugs).append(option);
+
+                // set to the failed entry
+                drpDrugs.selectedIndex = 1;
+            }
 
             // move on
             getPatients();
-
-            /*
-            // failure or no entries?
-            if (response.success) {
-                // feedback
-                //feedback("No entries in the database");
-            } else {
-                //feedback(response.reason);
-            }
-            */
 
         }
     }
@@ -754,11 +737,11 @@
 
             } else {
                 // no data to display
-
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                option.text = "No Patients";
+                // failure or no entries?
+                if (response.success) {option.text = "No Patients";} else {option.text = "Failed";}
                 option.value = 0;
 
                 // add element to dropdown
@@ -769,16 +752,6 @@
 
                 // not loading 
                 notLoading();
-
-                /*
-                // failure or no entries?
-                if (response.success) {
-                    // feedback
-                    feedback("No entries in the database");
-                } else {
-                    feedback(response.reason);
-                }
-                */
             }
 
         }
@@ -800,11 +773,9 @@
                 lblVillage.innerHTML = "Village: " + response.entries[0].village;
 
             } else {
-
-                // bad feedback
-                //feedback(response.reason);
+                // blank
             }
-            console.log("stats response");
+
             // move onto visits
             getVisits();
 
@@ -818,8 +789,6 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-
-            console.log("visits response");
 
             // clear the dropdown
             drpVisit.innerHTML = "";
@@ -836,34 +805,29 @@
                     // build the option element and add properties
                     var option = new Option();
                     option.id = i;
-                    var temp = i + 1
-                    option.text = "Visit #" + temp;
+                    option.text = "Case #" + response.entries[i];
                     option.value = response.entries[i];
 
                     // add element to dropdown
                     $(drpVisit).append(option);
                 }
 
+                // set sponsor data for first entry
+                drpVisit.selectedIndex = 0;
+
+                // load the first visit selected
+                getThisVisit();
+
             } else {
-                // no data to display
+                // failure or no entries?
+                if (!response.success) {
+                    // feedback
+                    feedback("Cases failed to load <br/>" + response.reason);
+                }
+
+                // not loading
+                notLoading();
             }
-
-            // set sponsor data for first entry
-            drpVisit.selectedIndex = 0;
-
-            // load the first visit selected
-            getThisVisit();
-            //notLoading();
-
-            /*
-            // failure or no entries?
-            if (response.success) {
-                // feedback
-                //feedback("No entries in the database");
-            } else {
-                //feedback(response.reason);
-            }
-            */
 
         }
     }
@@ -878,8 +842,6 @@
 
             if (response.success) {
                 // populate the data
-
-                //console.log(response);
 
                 // top stuff
                 lblCase.innerHTML = "Case #" + drpVisit[drpVisit.selectedIndex].value;
@@ -1044,10 +1006,8 @@
                 txtRX.value = response.entries[0].rxnum;
 
             } else {
-
-
                 // bad feedback
-                //feedback(response.reason);
+                feedback("Pharmacy data did not load properly <br/>" + response.reason);
             }
 
             // not loading
@@ -1065,14 +1025,13 @@
             var response = JSON.parse(xmlhttp.responseText);
 
             if (response.success) {
-                // update the dropdown
-                getVisits();
-
-                // place the visit on the current visit
-                drpVisit.selectedIndex[drpVisit.length];
+                // refresh all
+                getThisVisit();
+                // feedback
+                feedback("Submit Successful <br/>");
             } else {
                 // bad feedback
-                //feedback(response.reason);
+                feedback("Submit Failed <br/>" + response.reason);
             }
 
             // not loading
