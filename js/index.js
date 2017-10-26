@@ -1,4 +1,4 @@
-(function () {
+(function() {
     "use strict";
 
     // retrieve data
@@ -15,15 +15,15 @@
 
     var txtFName = null;
     var txtLName = null;
-    
+
     var drpVillage = null;
     var rdoM = null;
     var rdoF = null;
-    
+
     var txtYear = null;
     var txtMonth = null;
     var txtDay = null;
-    
+
     var btnSubmit = null;
 
     // construct Spinner object (spin.js) and add to loadingOverlay <div>
@@ -44,7 +44,7 @@
         divDisplay = document.getElementById("divDisplay");
 
         lblFeedback = document.getElementById("lblFeedback");
-        
+
         txtFName = document.getElementById("txtFName");
         txtLName = document.getElementById("txtLName");
 
@@ -53,7 +53,7 @@
         txtYear = document.getElementById("txtYear");
         txtMonth = document.getElementById("txtMonth");
         txtDay = document.getElementById("txtDay");
-        
+
         rdoM = document.getElementById("rdoM");
         rdoF = document.getElementById("rdoF");
 
@@ -127,12 +127,12 @@
         xmlhttp.send(sendString);
 
     }
-    
+
     function onSubmit(e) {
 
         // loading
         loading();
-        
+
         var year = 0;
         var month = 0;
         var day = 0;
@@ -152,9 +152,9 @@
             if ((txtMonth.value !== "") && (parseInt(txtMonth.value) < 13)) {
                 month = parseInt(txtMonth.value);
                 // grab day
-                if ((txtDay.value !== "") && (parseInt(txtDay.value) < 32)) {
-                    day = parseInt(txtDay.value);
-                }
+                // if ((txtDay.value !== "") && (parseInt(txtDay.value) < 32)) {
+                //     day = parseInt(txtDay.value);
+                // }
 
             }
         } else {
@@ -166,7 +166,7 @@
         if (rdoF.checked) {
             sex = "female";
         }
-        
+
         // construct json object to send to the handler script
         var sendJSON = {
             "first": txtFName.value,
@@ -177,9 +177,9 @@
             "day": day,
             "sex": sex
         };
-        
+
         console.log(sendJSON);
-        
+
         // turn object into a string
         var sendString = JSON.stringify(sendJSON);
 
@@ -192,7 +192,7 @@
         // send it
         xmlhttp.send(sendString);
     }
-    
+
     // ---------------------------------------------------------------- data response
 
     function menuResponse(e) {
@@ -251,7 +251,7 @@
                     feedback(response.reason);
                 }
             }
-            
+
             // remove loading screen
             notLoading();
         }
@@ -264,7 +264,7 @@
 
             // get the json data received
             var response = JSON.parse(xmlhttp.responseText);
-            
+
             if (response.success) {
                 // good feedback
                 feedback("Patient was successfully registered");
