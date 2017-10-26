@@ -316,18 +316,15 @@
         loading();
 
         // checkboxes
-        var preg = "no";
-        var breast = "no";
-        if (rdoPregYes.checked) {
-            preg = "yes";
-        }
-        if (rdoBreastYes.checked) {
-            breast = "yes";
-        }
+        var preg = "";
+        var breast = "";
+        if (rdoPregYes.checked) {preg = "yes";} else if (rdoPregNo.checked) {preg = "no";}
+        if (rdoBreastYes.checked) {breast = "yes";} else if (rdoBreastNo.checked) {breast = "no";}
 
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "basic",
+            "visitid": drpVisit[drpVisit.selectedIndex].value,
             "patientid": drpPatient[drpPatient.selectedIndex].value,
             "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
             "weight": txtWeight.value.replace(/[^0-9\.-]+/g, ""),
