@@ -218,6 +218,7 @@
                     public $tb = "";
                     public $hospital = "";
                     public $surgery = "";
+                    public $returnto = "";
         
                     // sti chart
                     public $chart = "";
@@ -386,8 +387,9 @@
                     $clinic->p3doxy = $row["SP_PT3Doxy"];
                     $clinic->p3amox = $row["SP_PT3Amox"];
 
-                    // follow-up and education
+                    // follow-up, return to and education
                     $clinic->follow = $row["FollowUp"];
+                    $clinic->returnto = $row["ReturnTo"];
                     $clinic->edu = $row["Education"];
 
                     // clinic practitioner
