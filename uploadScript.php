@@ -233,6 +233,7 @@
 
         // follow-up, education and referral
         $follow = $data["follow"];
+        $returnto = $data["returnto"];
         $edu = $data["edu"];
 
         $tb = $data["tb"];
@@ -396,8 +397,9 @@
         if ($p3doxy != "") {$sql .= "SP_PT3Doxy = $p3doxy,";} else {$sql .= "SP_PT3Doxy = NULL,";}
         if ($p3amox != "") {$sql .= "SP_PT3Amox = $p3amox,";} else {$sql .= "SP_PT3Amox = NULL,";}
 
-        // follow-up and education
+        // follow-up, referral and education
         $sql .= "FollowUp = '$follow',";
+        $sql .= "ReturnTo = '$returnto',";
         $sql .= "Education = '$edu',";
 
         // referral

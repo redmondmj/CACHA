@@ -98,6 +98,8 @@
     var chkTB = null;
     var chkSurgery = null;
     var chkHospital = null;
+    var chkReturn = null;
+    var txtReturn = null;
 
     // STI/PID chart
     var chkSTI = null;
@@ -258,6 +260,8 @@
         chkTB = document.getElementById("chkTB");
         chkSurgery = document.getElementById("chkSurgery");
         chkHospital = document.getElementById("chkHospital");
+        chkReturn = document.getElementById("chkReturn");
+        txtReturn = document.getElementById("txtReturn");
 
         // STI/PID chart
         chkSTI = document.getElementById("chkSTI");
@@ -468,6 +472,8 @@
         chkTB.checked = false;
         chkSurgery.checked = false;
         chkHospital.checked = false;
+        chkReturn.checked = false;
+        txtReturn.value = "";
 
         // STI/PID chart
         chkSTI.checked = false;
@@ -643,6 +649,12 @@
         if (rdoANCNo.checked) { anc = "no"; }
         if (rdoAnemiaNo.checked) { anemia = "no"; }
 
+        // return
+        var returnto = "";
+        if (chkReturn.checked) {returnto = "mission";}
+        if ((txtReturn.value !== "") && !((txtReturn.value === "0") && (chkReturn.checked))) {returnto = txtReturn.value;}
+        //if (txtReturn.value !== "") {returnto = txtReturn.value;}
+
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "clinic",
@@ -700,6 +712,7 @@
             "tb": tb,
             "hospital": hospital,
             "surgery": surgery,
+            "returnto": returnto,
 
             "chart": chart,
 
@@ -1162,6 +1175,14 @@
                 if (response.entries[0].tb === "yes") { chkTB.checked = true; } else { chkTB.checked = false; }
                 if (response.entries[0].surgery === "yes") { chkSurgery.checked = true; } else { chkSurgery.checked = false; }
                 if (response.entries[0].hospital === "yes") { chkHospital.checked = true; } else { chkHospital.checked = false; }
+
+                if (response.entries[0].returnto === "mission") {
+                    chkReturn.checked = true;
+                    txtReturn.value = "";
+                } else {
+                    txtReturn.value = response.entries[0].returnto;
+                }
+                
 
                 // STI/PID info
                 if (response.entries[0].chart === "sti") { chkSTI.checked = true; } else { chkSTI.checked = false; }
