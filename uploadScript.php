@@ -495,7 +495,7 @@
         $sql .= "Rx_Kit_PCM = '$pcm',";
         $sql .= "Rx_Kit_Pregnancy = '$kit',";
         if ($alu != "") {$sql .= "Rx_ALU = $alu,";} else {$sql .= "Rx_ALU = NULL,";}
-        if ($pud != "") {$sql .= "Rx_PUD = $pud,";} else {$sql .= "Rx_PUD = NULL,";}
+        $sql .= "Rx_PUD = '$pud',";
         if ($pzq != "") {$sql .= "Rx_PZQ_Tabs = $pzq,";} else {$sql .= "Rx_PZQ_Tabs = NULL,";}
         $sql .= "Rx_Other = '$other',";
 
