@@ -69,7 +69,7 @@
       $dx_Gerd = $row['DX_Gerd'];
       $dx_PUD = $row['DX_PUD'];
       $dx_Diarrhea = $row['DX_Diarrhea'];
-      $dx_DiarrheaBloody = $row['DX_DiarrheaBloody'];
+      //$dx_DiarrheaBloody = $row['DX_DiarrheaBloody'];
       $dx_Hypertension = $row['DX_Hypertension'];
       $dx_Diabetes = $row['DX_Diabetes'];
       $dx_Constipation = $row['DX_Constipation'];
@@ -213,6 +213,22 @@
         $alu = "no";
   
       }
+
+      $dx_DiarrheaType = $row['DX_DiarrheaBloody'];
+
+      if($dx_DiarrheaType != null){
+        switch($dx_DiarrheaType){
+          case "yes":
+            $dx_DiarrheaType = "(Bloody)";
+            break;
+          case "no":
+            $dx_DiarrheaType = "(Watery)";
+            break;
+          case "na":
+            $dx_DiarrheaType = "";
+            break;
+        }
+      } 
 
       if($rx_PZQ_Dose == 0){
         $rx_PZQ_Dose = "no";
@@ -586,6 +602,8 @@
             </div>
             <div class="col-3">
               <?php severity($dx_Diarrhea, "DIARRHEA"); ?>
+              <?php echo $dx_DiarrheaType; ?>
+              
             </div>
             <div class="col-3">
               <?php severity($dx_Hypertension, "HYPERTENSION"); ?>
@@ -727,7 +745,7 @@
           </div>
           <div>
             Other RX:<?php dropContent($rx_Other); ?>
-  </div>
+          </div>
 
 
         </div>
@@ -828,7 +846,7 @@
           <span style="font-weight:bold">PRACTITIONERS:</span><br>
           <?php practitioner($practitionerClinic, "Clinc: ") ?>
           <?php practitioner($practitionerClinic2, "Clinc2: ") ?>
-          <?php practitioner($practitionerClinic3, "Clin3: ") ?>
+          <?php practitioner($practitionerClinic3, "Clinc3: ") ?>
           <?php practitioner($practitionerTest, "Test: ") ?>
           <?php practitioner($practitionerEye, "Eye: ") ?>
           <?php practitioner($practitionerDental, "Dental: ") ?>
