@@ -196,17 +196,22 @@
         switch($alu){
           case 1:
             $alu1 = "yes";
+            break;
           case 2:
             $alu2 = "yes";
+            break;
           case 3:
             $alu3 = "yes";
+            break;
           case 4:
             $alu4 = "yes";
+            break;
         }
         $alu = "yes";
+
       } else {
         $alu = "no";
-        
+  
       }
 
       if($rx_PZQ_Dose == 0){
