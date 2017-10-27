@@ -358,8 +358,8 @@
           Name: <?php dropContent($firstName . " " . $lastName); ?><br>
           Village: <?php dropContent($village); ?><br>
           <div>
-            G: <?php dropContent( $numLiveBirth); ?>
-            P: <?php dropContent( $numOfPreg); ?>
+            G: <?php dropContent( $numOfPreg); ?>
+            P: <?php dropContent( $numLiveBirth); ?>
             A: <?php dropContent( $numAbortions); ?>
           </div>
           <div>
