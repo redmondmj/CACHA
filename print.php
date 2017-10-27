@@ -240,14 +240,14 @@
 
     function severity($test, $text){
       $severity = "";
-      if($test == null){
+      if($test === "0"){
         $text = "";
         $Severity = "";
-      } elseif($test == "1"){
+      } elseif($test === "1"){
         $severity = " +";
-      } elseif($test == "2") {
+      } elseif($test === "2") {
         $severity = " ++";
-      }elseif($test == "3"){
+      }elseif($test === "3"){
         $severity = " +++";
       }
 
