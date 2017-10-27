@@ -155,7 +155,7 @@
       $eyeVal3 = $row['Eye_Val3'];
       $pregWeeks = $row['Pregnant_Weeks'];
 
-      $age = date("Y") - $birthYear;
+      $age = date("Y") - $birthYear - 1;
 
       $returnMission = "no";
       if($returnTo == "mission"){
@@ -224,7 +224,7 @@
     }
 
     function dropCheckbox($test, $text){
-      if(($test != "no") && ($test != null) && ($test != "No")){
+      if(($test != "no") && ($test != null) && ($test != "No")  && ($test != "--")){
         echo "<i class='fa fa-check-square-o fa-lg' style='color:#000000' aria-hidden='true'></i> <span style='padding-right:10px;font-size:10px'>$text</span>";                  
       } else {
         echo "<i class='fa fa-square-o fa-lg' style='color:#000000' aria-hidden='true'></i> <span style='padding-right:10px;font-size:10px'>$text</span>";

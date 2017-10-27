@@ -1057,7 +1057,7 @@
                         break;
                     }
                 }
-                txtMeds.innerHTML = response.entries[0].txtMeds;
+                txtMeds.innerHTML = response.entries[0].meds;
 
                 // admin section
                 if (response.entries[0].parac === "yes") { chkParac.checked = true; } else { chkParac.checked = false; }
@@ -1089,9 +1089,9 @@
 
                 drpCon.selectedIndex = response.entries[0].con;
                 drpDiarrhea.selectedIndex = response.entries[0].diarrhea;
-                if (response.entries[0].diarrheatype === "watery") {
+                if (response.entries[0].diarrheatype === "no") {
                     drpDiarrheaType.selectedIndex = 1;
-                } else if (response.entries[0].diarrheatype === "bloody") {
+                } else if (response.entries[0].diarrheatype === "yes") {
                     drpDiarrheaType.selectedIndex = 2;
                 } else {
                     drpDiarrheaType.selectedIndex = 0;

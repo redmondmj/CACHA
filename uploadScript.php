@@ -10,6 +10,9 @@
     // which request is it?
     if ($data["upload"] == "basic") {
 
+        // visitid to update if needed
+        $visitid = $data["visitid"];
+
         // date and time
         $visitDate = date("Y-m-d");
         $visitTime = date("h:i:s");
@@ -34,6 +37,7 @@
         $period = $data["period"];
         $preg = $data["pregnant"];
         $breast = $data["breast"];
+
         $grav = $data["grav"];
         $para = $data["para"];
         $abortus = $data["abortus"];
@@ -41,109 +45,135 @@
         
         $complaint = $data["complaint"];
         
-        // build the enourmous sql statement
-        $sql = "INSERT INTO tbl_visit (PatientID,VisitDate,VisitTime,";
-        $values = ") VALUES ('$id','$visitDate','$visitTime',";
+        // new visit or updating?
+        if ($visitid == 0) {
+            // new visit
+            // build the enourmous sql statement
+            $sql = "INSERT INTO tbl_visit (PatientID,VisitDate,VisitTime,";
+            $values = ") VALUES ('$id','$visitDate','$visitTime',";
 
-        if (!empty($dispensary)) {
             $sql .= "VisitedDispensary,";
             $values .=  "'$dispensary',";
-        }
 
-        // stations
-        if (!empty($test)) {
+            // stations
             $sql .= "TriageTesting,";
             $values .= "'$test',";
-        }
-        if (!empty($med)) {
             $sql .= "TriageMedical,";
             $values .= "'$med',";
-        }
-        if (!empty($gyn)) {
             $sql .= "TriageGYN,";
             $values .= "'$gyn',";
-        }
-        if (!empty($opht)) {
             $sql .= "TriageOPHT,";
             $values .= "'$opht',";
-        }
-        if (!empty($dent)) {
             $sql .= "TriageDENT,";
             $values .= "'$dent',";
-        }
-        if (!empty($triagev)) {
             $sql .= "TriageVenDis,";
             $values .= "'$triagev',";
-        }
 
-        // standard
-        if (!empty($weight)) {
+            // standard
             $sql .= "Weight,";
             $values .= "'$weight',";
-        }
-        if (!empty($temp)) {
             $sql .= "Temperature,";
             $values .= "'$temp',";
-        }
-        if (!empty($bptop)) {
-            $sql .= "Systolic,";
-            $values .= "'$bptop',";
-        }
-        if (!empty($bpbottom)) {
-            $sql .= "Diastolic,";
-            $values .= "'$bpbottom',";
-        }
-        if (!empty($glucose)) {
-            $sql .= "Glucose,";
-            $values .= "'$glucose',";
-        }
-        if (!empty($heart)) {
-            $sql .= "HeartRate,";
-            $values .= "'$heart',";
-        }
 
-        // child info
-        if (!empty($period)) {
+            if ($bptop != "") {
+                $sql .= "Systolic,";
+                $values .= "$bptop,";
+            }
+            if ($bpbottom != "") {
+                $sql .= "Diastolic,";
+                $values .= "$bpbottom,";
+            }
+            if ($glucose != "") {
+                $sql .= "Glucose,";
+                $values .= "$glucose,";
+            }
+            if ($heart != "") {
+                $sql .= "HeartRate,";
+                $values .= "$heart,";
+            }
+            
+            // child info
             $sql .= "LastPeriod,";
             $values .= "'$period',";
-        }
-        if (!empty($preg)) {
             $sql .= "Pregnant,";
             $values .= "'$preg',";
-        }
-        if (!empty($breast)) {
             $sql .= "Breastfeed,";
             $values .= "'$breast',";
-        }
-        if (!empty($grav)) {
-            $sql .= "Gravida,";
-            $values .= "'$grav',";
-        }
-        if (!empty($para)) {
-            $sql .= "Para,";
-            $values .= "'$para',";
-        }
-        if (!empty($abortus)) {
-            $sql .= "Abortus,";
-            $values .= "'$abortus',";
-        }
-        if (!empty($living)) {
-            $sql .= "NumLivingChildren,";
-            $values .= "'$living',";
-        }
+            if ($data["grav"] != "") {
+                $sql .= "Gravida,";
+                $values .= "$grav,";
+            }
+            if ($data["para"] != "") {
+                $sql .= "Para,";
+                $values .= "$para,";
+            }
+            if ($data["abortus"] != "") {
+                $sql .= "Abortus,";
+                $values .= "$abortus,";
+            }
+            if ($data["living"] != "") {
+                $sql .= "NumLivingChildren,";
+                $values .= "$living,";
+            }
+            
+            // complaint
+            $sql .= "ChiefComplaint";
+            $values .= "'$complaint')";
 
-        // complaint
-        if (!empty($complaint)) {
-            $sql .= "ChiefComplaint,";
-            $values .= "'$complaint',";
+            // clean up the sql
+            //$sql = substr_replace($sql ,'',-1);
+            //$values = substr_replace($values ,")",-1);
+
+            // stick it all together
+            $sql .= $values;
+
+        } else {
+            // updating a visit
+            // build the enourmous sql statement
+            $sql = "UPDATE tbl_visit SET ";
+            
+            // can't change these
+            //$sql .= "PatientID = $id,";
+            //$sql .= "VisitDate = '$visitDate',";
+            //$sql .= "VisitTime = '$visitTime',";
+
+            $sql .= "VisitedDispensary = '$dispensary',";
+
+            // stations
+            $sql .= "TriageTesting = '$test',";
+            $sql .= "TriageMedical = '$med',";
+            $sql .= "TriageGYN = '$gyn',";
+            $sql .= "TriageOPHT = '$opht',";
+            $sql .= "TriageDENT = '$dent',";
+            $sql .= "TriageVenDis = '$triagev',";
+
+            // standard
+            $sql .= "Weight = '$weight',";
+            $sql .= "Temperature = '$temp',";
+            if ($bptop != "") {$sql .= "Systolic = $bptop,";} else {$sql .= "Systolic = NULL,";}
+            if ($bpbottom != "") {$sql .= "Diastolic = $bpbottom,";} else {$sql .= "Diastolic = NULL,";}
+            if ($glucose != "") {$sql .= "Glucose = $glucose,";} else {$sql .= "Glucose = NULL,";}
+            if ($heart != "") {$sql .= "HeartRate = $heart,";} else {$sql .= "HeartRate = NULL,";}
+            
+            // child info
+            $sql .= "LastPeriod = '$period',";
+            $sql .= "Pregnant = '$preg',";
+            $sql .= "Breastfeed = '$breast',";
+            if ($data["grav"] != "") {$sql .= "Gravida = $grav,";} else {$sql .= "Gravida = NULL,";}
+            if ($data["para"] != "") {$sql .= "Para = $para,";} else {$sql .= "Para = NULL,";}
+            if ($data["abortus"] != "") {$sql .= "Abortus = $abortus,";} else {$sql .= "Abortus = NULL,";}
+            if ($data["living"] != "") {$sql .= "NumLivingChildren = $living,";} else {$sql .= "NumLivingChildren = NULL,";}
+            
+            // complaint
+            $sql .= "ChiefComplaint = '$complaint'";
+
+            // remove last comma and add bracket
+            //$sql = substr_replace($sql ,"",-1);
+            
+            // add conditon
+            $sql .= " WHERE VisitID = $visitid;";
+
         }
-
-        // clean up the sql
-        $sql = substr_replace($sql ,'',-1);
-        $values = substr_replace($values ,")",-1);
-
-        // stick it all together
-        $sql .= $values;
 
     } else if ($data["upload"] == "clinic") {
 
@@ -264,117 +294,123 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
-        if (!empty($test)) {$sql .= "TriageTesting = '$test',";}
-        if (!empty($med)) {$sql .= "TriageMedical = '$med',";}
-        if (!empty($gyn)) {$sql .= "TriageGYN = '$gyn',";}
-        if (!empty($opht)) {$sql .= "TriageOPHT = '$opht',";}
-        if (!empty($dent)) {$sql .= "TriageDENT = '$dent',";}
-        if (!empty($triagev)) {$sql .= "TriageVenDis = '$triagev',";}
+        $sql .= "TriageTesting = '$test',";
+        $sql .= "TriageMedical = '$med',";
+        $sql .= "TriageGYN = '$gyn',";
+        $sql .= "TriageOPHT = '$opht',";
+        $sql .= "TriageDENT = '$dent',";
+        $sql .= "TriageVenDis = '$triagev',";
 
-        if (!empty($weeks)) {$sql .= "Pregnant_Weeks = '$weeks',";}
-        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+        if ($weeks != "") {$sql .= "Pregnant_Weeks = $weeks,";} else {$sql .= "Pregnant_Weeks = NULL,";}
+        $sql .= "Assessment = '$assess',";
 
-        if (!empty($lastHIV)) {$sql .= "LastHIVTest = '$lastHIV',";}
-        if (!empty($lastPZQ)) {$sql .= "LastPZQTx = '$lastPZQ',";}
-        if (!empty($lastWorm)) {$sql .= "LastWormTx = '$lastWorm',";}
-        if (!empty($lastVitA)) {$sql .= "LastVitA = '$lastVitA',";}
+        $sql .= "LastHIVTest = '$lastHIV',";
+        $sql .= "LastPZQTx = '$lastPZQ',";
+        $sql .= "LastWormTx = '$lastWorm',";
+        $sql .= "LastVitA = '$lastVitA',";
 
-        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
+        $sql .= "PrevMeds = '$meds',";
 
-        if (!empty($healthy)) {$sql .= "DX_Healthy = '$healthy',";}
-        if (!empty($ntr)) {$sql .= "DX_NoTreatment = '$ntr',";}
-        if (!empty($msk)) {$sql .= "DX_MSK = '$msk',";}
-        if (!empty($eye)) {$sql .= "DX_Eye = '$eye',";}
-        if (!empty($vit)) {$sql .= "DX_Vit = '$vit',";}
-        if (!empty($dds)) {$sql .= "DX_DDS = '$dds',";}
-        if (!empty($worms)) {$sql .= "DX_Worms = '$worms',";}
-        if (!empty($malaria)) {$sql .= "DX_Malaria = '$malaria',";}
-        if (!empty($schisto)) {$sql .= "DX_Schisto = '$schisto',";}
-        if (!empty($typhoid)) {$sql .= "DX_Typhoid = '$typhoid',";}
-        if (!empty($asthma)) {$sql .= "DX_Asthma = '$asthma',";}
-        if (!empty($bronchitis)) {$sql .= "DX_Bronchitis = '$bronchitis',";}
-        if (!empty($pneumonia)) {$sql .= "DX_Pneumonia = '$pneumonia',";}
-        if (!empty($cough)) {$sql .= "DX_Cough = '$cough',";}
-        if (!empty($gerd)) {$sql .= "DX_Gerd = '$gerd',";}
-        if (!empty($pud)) {$sql .= "DX_PUD = '$pud',";}
-        if (!empty($hypertension)) {$sql .= "DX_Hypertension = '$hypertension',";}
-        if (!empty($constipation)) {$sql .= "DX_Constipation = '$constipation',";}
-        if (!empty($diarrhea)) {$sql .= "DX_Diarrhea = '$diarrhea',";}
-        if (!empty($bloody)) {$sql .= "DX_DiarrheaBloody = '$bloody',";}
-        if (!empty($diabetes)) {$sql .= "DX_Diabetes = '$diabetes',";}
-        if (!empty($pid)) {$sql .= "DX_PID = '$pid',";}
-        if (!empty($sti)) {$sql .= "DX_STI = '$sti',";}
-        if (!empty($syphilis)) {$sql .= "DX_Syphilis = '$syphilis',";}
-        if (!empty($topical)) {$sql .= "DX_Topical = '$topical',";}
-        if (!empty($topicaldesc)) {$sql .= "DX_TopicalDesc = '$topicaldesc',";}
-        if (!empty($other)) {$sql .= "DX_Other = '$other',";}
-        if (!empty($otherdesc)) {$sql .= "DX_OtherDesc = '$otherdesc',";}
+        $sql .= "DX_Healthy = '$healthy',";
+        $sql .= "DX_NoTreatment = '$ntr',";
+        if ($msk != "") {$sql .= "DX_MSK = $msk,";} else {$sql .= "DX_MSK = NULL,";}
+        if ($eye != "") {$sql .= "DX_Eye = $eye,";} else {$sql .= "DX_Eye = NULL,";}
+        if ($vit != "") {$sql .= "DX_Vit = $vit,";} else {$sql .= "DX_Vit = NULL,";}
+        if ($dds != "") {$sql .= "DX_DDS = $dds,";} else {$sql .= "DX_DDS = NULL,";}
+
+        if ($worms != "") {$sql .= "DX_Worms = $worms,";} else {$sql .= "DX_Worms = NULL,";}
+        if ($malaria != "") {$sql .= "DX_Malaria = $malaria,";} else {$sql .= "DX_Malaria = NULL,";}
+        if ($schisto != "") {$sql .= "DX_Schisto = $schisto,";} else {$sql .= "DX_Schisto = NULL,";}
+        if ($typhoid != "") {$sql .= "DX_Typhoid = $typhoid,";} else {$sql .= "DX_Typhoid = NULL,";}
+
+        if ($asthma != "") {$sql .= "DX_Asthma = $asthma,";} else {$sql .= "DX_Asthma = NULL,";}
+        if ($bronchitis != "") {$sql .= "DX_Bronchitis = $bronchitis,";} else {$sql .= "DX_Bronchitis = NULL,";}
+        if ($pneumonia != "") {$sql .= "DX_Pneumonia = $pneumonia,";} else {$sql .= "DX_Pneumonia = NULL,";}
+        if ($cough != "") {$sql .= "DX_Cough = $cough,";} else {$sql .= "DX_Cough = NULL,";}
+
+        if ($gerd != "") {$sql .= "DX_Gerd = $gerd,";} else {$sql .= "DX_Gerd = NULL,";}
+        if ($pud != "") {$sql .= "DX_PUD = $pud,";} else {$sql .= "DX_PUD = NULL,";}
+        if ($hypertension != "") {$sql .= "DX_Hypertension = $hypertension,";} else {$sql .= "DX_Hypertension = NULL,";}
+        
+        if ($constipation != "") {$sql .= "DX_Constipation = $constipation,";} else {$sql .= "DX_Constipation = NULL,";}
+        if ($diarrhea != "") {$sql .= "DX_Diarrhea = $diarrhea,";} else {$sql .= "DX_Diarrhea = NULL,";}
+        $sql .= "DX_DiarrheaBloody = '$bloody',";
+
+        if ($diabetes != "") {$sql .= "DX_Diabetes = $diabetes,";} else {$sql .= "DX_Diabetes = NULL,";}
+        if ($pid != "") {$sql .= "DX_PID = $pid,";} else {$sql .= "DX_PID = NULL,";}
+        if ($sti != "") {$sql .= "DX_STI = $sti,";} else {$sql .= "DX_STI = NULL,";}
+        if ($syphilis != "") {$sql .= "DX_Syphilis = $syphilis,";} else {$sql .= "DX_Syphilis = NULL,";}
+
+        if ($topical != "") {$sql .= "DX_Topical = $topical,";} else {$sql .= "DX_Topical = NULL,";}
+        $sql .= "DX_TopicalDesc = '$topicaldesc',";
+        if ($other != "") {$sql .= "DX_Other = $other,";} else {$sql .= "DX_Other = NULL,";}
+        $sql .= "DX_OtherDesc = '$otherdesc',";
 
         // pregnancy stuff
-        if (!empty($anc)) {$sql .= "RegANC = '$anc',";}
-        if (!empty($anemia)) {$sql .= "ClinicalAnemia = '$anemia',";}
-        if (!empty($iptp)) {$sql .= "LastIPTpx = '$iptp',";}
-        if (!empty($sulfadar)) {$sql .= "Sulfadar = '$sulfadar',";}
+        $sql .= "RegANC = '$anc',";
+        $sql .= "ClinicalAnemia = '$anemia',";
+        $sql .= "LastIPTpx = '$iptp',";
+        if ($sulfadar != "") {$sql .= "Sulfadar = $sulfadar,";} else {$sql .= "Sulfadar = NULL,";}
 
         // administrated
-        if (!empty($parac)) {$sql .= "Rx_Paracetamol = '$parac',";}
-        if (!empty($benz)) {$sql .= "Rx_BenzPen = '$benz',";}
-        if (!empty($ceft)) {$sql .= "Rx_Ceftriaxone = '$ceft',";}
+        $sql .= "Rx_Paracetamol = '$parac',";
+        $sql .= "Rx_BenzPen = '$benz',";
+        $sql .= "Rx_Ceftriaxone = '$ceft',";
 
         // chart
-        if (!empty($chart)) {$sql .= "SP_Type = '$chart',";}
+        $sql .= "SP_Type = '$chart',";
         
-        if (!empty($ptinit)) {$sql .= "SP_PTInitials = '$ptinit',";}
-        if (!empty($ptsex)) {$sql .= "SP_PTSex = '$ptsex',";}
-        if (!empty($ptpreg)) {$sql .= "SP_PTPreg = '$ptpreg',";}
-        if (!empty($ptmonth)) {$sql .= "SP_PTMonths = '$ptmonth',";}
-        if (!empty($ptbf)) {$sql .= "SP_PTBF = '$ptbf',";}
-        if (!empty($ptmtz)) {$sql .= "SP_PTMTZ = '$ptmtz',";}
-        if (!empty($ptdoxy)) {$sql .= "SP_PTDoxy = '$ptdoxy',";}
-        if (!empty($ptamox)) {$sql .= "SP_PTAmox = '$ptamox',";}
+        $sql .= "SP_PTInitials = '$ptinit',";
+        $sql .= "SP_PTSex = '$ptsex',";
+        $sql .= "SP_PTPreg = '$ptpreg',";
+        if ($ptmonth != "") {$sql .= "SP_PTMonths = $ptmonth,";} else {$sql .= "SP_PTMonths = NULL,";}
+        $sql .= "SP_PTBF = '$ptbf',";
+        if ($ptmtz != "") {$sql .= "SP_PTMTZ = $ptmtz,";} else {$sql .= "SP_PTMTZ = NULL,";}
+        if ($ptdoxy != "") {$sql .= "SP_PTDoxy = $ptdoxy,";} else {$sql .= "SP_PTDoxy = NULL,";}
+        if ($ptamox != "") {$sql .= "SP_PTAmox = $ptamox,";} else {$sql .= "SP_PTAmox = NULL,";}
         
-        if (!empty($p1init)) {$sql .= "SP_PT1Initials = '$p1init',";}
-        if (!empty($p1sex)) {$sql .= "SP_PT1Sex = '$p1sex',";}
-        if (!empty($p1preg)) {$sql .= "SP_PT1Preg = '$p1preg',";}
-        if (!empty($p1month)) {$sql .= "SP_PT1Months = '$p1month',";}
-        if (!empty($p1bf)) {$sql .= "SP_PT1BF = '$p1bf',";}
-        if (!empty($p1mtz)) {$sql .= "SP_PT1MTZ = '$p1mtz',";}
-        if (!empty($p1doxy)) {$sql .= "SP_PT1Doxy = '$p1doxy',";}
-        if (!empty($p1amox)) {$sql .= "SP_PT1Amox = '$p1amox',";}
+        $sql .= "SP_PT1Initials = '$p1init',";
+        $sql .= "SP_PT1Sex = '$p1sex',";
+        $sql .= "SP_PT1Preg = '$p1preg',";
+        if ($p1month != "") {$sql .= "SP_PT1Months = $p1month,";} else {$sql .= "SP_PT1Months = NULL,";}
+        $sql .= "SP_PT1BF = '$p1bf',";
+        if ($p1mtz != "") {$sql .= "SP_PT1MTZ = $p1mtz,";} else {$sql .= "SP_PT1MTZ = NULL,";}
+        if ($p1doxy != "") {$sql .= "SP_PT1Doxy = $p1doxy,";} else {$sql .= "SP_PT1Doxy = NULL,";}
+        if ($p1amox != "") {$sql .= "SP_PT1Amox = $p1amox,";} else {$sql .= "SP_PT1Amox = NULL,";}
         
-        if (!empty($p2init)) {$sql .= "SP_PT2Initials = '$p2init',";}
-        if (!empty($p2sex)) {$sql .= "SP_PT2Sex = '$p2sex',";}
-        if (!empty($p2preg)) {$sql .= "SP_PT2Preg = '$p2preg',";}
-        if (!empty($p2month)) {$sql .= "SP_PT2Months = '$p2month',";}
-        if (!empty($p2bf)) {$sql .= "SP_PT2BF = '$p2bf',";}
-        if (!empty($p2mtz)) {$sql .= "SP_PT2MTZ = '$p2mtz',";}
-        if (!empty($p2doxy)) {$sql .= "SP_PT2Doxy = '$p2doxy',";}
-        if (!empty($p2amox)) {$sql .= "SP_PT2Amox = '$p2amox',";}
+        $sql .= "SP_PT2Initials = '$p2init',";
+        $sql .= "SP_PT2Sex = '$p2sex',";
+        $sql .= "SP_PT2Preg = '$p2preg',";
+        if ($p2month != "") {$sql .= "SP_PT2Months = $p2month,";} else {$sql .= "SP_PT2Months = NULL,";}
+        $sql .= "SP_PT2BF = '$p2bf',";
+        if ($p2mtz != "") {$sql .= "SP_PT2MTZ = $p2mtz,";} else {$sql .= "SP_PT2MTZ = NULL,";}
+        if ($p2doxy != "") {$sql .= "SP_PT2Doxy = $p2doxy,";} else {$sql .= "SP_PT2Doxy = NULL,";}
+        if ($p2amox != "") {$sql .= "SP_PT2Amox = $p2amox,";} else {$sql .= "SP_PT2Amox = NULL,";}
 
-        if (!empty($p3init)) {$sql .= "SP_PT3Initials = '$p3init',";}
-        if (!empty($p3sex)) {$sql .= "SP_PT3Sex = '$p3sex',";}
-        if (!empty($p3preg)) {$sql .= "SP_PT3Preg = '$p3preg',";}
-        if (!empty($p3month)) {$sql .= "SP_PT3Months = '$p3month',";}
-        if (!empty($p3bf)) {$sql .= "SP_PT3BF = '$p3bf',";}
-        if (!empty($p3mtz)) {$sql .= "SP_PT3MTZ = '$p3mtz',";}
-        if (!empty($p3doxy)) {$sql .= "SP_PT3Doxy = '$p3doxy',";}
-        if (!empty($p3amox)) {$sql .= "SP_PT3Amox = '$p3amox',";}
+        $sql .= "SP_PT3Initials = '$p3init',";
+        $sql .= "SP_PT3Sex = '$p3sex',";
+        $sql .= "SP_PT3Preg = '$p3preg',";
+        if ($p3month != "") {$sql .= "SP_PT3Months = $p3month,";} else {$sql .= "SP_PT3Months = NULL,";}
+        $sql .= "SP_PT3BF = '$p3bf',";
+        if ($p3mtz != "") {$sql .= "SP_PT3MTZ = $p3mtz,";} else {$sql .= "SP_PT3MTZ = NULL,";}
+        if ($p3doxy != "") {$sql .= "SP_PT3Doxy = $p3doxy,";} else {$sql .= "SP_PT3Doxy = NULL,";}
+        if ($p3amox != "") {$sql .= "SP_PT3Amox = $p3amox,";} else {$sql .= "SP_PT3Amox = NULL,";}
 
         // follow-up and education
-        if (!empty($follow)) {$sql .= "FollowUp = '$follow',";}
-        if (!empty($edu)) {$sql .= "Education = '$edu',";}
+        $sql .= "FollowUp = '$follow',";
+        $sql .= "Education = '$edu',";
 
         // referral
-        if (!empty($tb)) {$sql .= "RefTB = '$tb',";}
-        if (!empty($hospital)) {$sql .= "RefHospital = '$hospital',";}
-        if (!empty($surgery)) {$sql .= "RefSurgery = '$surgery',";}
+        $sql .= "RefTB = '$tb',";
+        $sql .= "RefHospital = '$hospital',";
+        $sql .= "RefSurgery = '$surgery',";
 
         // clinic practitioner
-        if (!empty($pract1)) {$sql .= "DR_Clinic = '$pract1',";}
-        if (!empty($pract2)) {$sql .= "DR_Clinic2 = '$pract2',";}
-        if (!empty($pract3)) {$sql .= "DR_Clinic3 = '$pract3',";}
+        $sql .= "DR_Clinic = '$pract1',";
+        $sql .= "DR_Clinic2 = '$pract2',";
+        $sql .= "DR_Clinic3 = '$pract3',";
     
-        // remove last comma and add bracket
+        // remove last comma
         $sql = substr_replace($sql ,"",-1);
         
         // add conditon
@@ -447,67 +483,67 @@
         // build the giant sql string
         $sql = "UPDATE tbl_visit SET ";
         
-        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
-        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
+        $sql .= "Assessment = '$assess',";
+        $sql .= "PrevMeds = '$meds',";
         
-        if (!empty($sulfadar)) {$sql .= "Sulfadar = '$sulfadar',";}
+        if ($sulfadar != "") {$sql .= "Sulfadar = $sulfadar,";} else {$sql .= "Sulfadar = NULL,";}
 
-        if (!empty($parac)) {$sql .= "Rx_Paracetamol = '$parac',";}
-        if (!empty($benz)) {$sql .= "Rx_BenzPen = '$benz',";}
-        if (!empty($ceft)) {$sql .= "Rx_Ceftriaxone = '$ceft',";}
+        $sql .= "Rx_Paracetamol = '$parac',";
+        $sql .= "Rx_BenzPen = '$benz',";
+        $sql .= "Rx_Ceftriaxone = '$ceft',";
 
-        if (!empty($pcm)) {$sql .= "Rx_Kit_PCM = '$pcm',";}
-        if (!empty($kit)) {$sql .= "Rx_Kit_Pregnancy = '$kit',";}
-        if (!empty($alu)) {$sql .= "Rx_ALU = '$alu',";}
-        if (!empty($pud)) {$sql .= "Rx_PUD = '$pud',";}
-        if (!empty($pzq)) {$sql .= "Rx_PZQ_Tabs = '$pzq',";}
-        if (!empty($other)) {$sql .= "Rx_Other = '$other',";}
+        $sql .= "Rx_Kit_PCM = '$pcm',";
+        $sql .= "Rx_Kit_Pregnancy = '$kit',";
+        if ($alu != "") {$sql .= "Rx_ALU = $alu,";} else {$sql .= "Rx_ALU = NULL,";}
+        if ($pud != "") {$sql .= "Rx_PUD = $pud,";} else {$sql .= "Rx_PUD = NULL,";}
+        if ($pzq != "") {$sql .= "Rx_PZQ_Tabs = $pzq,";} else {$sql .= "Rx_PZQ_Tabs = NULL,";}
+        $sql .= "Rx_Other = '$other',";
 
         // chart
-        if (!empty($chart)) {$sql .= "SP_Type = '$chart',";}
+        $sql .= "SP_Type = '$chart',";
         
-        if (!empty($ptinit)) {$sql .= "SP_PTInitials = '$ptinit',";}
-        if (!empty($ptsex)) {$sql .= "SP_PTSex = '$ptsex',";}
-        if (!empty($ptpreg)) {$sql .= "SP_PTPreg = '$ptpreg',";}
-        if (!empty($ptmonth)) {$sql .= "SP_PTMonths = '$ptmonth',";}
-        if (!empty($ptbf)) {$sql .= "SP_PTBF = '$ptbf',";}
-        if (!empty($ptmtz)) {$sql .= "SP_PTMTZ = '$ptmtz',";}
-        if (!empty($ptdoxy)) {$sql .= "SP_PTDoxy = '$ptdoxy',";}
-        if (!empty($ptamox)) {$sql .= "SP_PTAmox = '$ptamox',";}
+        $sql .= "SP_PTInitials = '$ptinit',";
+        $sql .= "SP_PTSex = '$ptsex',";
+        $sql .= "SP_PTPreg = '$ptpreg',";
+        if ($ptmonth != "") {$sql .= "SP_PTMonths = $ptmonth,";} else {$sql .= "SP_PTMonths = NULL,";}
+        $sql .= "SP_PTBF = '$ptbf',";
+        if ($ptmtz != "") {$sql .= "SP_PTMTZ = $ptmtz,";} else {$sql .= "SP_PTMTZ = NULL,";}
+        if ($ptdoxy != "") {$sql .= "SP_PTDoxy = $ptdoxy,";} else {$sql .= "SP_PTDoxy = NULL,";}
+        if ($ptamox != "") {$sql .= "SP_PTAmox = $ptamox,";} else {$sql .= "SP_PTAmox = NULL,";}
         
-        if (!empty($p1init)) {$sql .= "SP_PT1Initials = '$p1init',";}
-        if (!empty($p1sex)) {$sql .= "SP_PT1Sex = '$p1sex',";}
-        if (!empty($p1preg)) {$sql .= "SP_PT1Preg = '$p1preg',";}
-        if (!empty($p1month)) {$sql .= "SP_PT1Months = '$p1month',";}
-        if (!empty($p1bf)) {$sql .= "SP_PT1BF = '$p1bf',";}
-        if (!empty($p1mtz)) {$sql .= "SP_PT1MTZ = '$p1mtz',";}
-        if (!empty($p1doxy)) {$sql .= "SP_PT1Doxy = '$p1doxy',";}
-        if (!empty($p1amox)) {$sql .= "SP_PT1Amox = '$p1amox',";}
+        $sql .= "SP_PT1Initials = '$p1init',";
+        $sql .= "SP_PT1Sex = '$p1sex',";
+        $sql .= "SP_PT1Preg = '$p1preg',";
+        if ($p1month != "") {$sql .= "SP_PT1Months = $p1month,";} else {$sql .= "SP_PT1Months = NULL,";}
+        $sql .= "SP_PT1BF = '$p1bf',";
+        if ($p1mtz != "") {$sql .= "SP_PT1MTZ = $p1mtz,";} else {$sql .= "SP_PT1MTZ = NULL,";}
+        if ($p1doxy != "") {$sql .= "SP_PT1Doxy = $p1doxy,";} else {$sql .= "SP_PT1Doxy = NULL,";}
+        if ($p1amox != "") {$sql .= "SP_PT1Amox = $p1amox,";} else {$sql .= "SP_PT1Amox = NULL,";}
         
-        if (!empty($p2init)) {$sql .= "SP_PT2Initials = '$p2init',";}
-        if (!empty($p2sex)) {$sql .= "SP_PT2Sex = '$p2sex',";}
-        if (!empty($p2preg)) {$sql .= "SP_PT2Preg = '$p2preg',";}
-        if (!empty($p2month)) {$sql .= "SP_PT2Months = '$p2month',";}
-        if (!empty($p2bf)) {$sql .= "SP_PT2BF = '$p2bf',";}
-        if (!empty($p2mtz)) {$sql .= "SP_PT2MTZ = '$p2mtz',";}
-        if (!empty($p2doxy)) {$sql .= "SP_PT2Doxy = '$p2doxy',";}
-        if (!empty($p2amox)) {$sql .= "SP_PT2Amox = '$p2amox',";}
+        $sql .= "SP_PT2Initials = '$p2init',";
+        $sql .= "SP_PT2Sex = '$p2sex',";
+        $sql .= "SP_PT2Preg = '$p2preg',";
+        if ($p2month != "") {$sql .= "SP_PT2Months = $p2month,";} else {$sql .= "SP_PT2Months = NULL,";}
+        $sql .= "SP_PT2BF = '$p2bf',";
+        if ($p2mtz != "") {$sql .= "SP_PT2MTZ = $p2mtz,";} else {$sql .= "SP_PT2MTZ = NULL,";}
+        if ($p2doxy != "") {$sql .= "SP_PT2Doxy = $p2doxy,";} else {$sql .= "SP_PT2Doxy = NULL,";}
+        if ($p2amox != "") {$sql .= "SP_PT2Amox = $p2amox,";} else {$sql .= "SP_PT2Amox = NULL,";}
 
-        if (!empty($p3init)) {$sql .= "SP_PT3Initials = '$p3init',";}
-        if (!empty($p3sex)) {$sql .= "SP_PT3Sex = '$p3sex',";}
-        if (!empty($p3preg)) {$sql .= "SP_PT3Preg = '$p3preg',";}
-        if (!empty($p3month)) {$sql .= "SP_PT3Months = '$p3month',";}
-        if (!empty($p3bf)) {$sql .= "SP_PT3BF = '$p3bf',";}
-        if (!empty($p3mtz)) {$sql .= "SP_PT3MTZ = '$p3mtz',";}
-        if (!empty($p3doxy)) {$sql .= "SP_PT3Doxy = '$p3doxy',";}
-        if (!empty($p3amox)) {$sql .= "SP_PT3Amox = '$p3amox',";}
+        $sql .= "SP_PT3Initials = '$p3init',";
+        $sql .= "SP_PT3Sex = '$p3sex',";
+        $sql .= "SP_PT3Preg = '$p3preg',";
+        if ($p3month != "") {$sql .= "SP_PT3Months = $p3month,";} else {$sql .= "SP_PT3Months = NULL,";}
+        $sql .= "SP_PT3BF = '$p3bf',";
+        if ($p3mtz != "") {$sql .= "SP_PT3MTZ = $p3mtz,";} else {$sql .= "SP_PT3MTZ = NULL,";}
+        if ($p3doxy != "") {$sql .= "SP_PT3Doxy = $p3doxy,";} else {$sql .= "SP_PT3Doxy = NULL,";}
+        if ($p3amox != "") {$sql .= "SP_PT3Amox = $p3amox,";} else {$sql .= "SP_PT3Amox = NULL,";}
 
         // rx practitioner
-        if (!empty($pract)) {$sql .= "DR_Rx = '$pract',";}
-        if (!empty($rxnum)) {$sql .= "RXNum = '$rxnum',";}
+        $sql .= "DR_Rx = '$pract',";
+        if ($rxnum != "") {$sql .= "RXNum = $rxnum,";} else {$sql .= "RXNum = NULL";}
     
-        // remove last comma and add bracket
-        $sql = substr_replace($sql ,"",-1);
+        // remove last comma
+        //$sql = substr_replace($sql ,"",-1);
         
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
@@ -550,34 +586,34 @@
         
         $sql .= "TriageTesting = 'complete',";
 
-        if (!empty($v)) {$sql .= "VTest = '$v',";}
-        if (!empty($mal)) {$sql .= "MalariaTest = '$mal',";}
-        if (!empty($syph)) {$sql .= "SyphilisTest = '$syph',";}
-        if (!empty($typh)) {$sql .= "TyphTest = '$typh',";}
-        if (!empty($leuc)) {$sql .= "UrineLeucTest = '$leuc',";}
-        if (!empty($rbc)) {$sql .= "UrineRBCTest = '$rbc',";}
-        if (!empty($glucose)) {$sql .= "UrineGlucoseTest = '$glucose',";}
-        if (!empty($nit)) {$sql .= "UrineNitritesTest = '$nit',";}
-        if (!empty($preg)) {$sql .= "PregnancyTest = '$preg',";}
+        $sql .= "VTest = '$v',";
+        $sql .= "MalariaTest = '$mal',";
+        $sql .= "SyphilisTest = '$syph',";
+        $sql .= "TyphTest = '$typh',";
+        $sql .= "UrineLeucTest = '$leuc',";
+        $sql .= "UrineRBCTest = '$rbc',";
+        $sql .= "UrineGlucoseTest = '$glucose',";
+        $sql .= "UrineNitritesTest = '$nit',";
+        $sql .= "PregnancyTest = '$preg',";
 
-        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+        $sql .= "Assessment = '$assess',";
 
-        if (!empty($lastv)) {$sql .= "LastHIVTest = '$lastv',";}
-        if (!empty($lastpzq)) {$sql .= "LastPZQTx = '$lastpzq',";}
-        if (!empty($lastworm)) {$sql .= "LastWormTx = '$lastworm',";}
-        if (!empty($lastvita)) {$sql .= "LastVitA = '$lastvita',";}
+        $sql .= "LastHIVTest = '$lastv',";
+        $sql .= "LastPZQTx = '$lastpzq',";
+        $sql .= "LastWormTx = '$lastworm',";
+        $sql .= "LastVitA = '$lastvita',";
 
-        if (!empty($meds)) {$sql .= "PrevMeds = '$meds',";}
+        $sql .= "PrevMeds = '$meds',";
         
-        if (!empty($parac)) {$sql .= "Rx_Paracetamol = '$parac',";}
-        if (!empty($benz)) {$sql .= "Rx_BenzPen = '$benz',";}
-        if (!empty($ceft)) {$sql .= "Rx_Ceftriaxone = '$ceft',";}
+        $sql .= "Rx_Paracetamol = '$parac',";
+        $sql .= "Rx_BenzPen = '$benz',";
+        $sql .= "Rx_Ceftriaxone = '$ceft',";
         
         // rx practitioner
-        if (!empty($pract)) {$sql .= "DR_Test = '$pract',";}
+        $sql .= "DR_Test = '$pract'";
     
-        // remove last comma and add bracket
-        $sql = substr_replace($sql ,"",-1);
+        // remove last comma
+        //$sql = substr_replace($sql ,"",-1);
         
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
@@ -603,18 +639,18 @@
         $sql .= "TriageOPHT = 'complete',";
 
         // notes
-        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+        $sql .= "Assessment = '$assess',";
 
         // eye values
-        if (!empty($eye1)) {$sql .= "Eye_Val1 = '$eye1',";}
-        if (!empty($eye2)) {$sql .= "Eye_Val2 = '$eye2',";}
-        if (!empty($eye3)) {$sql .= "Eye_Val3 = '$eye3',";}
+        $sql .= "Eye_Val1 = '$eye1',";
+        $sql .= "Eye_Val2 = '$eye2',";
+        $sql .= "Eye_Val3 = '$eye3',";
         
         // rx practitioner
-        if (!empty($pract)) {$sql .= "DR_Eye = '$pract',";}
+        $sql .= "DR_Eye = '$pract'";
     
-        // remove last comma and add bracket
-        $sql = substr_replace($sql ,"",-1);
+        // remove last comma
+        //$sql = substr_replace($sql ,"",-1);
         
         // add conditon
         $sql .= " WHERE VisitID = $visitID";
@@ -635,13 +671,13 @@
         $sql .= "TriageDENT = 'complete',";
         
         // notes
-        if (!empty($assess)) {$sql .= "Assessment = '$assess',";}
+        $sql .= "Assessment = '$assess',";
 
         // rx practitioner
-        if (!empty($pract)) {$sql .= "DR_Dental = '$pract',";}
+        $sql .= "DR_Dental = '$pract'";
     
         // remove last comma and add bracket
-        $sql = substr_replace($sql ,"",-1);
+        //$sql = substr_replace($sql ,"",-1);
         
         // add conditon
         $sql .= " WHERE VisitID = $visitID";

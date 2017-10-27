@@ -316,18 +316,15 @@
         loading();
 
         // checkboxes
-        var preg = "no";
-        var breast = "no";
-        if (rdoPregYes.checked) {
-            preg = "yes";
-        }
-        if (rdoBreastYes.checked) {
-            breast = "yes";
-        }
+        var preg = "";
+        var breast = "";
+        if (rdoPregYes.checked) {preg = "yes";} else if (rdoPregNo.checked) {preg = "no";}
+        if (rdoBreastYes.checked) {breast = "yes";} else if (rdoBreastNo.checked) {breast = "no";}
 
         // construct json object to send to the handler script
         var sendJSON = {
             "upload": "basic",
+            "visitid": drpVisit[drpVisit.selectedIndex].value,
             "patientid": drpPatient[drpPatient.selectedIndex].value,
             "dispensary": drpDispensary[drpDispensary.selectedIndex].value,
             "weight": txtWeight.value.replace(/[^0-9\.-]+/g, ""),
@@ -486,40 +483,41 @@
             // how many entries are in the JSON?
             var entryCount = response.entries.length;
 
-            // first entry into the list is for a new entry option
-            var first = new Option();
-            first.id = 0;
-            first.text = "New Case";
-            first.value = 0;
+            // failure?
+            if (response.success) {
+                // first entry into the list is for a new entry option
+                var first = new Option();
+                first.id = 0;
+                first.text = "New Case";
+                first.value = 0;
 
-            // add element to as a new option
-            $(drpVisit).append(first);
+                // add element to as a new option
+                $(drpVisit).append(first);
+                
+                // do we have entries to display?
+                if (entryCount > 0) {
+                
+                    // populate the dropdown menu
+                    for (var i = 0; i < entryCount; i++) {
+                        // build the option element and add properties
+                        var option = new Option();
+                        option.id = i + 1;
+                        option.text = "Case #" + response.entries[i];
+                        option.value = response.entries[i];
+                        // add element to dropdown
+                        $(drpVisit).append(option);
+                    }
 
-            // do we have entries to display?
-            if (entryCount > 0) {
-
-                // populate the dropdown menu
-                for (var i = 0; i < entryCount; i++) {
-
-                    // build the option element and add properties
-                    var option = new Option();
-                    option.id = i + 1;
-                    option.text = "Case #" + response.entries[i];
-                    option.value = response.entries[i];
-
-                    // add element to dropdown
-                    $(drpVisit).append(option);
+                } else {
+                    // no data to display
                 }
 
             } else {
-                // no data to display
                 // build an empty option element and add properties
                 var option = new Option();
                 option.id = 0;
-                // failure or no entries?
-                if (response.success) {option.text = "No Cases";} else {option.text = "Failed";}
+                option.text = "Failed";
                 option.value = 0;
-
                 // add element to dropdown
                 $(drpVisit).append(option);
             }
